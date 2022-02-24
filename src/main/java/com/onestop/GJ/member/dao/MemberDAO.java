@@ -7,9 +7,13 @@ import org.springframework.dao.DataAccessException;
 import com.onestop.GJ.member.vo.MemberVO;
 
 public interface MemberDAO {
-	 public List selectAllMemberList() throws DataAccessException;
-	 public int insertMember(MemberVO memberVO) throws DataAccessException ;
-	 public int deleteMember(String id) throws DataAccessException;
-	 public MemberVO loginById(MemberVO memberVO) throws DataAccessException;
+
+	List selectAllMemberList() throws DataAccessException;
+
+	int insertMember(MemberVO memberVO) throws DataAccessException;
+
+	int deleteMember(String id) throws DataAccessException;
+
+	MemberVO loginById(MemberVO memberVO) throws DataAccessException;
 
 }
