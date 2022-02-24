@@ -1,0 +1,252 @@
+li {
+    float: left;
+    list-style: none;
+    text-decoration: none;
+
+}
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+div {
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+#header_top {
+    display: flex;
+    width: 1024px;
+    height: 50px;
+    margin: 0 auto;
+}
+
+#container {
+    margin-top: 10px;
+    position: relative;
+    float: left;
+    width: 100%;
+    border-bottom: #7e7e7e;
+}
+
+#container div {
+    width: 200px;
+    height: 50px;
+}
+
+.logo1 {
+    float: left;
+}
+
+
+.notice_bn {
+    margin-left: 200px;
+    float: left;
+}
+
+.sns {
+    float: right;
+}
+
+.sns_link>li {
+    margin-top: 10px;
+    margin-right: 10px;
+    float: right;
+}
+
+#header_mid1 {
+    width: 1024px;
+    height: 30px;
+    margin: 0 auto;
+}
+
+#inner {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+
+}
+
+.logo2 {
+    margin-top: 10px;
+    text-align: center;
+    width: 100%;
+    height: 30px;
+    position: relative;
+}
+
+#header_mid2 {
+    width: 1024px;
+    height: 60px;
+    margin: 0 auto;
+
+}
+
+.searchBox {
+    float: right;
+    position: relative;
+    margin-top: 10px;
+}
+
+.searchBox form {
+
+    margin: 0;
+    padding: 0;
+}
+
+.form-control {
+    width: 220px;
+    height: 30px;
+}
+
+.d-flex .btn {
+    border-color: #0597eb;
+    height: 30px;
+}
+
+.btn-outline-success:hover {
+    background-color: #0597eb;
+    height: 30px;
+}
+
+.d-flex button p {
+    font-size: 8pt;
+    color: rgb(133, 133, 133);
+}
+
+.d-flex button p:hover {
+    font-size: 8pt;
+    color: rgb(255, 255, 255);
+}
+
+#header_bottom {
+    width: 1024px;
+    height: 60px;
+    margin: 0 auto;
+}
+
+.info {
+    float: right;
+}
+
+.info a {
+    float: left;
+    margin-top: 17px;
+    margin-left: 10px;
+    width: 80px;
+
+}
+
+.info a img {
+    float: left;
+    margin-top: 2px;
+    margin-right: 5px;
+}
+
+.info a p {
+    font-size: 11pt;
+}
+
+#menu {
+    width: 824px;
+    height: 52px;
+    float: left;
+}
+
+#gnb {
+    position: absolute;
+    right: 50%;
+    top: 6px;
+    margin-right: -620px;
+}
+
+#nav {
+    position: relative;
+    overflow: hidden;
+    width: 824px;
+    height: 50px;
+    z-index: 100;
+    transition: all .3s ease;
+}
+
+#navWrap {
+    width: 1240px;
+    margin: 0 auto;
+
+}
+
+#inner>h1 {
+    text-align: center;
+
+}
+
+#navWrap>ul>li {
+    position: relative;
+    float: left;
+}
+
+#navWrap>ul>li>a {
+    display: block;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+    line-height: 52px;
+    border-right: 0.5px solid #ccc;
+}
+
+#navWrap>ul>li:first-child>ul {
+    border-left: 1px solid #ccc;
+}
+
+#navWrap>ul>li>ul {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 52px;
+    height: 300px;
+    padding: 20px 0;
+    border-right: 1px solid #ccc;
+    opacity: 1;
+}
+
+#navWrap>ul>li ul a {
+    font-size: 12px;
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 30px;
+}
+
+.show {
+    opacity: 1;
+}
+
+.menu a:hover {
+    color: #fff;
+    background: #0597eb;
+}
+
+.submenu1 li {
+    width: 180px;
+}
+
+.submenu2 li {
+    width: 245px;
+}
+
+.submenu3 li {
+    width: 219px;
+}
