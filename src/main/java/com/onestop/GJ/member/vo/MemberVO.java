@@ -63,4 +63,9 @@ public class MemberVO {
 		this.joinDate = joinDate;
 	}
 
+	public Object getMember_id() {
+		
+		return null;
+	}
+
 }

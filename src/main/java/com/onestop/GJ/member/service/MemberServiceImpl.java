@@ -11,12 +11,12 @@ import org.springframework.transaction.annotation.Transactional;
 import com.onestop.GJ.member.dao.MemberDAO;
 import com.onestop.GJ.member.vo.MemberVO;
 
-
 @Service("memberService")
 @Transactional(propagation = Propagation.REQUIRED)
-public class MemberServiceImpl implements MemberService {
+public class MemberServiceImpl implements MemberService{
 	@Autowired
 	private MemberDAO memberDAO;
+
 
 	@Override
 	public List listMembers() throws DataAccessException {
@@ -26,8 +26,8 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public int addMember(MemberVO member) throws DataAccessException {
-		return memberDAO.insertMember(member);
+	public int addMember(MemberVO memberVO) throws DataAccessException {
+		return memberDAO.insertMember(memberVO);
 	}
 
 	@Override
@@ -35,9 +35,11 @@ public class MemberServiceImpl implements MemberService {
 		return memberDAO.deleteMember(id);
 	}
 	
+	
 	@Override
 	public MemberVO login(MemberVO memberVO) throws Exception{
 		return memberDAO.loginById(memberVO);
 	}
-
+	
+	
 }
