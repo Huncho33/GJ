@@ -11,31 +11,31 @@
 <head>
     <meta charset="UTF-8">
     <title>헤더</title>
-    <link href="./bootstrap4/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="${contextPath}/resources/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="./js/jquery-ui.js"></script>
-    <script src="./js/jquery.scrollTo-min.js"></script>
+    <script src="${contextPath}/resources/js/jquery-ui.js"></script>
+    <script src="${contextPath}/resources/js/jquery.scrollTo-min.js"></script>
     <link href="${contextPath}/resources/css/header.css" rel="stylesheet" type="text/css">
 
 </head>
 
 <body>
     <div id="header_top">
-        <div id="container">
+        <div id="header_container">
             <div class="logo1">
-                <a href="https://www.daegu.go.kr/index.do"><img src="img/대구광역시로고.png" height="40px">
+                <a href="https://www.daegu.go.kr/index.do"><img src="${contextPath}/resources/image/대구광역시로고.png" height="40px">
             </div>
             
             <div class="sns">
                 <ul class="sns_link">
                     <li><a href="#">
-                            <img src="img/kakaotalk.png" height="25px">
+                            <img src="${contextPath}/resources/image/kakaotalk.png" height="25px">
                         </a></li>
                     <li><a href="#">
-                            <img src="img/facebook.png" height="25px">
+                            <img src="${contextPath}/resources/image/facebook.png" height="25px">
                         </a></li>
                     <li><a href="#">
-                            <img src="img/insta.png" height="25px">
+                            <img src="${contextPath}/resources/image/insta.png" height="25px">
                         </a></li>
                 </ul>
                 
@@ -45,9 +45,9 @@
     <hr>
     <div id="header_mid">
         <div id="header_mid1">
-            <div id="inner">
+            <div id="header_inner">
                 <div class="logo2">
-                    <h1><a href="#"><img src="img/원스톱청년주거 로고.png"></h1>
+                    <h1><a href="#"><img src="${contextPath}/resources/image/원스톱청년주거 로고.png"></h1>
                 </div>
             </div>
         </div>
@@ -61,9 +61,9 @@
         </div>
     </div>
     <div id="header_bottom">
-        <div id="menu">
-            <div id="nav">
-                <div id="navWrap">
+        <div id="header_menu">
+            <div id="header_nav">
+                <div id="header_navWrap">
                     <ul>
                         <li class="menu" style="width: 180px;">
                             <a href="#">청년패키지</a>
@@ -116,10 +116,10 @@
             </div>
         </div>
         <div class="info">
-            <a href="#"><img src="img/user.png">
+            <a href="#"><img src="${contextPath}/resources/image/user.png">
                 <p>로그인</p>
             </a>
-            <a href="#"><img src="img/file.png">
+            <a href="#"><img src="${contextPath}/resources/image/file.png">
                 <p>회원가입</p>
             </a>
         </div>
@@ -134,7 +134,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
         integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
         crossorigin="anonymous"></script>
-    <script src="./header.js"></script>
 </body>
 
 </html>

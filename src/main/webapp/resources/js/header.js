@@ -1,10 +1,10 @@
 $(function () {
-    $("#nav").mouseover(function () {
+    $("#header_nav").mouseover(function () {
         $(this).css({ height: "350px" });
-        $("#navWrap").children("ul").children("li").find("ul").addClass('show');
+        $("#header_navWrap").children("ul").children("li").find("ul").addClass('show');
     });
-    $("#nav").mouseout(function () {
+    $("#header_nav").mouseout(function () {
         $(this).css({ height: "52" });
-        $("#navWrap").children("ul").children("li").find("ul").removeClass('show');
+        $("#header_navWrap").children("ul").children("li").find("ul").removeClass('show');
     });
 });

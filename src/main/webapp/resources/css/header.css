@@ -34,7 +34,7 @@ ul {
     margin: 0 auto;
 }
 
-#container {
+#header_container {
     margin-top: 10px;
     position: relative;
     float: left;
@@ -42,7 +42,7 @@ ul {
     border-bottom: #7e7e7e;
 }
 
-#container div {
+#header_container div {
     width: 200px;
     height: 50px;
 }
@@ -73,7 +73,7 @@ ul {
     margin: 0 auto;
 }
 
-#inner {
+#header_inner {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
@@ -160,20 +160,20 @@ ul {
     font-size: 11pt;
 }
 
-#menu {
+#header_menu {
     width: 824px;
     height: 52px;
     float: left;
 }
 
-#gnb {
+#header_gnb {
     position: absolute;
     right: 50%;
     top: 6px;
     margin-right: -620px;
 }
 
-#nav {
+#header_nav {
     position: relative;
     overflow: hidden;
     width: 824px;
@@ -182,23 +182,23 @@ ul {
     transition: all .3s ease;
 }
 
-#navWrap {
+#header_navWrap {
     width: 1240px;
     margin: 0 auto;
 
 }
 
-#inner>h1 {
+#header_inner>h1 {
     text-align: center;
 
 }
 
-#navWrap>ul>li {
+#header_navWrap>ul>li {
     position: relative;
     float: left;
 }
 
-#navWrap>ul>li>a {
+#header_navWrap>ul>li>a {
     display: block;
     font-size: 18px;
     font-weight: 600;
@@ -207,11 +207,11 @@ ul {
     border-right: 0.5px solid #ccc;
 }
 
-#navWrap>ul>li:first-child>ul {
+#header_navWrap>ul>li:first-child>ul {
     border-left: 1px solid #ccc;
 }
 
-#navWrap>ul>li>ul {
+#header_navWrap>ul>li>ul {
     position: absolute;
     left: 0;
     right: 0;
@@ -222,7 +222,7 @@ ul {
     opacity: 1;
 }
 
-#navWrap>ul>li ul a {
+#header_navWrap>ul>li ul a {
     font-size: 12px;
     display: block;
     height: 30px;
