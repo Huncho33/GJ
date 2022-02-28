@@ -1,4 +1,4 @@
-package com.onestop.GJ.board.notice.controller;
+package com.onestop.GJ.admin.board.notice.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

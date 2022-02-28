@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.boardNotice">
+	<resultMap id="articlesResult" type="boardNoticeVO">
+		<result property="noti_NO" column="noti_NO" />
+		<result property="noti_title" column="noti_title" />
+		<result property="noti_context" column="noti_context" />
+		<result property="noti_date" column="noti_date" />
+		<result property="up_fileName" column="up_fileName" />
+		<result property="noti_hits" column="noti_hits" />
+		
+	</resultMap>
+	
+	
+
+	<select id="selectAllArticlesList" resultMap="articlesResult">
+    <![CDATA[
+      SELECT noti_NO, noti_title, noti_context, noti_date, up_fileName, noti_hits, adm_id
+      from board_Notice
+     
+    ]]>
+	</select>
+	
+		<select id="selectArticle" resultType="boardNoticeVO"
+		parameterType="int">
+    <![CDATA[
+      SELECT * from board_Notice
+      where noti_NO = #{noti_NO}      
+    ]]>
+	</select>
+
+	
+
+
+</mapper>

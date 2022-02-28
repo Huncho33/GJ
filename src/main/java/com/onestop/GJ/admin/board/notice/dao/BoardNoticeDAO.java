@@ -1,4 +1,4 @@
-package com.onestop.GJ.board.notice.dao;
+package com.onestop.GJ.admin.board.notice.dao;
 
 import java.util.List;
 import java.util.Map;

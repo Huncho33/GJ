@@ -1,4 +1,4 @@
-package com.onestop.GJ.board.notice.service;
+package com.onestop.GJ.admin.board.notice.service;
 
 import java.util.List;
 import java.util.Map;

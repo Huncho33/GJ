@@ -1,4 +1,4 @@
-package com.onestop.GJ.board.notice.vo;
+package com.onestop.GJ.admin.board.notice.vo;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
