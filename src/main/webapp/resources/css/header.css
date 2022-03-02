@@ -5,23 +5,15 @@ li {
 
 }
 
-* {
-    padding: 0;
-    margin: 0;
-}
-
 div {
     display: block;
     margin: 0;
     padding: 0;
 }
 
-a {
-    text-decoration: none;
-    color: #000;
-}
 
-ul {
+
+#header_navWrap>ul {
     margin: 0;
     padding: 0;
     list-style: none;
@@ -29,7 +21,7 @@ ul {
 
 #header_top {
     display: flex;
-    width: 1024px;
+    width: 1200px;
     height: 50px;
     margin: 0 auto;
 }
@@ -42,7 +34,7 @@ ul {
     border-bottom: #7e7e7e;
 }
 
-#header_container div {
+#header_container > div {
     width: 200px;
     height: 50px;
 }
@@ -68,8 +60,8 @@ ul {
 }
 
 #header_mid1 {
-    width: 1024px;
-    height: 30px;
+    width: 1200px;
+    height: 100px;
     margin: 0 auto;
 }
 
@@ -89,63 +81,75 @@ ul {
 }
 
 #header_mid2 {
-    width: 1024px;
+    width: 1150px;
     height: 60px;
     margin: 0 auto;
 
 }
 
-.searchBox {
+#header_mid2 > .searchBox {
     float: right;
     position: relative;
     margin-top: 10px;
 }
 
-.searchBox form {
-
-    margin: 0;
-    padding: 0;
-}
-
-.form-control {
+#header_mid2 > .searchBox form {
     width: 220px;
     height: 30px;
 }
 
-.d-flex .btn {
-    border-color: #0597eb;
+#header_mid2 > .form-control {
+    width: 220px;
     height: 30px;
 }
 
-.btn-outline-success:hover {
+.d-flex {
+	width: 300px;
+	height: 40px;
+}
+
+.d-flex .btn {
+    border-color: #0597eb;
+    width: 60px;
+    padding: 0;
+}
+
+.d-flex .btn:hover {
     background-color: #0597eb;
     height: 30px;
 }
 
+
 .d-flex button p {
-    font-size: 8pt;
+    font-size: 9pt;
     color: rgb(133, 133, 133);
 }
 
 .d-flex button p:hover {
-    font-size: 8pt;
-    color: rgb(255, 255, 255);
+    color: #fff;
 }
 
+.form-control {
+	
+}
+
+
 #header_bottom {
-    width: 1024px;
+    width: 1200px;
     height: 60px;
     margin: 0 auto;
 }
 
 .info {
     float: right;
+    z-index: 101;
+    margin-top: 5px;
+    margin-right: 70px;
 }
 
 .info a {
     float: left;
     margin-top: 17px;
-    margin-left: 10px;
     width: 80px;
 
 }
@@ -170,13 +174,13 @@ ul {
     position: absolute;
     right: 50%;
     top: 6px;
-    margin-right: -620px;
 }
 
 #header_nav {
     position: relative;
     overflow: hidden;
-    width: 824px;
+    background: #fff;
+    width: 900px;
     height: 50px;
     z-index: 100;
     transition: all .3s ease;
@@ -220,6 +224,7 @@ ul {
     padding: 20px 0;
     border-right: 1px solid #ccc;
     opacity: 1;
+    
 }
 
 #header_navWrap>ul>li ul a {
@@ -228,6 +233,7 @@ ul {
     height: 30px;
     line-height: 30px;
     padding: 0 30px;
+    
 }
 
 .show {
@@ -240,13 +246,13 @@ ul {
 }
 
 .submenu1 li {
-    width: 180px;
+    width: 200px;
 }
 
 .submenu2 li {
-    width: 245px;
+    width: 250px;
 }
 
 .submenu3 li {
-    width: 219px;
+    width: 230px;
 }
