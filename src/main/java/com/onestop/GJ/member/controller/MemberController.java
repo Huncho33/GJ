@@ -3,6 +3,7 @@ package com.onestop.GJ.member.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,5 +19,13 @@ public interface MemberController {
 
 	ModelAndView logout(MemberVO member, RedirectAttributes rAttr, HttpServletRequest request,
 			HttpServletResponse response) throws Exception;
+
+
+	ResponseEntity addMember(MemberVO member, HttpServletRequest request, HttpServletResponse response) throws Exception;
+
+	ResponseEntity overlapped(String id, HttpServletRequest request, HttpServletResponse response) throws Exception;
+
+//	ModelAndView memberForm(HttpServletRequest request, HttpServletResponse response) throws Exception;
+
 
 }

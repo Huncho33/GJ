@@ -20,21 +20,21 @@
 			<td><b>이름</b></td>
 			<td><b>이메일</b></td>
 			<td><b>가입일</b></td>
-			<td><b>수정</b></td>
-			<td><b>삭제</b></td>
+		<!-- 	<td><b>수정</b></td>
+			<td><b>삭제</b></td> -->
 		</tr>
 
 		<c:forEach var="member" items="${membersList}">
 			<tr align="center">
-				<td>${member.id}</td>
-				<td>${member.pwd}</td>
-				<td>${member.name}</td>
-				<td>${member.email}</td>
-				<td>${member.joinDate}</td>
+				<td>${member.member_id}</td>
+				<td>${member.member_pw}</td>
+				<td>${member.member_gender}</td>
+				<td>${member.member_birth}</td>
+				<td>${member.member_phoneno}</td>
 				<td><a
-					href="${contextPath }/member/modMemberForm.do?id=${member.id}">정보수정</a></td>
+					href="${contextPath }/member/modMemberForm.do?id=${member.member_id}">정보수정</a></td>
 				<td><a
-					href="${contextPath }/member/removeMember.do?id=${member.id}">삭제하기</a></td>
+					href="${contextPath }/member/removeMember.do?id=${member.member_id}">삭제하기</a></td>
 			</tr>
 		</c:forEach>
 	</table>
@@ -44,7 +44,7 @@
 	<!-- 로그인 버튼 -->
 	<c:choose>
 		<c:when test="${isLogOn == true  && member!= null}">
-			<h3>환영합니다. ${member.name }님!</h3>
+			<h3>환영합니다. ${member.member_name }님!</h3>
 			<script>
 				window.onload = function() {
 					alert("로그인!!.");
