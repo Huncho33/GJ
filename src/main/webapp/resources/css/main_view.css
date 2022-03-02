@@ -1,0 +1,110 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#main_tot {
+    width: 1024px;
+}
+
+
+.find_bar {
+    width: 100%;
+    height: 80px;
+    border: 2px solid rgb(71, 142, 223);
+    border-radius: 1rem;
+}
+
+.main_cnt1 {
+    float: left;
+    height: 350px;
+    padding: 20px;
+}
+
+.main_cnt2 {
+    float: right;
+    height: 350px;
+    padding: 20px;
+}
+
+.main_tabs p {
+    float: left;
+}
+
+.nav-item3 {
+    margin-left: 270px;
+    margin-top: 5px;
+}
+
+.find_bar_ele {
+    text-align: center;
+    line-height: 80px;
+}
+
+.find_bar_ele select {
+	width: 150px;
+	height: 30px;
+}
+
+
+.main_tablist1 {
+    width: 470px;
+    height: 200px;
+    line-height: 200px;
+    text-align: center;
+}
+
+.main_tablist2 {
+    width: 470px;
+    height: 200px;
+    line-height: 200px;
+    text-align: center;
+}
+.main_shortcuts {
+    width: 470px;
+    height: 250px;
+    margin-top: 35px;
+    margin-left: 10px;
+}
+
+.mn_shortcut {
+    width: 140px;
+    height: 200px;
+    margin: 5px;
+    border-radius: 1rem;
+    float: left;
+    line-height: 200px;
+    text-align: center;
+}
+
+.mn_shortcut p {
+    color: white;
+}
+
+.mn_shortcut1 {
+    background: #f6f6f6;
+    transition: all 0.2s linear;
+    
+}
+
+.mn_shortcut1:hover {
+    transform: scale(1.1);
+}
+
+.mn_shortcut2 {
+    background: #f6f6f6;
+    transition: all 0.2s linear;
+}
+
+.mn_shortcut2:hover {
+    transform: scale(1.1);
+}
+
+.mn_shortcut3 {
+    background: #f6f6f6;
+    transition: all 0.2s linear;
+}       
+
+.mn_shortcut3:hover {
+    transform: scale(1.1);
+}
