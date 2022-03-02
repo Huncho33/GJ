@@ -51,7 +51,8 @@
 				<div id="header_inner">
 					<div class="logo2">
 						<h1>
-							<a href="#"><img
+							<a href="${contextPath}/main.do">
+							<img
 								src="${contextPath}/resources/image/원스톱청년주거 로고.png">
 						</h1>
 					</div>
