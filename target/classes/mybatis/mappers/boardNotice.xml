@@ -33,12 +33,20 @@
     ]]>
 	</select>
 	
-	<!-- 게시글 추가하기 -->
+	<!-- 게시글 번호 생성 -->
 		<select id="selectNewArticleNO" resultType="int">
 <![CDATA[
    SELECT max(noti_NO) +1 from board_Notice
 ]]>
    </select>
+   
+   <!--  게시글 추가하기-->
+      <insert id="insertNewArticle" parameterType="java.util.Map">
+    <![CDATA[
+      INSERT into board_Notice(noti_NO, noti_title, noti_context, up_fileName, adm_id )
+      values(#{noti_NO} ,  #{noti_title} ,  #{noti_context} , #{up_fileName}  , #{adm_id} )
+    ]]>
+   </insert>
 
 	
 

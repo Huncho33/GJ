@@ -79,35 +79,36 @@
 <form name="frmArticle" method="post" action="${contextPath}"
 		enctype="multipart/form-data">
 
-	<table border=0 align="center">
-
-		<tr>
+		<table border=0 align="center">
+			<tr>
 			<td width="150" align="center" bgcolor="#FF9933">제목</td>
 			<td><input type=text value="${article.noti_title }" name="title"
 				id="i_title" disabled /></td>
 		</tr>
-
-		<tr>
+		
+			<tr>
 			<td width="150" align="center" bgcolor="#FF9933">등록일자</td>
 			<td><input type=text
 				value="<fmt:formatDate value="${article.noti_date}" />" disabled />
 			</td>
 
 		</tr>
-
-		<tr>
+		
+			<tr>
 			<td width="150" align="center" bgcolor="#FF9933">조회수</td>
 			<td><input type=text value="${article.noti_hits }" name="hits"
 				id="noti_hits" disabled /></td>
 		</tr>
-
-		<tr>
+		
+			<tr>
 			<td width="150" align="center" bgcolor="#FF9933">내용</td>
 			<td><textarea rows="20" cols="60" name="content" id="i_content"
 					disabled />${article.noti_context }</textarea></td>
 		</tr>
 		
-		<!-- 파일 업로드 -->
+	
+	
+ <!--  파일 업로드 --> 
 	<c:if test="${not empty imageFileList && imageFileList!='null' }">
 				<c:forEach var="item" items="${imageFileList}" varStatus="status">
 					<tr>
@@ -158,21 +159,7 @@
 				</c:otherwise>
 			</c:choose>
 
-
-		<!-- 수정,삭제, 리스트로 돌아가기 -->
-<tr id="tr_btn">
-				<td colspan="2" align="center"><c:if
-						test="${member.id == article.adm_id }">
-						<input type=button value="삭제하기"
-							onClick="fn_remove_article('${contextPath}/boardNotice/removeArticle.do', ${article.noti_NO})">
-					</c:if> 
-					<input type=button value="리스트로 돌아가기"
-					onClick="backToList(this.form)"> 
-				</td>
-			</tr>
-
-	</table>
-
+		</table>
 </body>
 </html>
 

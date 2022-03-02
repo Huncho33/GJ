@@ -80,11 +80,10 @@
 		</table>
 
 
-		<!-- <a  class="cls1"  href="#"><p class="cls2">글쓰기</p></a> -->
-		<a class="cls1"
-			href="javascript:fn_articleForm('${isLogOn}','${contextPath}/boardNotice/articleForm.do', 
+<a class="cls1"
+		href="javascript:fn_articleForm('${isLogOn}','${contextPath}/boardNotice/articleForm.do', 
                                                     '${contextPath}/member/loginForm.do')"><p
-				class="cls2">글쓰기</p></a>
+			class="cls2">글쓰기</p></a>
 	</div>
 
 
