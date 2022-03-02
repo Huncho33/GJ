@@ -126,34 +126,33 @@
 
 					<script>
 						window.onload = function() {
-							alert("로그인!!.");
+							alert("로그인 되었습니다.");
 						}
 					</script>
-					
+
 					<a href="${contextPath}/member/logout.do"><h3>로그아웃</h3></a>
 				</c:when>
 
 
 				<c:otherwise>
 					<a href="${contextPath}/member/loginForm.do">로그인</a>
-					<a href= "${contextPath}/member/memberForm.do">회원가입</a>
+					<a href="${contextPath}/member/memberForm.do">회원가입</a>
 				</c:otherwise>
 			</c:choose>
-			
+
 			<c:choose>
 				<c:when test="${result == 'logOut'}">
-				<script>
-					window.onload = function() {
-						alert("로그아웃!!.");
-					}
-				</script>
+					<script>
+						window.onload = function() {
+							alert("로그아웃 되었습니다.");
+						}
+					</script>
 				</c:when>
 			</c:choose>
 
-			
-			<%-- <p><a href= "${contextPath}/member/memberForm.do">회원가입</a></p> --%>
-			
-			
+
+
+
 		</div>
 	</div>
 	<script src="${contextPath}/resources/js/header.js"></script>
