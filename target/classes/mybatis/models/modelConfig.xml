@@ -5,7 +5,5 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="com.onestop.GJ.member.vo.MemberVO"  alias="memberVO" />
-	<!--  	<typeAlias type="com.onestop.GJ.board.vo.ArticleVO"  alias="articleVO" />
-		<typeAlias type="com.onestop.GJ.board.vo.ImageVO"  alias="imageVO" />-->
 	</typeAliases>
 </configuration>

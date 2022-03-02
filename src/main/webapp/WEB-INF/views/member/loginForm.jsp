@@ -29,10 +29,10 @@
       </tr>
       <tr align="center">
          <td>
-	    <input type="text" name="id" value="" size="20">
+	    <input type="text" name="member_id" value="" size="20">
         </td>
          <td>
-	    <input type="password" name="pwd" value="" size="20">
+	    <input type="password" name="member_pw" value="" size="20">
          </td>
       </tr>
       <tr align="center">
