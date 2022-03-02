@@ -30,7 +30,7 @@
 </head>
 
 <body>
-<<<<<<< HEAD
+
 	<div id="main_tot">
 		<div id="main_container1">
 			<div id="main_banner">
@@ -127,11 +127,6 @@
 			</div>
 
 		</div>
-=======
-	<div class="main_h">
-		<!-- <h1>메인 페이지입니다!!</h1> -->
-		
->>>>>>> refs/remotes/origin/member
 	</div>
 
 	<script
