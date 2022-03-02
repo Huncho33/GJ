@@ -123,14 +123,52 @@
 				</div>
 			</div>
 			<div class="info">
-				<a href="#"><img src="${contextPath}/resources/image/user.png">
-					<p>로그인</p> </a> <a href="#"><img
-					src="${contextPath}/resources/image/file.png">
-					<p>회원가입</p> </a>
-			</div>
+				
+			<c:choose>
+				<c:when test="${isLogOn == true  && member!= null}">
+					<h3>환영합니다. ${member.member_name }님!</h3>
+
+					<script>
+						window.onload = function() {
+							alert("로그인 되었습니다.");
+						}
+					</script>
+
+					<a href="${contextPath}/member/logout.do"><h3>로그아웃</h3></a>
+				</c:when>
+
+
+				<c:otherwise>
+					<a href="${contextPath}/member/loginForm.do">로그인</a>
+					<a href="${contextPath}/member/memberForm.do">회원가입</a>
+				</c:otherwise>
+			</c:choose>
+
+			<c:choose>
+				<c:when test="${result == 'logOut'}">
+					<script>
+						window.onload = function() {
+							alert("로그아웃 되었습니다.");
+						}
+					</script>
+				</c:when>
+			</c:choose>
+
 		</div>
 	</div>
 	<script src="${contextPath}/resources/js/header.js"></script>
+	 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"></script>
+   <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+      crossorigin="anonymous"></script>
+   <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
+      integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
+      crossorigin="anonymous"></script>
+	
 </body>
 
 </html>

@@ -69,7 +69,7 @@ public class BoardNoticeControllerImpl implements BoardNoticeController {
 		//로그인 시 세션에 저장된 회원 정보에서 글쓴이 아이디를 얻어와서 Map에 저장합니다.
 		HttpSession session = multipartRequest.getSession();
 		MemberVO memberVO = (MemberVO) session.getAttribute("member");
-		String id = memberVO.getId();
+		String id = memberVO.getMember_id();
 		articleMap.put("id",id);
 		articleMap.put("parentNO", 0);
 
