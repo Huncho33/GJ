@@ -129,7 +129,7 @@
 				</div>
 			</div>
 			<div class="info">
-				<a href="#"><img src="${contextPath}/resources/image/user.png">
+				<a href="${contextPath}/member/loginForm.do"><img src="${contextPath}/resources/image/user.png">
 					<p>로그인</p> </a> <a href="#"><img
 					src="${contextPath}/resources/image/file.png">
 					<p>회원가입</p> </a>

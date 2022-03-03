@@ -17,5 +17,7 @@ public interface MemberService {
 
 	MemberVO login(MemberVO memberVO) throws Exception;
 
+	String overlapped(String id);
+
 	
 }
