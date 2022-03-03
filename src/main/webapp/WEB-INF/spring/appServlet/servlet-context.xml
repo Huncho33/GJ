@@ -55,6 +55,7 @@
 		<mvc:interceptor>
 			<mvc:mapping path="/*.do" />
 			<mvc:mapping path="/*/*.do" />
+			<mvc:mapping path="/*/*/*.do" />
 			<beans:bean
 				class="com.onestop.GJ.common.interceptor.ViewNameInterceptor" />
 		</mvc:interceptor>

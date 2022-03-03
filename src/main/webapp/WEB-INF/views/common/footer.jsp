@@ -15,7 +15,7 @@
 
 <body>
 
-<div style="margin-top : 120px;"></div>
+
 
 <footer id="footer" style="text-align: center;">
     <div id="khs_view" >

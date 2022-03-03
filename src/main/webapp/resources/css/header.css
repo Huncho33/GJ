@@ -1,16 +1,32 @@
-li {
+.sns_link li {
     float: left;
     list-style: none;
     text-decoration: none;
-
 }
 
-div {
-    display: block;
-    margin: 0;
-    padding: 0;
+.center li {
+    float: left;
+    list-style: none;
+    text-decoration: none;
 }
 
+.submenu li {
+    float: left;
+    list-style: none;
+    text-decoration: none;
+}
+
+
+
+.menu a {
+	text-decoration: none;
+	color: #000;
+}
+
+.info a {
+	text-decoration: none;
+	color: #000;
+}
 
 
 #header_navWrap>ul {
@@ -20,8 +36,8 @@ div {
 }
 
 #header_top {
+	width: 1200px;
     display: flex;
-    width: 1200px;
     height: 50px;
     margin: 0 auto;
 }
@@ -60,7 +76,6 @@ div {
 }
 
 #header_mid1 {
-    width: 1200px;
     height: 100px;
     margin: 0 auto;
 }
@@ -149,8 +164,8 @@ div {
 
 .info a {
     float: left;
-    margin-top: 17px;
-    width: 80px;
+    margin-top: 10px;
+    width: 100px;
 
 }
 
