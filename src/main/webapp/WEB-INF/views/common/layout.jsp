@@ -17,7 +17,7 @@
    margin: 0px auto;
    border: 0px solid #bcbcbc;
 }
-
+   
 #layout_header {
    padding: 5px;
    margin-bottom: 15px;
