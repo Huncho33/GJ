@@ -1,105 +1,3 @@
-<%-- <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
-    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
-   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-   <c:set var="contextPath" value="${pageContext.request.contextPath}"  />     
-    <c:set var="result" value="${param.id }" />
-    
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>회원 가입 </title>
-<script>
-function fn_overlapped(){
-    var _id=$("#_member_id").val();
-    if(_id==''){
-       alert("ID를 입력하세요");
-       return;
-    }
-    $.ajax({
-       type:"post",
-       async:false,  
-       url:"${contextPath}/member/overlapped.do",
-       dataType:"text",
-       data: {id:_id},
-       success:function (data,textStatus){
-          if(data=='false'){
-              alert("사용할 수 있는 ID입니다.");
-              $('#btnOverlapped').prop("disabled", true);
-              $('#_member_id').prop("disabled", true);
-              $('#member_id').val(_id);
-          }else{
-             alert("사용할 수 없는 ID입니다.");
-          }
-       },
-       error:function(data,textStatus){
-          alert("에러가 발생했습니다.");ㅣ
-       },
-       complete:function(data,textStatus){
-          //alert("작업을완료 했습니다");
-       }
-    });  //end ajax    
- }   
-</script>
-
-</head>
-<body>
-   <form method="post"  action="${contextPath}/member/addMember.do">
-   <h1 style="text-align:center">회원 등록창 </h1>
-   <table align="center">
-      <tr class="dot_line">
-               <td class="fixed_join">아이디</td>
-               <td>
-                 <input type="text" name="_member_id"  id="_member_id"  size="20" />
-                 <input type="hidden" name="member_id"  id="member_id" />
-                 
-                 <input type="button"  id="btnOverlapped" value="중복체크" onClick="fn_overlapped()" />
-               </td>
-            </tr>
-      <tr>
-         <td width="200"><p align="right">비밀번호</p></td>
-         <td width="400"><input type="password" name="member_pw"></td>
-      </tr>
-      <tr>
-         <td width="200"><p align="right">이름</p></td>
-         <td width="400"><input type="text" name="member_name"></td>
-      </tr>
-      <tr>
-         <td width="200"><p align="right">성별</p></td>
-         <td width="400"><input type="text" name="member_gender"></td>
-      </tr>
-     
-       <tr>
-         <td width="200"><p align="right">생일</p></td>
-         <td width="400"><input type="text" name="member_birth"></td>
-      </tr>   
-      <tr>
-         <td width="200"><p align="right">휴대번호</p></td>
-         <td width="400"><input type="text" name="member_phoneno"></td>
-      </tr>
-      <tr>
-         <td width="200"><p align="right">이메일</p></td>
-         <td width="400"><input type="text" name="member_email"></td>
-      </tr>
-      <tr>
-         <td width="200"><p align="right">주소</p></td>
-         <td width="400"><input type="text" name="member_address"></td>
-      </tr>
-            
-         <td width="200"><p>&nbsp;</p></td>
-         <td width="400">
-         <input type="submit" value="가입하기">
-         <input type="reset" value="다시입력">
-         </td>
-      </tr>
-   </table>
-   </form>
-</body>
-</html> --%>
-
-<!-- bookshop꺼 -->
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -111,7 +9,7 @@ function fn_overlapped(){
 <head>
 <meta charset="utf-8">
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-<script>
+<script language="javascript">
 	function execDaumPostcode() {
 		new daum.Postcode(
 				{
@@ -199,11 +97,133 @@ function fn_overlapped(){
 			}
 		}); //end ajax	 
 	}
+	
+	//유효성검사
+	function validate() {
+		var checkIP = /^[a-zA-Z0-9]{4,12}$/; //ID와 PASSWORD 유효성 검사 정규식
+		var checkEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/; //Email 유효성 검사 정규식
+		var checkPN = /^[0-9]{13}$/;
+
+		var userID = document.getElementById("userID"); //ID
+		var member_pw = document.getElementById("member_pw"); //PASSWORD
+		var userPassC = document.getElementById("userPassC"); //PASSWORD CHECKING
+		var member_email = document.getElementById("member_email"); //EMAIL
+		var member_name = document.getElementById("member_name"); //NAME
+		var personalN = document.getElementById("personalN"); //PERSONAL NUMBER
+
+		var arrayPN = new Array();//주민 담는 배열
+
+		//ID 유효성검사
+		if (member_id.value == '') {
+			alert("아이디를 입력하세요");
+			return false;
+		}
+		 /* if (!checkIP.test(member_id.value)) {
+			alert("영문과 숫자로 이루어진 4~12자의 아이디를 입력하세요");
+			return false;
+		}  */
+
+		//PASSWORD 유효성검사
+		if (member_pw.value == '') {
+			alert("비밀번호를 입력하세요");
+			return false;
+		}
+		if (!checkIP.test(member_pw.value)) {
+			alert("영문과 숫자로 이루어진 4~12자의 비밀번호를 입력하세요.");
+			return false;
+		}
+		/* if (userPass.value != userPassC.value) {
+			alert("Wrong: The Password and Password_Check are not same, Try again");
+			return false;
+		} */
+
+		
+		//name 유효성검사
+		if (member_name.value == '') {
+			alert("이름을 입력하세요");
+		}
+		
+		//EMAIL 유효성검사
+		if (userEmail.value == '') {
+			alert("Input Email");
+			return false;
+		}
+		if (!checkEmail.test(userEmail.value)) {
+			alert("Wrong: Input email, try again");
+			return false;
+		}
+
+		
+
+		//PERSONAL NUMBER 유효성 검사
+		if (personalN.value == '') {
+			alert("Input Personal No");
+			return false;
+		}
+
+		var personal = checkPN.exec(personalN.value);
+
+		if (personal) {// 숫자만 들어왔을때 true로 돌아감
+			var personalN = document.getElementById("personalN");
+
+			for (var i = 0; i < personalN.value.length; i++) { // 주민번호 입력한거 배열에 담아주기
+				arrayPN[i] = personalN.value.charAt(i);
+			}
+
+			var tempSum = 0;// 주민번호 유효성 계산해주기
+			for (var i = 0; i < 6; i++) {
+				tempSum += arrayPN[i] * (2 + i);
+			}
+
+			for (var i = 0; i < 6; i++) {
+				if (i >= 2) {
+					tempSum += arrayPN[i + 6] * i;
+				} else {
+					tempSum += arrayPN[i + 6] * (8 + i);
+				}
+			}
+			if ((11 - (tempSum % 11)) % 10 != arrayPN[12]) {
+				alert("Wrong: It's not correct Personal Number");
+				arrayPN = "";
+				return false;
+			} else {
+				alert("Correct Personal Number");
+				// 생일에 주민번호 입력한 앞 6자리 넣어주기
+				var birthYear = document.getElementById("years");
+				var birthMonth = document.getElementById("month");
+				var birthDay = document.getElementById("day");
+
+				// years 설정
+				if (arrayPN[0] > 2) {
+					years.value = "19" + arrayPN[0] + arrayPN[1];
+				} else {
+					years.value = "20" + arrayPN[0] + arrayPN[1];
+				}
+				// month 설정
+				if (arrayPN[2] == 0) {
+					month.value = arrayPN[3];
+				} else {
+					month.value = arrayPN[2] + arrayPN[3];
+				}
+				// day 설정
+				if (arrayPN[4] == 0) {
+					day.value = arrayPN[5];
+				} else {
+					day.value = arrayPN[4] + arrayPN[5];
+				}
+				return true;
+			}
+		} else {
+			alert("Wrong: Input type");
+			return false;
+		}
+	}
 </script>
 </head>
 <body>
-	<h3>필수입력사항</h3>
-	<form action="${contextPath}/member/addMember.do" method="post">
+	<h3>회원가입</h3>
+	<form action="${contextPath}/member/addMember.do" method="post"
+	enctype="text/plain" onsubmit="return validate()">
 		<div id="detail_table">
 			<table>
 				<tbody>
@@ -216,28 +236,26 @@ function fn_overlapped(){
 					</tr>
 					<tr class="dot_line">
 						<td class="fixed_join">비밀번호</td>
-						<td><input name="member_pw" type="password" size="20" /></td>
+						<td><input name="member_pw" id="member_pw"type="password" size="20" /> <!-- <div class="valid">비밀번호를 입력하세요. (영문 대/소문자, 숫자를 모두 포함)</div> -->
+						</td>
+
 					</tr>
 
 					<tr class="dot_line">
 						<td class="fixed_join">이름</td>
-						<td><input name="member_name" type="text" size="20" /></td>
+						<td><input name="member_name" id="member_name"type="text" size="20" /></td>
 					</tr>
 					<tr class="dot_line">
 						<td class="fixed_join">성별</td>
-						<td><input type="radio" name="member_gender" value="F" />
-							여<span style="padding-left: 120px"></span> <input type="radio"
+						<td><input type="radio" name="member_gender" value="F" /> 여<span
+							style="padding-left: 120px"></span> <input type="radio"
 							name="member_gender" value="M" checked />남</td>
 					</tr>
 
 					<tr>
 						<td width="200"><p align="right">생년월일</p></td>
-						<td width="400"><input type="text" name="member_birth"></td>
+						<td width="400"><input type="text" name="member_birth" id="member_birth"></td>
 					</tr>
-					<!-- <tr>
-						<td width="200"><p align="right">성별</p></td>
-						<td width="400"><input type="text" name="member_gender"></td>
-					</tr> -->
 					<tr>
 						<td width="200"><p align="right">휴대번호</p></td>
 						<td width="400"><input type="text" name="member_phoneno"></td>
@@ -246,15 +264,27 @@ function fn_overlapped(){
 						<td width="200"><p align="right">이메일</p></td>
 						<td width="400"><input type="text" name="member_email"></td>
 					</tr>
-					<tr>
-						<td width="200"><p align="right">주소</p></td>
-						<td width="400"><input type="text" name="member_address"></td>
+
+					<tr class="dot_line">
+						<td class="fixed_join">주소</td>
+						
+						
+						<td>
+					   <input type="text" id="zipcode" name="zipcode" size="10" > <a href="javascript:execDaumPostcode()">우편번호검색</a>
+					  <br>
+					  <p> 
+					   지번 주소:<br><input type="text" id="roadAddress"  name="roadAddress" size="50"><br><br>
+					 도로명 주소: <input type="text" id="jibunAddress" name="jibunAddress" size="50"><br><br> 
+					  나머지 주소: <input type="text"  name="namujiAddress" size="50" />
+					 <!--   <span id="guide" style="color:#999"></span> -->
+					   </p>
+					</td>
 					</tr>
 
-					<td width="200"><p>&nbsp;</p></td>
+					<!-- <td width="200"><p>&nbsp;</p></td>
 					<td width="400"><input type="submit" value="가입하기"> <input
 						type="reset" value="다시입력"></td>
-					</tr>
+					</tr> -->
 
 				</tbody>
 			</table>

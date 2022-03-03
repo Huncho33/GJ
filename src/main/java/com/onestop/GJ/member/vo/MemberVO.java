@@ -14,7 +14,13 @@ public class MemberVO {
 	private String member_birth;
 	private int member_phoneno;
 	private String member_email;
-	private String member_address;
+//	private String member_address;
+	//주소 추가.
+	private String zipcode;
+	private String roadAddress;
+	private String jibunAddress;
+	private String namujiAddress;
+	
 	private Date member_last_log;
 	public String getMember_id() {
 		return member_id;
@@ -58,14 +64,40 @@ public class MemberVO {
 	public void setMember_email(String member_email) {
 		this.member_email = member_email;
 	}
-	public String getMember_address() {
-		return member_address;
-	}
-	public void setMember_address(String member_address) {
-		this.member_address = member_address;
-	}
+//	public String getMember_address() {
+//		return member_address;
+//	}
+//	public void setMember_address(String member_address) {
+//		this.member_address = member_address;
+//	}
+	
+	
 	public Date getMember_last_log() {
 		return member_last_log;
+	}
+	public String getZipcode() {
+		return zipcode;
+	}
+	public void setZipcode(String zipcode) {
+		this.zipcode = zipcode;
+	}
+	public String getRoadAddress() {
+		return roadAddress;
+	}
+	public void setRoadAddress(String roadAddress) {
+		this.roadAddress = roadAddress;
+	}
+	public String getJibunAddress() {
+		return jibunAddress;
+	}
+	public void setJibunAddress(String jibunAddress) {
+		this.jibunAddress = jibunAddress;
+	}
+	public String getNamujiAddress() {
+		return namujiAddress;
+	}
+	public void setNamujiAddress(String namujiAddress) {
+		this.namujiAddress = namujiAddress;
 	}
 	public void setMember_last_log(Date member_last_log) {
 		this.member_last_log = member_last_log;
