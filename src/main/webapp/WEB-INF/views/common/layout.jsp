@@ -15,10 +15,9 @@
 
    width: 100%;
    margin: 0px auto;
-   text-align: center;
    border: 0px solid #bcbcbc;
 }
-
+   
 #layout_header {
    padding: 5px;
    margin-bottom: 15px;
@@ -29,7 +28,6 @@
    width: 100%;
    height: 100%;
    padding: 5px;
-    transform: translateX(25%);
 }
 
 #layout_footer {
