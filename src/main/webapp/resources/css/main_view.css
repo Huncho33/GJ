@@ -4,17 +4,15 @@
 }
 
 #main_bground {
-   width:100%;
-   position: relative;
+	width:100%;
+	position: relative;
 }
 
 #main_tot {
-   position: absolute;
-   width: 1100px;
-   top: 50%;
-   left: 20%;
-   margin: auto;
-   
+	position: relative;
+	width: 1100px;
+	margin: 0 auto;
+	
 }
 
 .find_bar {
@@ -42,7 +40,7 @@
 }
 
 .main_tabs a {
-   cursor: pointer;
+	cursor: pointer;
 }
 
 .nav-item3 {
@@ -56,8 +54,8 @@
 }
 
 .find_bar_ele select {
-   width: 150px;
-   height: 30px;
+	width: 150px;
+	height: 30px;
 }
 
 

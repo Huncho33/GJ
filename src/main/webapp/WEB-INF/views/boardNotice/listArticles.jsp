@@ -4,8 +4,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
-
-
 <%
 	request.setCharacterEncoding("UTF-8");
 %>
@@ -71,7 +69,7 @@
 							<td width="50%"><a class='cls1'
 								href="${contextPath}/boardNotice/viewArticle.do?noti_NO=${article.noti_NO }">
 									${article.noti_title }</a>
-							<td width="10%">${article.adm_id }</td>
+							<td width="10%">${article.member_id }</td>
 							<td width="15%">${article.noti_date}</td>
 						</tr>
 					</c:forEach>
@@ -80,11 +78,10 @@
 		</table>
 
 
-		<!-- <a  class="cls1"  href="#"><p class="cls2">글쓰기</p></a> -->
-		<a class="cls1"
-			href="javascript:fn_articleForm('${isLogOn}','${contextPath}/boardNotice/articleForm.do', 
+<a class="cls1"
+		href="javascript:fn_articleForm('${isLogOn}','${contextPath}/boardNotice/articleForm.do', 
                                                     '${contextPath}/member/loginForm.do')"><p
-				class="cls2">글쓰기</p></a>
+			class="cls2">글쓰기</p></a>
 	</div>
 
 
