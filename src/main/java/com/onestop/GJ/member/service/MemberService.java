@@ -19,5 +19,6 @@ public interface MemberService {
 
 	String overlapped(String id) throws Exception;
 
+
 	
 }
