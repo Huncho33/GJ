@@ -83,7 +83,7 @@
 						<ul>
 							<li class="menu" style="width: 200px;"><a href="#">청년패키지</a>
 								<ul class="submenu1">
-									<li><a href="#">청년패키지란?</a></li>
+									<li><a href="${contextPath}/boardIntro/yIntro.do">청년패키지란?</a></li>
 									<li><a href="#">공지사항</a></li>
 									<li><a href="#">문의사항</a></li>
 									<li><a href="#"> - 자주 묻는 질문</a></li>
