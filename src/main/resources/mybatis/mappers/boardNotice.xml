@@ -49,6 +49,7 @@
     ]]>
    </insert>
    
+   <!-- 이미지 추가 -->
    	<insert id="insertNewImage" parameterType="java.util.Map">
 		<foreach item="item" collection="list" open="INSERT ALL"
 			separator=" " close="SELECT * FROM DUAL">
