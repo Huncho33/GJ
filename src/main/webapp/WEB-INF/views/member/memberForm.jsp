@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
-
 <!DOCTYPE html >
 <html>
 <head>
@@ -97,31 +96,30 @@
 			}
 		}); //end ajax	 
 	}
-	
+
 	//유효성검사
 	function validate() {
-		var checkIP = /^[a-zA-Z0-9]{4,12}$/; //ID와 PASSWORD 유효성 검사 정규식
+		var checkIP = /^[a-zA-Z0-9]{0,12}$/; //ID와 PASSWORD 유효성 검사 정규식
 		var checkEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/; //Email 유효성 검사 정규식
 		var checkPN = /^[0-9]{13}$/;
 
-		var userID = document.getElementById("userID"); //ID
+		var member_id = document.getElementById("member_id"); //ID
 		var member_pw = document.getElementById("member_pw"); //PASSWORD
-		var userPassC = document.getElementById("userPassC"); //PASSWORD CHECKING
+		/* var userPassC = document.getElementById("userPassC"); //PASSWORD CHECKING */ 
 		var member_email = document.getElementById("member_email"); //EMAIL
 		var member_name = document.getElementById("member_name"); //NAME
-		var personalN = document.getElementById("personalN"); //PERSONAL NUMBER
+		/* var personalN = document.getElementById("personalN"); //PERSONAL NUMBER */
 
-		var arrayPN = new Array();//주민 담는 배열
 
 		//ID 유효성검사
 		if (member_id.value == '') {
 			alert("아이디를 입력하세요");
 			return false;
 		}
-		 /* if (!checkIP.test(member_id.value)) {
-			alert("영문과 숫자로 이루어진 4~12자의 아이디를 입력하세요");
-			return false;
-		}  */
+		 if (!checkIP.test(member_id.value)) {
+		alert("영문과 숫자로 이루어진 4~12자의 아이디를 입력하세요");
+		return false;
+		}  
 
 		//PASSWORD 유효성검사
 		if (member_pw.value == '') {
@@ -132,36 +130,45 @@
 			alert("영문과 숫자로 이루어진 4~12자의 비밀번호를 입력하세요.");
 			return false;
 		}
-		/* if (userPass.value != userPassC.value) {
+		/*  if (userPass.value != userPassC.value) {
 			alert("Wrong: The Password and Password_Check are not same, Try again");
 			return false;
-		} */
+		}  */
 
-		
 		//name 유효성검사
 		if (member_name.value == '') {
 			alert("이름을 입력하세요");
+			return false;
+		}
+		
+		//생년월일 유효성검사
+		if (member_birth.value ==''){
+			alert("생년월일을 입력하세요")
+			return false;
+		}
+		
+		if (member_phoneno.value == ''){
+			alert("휴대폰번호를 입력하세요")
+			return false;
 		}
 		
 		//EMAIL 유효성검사
-		if (userEmail.value == '') {
-			alert("Input Email");
+		if (email1.value == '') {
+			alert("이메일을 입력하세요");
 			return false;
 		}
-		if (!checkEmail.test(userEmail.value)) {
-			alert("Wrong: Input email, try again");
+		if (!checkEmail.test(email1.value)) {
+			alert("이메일 형식이 맞지 않습니다. 다시입력하세요");
 			return false;
 		}
 
-		
-
-		//PERSONAL NUMBER 유효성 검사
-		if (personalN.value == '') {
+		 //PERSONAL NUMBER 유효성 검사
+		/* if (personalN.value == '') {
 			alert("Input Personal No");
 			return false;
 		}
-
-		var personal = checkPN.exec(personalN.value);
+ 
+		 var personal = checkPN.exec(personalN.value);
 
 		if (personal) {// 숫자만 들어왔을때 true로 돌아감
 			var personalN = document.getElementById("personalN");
@@ -216,14 +223,14 @@
 		} else {
 			alert("Wrong: Input type");
 			return false;
-		}
-	}
+		}  */
+	}  
 </script>
 </head>
 <body>
 	<h3>회원가입</h3>
 	<form action="${contextPath}/member/addMember.do" method="post"
-	enctype="text/plain" onsubmit="return validate()">
+		enctype="text/plain" onsubmit="return validate()">
 		<div id="detail_table">
 			<table>
 				<tbody>
@@ -236,14 +243,15 @@
 					</tr>
 					<tr class="dot_line">
 						<td class="fixed_join">비밀번호</td>
-						<td><input name="member_pw" id="member_pw"type="password" size="20" /> <!-- <div class="valid">비밀번호를 입력하세요. (영문 대/소문자, 숫자를 모두 포함)</div> -->
+						<td><input name="member_pw" id="member_pw" type="password"
+							size="20" /> <!-- <div class="valid">비밀번호를 입력하세요. (영문 대/소문자, 숫자를 모두 포함)</div> -->
 						</td>
-
 					</tr>
 
 					<tr class="dot_line">
 						<td class="fixed_join">이름</td>
-						<td><input name="member_name" id="member_name"type="text" size="20" /></td>
+						<td><input name="member_name" id="member_name" type="text"
+							size="20" /></td>
 					</tr>
 					<tr class="dot_line">
 						<td class="fixed_join">성별</td>
@@ -254,31 +262,51 @@
 
 					<tr>
 						<td width="200"><p align="right">생년월일</p></td>
-						<td width="400"><input type="text" name="member_birth" id="member_birth"></td>
+						<td width="400"><input type="text" name="member_birth"
+							id="member_birth"></td>
 					</tr>
 					<tr>
 						<td width="200"><p align="right">휴대번호</p></td>
-						<td width="400"><input type="text" name="member_phoneno"></td>
+						<td width="400"><input type="text" name="member_phoneno"
+							id="member_phoneno"></td>
 					</tr>
-					<tr>
-						<td width="200"><p align="right">이메일</p></td>
-						<td width="400"><input type="text" name="member_email"></td>
+
+					<tr class="dot_line">
+						<td class="fixed_join">이메일<br>(e-mail)
+						</td>
+						<td><input size="10px" type="text" name="email1" id="email1" />
+							@ <input size="10px" type="text" name="email2" id="email2" /> <select
+							name="email2" onChange="" title="직접입력">
+								<option value="non">직접입력</option>
+								<option value="hanmail.net">hanmail.net</option>
+								<option value="naver.com">naver.com</option>
+								<option value="yahoo.co.kr">yahoo.co.kr</option>
+								<option value="hotmail.com">hotmail.com</option>
+								<option value="paran.com">paran.com</option>
+								<option value="nate.com">nate.com</option>
+								<option value="google.com">google.com</option>
+								<option value="gmail.com">gmail.com</option>
+								<option value="empal.com">empal.com</option>
+								<option value="korea.com">korea.com</option>
+								<option value="freechal.com">freechal.com</option>
+						</select><br> <br> <!-- <input type="checkbox" name="emailsts_yn"> -->
+						</td>
 					</tr>
 
 					<tr class="dot_line">
 						<td class="fixed_join">주소</td>
-						
-						
-						<td>
-					   <input type="text" id="zipcode" name="zipcode" size="10" > <a href="javascript:execDaumPostcode()">우편번호검색</a>
-					  <br>
-					  <p> 
-					   지번 주소:<br><input type="text" id="roadAddress"  name="roadAddress" size="50"><br><br>
-					 도로명 주소: <input type="text" id="jibunAddress" name="jibunAddress" size="50"><br><br> 
-					  나머지 주소: <input type="text"  name="namujiAddress" size="50" />
-					 <!--   <span id="guide" style="color:#999"></span> -->
-					   </p>
-					</td>
+
+
+						<td><input type="text" id="zipcode" name="zipcode" size="10">
+							<a href="javascript:execDaumPostcode()">우편번호검색</a> <br>
+							<p>
+								지번 주소:<br> <input type="text" id="roadAddress"
+									name="roadAddress" size="50"><br> <br> 도로명
+								주소: <input type="text" id="jibunAddress" name="jibunAddress"
+									size="50"><br> <br> 나머지 주소: <input
+									type="text" name="namujiAddress" size="50" />
+								<!--   <span id="guide" style="color:#999"></span> -->
+							</p></td>
 					</tr>
 
 					<!-- <td width="200"><p>&nbsp;</p></td>

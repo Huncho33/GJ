@@ -13,13 +13,17 @@ public class MemberVO {
 	private	String member_gender;
 	private String member_birth;
 	private int member_phoneno;
-	private String member_email;
+//	private String member_email;
 //	private String member_address;
+	//이메일 추가.
+	private String member_email1;
+	private String member_email2;
+//	private String emailsts_yn;
 	//주소 추가.
-	private String zipcode;
-	private String roadAddress;
-	private String jibunAddress;
-	private String namujiAddress;
+	private String member_zipcode;
+	private String member_roadAddress;
+	private String member_jibunAddress;
+	private String member_namujiAddress;
 	
 	private Date member_last_log;
 	public String getMember_id() {
@@ -58,12 +62,12 @@ public class MemberVO {
 	public void setMember_phoneno(int member_phoneno) {
 		this.member_phoneno = member_phoneno;
 	}
-	public String getMember_email() {
-		return member_email;
-	}
-	public void setMember_email(String member_email) {
-		this.member_email = member_email;
-	}
+//	public String getMember_email() {
+//		return member_email;
+//	}
+//	public void setMember_email(String member_email) {
+//		this.member_email = member_email;
+//	}
 //	public String getMember_address() {
 //		return member_address;
 //	}
@@ -75,29 +79,43 @@ public class MemberVO {
 	public Date getMember_last_log() {
 		return member_last_log;
 	}
-	public String getZipcode() {
-		return zipcode;
+
+	
+	public String getMember_email1() {
+		return member_email1;
 	}
-	public void setZipcode(String zipcode) {
-		this.zipcode = zipcode;
+	public void setMember_email1(String member_email1) {
+		this.member_email1 = member_email1;
 	}
-	public String getRoadAddress() {
-		return roadAddress;
+	public String getMember_email2() {
+		return member_email2;
 	}
-	public void setRoadAddress(String roadAddress) {
-		this.roadAddress = roadAddress;
+	public void setMember_email2(String member_email2) {
+		this.member_email2 = member_email2;
 	}
-	public String getJibunAddress() {
-		return jibunAddress;
+	public String getMember_zipcode() {
+		return member_zipcode;
 	}
-	public void setJibunAddress(String jibunAddress) {
-		this.jibunAddress = jibunAddress;
+	public void setMember_zipcode(String member_zipcode) {
+		this.member_zipcode = member_zipcode;
 	}
-	public String getNamujiAddress() {
-		return namujiAddress;
+	public String getMember_roadAddress() {
+		return member_roadAddress;
 	}
-	public void setNamujiAddress(String namujiAddress) {
-		this.namujiAddress = namujiAddress;
+	public void setMember_roadAddress(String member_roadAddress) {
+		this.member_roadAddress = member_roadAddress;
+	}
+	public String getMember_jibunAddress() {
+		return member_jibunAddress;
+	}
+	public void setMember_jibunAddress(String member_jibunAddress) {
+		this.member_jibunAddress = member_jibunAddress;
+	}
+	public String getMember_namujiAddress() {
+		return member_namujiAddress;
+	}
+	public void setMember_namujiAddress(String member_namujiAddress) {
+		this.member_namujiAddress = member_namujiAddress;
 	}
 	public void setMember_last_log(Date member_last_log) {
 		this.member_last_log = member_last_log;
