@@ -36,10 +36,10 @@ public class BoardNoticeDAOImpl implements BoardNoticeDAO {
 	public void insertNewImage(Map articleMap) throws DataAccessException {
 		List<BoardNoticeImageVO> imageFileList = (ArrayList) articleMap.get("imageFileList");
 		int noti_NO = (Integer) articleMap.get("noti_NO");
-		int imageFileNO = selectNewImageFileNO();
-		for (BoardNoticeImageVO imageVO : imageFileList) {
-			imageVO.setUp_fileNO(++imageFileNO);
-			imageVO.setUp_fileNO(noti_NO);
+		int up_fileNO = selectNewImageFileNO();
+		for (BoardNoticeImageVO boardNoticeImageVO : imageFileList) {
+			boardNoticeImageVO.setUp_fileNO(++up_fileNO);
+			boardNoticeImageVO.setUp_fileNO(noti_NO);
 		}
 		sqlSession.insert("mapper.boardNotice.insertNewImage", imageFileList);
 	}
@@ -73,7 +73,7 @@ public class BoardNoticeDAOImpl implements BoardNoticeDAO {
 	}
 
 	@Override
-	public void deleteArticle(int articleNO) throws DataAccessException {
-		sqlSession.delete("mapper.boardNotice.deleteArticle", articleNO);
+	public void deleteArticle(int noti_NO) throws DataAccessException {
+		sqlSession.delete("mapper.boardNotice.deleteArticle", noti_NO);
 	}
 }

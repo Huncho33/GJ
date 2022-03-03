@@ -35,26 +35,6 @@ public class MemberControllerImpl implements MemberController {
 		mav.setViewName(viewName);
 		return mav;
 	}
-//	@Override //로그인 창
-//	@RequestMapping(value = "/member/login.do", method = RequestMethod.POST)
-//	public ModelAndView login(@ModelAttribute("member") MemberVO member, RedirectAttributes rAttr,
-//			HttpServletRequest request, HttpServletResponse response) throws Exception {
-//		ModelAndView mav = new ModelAndView();
-//		memberVO = memberService.login(member);
-//		if (memberVO != null && memberVO.getMember_id() != null) {
-//			HttpSession session = request.getSession();
-//			session.setAttribute("member", memberVO);
-//			session.setAttribute("isLogOn", true);
-//			mav.setViewName("redirect:/main.do");
-//		} else {
-//			rAttr.addAttribute("result", "loginFailed");
-//			mav.setViewName("redirect:/member/loginForm.do");
-//			
-//		}
-//
-//		System.out.println(memberVO);
-//		return mav;
-//	}
 
 	//로그인
 	@Override
@@ -98,20 +78,6 @@ public class MemberControllerImpl implements MemberController {
 
 	}
 	
-//	// 회원가입창
-//			@Override 
-//			@RequestMapping(value = "/member/memberForm.do", method = RequestMethod.GET)
-//			public ModelAndView memberForm(HttpServletRequest request, HttpServletResponse response) throws Exception {
-//				String viewName = getViewName(request);
-//				ModelAndView mav = new ModelAndView(viewName);
-//				mav.setViewName(viewName);
-//				return mav;
-//			}
-//	
-//	private String getViewName(HttpServletRequest request) {
-//		
-//		return null;
-//	}
 	@RequestMapping(value = "/member/*Form.do", method =  RequestMethod.GET)
 	private ModelAndView form(@RequestParam(value= "result", required=false) String result,
 			@RequestParam(value= "action", required=false) String action,

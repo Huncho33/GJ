@@ -11,73 +11,75 @@
 		<result property="noti_date" column="noti_date" />
 		<result property="up_fileName" column="up_fileName" />
 		<result property="noti_hits" column="noti_hits" />
-		
+
 	</resultMap>
-	
-	
+
+
 	<!-- 게시판 리스트 불러오기기 -->
 	<select id="selectAllArticlesList" resultMap="articlesResult">
     <![CDATA[
-      SELECT noti_NO, noti_title, noti_context, noti_date, up_fileName, noti_hits, adm_id
+      SELECT noti_NO, noti_title, noti_context, noti_date, up_fileName, noti_hits, member_id
       from board_Notice
      
     ]]>
 	</select>
-	
+
 	<!-- 게시판 상세글 조회하기 -->
-		<select id="selectArticle" resultType="boardNoticeVO"
+	<select id="selectArticle" resultType="boardNoticeVO"
 		parameterType="int">
     <![CDATA[
       SELECT * from board_Notice
       where noti_NO = #{noti_NO}      
     ]]>
 	</select>
-	
-	   <!--  게시글 번호 생성 -->
-   	<select id="selectNewArticleNO" resultType="int">
+
+	<!-- 게시글 번호 생성 -->
+	<select id="selectNewArticleNO" resultType="int">
 <![CDATA[
    SELECT max(noti_NO) +1 from board_Notice
 ]]>
-   </select>
-   
-	
-   <!--  게시글 추가하기-->
-      <insert id="insertNewArticle" parameterType="java.util.Map">
+	</select>
+
+
+	<!-- 게시글 추가하기 -->
+	<insert id="insertNewArticle" parameterType="java.util.Map">
     <![CDATA[
-      INSERT into board_Notice(noti_NO, adm_id, noti_title, noti_context, up_fileName)
-      values(#{noti_NO}, #{adm_id}, #{noti_title}, #{noti_context}, #{up_fileName})
+      INSERT into board_Notice(noti_NO, member_id, noti_title, noti_context, up_fileName)
+      values(#{noti_NO}, #{member_id}, #{noti_title}, #{noti_context}, null)
     ]]>
-   </insert>
-   
-   <!-- 이미지 추가 -->
-   	<insert id="insertNewImage" parameterType="java.util.Map">
+	</insert>
+
+	<!-- 이미지 추가 -->
+	<insert id="insertNewImage" parameterType="java.util.Map">
 		<foreach item="item" collection="list" open="INSERT ALL"
 			separator=" " close="SELECT * FROM DUAL">
-			INTO noti_file(up_fileNO, up_fileName, noti_NO, up_date)
-			VALUES (#{item.up_fileNO}, #{item.up_fileName}, #{item.noti_NO},
-			sysdate)
+			INTO noti_file(up_fileNO, up_fileName, noti_NO,
+			up_date)
+			VALUES (#{item.up_fileNO}, #{item.up_fileName},
+			#{item.noti_NO}, sysdate)
+
 		</foreach>
 	</insert>
-	
-		<select id="selectNewImageFileNO" resultType="int">
+
+	<select id="selectNewImageFileNO" resultType="int">
 <![CDATA[
    SELECT nvl(max(up_fileNO),0) from noti_file
 ]]>
 	</select>
-   
-   <resultMap id="imgResult" type="boardNoticeImageVO">
+
+	<resultMap id="imgResult" type="boardNoticeImageVO">
 		<result property="up_fileNO" column="up_fileNO" />
 		<result property="noti_NO" column="noti_NO" />
 		<result property="up_fileName" column="up_fileName" />
 	</resultMap>
 
-<select id="selectImageFileList" resultMap="imgResult"
+	<select id="selectImageFileList" resultMap="imgResult"
 		parameterType="int">
     <![CDATA[
       SELECT * from noti_file
       where noti_NO=#{noti_NO}   
     ]]>
 	</select>
-   
+
 
 </mapper>

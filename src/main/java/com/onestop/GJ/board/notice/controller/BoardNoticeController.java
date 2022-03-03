@@ -16,7 +16,7 @@ public interface BoardNoticeController {
 			throws Exception;
 
 
-	ResponseEntity removeArticle(int articleNO, HttpServletRequest request, HttpServletResponse response)
+	ResponseEntity removeArticle(int noti_NO, HttpServletRequest request, HttpServletResponse response)
 			throws Exception;
 
 

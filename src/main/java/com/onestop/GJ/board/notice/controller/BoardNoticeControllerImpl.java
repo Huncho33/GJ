@@ -92,8 +92,8 @@ public class BoardNoticeControllerImpl implements BoardNoticeController {
 		try {
 			int noti_NO = boardService.addNewArticle(articleMap);
 			if(imageFileList!=null && imageFileList.size()!=0) {
-				for(BoardNoticeImageVO  imageVO:imageFileList) {
-					up_fileName = imageVO.getUp_fileName();
+				for(BoardNoticeImageVO  boardNoticeImageVO:imageFileList) {
+					up_fileName = boardNoticeImageVO.getUp_fileName();
 					File srcFile = new File(ARTICLE_IMAGE_REPO+"\\"+"temp"+"\\"+up_fileName);
 					File destDir = new File(ARTICLE_IMAGE_REPO+"\\"+noti_NO);
 					//destDir.mkdirs();
@@ -108,8 +108,8 @@ public class BoardNoticeControllerImpl implements BoardNoticeController {
 		    resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);   	 
 		}catch(Exception e) {
 			if(imageFileList!=null && imageFileList.size()!=0) {
-			  for(BoardNoticeImageVO  imageVO:imageFileList) {
-				  up_fileName = imageVO.getUp_fileName();
+			  for(BoardNoticeImageVO  boardNoticeImageVO:imageFileList) {
+				  up_fileName = boardNoticeImageVO.getUp_fileName();
 				File srcFile = new File(ARTICLE_IMAGE_REPO+"\\"+"temp"+"\\"+up_fileName);
 			 	srcFile.delete();
 			  }

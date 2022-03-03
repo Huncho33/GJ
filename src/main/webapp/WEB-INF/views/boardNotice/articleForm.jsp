@@ -22,7 +22,7 @@
 		}
 	}
 	function backToList(obj) {
-		obj.action = "${contextPath}/board/listArticles.do";
+		obj.action = "${contextPath}/boardNotice/listArticles.do";
 		obj.submit();
 	}
 
@@ -60,10 +60,9 @@
 				<td align="right">이미지파일 첨부</td>
 				<td align="left"><input type="button" value="파일 추가"
 					onClick="fn_addFile()" /></td>
+					<td colspan="4"><div id="d_file"></div></td>
 			</tr>
-			<tr>
-				<td colspan="4"><div id="d_file"></div></td>
-			</tr>
+			
 			<tr>
 				<td align="right"></td>
 				<td colspan="2"><input type="submit" value="글쓰기" /> <input

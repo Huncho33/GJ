@@ -71,7 +71,7 @@
 							<td width="50%"><a class='cls1'
 								href="${contextPath}/boardNotice/viewArticle.do?noti_NO=${article.noti_NO }">
 									${article.noti_title }</a>
-							<td width="10%">${article.adm_id }</td>
+							<td width="10%">${article.member_id }</td>
 							<td width="15%">${article.noti_date}</td>
 						</tr>
 					</c:forEach>
