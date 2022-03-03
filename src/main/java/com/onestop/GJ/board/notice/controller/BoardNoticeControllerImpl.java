@@ -56,7 +56,7 @@ public class BoardNoticeControllerImpl implements BoardNoticeController {
 	  @ResponseBody
 	  public ResponseEntity  addNewArticle(MultipartHttpServletRequest multipartRequest, HttpServletResponse response) throws Exception {
 		multipartRequest.setCharacterEncoding("utf-8");
-		String imageFileName=null;
+		String up_fileName=null;
 		
 		Map articleMap = new HashMap();
 		Enumeration enu=multipartRequest.getParameterNames();
@@ -79,9 +79,9 @@ public class BoardNoticeControllerImpl implements BoardNoticeController {
 		List<BoardNoticeImageVO> imageFileList = new ArrayList<BoardNoticeImageVO>();
 		if(fileList!= null && fileList.size()!=0) {
 			for(String fileName : fileList) {
-				BoardNoticeImageVO imageVO = new BoardNoticeImageVO();
-				imageVO.setUp_fileName(fileName);
-				imageFileList.add(imageVO);
+				BoardNoticeImageVO boardNoticeImageVO = new BoardNoticeImageVO();
+				boardNoticeImageVO.setUp_fileName(fileName);
+				imageFileList.add(boardNoticeImageVO);
 			}
 			articleMap.put("imageFileList", imageFileList);
 		}
@@ -93,8 +93,8 @@ public class BoardNoticeControllerImpl implements BoardNoticeController {
 			int noti_NO = boardService.addNewArticle(articleMap);
 			if(imageFileList!=null && imageFileList.size()!=0) {
 				for(BoardNoticeImageVO  imageVO:imageFileList) {
-					imageFileName = imageVO.getUp_fileName();
-					File srcFile = new File(ARTICLE_IMAGE_REPO+"\\"+"temp"+"\\"+imageFileName);
+					up_fileName = imageVO.getUp_fileName();
+					File srcFile = new File(ARTICLE_IMAGE_REPO+"\\"+"temp"+"\\"+up_fileName);
 					File destDir = new File(ARTICLE_IMAGE_REPO+"\\"+noti_NO);
 					//destDir.mkdirs();
 					FileUtils.moveFileToDirectory(srcFile, destDir,true);
@@ -109,8 +109,8 @@ public class BoardNoticeControllerImpl implements BoardNoticeController {
 		}catch(Exception e) {
 			if(imageFileList!=null && imageFileList.size()!=0) {
 			  for(BoardNoticeImageVO  imageVO:imageFileList) {
-			  	imageFileName = imageVO.getUp_fileName();
-				File srcFile = new File(ARTICLE_IMAGE_REPO+"\\"+"temp"+"\\"+imageFileName);
+				  up_fileName = imageVO.getUp_fileName();
+				File srcFile = new File(ARTICLE_IMAGE_REPO+"\\"+"temp"+"\\"+up_fileName);
 			 	srcFile.delete();
 			  }
 			}
@@ -124,10 +124,6 @@ public class BoardNoticeControllerImpl implements BoardNoticeController {
 		}
 		return resEnt;
 	  }
-	
-	
-	
-
 	
 	//다중 이미지 업로드하기
 	private List<String> upload(MultipartHttpServletRequest multipartRequest) throws Exception{
@@ -149,7 +145,6 @@ public class BoardNoticeControllerImpl implements BoardNoticeController {
 		return fileList;
 	}
 
-	
 	@RequestMapping(value = "/boardNotice/*Form.do", method = RequestMethod.GET)
 	private ModelAndView form(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = (String) request.getAttribute("viewName");

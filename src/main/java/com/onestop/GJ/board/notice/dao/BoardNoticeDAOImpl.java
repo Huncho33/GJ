@@ -54,11 +54,11 @@ public class BoardNoticeDAOImpl implements BoardNoticeDAO {
 	
 	
 	private int selectNewArticleNO() throws DataAccessException {
-		return sqlSession.selectOne("mapper.board.selectNewArticleNO");
+		return sqlSession.selectOne("mapper.boardNotice.selectNewArticleNO");
 	}
 	
 	private int selectNewImageFileNO() throws DataAccessException {
-		return sqlSession.selectOne("mapper.board.selectNewImageFileNO");
+		return sqlSession.selectOne("mapper.boardNotice.selectNewImageFileNO");
 	}
 
 
@@ -69,11 +69,11 @@ public class BoardNoticeDAOImpl implements BoardNoticeDAO {
 
 	@Override
 	public void updateArticle(Map articleMap) throws DataAccessException {
-		sqlSession.update("mapper.board.updateArticle", articleMap);
+		sqlSession.update("mapper.boardNotice.updateArticle", articleMap);
 	}
 
 	@Override
 	public void deleteArticle(int articleNO) throws DataAccessException {
-		sqlSession.delete("mapper.board.deleteArticle", articleNO);
+		sqlSession.delete("mapper.boardNotice.deleteArticle", articleNO);
 	}
 }
