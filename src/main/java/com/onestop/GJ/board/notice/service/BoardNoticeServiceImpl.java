@@ -27,18 +27,19 @@ public class BoardNoticeServiceImpl implements BoardNoticeService {
 	}
 
 	// 단일 이미지 추가하기
-	/*
-	 * @Override public int addNewArticle(Map articleMap) throws Exception{ return
-	 * boardDAO.insertNewArticle(articleMap); }
-	 */
-	// 다중 이미지 추가하기
-	@Override
-	public int addNewArticle(Map articleMap) throws Exception {
-		int noti_NO = boardDAO.insertNewArticle(articleMap);
-		articleMap.put("noti_NO", noti_NO);
-		boardDAO.insertNewImage(articleMap);
-		return noti_NO;
-	}
+	
+	  @Override public int addNewArticle(Map articleMap) throws Exception{ 
+	  return boardDAO.insertNewArticle(articleMap); 
+	  }
+	 
+//	// 다중 이미지 추가하기
+//	@Override
+//	public int addNewArticle(Map articleMap) throws Exception {
+//		int noti_NO = boardDAO.insertNewArticle(articleMap);
+//		articleMap.put("noti_NO", noti_NO);
+//		boardDAO.insertNewImage(articleMap);
+//		return noti_NO;
+//	}
 
 	//다중 파일 보이기
 	   @Override

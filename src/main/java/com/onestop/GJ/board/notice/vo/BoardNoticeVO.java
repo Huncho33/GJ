@@ -69,7 +69,7 @@ public class BoardNoticeVO {
       this.adm_id = adm_id;
    }
 
-   public String getup_fileName() {
+   public String getUp_fileName() {
          try {
                if (up_fileName != null && up_fileName.length() != 0) {
                   up_fileName = URLDecoder.decode(up_fileName, "UTF-8");
@@ -80,7 +80,7 @@ public class BoardNoticeVO {
             return up_fileName;
       }
 
-      public void setup_fileName(String up_fileName) {
+      public void setUp_fileName(String up_fileName) {
          try {
                if(up_fileName!=null && up_fileName.length()!=0) {
                   this.up_fileName = URLEncoder.encode(up_fileName, "UTF-8"); 

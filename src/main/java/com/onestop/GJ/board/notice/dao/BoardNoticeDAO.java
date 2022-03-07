@@ -11,17 +11,19 @@ public interface BoardNoticeDAO {
 
 	List selectAllArticlesList() throws Exception;
 
-	int insertNewArticle(Map articleMap) throws DataAccessException;
-
 	BoardNoticeVO selectArticle(int noti_NO) throws DataAccessException;
 
 	void updateArticle(Map articleMap) throws DataAccessException;
 
 	void deleteArticle(int noti_NO) throws DataAccessException;
 
-	void insertNewImage(Map articleMap) throws DataAccessException;
+	int insertNewArticle(Map articleMap) throws DataAccessException;
 
 	List selectImageFileList(int noti_NO) throws DataAccessException;
+
+	void insertNewImage(Map articleMap) throws DataAccessException;
+
+	
 
 
 }

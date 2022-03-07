@@ -9,7 +9,7 @@
 
 <head>
 <meta charset="UTF-8">
-<title>글쓰기창</title>
+
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
 	function readURL(input) {
@@ -22,7 +22,7 @@
 		}
 	}
 	function backToList(obj) {
-		obj.action = "${contextPath}/board/listArticles.do";
+		obj.action = "${contextPath}/boardNotice/listArticles.do";
 		obj.submit();
 	}
 
@@ -32,19 +32,22 @@
 				.append("<br>" + "<input type='file' name='file"+cnt+"' />");
 		cnt++;
 	}
+
 </script>
 <title>글쓰기창</title>
 </head>
+
 <body>
 	<h1 style="text-align: center">글쓰기</h1>
 	<form name="articleForm" method="post" accept-charset="utf-8"
-		action="${contextPath}/board/addNewArticle.do"
+		action="${contextPath}/boardNotice/addNewArticle.do"
 		enctype="multipart/form-data">
+		
 		<table border="0" align="center">
 			<tr>
 				<td align="right">작성자</td>
 				<td colspan=2 align="left"><input type="text" size="20"
-					maxlength="100" value="${member.name }" readonly /></td>
+					maxlength="100" value="${member.member_id }" readonly /></td>
 			</tr>
 			<tr>
 				<td align="right">글제목:</td>
@@ -70,6 +73,6 @@
 					type=button value="목록보기" onClick="backToList(this.form)" /></td>
 			</tr>
 		</table>
-	</form>
+		
 </body>
 </html>
