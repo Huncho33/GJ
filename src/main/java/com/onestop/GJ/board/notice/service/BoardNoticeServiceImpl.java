@@ -26,36 +26,18 @@ public class BoardNoticeServiceImpl implements BoardNoticeService {
 		return articlesList;
 	}
 
-	// 단일 이미지 추가하기
-	/*
-	 * @Override public int addNewArticle(Map articleMap) throws Exception{ return
-	 * boardDAO.insertNewArticle(articleMap); }
-	 */
-	// 다중 이미지 추가하기
 	@Override
-	public int addNewArticle(Map articleMap) throws Exception {
-		int noti_NO = boardDAO.insertNewArticle(articleMap);
-		articleMap.put("noti_NO", noti_NO);
-		boardDAO.insertNewImage(articleMap);
-		return noti_NO;
+	public int addNewArticle(Map<String, Object> articleMap) {
+		return boardDAO.insertNewArticle(articleMap);
 	}
 
-	//다중 파일 보이기
-	   @Override
-	   public Map viewArticle(int noti_NO) throws Exception {
-	      Map articleMap = new HashMap();
-	      BoardNoticeVO boardNoticeVO = boardDAO.selectArticle(noti_NO);
-//	      List<BoardNoticeImageVO> imageFileList = boardDAO.selectImageFileList(noti_NO);
-	      articleMap.put("article", boardNoticeVO);
-//	      articleMap.put("imageFileList", imageFileList);
-	      return articleMap;
-	   }
-
 	// 단일 파일 보이기
-	/*
-	 * @Override public ArticleVO viewArticle(int articleNO) throws Exception {
-	 * ArticleVO articleVO = boardDAO.selectArticle(articleNO); return articleVO; }
-	 */
+	@Override
+	public BoardNoticeVO viewArticle(int noti_NO) throws Exception {
+		BoardNoticeVO boardNoticeVO = boardDAO.selectArticle(noti_NO);
+		return boardNoticeVO;
+	}
+	 
 	@Override
 	public void modArticle(Map articleMap) throws Exception {
 		boardDAO.updateArticle(articleMap);

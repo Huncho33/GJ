@@ -29,7 +29,7 @@
 	var cnt = 1;
 	function fn_addFile() {
 		$("#d_file")
-				.append("<br>" + "<input type='file' name='file"+cnt+"' />");
+				.append("<br>" + "<input type='file' name='up_fileName"+cnt+"' />");
 		cnt++;
 	}
 </script>
@@ -44,16 +44,16 @@
 			<tr>
 				<td align="right">작성자</td>
 				<td colspan=2 align="left"><input type="text" size="20"
-					maxlength="100" value="${member.member_id }" readonly /></td>
+					maxlength="100" name="member_id" value="${member.member_id}" readonly /></td>
 			</tr>
 			<tr>
 				<td align="right">글제목:</td>
 				<td colspan="2"><input type="text" size="67" maxlength="500"
-					name="title" /></td>
+					name="noti_title" /></td>
 			</tr>
 			<tr>
 				<td align="right" valign="top"><br>글내용:</td>
-				<td colspan=2><textarea name="content" rows="10" cols="65"
+				<td colspan=2><textarea name="noti_context" rows="10" cols="65"
 						maxlength="4000"></textarea></td>
 			</tr>
 			<tr>

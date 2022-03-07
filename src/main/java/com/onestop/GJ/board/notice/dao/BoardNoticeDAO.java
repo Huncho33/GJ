@@ -19,9 +19,9 @@ public interface BoardNoticeDAO {
 
 	void deleteArticle(int noti_NO) throws DataAccessException;
 
-	void insertNewImage(Map articleMap) throws DataAccessException;
+	//void insertNewImage(Map articleMap) throws DataAccessException;
 
-	List selectImageFileList(int noti_NO) throws DataAccessException;
+	//List selectImageFileList(int noti_NO) throws DataAccessException;
 
 
 }

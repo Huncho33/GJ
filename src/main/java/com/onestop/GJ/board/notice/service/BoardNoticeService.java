@@ -9,13 +9,14 @@ public interface BoardNoticeService {
 
 	List<BoardNoticeVO> listArticles() throws Exception;
 
-	int addNewArticle(Map articleMap) throws Exception;
-
-	Map viewArticle(int noti_NO) throws Exception;
+	int addNewArticle(Map<String, Object> articleMap);
 
 	void modArticle(Map articleMap) throws Exception;
 
 	void removeArticle(int noti_NO) throws Exception;
+
+	BoardNoticeVO viewArticle(int noti_NO) throws Exception;
+
 
 
 }
