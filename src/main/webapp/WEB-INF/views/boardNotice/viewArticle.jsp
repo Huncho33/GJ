@@ -32,9 +32,10 @@
      }
      
 	 function fn_enable(obj){
-		 document.getElementById("i_title").disabled=false;
-		 document.getElementById("i_content").disabled=false;
-		 document.getElementById("i_up_fileName").disabled=false;
+		 document.getElementById("noti_NO").disabled=false;
+		 document.getElementById("noti_title").disabled=false;
+		 document.getElementById("noti_context").disabled=false;
+		 document.getElementById("up_fileName").disabled=false;
 		 document.getElementById("tr_btn_modify").style.display="block";
 		 document.getElementById("tr_file_upload").style.display="block";
 		 document.getElementById("tr_btn").style.display="none";
@@ -49,12 +50,12 @@
 		 var form = document.createElement("form");
 		 form.setAttribute("method", "post");
 		 form.setAttribute("action", url);
-	     var articleNOInput = document.createElement("input");
-	     articleNOInput.setAttribute("type","hidden");
-	     articleNOInput.setAttribute("name","articleNO");
-	     articleNOInput.setAttribute("value", articleNO);
+	     var noti_NOInput = document.createElement("input");
+	     noti_NOInput.setAttribute("type","hidden");
+	     noti_NOInput.setAttribute("name","noti_NO");
+	     noti_NOInput.setAttribute("value", noti_NO);
 		 
-	     form.appendChild(articleNOInput);
+	     form.appendChild(noti_NOInput);
 	     document.body.appendChild(form);
 	     form.submit();
 	 
@@ -72,42 +73,38 @@
 	 }
 	 
 
-
  </script>
 </head>
 <body>
-<form name="frmArticle" method="post" action="${contextPath}"
-		enctype="multipart/form-data">
+<form name="frmArticle" method="post" action="${contextPath}" enctype="multipart/form-data">
 
-	<table border=0 align="center">
-
+		<table border=0 align="center">
 		<tr>
+			<td width="150" align="center" bgcolor="#FF9933">글번호</td>
+			<td><input type=text value="${article.noti_NO}" name="noti_NO" id="noti_NO" disabled /></td>
+			</tr>
+			<tr>
 			<td width="150" align="center" bgcolor="#FF9933">제목</td>
-			<td><input type=text value="${article.noti_title }" name="title"
-				id="i_title" disabled /></td>
-		</tr>
-
-		<tr>
+			<td><input type=text value="${article.noti_title}" name="noti_title" id="noti_title" disabled /></td>
+			</tr>
+			
+			<tr>
 			<td width="150" align="center" bgcolor="#FF9933">등록일자</td>
-			<td><input type=text
-				value="<fmt:formatDate value="${article.noti_date}" />" disabled />
-			</td>
-
-		</tr>
-
-		<tr>
-			<td width="150" align="center" bgcolor="#FF9933">조회수</td>
-			<td><input type=text value="${article.noti_hits }" name="hits"
-				id="noti_hits" disabled /></td>
-		</tr>
-
-		<tr>
-			<td width="150" align="center" bgcolor="#FF9933">내용</td>
-			<td><textarea rows="20" cols="60" name="content" id="i_content"
-					disabled />${article.noti_context }</textarea></td>
-		</tr>
+			<td><input type=text value="<fmt:formatDate value="${article.noti_date}"/>" disabled /></td>
+			</tr>
 		
-		<!-- 파일 업로드 -->
+			<tr>
+			<td width="150" align="center" bgcolor="#FF9933">조회수</td>
+			<td><input type=text value="${article.noti_hits }" name="noti_hits"	id="noti_hits" disabled /></td>
+			</tr>
+		
+			<tr>
+			<td width="150" align="center" bgcolor="#FF9933">내용</td>
+			<td><textarea rows="20" cols="60" name="noti_context" id="noti_context" disabled /></textarea></td>
+			</tr>
+		
+	
+	<!--  파일 업로드 --> 
 	<c:if test="${not empty imageFileList && imageFileList!='null' }">
 				<c:forEach var="item" items="${imageFileList}" varStatus="status">
 					<tr>
@@ -120,7 +117,7 @@
 					</tr>
 					<tr>
 						<td><input type="file" name="up_fileName "
-							id="i_up_fileName" disabled onchange="readURL(this);" /></td>
+							id="up_fileName" disabled onchange="readURL(this);" /></td>
 					</tr>
 				</c:forEach>
 			</c:if>
@@ -133,13 +130,13 @@
 							이미지</td>
 						<td><input type="hidden" name="originalFileName"
 							value="${article.up_fileName }" /> <img
-							src="${contextPath}/download.do?noti_NO=${article.noti_NO}&imageFileName=${article.up_fileName}"
+							src="${contextPath}/download.do?noti_NO=${article.noti_NO}&up_FileName=${article.up_fileName}"
 							id="preview" /><br></td>
 					</tr>
 					<tr>
 						<td></td>
 						<td><input type="file" name="up_fileName "
-							id="i_up_fileName" disabled onchange="readURL(this);" /></td>
+							id="up_fileName" disabled onchange="readURL(this);" /></td>
 					</tr>
 				</c:when>
 				<c:otherwise>
@@ -152,27 +149,14 @@
 					<tr>
 						<td></td>
 						<td><img id="preview" /><br> <input type="file"
-							name="up_fileName " id="i_up_fileName" disabled
+							name="up_fileName " id="up_fileName" disabled
 							onchange="readURL(this);" /></td>
 					</tr>
 				</c:otherwise>
 			</c:choose>
-
-
-		<!-- 수정,삭제, 리스트로 돌아가기 -->
-<tr id="tr_btn">
-				<td colspan="2" align="center"><c:if
-						test="${member.id == article.adm_id }">
-						<input type=button value="삭제하기"
-							onClick="fn_remove_article('${contextPath}/boardNotice/removeArticle.do', ${article.noti_NO})">
-					</c:if> 
-					<input type=button value="리스트로 돌아가기"
-					onClick="backToList(this.form)"> 
-				</td>
-			</tr>
-
-	</table>
-
+	
+ 
+		</table>
 </body>
 </html>
 

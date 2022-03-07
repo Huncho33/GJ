@@ -10,4 +10,8 @@
 		<typeAlias type="com.onestop.GJ.board.notice.vo.BoardNoticeImageVO"  alias="BoardNoticeImageVO" />
 
 	</typeAliases>
+
 </configuration>
+
+
+
