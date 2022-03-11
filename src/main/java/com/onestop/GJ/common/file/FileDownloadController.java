@@ -16,18 +16,18 @@ import net.coobird.thumbnailator.Thumbnails;
 
 @Controller
 public class FileDownloadController {
-	private static String CURR_IMAGE_REPO_PATH = "C:\\GJ\\file_repo";
+	private static String CURR_IMAGE_REPO_PATH = "C:\\GJ\\file_repo\\board\\notice";
 	
 	@RequestMapping("/download.do")
-	protected void download(@RequestParam("fileName") String fileName,
+	protected void download(@RequestParam("up_fileName") String up_fileName,
 		                 	@RequestParam("noti_NO") String noti_NO,
 			                 HttpServletResponse response) throws Exception {
 		OutputStream out = response.getOutputStream();
-		String filePath=CURR_IMAGE_REPO_PATH+"\\"+noti_NO+"\\"+fileName;
+		String filePath=CURR_IMAGE_REPO_PATH+"\\"+noti_NO+"\\"+up_fileName;
 		File image=new File(filePath);
 
 		response.setHeader("Cache-Control","no-cache");
-		response.addHeader("Content-disposition", "attachment; fileName="+fileName);
+		response.addHeader("Content-disposition", "attachment; fileName="+up_fileName);
 		FileInputStream in=new FileInputStream(image); 
 		byte[] buffer=new byte[1024*8];
 		while(true){
@@ -40,20 +40,20 @@ public class FileDownloadController {
 		out.close();
 	}
 	
-	
-	@RequestMapping("/thumbnails.do")
-	protected void thumbnails(@RequestParam("fileName") String fileName,
-                            	@RequestParam("noti_NO") String noti_NO,
-			                 HttpServletResponse response) throws Exception {
-		OutputStream out = response.getOutputStream();
-		String filePath=CURR_IMAGE_REPO_PATH+"\\"+noti_NO+"\\"+fileName;
-		File image=new File(filePath);
-		
-		if (image.exists()) { 
-			Thumbnails.of(image).size(121,154).outputFormat("png").toOutputStream(out);
-		}
-		byte[] buffer = new byte[1024 * 8];
-		out.write(buffer);
-		out.close();
-	}
+	//½æ³×ÀÏ
+//	@RequestMapping("/thumbnails.do")
+//	protected void thumbnails(@RequestParam("fileName") String fileName,
+//                            	@RequestParam("noti_NO") String noti_NO,
+//			                 HttpServletResponse response) throws Exception {
+//		OutputStream out = response.getOutputStream();
+//		String filePath=CURR_IMAGE_REPO_PATH+"\\"+noti_NO+"\\"+fileName;
+//		File image=new File(filePath);
+//		
+//		if (image.exists()) { 
+//			Thumbnails.of(image).size(121,154).outputFormat("png").toOutputStream(out);
+//		}
+//		byte[] buffer = new byte[1024 * 8];
+//		out.write(buffer);
+//		out.close();
+//	}
 }

@@ -16,13 +16,63 @@
 <meta charset="utf-8">
 <title>글보기</title>
 <style>
-#tr_file_upload {
-	display: none;
-}
-
 #tr_btn_modify {
 	display: none;
 }
+
+#tr_btn_addFile {
+	display: none;
+}
+
+#tr_up_fileName{
+	display: none;
+	border: none;
+}
+
+#noti_view_bground{
+	width: 100%;
+	position: relative;
+	
+}
+
+
+#noti_view_container {
+	position: relative;
+	margin: 0 auto;
+	align: center;
+	width: 1200px;
+	font-size: 15px
+}
+
+tr input{
+	border: none;
+	background: white;
+	font-size:15px;
+}
+
+#noti_select_view td{
+	text-indent: 10px;
+	font-size: 15px;
+	border: solid 1px #e5e5e5;
+	
+	border-left:none;
+	border-right:none;
+	
+}
+
+#noti_select_view{
+	border-collapse: collapse;
+	width:1200px;
+	align:center;
+	
+}
+
+#noti_view_btn{
+	width: 1200px;
+	align: center;
+	margin: 40 auto;
+}
+
 </style>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
@@ -32,21 +82,22 @@
      }
      
 	 function fn_enable(obj){
-		 document.getElementById("noti_NO").disabled=false;
 		 document.getElementById("noti_title").disabled=false;
 		 document.getElementById("noti_context").disabled=false;
 		 document.getElementById("up_fileName").disabled=false;
 		 document.getElementById("tr_btn_modify").style.display="block";
-		 document.getElementById("tr_file_upload").style.display="block";
-		 document.getElementById("tr_btn").style.display="none";
+		 document.getElementById("noti_view_btn").style.display="none";
+		 document.getElementById("tr_btn_addFile").style.display="block";
+		 document.getElementById("tr_up_fileName").style.display="block";
 	 }
+	 
 	 
 	 function fn_modify_article(obj){
 		 obj.action="${contextPath}/boardNotice/modArticle.do";
 		 obj.submit();
 	 }
 	 
-	 function fn_remove_article(url,articleNO){
+	 function fn_remove_article(url,noti_NO){
 		 var form = document.createElement("form");
 		 form.setAttribute("method", "post");
 		 form.setAttribute("action", url);
@@ -72,91 +123,116 @@
 	     }
 	 }
 	 
+	 var cnt = 1;
+		function fn_addFile() {
+			$("#d_file").append(
+					"<br>" + "<input type='file' name='up_fileName"+cnt+"' />");
+			cnt++;
+		}
+	 
 
  </script>
 </head>
 <body>
-<form name="frmArticle" method="post" action="${contextPath}" enctype="multipart/form-data">
 
-		<table border=0 align="center">
-		<tr>
-			<td width="150" align="center" bgcolor="#FF9933">글번호</td>
-			<td><input type=text value="${article.noti_NO}" name="noti_NO" id="noti_NO" disabled /></td>
+<div id="noti_view_bground">
+	<div id="noti_view_container">
+	<form name="frmArticle" method="post" action="${contextPath}"
+		enctype="multipart/form-data" >
+
+		<table id=noti_select_view border=0 align="center">
+			<tr height="40px">
+				<td width="200px" align="center" bgcolor="#f2f8ff">제목</td>
+				<td colspan=3><input  type=text value="${article.noti_title}"
+					name="noti_title" id="noti_title" disabled /></td>
 			</tr>
-			<tr>
-			<td width="150" align="center" bgcolor="#FF9933">제목</td>
-			<td><input type=text value="${article.noti_title}" name="noti_title" id="noti_title" disabled /></td>
+
+			<tr height="40px">
+				<td width="200px" align="center" bgcolor="#f2f8ff">등록일자</td>
+				<td><input type=text
+					value="<fmt:formatDate value="${article.noti_date}"/>" disabled /></td>
+					
+				<td width="200px" align="center" bgcolor="#f2f8ff">조회수</td>
+				<td ><input  type=text value="${article.noti_hits }"
+					name="noti_hits" id="noti_hits" disabled /></td>
 			</tr>
+
+
 			
-			<tr>
-			<td width="150" align="center" bgcolor="#FF9933">등록일자</td>
-			<td><input type=text value="<fmt:formatDate value="${article.noti_date}"/>" disabled /></td>
-			</tr>
-		
-			<tr>
-			<td width="150" align="center" bgcolor="#FF9933">조회수</td>
-			<td><input type=text value="${article.noti_hits }" name="noti_hits"	id="noti_hits" disabled /></td>
-			</tr>
-		
-			<tr>
-			<td width="150" align="center" bgcolor="#FF9933">내용</td>
-			<td><textarea rows="20" cols="60" name="noti_context" id="noti_context" disabled /></textarea></td>
-			</tr>
-		
-	
-	<!--  파일 업로드 --> 
-	<c:if test="${not empty imageFileList && imageFileList!='null' }">
+			<!--  파일 업로드 -->
+			<c:if test="${not empty imageFileList && imageFileList!='null' }">
 				<c:forEach var="item" items="${imageFileList}" varStatus="status">
 					<tr>
-						<td width="150" align="center" bgcolor="#FF9933" rowspan="2">
-							이미지${status.count }</td>
-						<td><input type="hidden" name="originalFileName"
-							value="${item.imageFileName }" /> <img
+						<td width="150" align="center" bgcolor="#f2f8ff" rowspan="1">
+							첨부파일${status.count }</td>
+						<td colspan=2><input type="hidden" name="originalFileName"
+							value="${item.up_fileName }" /> 
+							<img
 							src="${contextPath}/download.do?noti_NO=${article.noti_NO}&up_fileName=${item.up_fileName}"
 							id="preview" /><br></td>
+							
+							<td id="tr_up_fileName" >
+							<input type="file"
+							name="up_fileName " id="up_fileName" disabled
+							onchange="readURL(this);" />
+							</td>
 					</tr>
-					<tr>
-						<td><input type="file" name="up_fileName "
-							id="up_fileName" disabled onchange="readURL(this);" /></td>
-					</tr>
+					
+		
 				</c:forEach>
 			</c:if>
+			
 
-			<c:choose>
-				<c:when
-					test="${not empty article.up_fileName && article.up_fileName!='null' }">
-					<tr>
-						<td width="150" align="center" bgcolor="#FF9933" rowspan="2">
-							이미지</td>
-						<td><input type="hidden" name="originalFileName"
-							value="${article.up_fileName }" /> <img
-							src="${contextPath}/download.do?noti_NO=${article.noti_NO}&up_FileName=${article.up_fileName}"
-							id="preview" /><br></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td><input type="file" name="up_fileName "
-							id="up_fileName" disabled onchange="readURL(this);" /></td>
-					</tr>
-				</c:when>
-				<c:otherwise>
-					<tr id="tr_file_upload">
-						<td width="150" align="center" bgcolor="#FF9933" rowspan="2">
-							이미지</td>
-						<td><input type="hidden" name="originalFileName"
-							value="${article.up_fileName }" /></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td><img id="preview" /><br> <input type="file"
-							name="up_fileName " id="up_fileName" disabled
-							onchange="readURL(this);" /></td>
-					</tr>
-				</c:otherwise>
-			</c:choose>
+			<tr>
+				<td width="150" align="center" bgcolor="#f2f8ff">내용</td>
+				<td colspan=4>
+				<input  type=text value="${article.noti_context }"
+					name="noti_context" id="noti_context" disabled /></td>
+				</td>
+			</tr>
+
+
+			
+			
+			
+
+
+
+</table>
+
+
+	<div id="tr_btn_addFile" align="left">
+			
+				<input type="button" value="파일 추가"
+					onClick="fn_addFile()" />
+				<div id="d_file"></div>
+			</div>
+			
+
+			<div id="tr_btn_modify" align="center">
+				
+			
+				<input type=button value="수정반영하기"
+					onClick="fn_modify_article(frmArticle)"> 
+					
+					<input type=button
+					value="취소" onClick="backToList(frmArticle)">
+			</div>
 	
- 
-		</table>
+			<div id="noti_view_btn">
+			<div>
+				<c:if
+						test="${member.member_id == article.member_id }">
+						<input type=button value="수정하기" onClick="fn_enable(this.form)">
+						<input type=button value="삭제하기"
+							onClick="fn_remove_article('${contextPath}/boardNotice/removeArticle.do', ${article.noti_NO})">
+					</c:if> <input type=button value="리스트로 돌아가기"
+					onClick="backToList(this.form)">
+			</div>
+</div>
+	</form>
+	</div>
+	</div>
 </body>
 </html>
 

@@ -9,7 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 public interface BoardNoticeController {
 
-	ModelAndView listArticles(HttpServletRequest request, HttpServletResponse response) throws Exception;
+//	ModelAndView listArticles(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
 
 	ResponseEntity addNewArticle(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)
@@ -18,6 +18,16 @@ public interface BoardNoticeController {
 
 	ResponseEntity removeArticle(int noti_NO, HttpServletRequest request, HttpServletResponse response)
 			throws Exception;
+
+	ModelAndView listArticles(HttpServletRequest request, HttpServletResponse response) throws Exception;
+
+
+	ModelAndView searchBoardList(String searchWord, HttpServletRequest request, HttpServletResponse response)
+			throws Exception;
+
+
+
+
 
 
 

@@ -1,5 +1,6 @@
 package com.onestop.GJ.board.notice.dao;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
+import com.onestop.GJ.board.notice.vo.BoardNoticeImageVO;
 import com.onestop.GJ.board.notice.vo.BoardNoticeVO;
 
 @Repository("boardDAO")
@@ -17,10 +19,20 @@ public class BoardNoticeDAOImpl implements BoardNoticeDAO {
    private SqlSession sqlSession;
 
    @Override
-   public List selectAllArticlesList() throws Exception {
-      List<BoardNoticeVO> articlesList = sqlSession.selectList("mapper.boardNotice.selectAllArticlesList");
+   public List selectAllArticlesList(Map pagingMap) throws Exception {
+      List<BoardNoticeVO> articlesList = sqlSession.selectList("mapper.boardNotice.selectAllArticlesList", pagingMap);
       return articlesList;
    }
+   
+ //검색창
+ 	@Override
+ 	public List selectBoardListBySearchWord(Map pagingMap) throws DataAccessException{
+ 		List<BoardNoticeVO> articlesList=sqlSession.selectList("mapper.boardNoitce.selectBoardListBySearchWord", pagingMap);
+ 		  
+ 	     System.out.println(articlesList.size());
+ 	     
+ 		 return articlesList;
+ 	}
 
    @Override
    public int insertNewArticle(Map articleMap) throws DataAccessException {
@@ -31,20 +43,44 @@ public class BoardNoticeDAOImpl implements BoardNoticeDAO {
       sqlSession.insert("mapper.boardNotice.insertNewArticle",articleMap);
       return noti_NO;
    }
-    
+   
+// 다중 파일 업로드
+	@Override
+	public void insertNewImage(Map articleMap) throws DataAccessException {
+		List<BoardNoticeImageVO> imageFileList = (ArrayList) articleMap.get("imageFileList");
+		int noti_NO = (Integer) articleMap.get("noti_NO");
+		int up_fileNO = selectNewImageFileNO();
+		for (BoardNoticeImageVO boardNoticeImageVO : imageFileList) {
+			boardNoticeImageVO.setUp_fileNO(++up_fileNO);
+			boardNoticeImageVO.setNoti_NO(noti_NO);
+		}
+		sqlSession.insert("mapper.boardNotice.insertNewImage", imageFileList);
+	}
+    		
    private int selectNewArticleNO() throws DataAccessException {
       return sqlSession.selectOne("mapper.boardNotice.selectNewArticleNO");
    }
    
-//   private int selectNewImageFileNO() throws DataAccessException {
-//      return sqlSession.selectOne("mapper.boardNotice.selectNewImageFileNO");
-//   }
-
-
+//   상세보기
    @Override
    public BoardNoticeVO selectArticle(int noti_NO) throws DataAccessException {
       return sqlSession.selectOne("mapper.boardNotice.selectArticle", noti_NO);
    }
+   
+
+   
+	@Override
+	public List selectImageFileList(int noti_NO) throws DataAccessException {
+		List<BoardNoticeImageVO> imageFileList = null;
+		imageFileList = sqlSession.selectList("mapper.boardNotice.selectImageFileList",noti_NO);
+		return imageFileList;
+	}
+	
+	private int selectNewImageFileNO() throws DataAccessException {
+		return sqlSession.selectOne("mapper.boardNotice.selectNewImageFileNO");
+	}
+
+
 
    @Override
    public void updateArticle(Map articleMap) throws DataAccessException {
@@ -56,7 +92,27 @@ public class BoardNoticeDAOImpl implements BoardNoticeDAO {
       sqlSession.delete("mapper.boardNotice.deleteArticle", noti_NO);
    }
 
+   //조회수
+   @Override
+	public void boardHits(int noti_NO) throws Exception {
+		sqlSession.update("mapper.boardNotice.boardHits", noti_NO);
+	}
+   
+   //페이징
+   	@Override
+   	public int selectTotArticles() throws DataAccessException{
+   		int totArticles = sqlSession.selectOne("mapper.boardNotice.selectTotArticles");
+   		return totArticles;
+   	}
 
+   	//키워드
+//   	@Override
+//	public List<String> selectKeywordSearch(String keyword) throws DataAccessException {
+//	   List<String> list=(ArrayList)sqlSession.selectList("mapper.goods.selectKeywordSearch",keyword);
+//	   return list;
+//	}
+	
+   	
 
 
 

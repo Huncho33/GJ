@@ -23,6 +23,8 @@
    type="text/css">
 
 
+
+
 </head>
 
 <body>
@@ -134,15 +136,7 @@
                      src="${contextPath}/resources/image/user.png">로그아웃</a>
                   <a href="${contextPath}/member/logout.do"><img
                      src="${contextPath}/resources/image/file.png">마이페이지</a>
-                  <script>
-                     window.onload = function() {
-                        alert("로그인 되었습니다.");
-                     }
-                  </script>
-
-
                </c:when>
-
 
                <c:otherwise>
                   <a href="${contextPath}/member/loginForm.do"><img

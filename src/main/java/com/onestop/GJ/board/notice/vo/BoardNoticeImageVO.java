@@ -17,6 +17,13 @@ public class BoardNoticeImageVO {
       this.up_fileNO = up_fileNO;
    }
    public String getUp_fileName() {
+	   try {
+	         if(up_fileName!= null && up_fileName.length()!=0) {
+	            up_fileName = URLEncoder.encode(up_fileName,"UTF-8");
+	         }
+	      } catch (UnsupportedEncodingException e) {
+	         e.printStackTrace();
+	      }
       return up_fileName;
    }
    public void setUp_fileName(String up_fileName) {
