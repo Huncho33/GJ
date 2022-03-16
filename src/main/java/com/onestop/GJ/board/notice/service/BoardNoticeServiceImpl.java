@@ -28,8 +28,10 @@ public class BoardNoticeServiceImpl implements BoardNoticeService {
       int totArticles = boardDAO.selectTotArticles();
       articlesMap.put("articlesList", articlesList);
       articlesMap.put("totArticles", totArticles);
-      articlesMap.put("totArticles", 170);
+//      articlesMap.put("totArticles", 170);
       return articlesMap;
+      
+      
    }
    
    //검색창
@@ -37,13 +39,16 @@ public class BoardNoticeServiceImpl implements BoardNoticeService {
 	public Map searchBoardList(Map pagingMap) throws Exception{
 	   Map articlesMap = new HashMap();
 		List<BoardNoticeVO> articlesList=boardDAO.selectBoardListBySearchWord(pagingMap);
+		int searchTotArticles = boardDAO.selectSearchTotArticles(pagingMap);
 		int totArticles = boardDAO.selectTotArticles();
 	      articlesMap.put("articlesList", articlesList);
+	      articlesMap.put("searchTotArticles", searchTotArticles);
 	      articlesMap.put("totArticles", totArticles);
-	      articlesMap.put("totArticles", 170);
+//	      articlesMap.put("searchTotArticles", 170);
 		return articlesMap;
 	}
-
+   
+   //글 추가
    @Override
 	public int addNewArticle(Map articleMap) throws Exception {
 
@@ -69,7 +74,8 @@ public class BoardNoticeServiceImpl implements BoardNoticeService {
       articleMap.put("article", boardNoticeVO);
       articleMap.put("imageFileList", imageFileList);
       Collection<String> value = articleMap.values();
-      System.out.println(value);
+//      System.out.println(value);
+      
       //조회수 추가하기
       boardDAO.boardHits(noti_NO);
       
@@ -77,22 +83,39 @@ public class BoardNoticeServiceImpl implements BoardNoticeService {
       
    }
 
-   
-   @Override
-   public void modArticle(Map articleMap) throws Exception {
-      boardDAO.updateArticle(articleMap);
-   }
-
    @Override
    public void removeArticle(int noti_NO) throws Exception {
       boardDAO.deleteArticle(noti_NO);
    }
    
-   //키워드
-//	public List<String> keywordSearch(String keyword) throws Exception {
-//		List<String> list=goodsDAO.selectKeywordSearch(keyword);
-//		return list;
-//	}
+   //글 수정
+   @Override
+   public void modArticle(Map articleMap) throws Exception {
+      boardDAO.updateArticle(articleMap);
+      List<BoardNoticeImageVO> imageFileList = (List<BoardNoticeImageVO>)articleMap.get("imageFileList");
+		List<BoardNoticeImageVO> modAddimageFileList = (List<BoardNoticeImageVO>)articleMap.get("modAddimageFileList");
+
+		if(imageFileList != null && imageFileList.size() != 0) {
+			int added_img_num = Integer.parseInt((String)articleMap.get("added_img_num"));
+			int pre_img_num = Integer.parseInt((String)articleMap.get("pre_img_num"));
+
+			if(pre_img_num < added_img_num) {  
+				boardDAO.updateImageFile(articleMap);     //기존 이미지도 수정하고 새 이미지도 추가한 경우  
+				boardDAO.insertModNewImage(articleMap);
+			}else {
+				boardDAO.updateImageFile(articleMap);  //기존의 이미지를 수정만 한 경우
+			}
+		}else if(modAddimageFileList != null && modAddimageFileList.size() != 0) {  //새 이미지를 추가한 경우
+			boardDAO.insertModNewImage(articleMap);
+		}
+   }
+
+
+   //이미지 삭제 (수정)
+	@Override
+	public void removeModImage(BoardNoticeImageVO boardNoticeImageVO) throws Exception {
+		boardDAO.deleteModImage(boardNoticeImageVO);
+	}
 	
 
    

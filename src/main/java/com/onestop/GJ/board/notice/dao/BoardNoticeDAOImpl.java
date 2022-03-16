@@ -21,16 +21,15 @@ public class BoardNoticeDAOImpl implements BoardNoticeDAO {
    @Override
    public List selectAllArticlesList(Map pagingMap) throws Exception {
       List<BoardNoticeVO> articlesList = sqlSession.selectList("mapper.boardNotice.selectAllArticlesList", pagingMap);
+      System.out.println("총 게시판 수 " +articlesList.size());
       return articlesList;
    }
    
  //검색창
  	@Override
  	public List selectBoardListBySearchWord(Map pagingMap) throws DataAccessException{
- 		List<BoardNoticeVO> articlesList=sqlSession.selectList("mapper.boardNoitce.selectBoardListBySearchWord", pagingMap);
- 		  
- 	     System.out.println(articlesList.size());
- 	     
+ 		List<BoardNoticeVO> articlesList=sqlSession.selectList("mapper.boardNotice.selectBoardListBySearchWord", pagingMap);
+ 	     System.out.println("검색"+ articlesList.size());
  		 return articlesList;
  	}
 
@@ -84,7 +83,10 @@ public class BoardNoticeDAOImpl implements BoardNoticeDAO {
 
    @Override
    public void updateArticle(Map articleMap) throws DataAccessException {
-      sqlSession.update("mapper.boardNotice.updateArticle", articleMap);
+	   Collection<String> value = articleMap.values();
+	      System.out.println(value);
+	   sqlSession.update("mapper.boardNotice.updateArticle", articleMap);
+      
    }
 
    @Override
@@ -104,13 +106,60 @@ public class BoardNoticeDAOImpl implements BoardNoticeDAO {
    		int totArticles = sqlSession.selectOne("mapper.boardNotice.selectTotArticles");
    		return totArticles;
    	}
+   	
+    //검색창 페이징
+   	@Override
+   	public int selectSearchTotArticles(Map pagingMap) throws DataAccessException{
+   		int searchTotArticles = sqlSession.selectOne("mapper.boardNotice.selectSearchTotArticles", pagingMap);
+   		return searchTotArticles;
+   	}
 
-   	//키워드
-//   	@Override
-//	public List<String> selectKeywordSearch(String keyword) throws DataAccessException {
-//	   List<String> list=(ArrayList)sqlSession.selectList("mapper.goods.selectKeywordSearch",keyword);
-//	   return list;
-//	}
+   	@Override
+	public void updateImageFile(Map articleMap) throws DataAccessException {
+		
+		List<BoardNoticeImageVO> imageFileList = (ArrayList)articleMap.get("imageFileList");
+		int noti_NO = Integer.parseInt((String)articleMap.get("noti_NO"));
+		
+		for(int i = imageFileList.size()-1; i >= 0; i--){
+			BoardNoticeImageVO boardNoticeImageVO = imageFileList.get(i);
+			String up_fileName = boardNoticeImageVO.getUp_fileName();
+			if(up_fileName == null) {  //기존에 이미지를 수정하지 않는 경우 파일명이 null 이므로  수정할 필요가 없다.
+				imageFileList.remove(i);
+			}else {
+				boardNoticeImageVO.setNoti_NO(noti_NO);
+			}
+		}
+		
+		if(imageFileList != null && imageFileList.size() != 0) {
+			sqlSession.update("mapper.boardNotice.updateImageFile", imageFileList);
+		}
+   	}
+		
+		@Override
+		public void insertModNewImage(Map articleMap) throws DataAccessException {
+			List<BoardNoticeImageVO> modAddimageFileList = (ArrayList<BoardNoticeImageVO>)articleMap.get("modAddimageFileList");
+			int noti_NO = Integer.parseInt((String)articleMap.get("noti_NO"));
+			
+			int up_fileNO = selectNewImageFileNO();
+			
+			for(BoardNoticeImageVO boardNoticeImageVO : modAddimageFileList){
+				boardNoticeImageVO.setNoti_NO(noti_NO);
+				boardNoticeImageVO.setUp_fileNO(++up_fileNO);
+			}
+			
+			sqlSession.insert("mapper.boardNotice.insertModNewImage", modAddimageFileList );
+			
+		}
+		
+	
+   	
+   	@Override
+	public void deleteModImage(BoardNoticeImageVO boardNoticeImageVO) throws DataAccessException {
+		sqlSession.delete("mapper.boardNotice.deleteModImage", boardNoticeImageVO );
+		
+	}
+   	
+
 	
    	
 

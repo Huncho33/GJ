@@ -133,7 +133,7 @@
 							varStatus="articleNum">
 							<tr align="center" height="35">
 
-								<td width="10%">${articleNum.count}</td>
+								<td width="10%">${article.noti_NO}</td>
 								<td width="55%"><a class='cls1'
 									href="${contextPath}/boardNotice/viewArticle.do?noti_NO=${article.noti_NO }">
 										${article.noti_title }</a>
@@ -148,6 +148,7 @@
 		
 		<div class="txt_center">
 		<c:if test="${totArticles != null }">
+		
          <c:choose>
 
             <c:when test="${totArticles >100 }">
