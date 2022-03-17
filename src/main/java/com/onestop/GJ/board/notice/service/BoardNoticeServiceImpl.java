@@ -51,7 +51,6 @@ public class BoardNoticeServiceImpl implements BoardNoticeService {
    //글 추가
    @Override
 	public int addNewArticle(Map articleMap) throws Exception {
-
 		int noti_NO = boardDAO.insertNewArticle(articleMap);
 		articleMap.put("noti_NO", noti_NO);
 		boardDAO.insertNewImage(articleMap);
@@ -82,7 +81,8 @@ public class BoardNoticeServiceImpl implements BoardNoticeService {
       return articleMap;
       
    }
-
+   
+   //글 삭제
    @Override
    public void removeArticle(int noti_NO) throws Exception {
       boardDAO.deleteArticle(noti_NO);

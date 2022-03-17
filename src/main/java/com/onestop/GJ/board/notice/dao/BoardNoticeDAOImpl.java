@@ -49,11 +49,14 @@ public class BoardNoticeDAOImpl implements BoardNoticeDAO {
 		List<BoardNoticeImageVO> imageFileList = (ArrayList) articleMap.get("imageFileList");
 		int noti_NO = (Integer) articleMap.get("noti_NO");
 		int up_fileNO = selectNewImageFileNO();
+		
+		if(imageFileList != null && imageFileList.size() != 0) {
 		for (BoardNoticeImageVO boardNoticeImageVO : imageFileList) {
 			boardNoticeImageVO.setUp_fileNO(++up_fileNO);
 			boardNoticeImageVO.setNoti_NO(noti_NO);
 		}
 		sqlSession.insert("mapper.boardNotice.insertNewImage", imageFileList);
+	}
 	}
     		
    private int selectNewArticleNO() throws DataAccessException {

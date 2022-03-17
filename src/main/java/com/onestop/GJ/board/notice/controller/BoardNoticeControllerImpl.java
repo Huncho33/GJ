@@ -213,6 +213,7 @@ public class BoardNoticeControllerImpl implements BoardNoticeController {
 	}
 
 //	게시글 상세
+	
 	@RequestMapping(value = "/boardNotice/viewArticle.do", method = RequestMethod.GET)
 	public ModelAndView viewArticle(@RequestParam("noti_NO") int noti_NO,
 			@RequestParam(value="removeCompleted", required=false) String removeCompleted,
@@ -281,12 +282,12 @@ public class BoardNoticeControllerImpl implements BoardNoticeController {
 			}
 		}
 
-		List<String> fileList = uploadModImageFile(multipartRequest);
+		ArrayList<String> fileList = uploadModImageFile(multipartRequest);//수정한 이미지 파일을 업로드한다.
 		int added_img_num = Integer.parseInt((String) articleMap.get("added_img_num"));
 		int pre_img_num = Integer.parseInt((String) articleMap.get("pre_img_num"));
 
-		List<BoardNoticeImageVO> imageFileList = new ArrayList<BoardNoticeImageVO>();
-		List<BoardNoticeImageVO> modAddimageFileList = new ArrayList<BoardNoticeImageVO>();
+		ArrayList<BoardNoticeImageVO> imageFileList = new ArrayList<BoardNoticeImageVO>();
+		ArrayList<BoardNoticeImageVO> modAddimageFileList = new ArrayList<BoardNoticeImageVO>();
 		if (fileList != null && fileList.size() != 0) {
 			String[] up_fileNO = (String[]) articleMap.get("up_fileNO");
 			for (int i = 0; i < added_img_num; i++) {
@@ -314,7 +315,7 @@ public class BoardNoticeControllerImpl implements BoardNoticeController {
 	      System.out.println("검거" +value);
 		try {
 			boardService.modArticle(articleMap);
-			if (imageFileList != null && imageFileList.size() != 0) {
+			if ( fileList != null && fileList.size() != 0  ) { // 수정한 파일들을 차례대로 업로드한다.
 				for (int i = 0; i < fileList.size(); i++) {
 					String up_fileName = fileList.get(i);
 
@@ -339,6 +340,7 @@ public class BoardNoticeControllerImpl implements BoardNoticeController {
 					}
 				}
 			}
+			
 
 			message = "<script>";
 			message += " alert('글을 수정했습니다.');";
@@ -398,16 +400,16 @@ public class BoardNoticeControllerImpl implements BoardNoticeController {
 		}
 		
 		// 수정 시 다중 이미지 업로드하기
-		private List<String> uploadModImageFile(MultipartHttpServletRequest multipartRequest) throws Exception {
-			List<String> fileList = new ArrayList<String>();
+		private ArrayList<String> uploadModImageFile(MultipartHttpServletRequest multipartRequest) throws Exception {
+			ArrayList<String> fileList = new ArrayList<String>();
 			Iterator<String> fileNames = multipartRequest.getFileNames();
 			while (fileNames.hasNext()) {
-				String up_fileName = fileNames.next();
-				MultipartFile mFile = multipartRequest.getFile(up_fileName);
+				String fileName = fileNames.next();
+				MultipartFile mFile = multipartRequest.getFile(fileName);
 				String originalFileName = mFile.getOriginalFilename();
 				if (originalFileName != "" && originalFileName != null) {
 					fileList.add(originalFileName);
-					File file = new File(ARTICLE_IMAGE_REPO + "\\" + up_fileName);
+					File file = new File(ARTICLE_IMAGE_REPO + "\\" + fileName);
 					if (mFile.getSize() != 0) { // File Null Check
 						if (!file.exists()) { // 경로상에 파일이 존재하지 않을 경우
 							file.getParentFile().mkdirs(); // 경로에 해당하는 디렉토리들을 생성
