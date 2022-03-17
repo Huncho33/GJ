@@ -1,0 +1,204 @@
+@charset "UTF-8";
+
+
+#joinForm2_bground {
+   width: 100%;
+   position: relative;
+}
+
+
+#joinForm2_tot {
+   position: relative;
+   width: 1100px;
+   margin: 0 auto;
+}
+
+#joinForm2_innerTop {
+   width: 100%;
+   position: relative;
+}
+
+h3.kkhs_subTit {
+   font-size: 45px;
+   font-weight: bold;
+   letter-spacing: -2.7px;
+   color: #161616;
+   text-align: center;
+   margin: 80px 0px 110px 0px;
+}
+
+#kkhs_sub ul.kkhs_processTab li.kkhs_on {
+   background-color: dodgerblue;
+   font-weight: bold;
+   color: #fff;
+}
+
+#kkhs_sub ul.kkhs_processTab li {
+   margin-top: -20px;
+}
+
+ul.kkhs_processTab {
+   text-align: center;
+   margin-bottom: 77px;
+}
+
+/* 회원가입 약관동의 이미지 */
+ul.kkhs_processTab li {
+   display: inline-block;
+   width: 150px;
+   height: 60px;
+   border-radius: 50%;
+   font-size: 16px;
+   letter-spacing: -0.4px;
+   color: #666;
+   font-weighT: normal;
+   margin-right: 75px;
+   padding-top: 93px;
+   position: relative;
+}
+
+ul.kkhs_processTab li:nth-child(4)::after {
+   display: none;
+}
+
+ul.kkhs_processTab li::after {
+   content: "";
+   position: absolute;
+   width: 9px;
+   height: 14px;
+   top: 76px;
+   right: -52px;
+   background:
+      url(https://sns.daegu.go.kr/images/jeonseLoan/portal/signup_next.png)
+      50%;
+}
+
+ul.kkhs_processTab li:nth-child(1) {
+   background: #eee 38px;
+}
+
+ul.kkhs_processTab li:nth-child(2) {
+   background: #eee 38px;
+}
+
+ul.kkhs_processTab li:nth-child(3) {
+   background: #eee 38px;
+}
+
+ul.kkhs_processTab li:nth-child(4) {
+   background: #eee no-repeat 50% 38px;
+   margin-right: 0;
+}
+
+ul.kkhs_processTab li.kkhs_on {
+   background-color: dodgerblue;
+   font-weight: bold;
+   color: #fff;
+   margin-top: -20px;
+}
+
+/* 폼2 container css */
+
+
+
+.joinForm2_cnt1 {
+   width: 100%;
+   background: #e6e6e6;
+   padding: 20px 40px;
+   margin: 0 auto;
+}
+
+.joinForm2_cnt1 p {
+   font-size: 11pt;
+}
+
+.joinForm2_cnt2 {
+   width: 1100px;
+   padding: 20px 40px;
+   margin: 10px 0px 30px 0px;
+}
+
+.joinForm2_cnt2 p {
+   position: relative;
+   top: 30px;
+   font-size: 18px;
+   text-align: center;
+   color: #5f5f5f;
+   line-height: 140%;
+   font-weight: 600;
+   letter-spacing: -1.5px;
+   margin-bottom: 80px;
+}
+
+.joinForm2_cnt2 span {
+   color: dodgerblue;
+}
+
+.joinForm2_certi li {
+   position: relative;
+   top: 60px;
+   left: 20px;
+   list-style: none;
+   float: left;
+   margin: 0 auto;
+}
+
+.joinForm2_cerTitle {
+   float: left;
+   width: 400px;
+   height: 200px;
+   margin-left: 100px;
+   text-align: center;
+   padding-top: 30px;
+   border: 2px solid #dddcdc;
+   border-radius: 3em;
+}
+
+.joinForm2_cerBtn {
+   width: 150px;
+   height: 50px;
+   padding: 20px 40px;
+   text-decoration: none;
+   color: white;
+   background-color: dodgerblue;
+   border-radius: 1em;
+}
+
+.join_btn1 input {
+   width: 200px;
+   height: 60px;
+   font-size: 15px;
+   border: 0px;
+   border-radius: 3em;
+   background-color: darkgray;
+   color: white;
+   cursor: pointer;
+}
+
+.join_btn2 input {
+   width: 200px;
+   height: 60px;
+   font-size: 15px;
+   border: 0px;
+   border-radius: 3em;
+   background-color: dodgerblue;
+   color: white;
+   cursor: pointer;
+}
+
+.join_btn1 {
+   float: left;
+   margin-left: 350px;
+   margin-right: 30px;
+}
+
+
+.join_btn_list {
+   width: 100%;
+   bottom: 70%;
+   magin-top: 300px;
+}
+
+.joinForm2_certiList {
+   margin-bottom: 400px;
+}

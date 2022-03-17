@@ -5,36 +5,102 @@
 
 <tiles-definitions>
 
-   <definition name="baseLayout"  template="/WEB-INF/views/common/layout.jsp">
-      <put-attribute name="title" value="" />
-      <put-attribute name="header" value="/WEB-INF/views/common/header.jsp" />
-      <put-attribute name="side" value="/WEB-INF/views/common/side.jsp" />
-      <put-attribute name="body" value="" />
-      <put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp" />
-   </definition>
+	<definition name="baseLayout"
+		template="/WEB-INF/views/common/layout.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="header"
+			value="/WEB-INF/views/common/header.jsp" />
+		<put-attribute name="side"
+			value="/WEB-INF/views/common/side.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer"
+			value="/WEB-INF/views/common/footer.jsp" />
+	</definition>
 
-   <definition name="/main" extends="baseLayout">
-      <put-attribute name="title" value="메인페이지" />
-      <put-attribute name="body" value="/WEB-INF/views/main.jsp" />
-   </definition>
-   
-   <definition name="/member/listMembers" extends="baseLayout">
-   	<put-attribute name="title" value="회원목록창" />
-   	<put-attribute name="body" value="/WEB-INF/views/member/listMembers.jsp" />
-   </definition>
-   
-   <definition name="/member/memberForm" extends="baseLayout">
-   	<put-attribute name="title" value="회원가입창" />
-   	<put-attribute name="body" value="/WEB-INF/views/member/memberForm.jsp" />
-   </definition>
-   
-   <definition name="/member/loginForm" extends="baseLayout">
-   	<put-attribute name="title" value="로그인창" />
-   	<put-attribute name="body" value="/WEB-INF/views/member/loginForm.jsp" />
-   </definition>
-   
-   <definition name="/member/modMemberForm" extends="baseLayout">
-   	<put-attribute name="title" value="회원수정창" />
-   	<put-attribute name="body" value="/WEB-INF/views/member/modMemberForm.jsp" />
-   </definition>
-   </tiles-definitions>
+	<definition name="/main" extends="baseLayout">
+		<put-attribute name="title" value="메인페이지" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/main.jsp" />
+	</definition>
+
+	<definition name="/member/listMembers" extends="baseLayout">
+		<put-attribute name="title" value="회원목록창" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/member/listMembers.jsp" />
+	</definition>
+
+	<definition name="/member/memberForm" extends="baseLayout">
+		<put-attribute name="title" value="회원가입창" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/member/memberForm.jsp" />
+	</definition>
+	<!-- 회원가입 추가 -->
+	<definition name="/member/memberForm2" extends="baseLayout">
+		<put-attribute name="title" value="회원가입창" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/member/memberForm2.jsp" />
+	</definition>
+
+	<definition name="/member/memberForm3" extends="baseLayout">
+		<put-attribute name="title" value="회원가입창" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/member/memberForm3.jsp" />
+	</definition>
+	<!-- -->
+	<definition name="/member/loginForm" extends="baseLayout">
+		<put-attribute name="title" value="로그인창" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/member/loginForm.jsp" />
+	</definition>
+
+	<definition name="/member/modMemberForm"
+		extends="baseLayout">
+		<put-attribute name="title" value="회원수정창" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/member/modMemberForm.jsp" />
+	</definition>
+
+	<!--이메일 인증창 -->
+	<definition name="/member/findpw" extends="baseLayout">
+		<put-attribute name="title" value="이메일인증창" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/member/findpw.jsp" />
+	</definition>
+	<definition name="/member/findpw2" extends="baseLayout">
+		<put-attribute name="title" value="아이디찾기창" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/member/findpw2.jsp" />
+	</definition>
+	<!-- // -->
+	<definition name="/member/findId_certHp"
+		extends="baseLayout">
+		<put-attribute name="title" value="핸드폰번호인증창" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/member/findId_certHp.jsp" />
+	</definition>
+
+	<definition name="/member/find_pw_form" extends="baseLayout">
+		<put-attribute name="title" value="비밀번호찾기인증창" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/member/find_pw_form.jsp" />
+	</definition>
+	<!-- 회원가입전 이메일로 본인 인증 화면 -->
+	<definition name="/member/emailSend" extends="baseLayout">
+		<put-attribute name="title" value="아이디정보" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/member/emailSend.jsp" />
+	</definition>
+	
+	<definition name="/member/findId" extends="baseLayout">
+		<put-attribute name="title" value="아이디찾기창" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/member/findId.jsp" />
+	</definition>
+
+	<definition name="/member/findId_cellph"
+		extends="baseLayout">
+		<put-attribute name="title" value="정보" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/member/findId_cellph.jsp" />
+	</definition>
+</tiles-definitions>
