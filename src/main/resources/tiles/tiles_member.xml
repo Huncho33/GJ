@@ -5,6 +5,7 @@
 
 <tiles-definitions>
 
+
 	<definition name="baseLayout"
 		template="/WEB-INF/views/common/layout.jsp">
 		<put-attribute name="title" value="" />
@@ -104,3 +105,4 @@
 			value="/WEB-INF/views/member/findId_cellph.jsp" />
 	</definition>
 </tiles-definitions>
+

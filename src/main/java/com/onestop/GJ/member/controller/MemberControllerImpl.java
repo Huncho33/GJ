@@ -27,7 +27,7 @@ import javafx.scene.control.Alert;
 
 @Controller("memberController")
 
-public class MemberControllerImpl implements MemberController {
+public class MemberControllerImpl implements MemberController  {
 	@Autowired
 	private MemberService memberService;
 	@Autowired
@@ -83,6 +83,7 @@ public class MemberControllerImpl implements MemberController {
 
 	}
 
+
 	@RequestMapping(value = "/member/*Form.do", method = RequestMethod.GET)
 	private ModelAndView form(@RequestParam(value = "result", required = false) String result,
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -92,7 +93,8 @@ public class MemberControllerImpl implements MemberController {
 		mav.setViewName(viewName);
 		return mav;
 	}
-
+	
+	//회원가입
 	@RequestMapping(value = "/member/memberForm2.do", method = RequestMethod.GET)
 	private ModelAndView memberForm2(@RequestParam(value = "result", required = false) String result,
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -141,6 +143,7 @@ public class MemberControllerImpl implements MemberController {
 		resEntity = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
 		return resEntity;
 	}
+
 
 	// 회원가입 ID 중복체크
 	@Override

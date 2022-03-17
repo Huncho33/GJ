@@ -19,8 +19,6 @@
    crossorigin="anonymous">
 <link href="${contextPath}/resources/css/loginForm.css" rel="stylesheet">
 
-
-
 <title>로그인창</title>
 <c:choose>
    <c:when test="${result=='loginFailed' }">
@@ -79,5 +77,4 @@
       </div>
    </div>
 </body>
-
 </html>
