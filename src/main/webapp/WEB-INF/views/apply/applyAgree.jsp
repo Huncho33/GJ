@@ -76,7 +76,7 @@ $(document).ready(function(){
                <li><div style="margin-top: -20px;">가입완료</div></li>
             </ul>
             <form id="kkhs_frm" name="kkhs_frm" method="get"
-               action="${contextPath}/member/memberForm2.do">
+               action="${contextPath}/apply/applyState.do">
                <div id="kkhs_agreeBox" class="kkhs_inner">
                   <h2 class="kkhs_joinTit">(필수)회원가입약관</h2>
                   <div class="kkhs_box">

@@ -11,14 +11,24 @@ public interface MemberDAO {
 
 	List selectAllMemberList() throws DataAccessException;
 
-	int insertMember(MemberVO memberVO) throws DataAccessException;
+	void insertMember(MemberVO memberVO) throws DataAccessException;
 
 	int deleteMember(String id) throws DataAccessException;
 
 	MemberVO loginById(MemberVO memberVO) throws DataAccessException;
 
-	String selectOverlappedID(String id) throws DataAccessException;
-
 	public MemberVO login(Map loginMap) throws DataAccessException;
+
+	int update_pw(MemberVO member) throws Exception;
+
+	String selectOverlappedID(String string) throws DataAccessException;
+
+	MemberVO SearchById(MemberVO memberVO) throws DataAccessException;
+	
+	//ID Ã£±â
+	MemberVO certHp_Id(MemberVO memberVO) throws DataAccessException;
+
+	
+
 
 }

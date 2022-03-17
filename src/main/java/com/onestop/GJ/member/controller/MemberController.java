@@ -27,4 +27,9 @@ public interface MemberController {
 
 	ResponseEntity overlapped(String id, HttpServletRequest request, HttpServletResponse response) throws Exception;
 
+
+	// IDÃ£±â
+	ResponseEntity sendPhone(MemberVO member, RedirectAttributes rAttr, HttpServletRequest request,
+			HttpServletResponse response) throws Exception;
+
 }
