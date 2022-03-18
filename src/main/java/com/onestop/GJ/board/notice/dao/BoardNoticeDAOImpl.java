@@ -50,6 +50,7 @@ public class BoardNoticeDAOImpl implements BoardNoticeDAO {
 		int noti_NO = (Integer) articleMap.get("noti_NO");
 		int up_fileNO = selectNewImageFileNO();
 		 if (imageFileList != null && imageFileList.size() != 0) {
+
 		for (BoardNoticeImageVO boardNoticeImageVO : imageFileList) {
 			boardNoticeImageVO.setUp_fileNO(++up_fileNO);
 			boardNoticeImageVO.setNoti_NO(noti_NO);

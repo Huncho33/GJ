@@ -3,7 +3,6 @@ package com.onestop.GJ.board.notice.controller;
 import java.io.File;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -265,8 +264,6 @@ public class BoardNoticeControllerImpl implements BoardNoticeController {
          throws Exception {
       multipartRequest.setCharacterEncoding("utf-8");
       Map<String, Object> articleMap = new HashMap<String, Object>();
-      
-      
      
       Enumeration enu = multipartRequest.getParameterNames();
       while (enu.hasMoreElements()) {
@@ -284,7 +281,7 @@ public class BoardNoticeControllerImpl implements BoardNoticeController {
          }
       }
 
-      List<String> fileList = uploadModImageFile(multipartRequest, RequestMethod.POST);//수정한 이미지 파일을 업로드한다.
+      List<String> fileList = uploadModImageFile(multipartRequest);//수정한 이미지 파일을 업로드한다.
       int added_img_num = Integer.parseInt((String) articleMap.get("added_img_num"));
       int pre_img_num = Integer.parseInt((String) articleMap.get("pre_img_num"));
       System.out.println("added_img_num : "+ added_img_num);
@@ -356,7 +353,6 @@ public class BoardNoticeControllerImpl implements BoardNoticeController {
             }
             e.printStackTrace();
          }
-
          message = "<script>";
          message += " alert('오류가 발생했습니다.다시 수정해주세요');";
          message += " location.href='" + multipartRequest.getContextPath() + "/boardNotice/viewArticle.do?noti_NO="
@@ -399,34 +395,30 @@ public class BoardNoticeControllerImpl implements BoardNoticeController {
          }
 
       }
-      
-      // 수정 시 다중 이미지 업로드하기
-      private List<String> uploadModImageFile(MultipartHttpServletRequest multipartRequest, RequestMethod post) throws Exception {
-    	  multipartRequest.setCharacterEncoding("utf-8");
-         List<String> fileList = new ArrayList<String>();
+		
+		// 수정 시 다중 이미지 업로드하기
+		private ArrayList<String> uploadModImageFile(MultipartHttpServletRequest multipartRequest) throws Exception {
+			ArrayList<String> fileList = new ArrayList<String>();
+			Iterator<String> fileNames = multipartRequest.getFileNames();
+			while (fileNames.hasNext()) {
+				String fileName = fileNames.next();
+				MultipartFile mFile = multipartRequest.getFile(fileName);
+				String originalFileName = mFile.getOriginalFilename();
+				if (originalFileName != "" && originalFileName != null) {
+					fileList.add(originalFileName);
+					File file = new File(ARTICLE_IMAGE_REPO + "\\" + fileName);
+					if (mFile.getSize() != 0) { // File Null Check
+						if (!file.exists()) { // 경로상에 파일이 존재하지 않을 경우
+							file.getParentFile().mkdirs(); // 경로에 해당하는 디렉토리들을 생성
+							mFile.transferTo(new File(ARTICLE_IMAGE_REPO + "\\" + "temp" + "\\" + originalFileName)); // 임시로
+						}
+					}
+				} else {
+					fileList.add(null);
+				}
 
-         Iterator<String> fileNames = multipartRequest.getFileNames();
-         System.out.println("fileNames : "+ fileNames);
-         
-         while (fileNames.hasNext()) {
-            String fileName = fileNames.next();
-            MultipartFile mFile = multipartRequest.getFile(fileName);
-            String originalFileName = mFile.getOriginalFilename();
-            if (originalFileName != "" && originalFileName != null) {
-               fileList.add(originalFileName);
-               File file = new File(ARTICLE_IMAGE_REPO + "\\" + fileName);
-               if (mFile.getSize() != 0) { // File Null Check
-                  if (!file.exists()) { // 경로상에 파일이 존재하지 않을 경우
-                     file.getParentFile().mkdirs(); // 경로에 해당하는 디렉토리들을 생성
-                     mFile.transferTo(new File(ARTICLE_IMAGE_REPO + "\\" + "temp" + "\\" + originalFileName)); // 임시로
-                  }
-               }
-            } else {
-               fileList.add(null);
-            }
-
-         }
-         return fileList;
-      }
+			}
+			return fileList;
+		}
 
 }
