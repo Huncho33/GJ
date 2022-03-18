@@ -120,6 +120,13 @@ public class MemberVO {
 	public void setMember_last_log(Date member_last_log) {
 		this.member_last_log = member_last_log;
 	}
+	@Override
+	public String toString() {
+		return "MemberVO [member_pw=" + member_pw + ", member_phoneno=" + member_phoneno + ", member_email1="
+				+ member_email1 + ", member_email2=" + member_email2 + ", member_zipcode=" + member_zipcode
+				+ ", member_roadAddress=" + member_roadAddress + ", member_jibunAddress=" + member_jibunAddress
+				+ ", member_namujiAddress=" + member_namujiAddress + "]";
+	}
 	
 	
 	

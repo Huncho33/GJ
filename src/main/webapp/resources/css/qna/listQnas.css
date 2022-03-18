@@ -1,0 +1,49 @@
+@charset "UTF-8";
+
+#qna_bground {
+	position: relative;
+	width: 100%;
+}
+
+#qna_cnt {
+	width: 1200px;
+	position: relative;
+	margin: 0 auto;
+}
+
+.cls1 {
+	text-decoration: none;
+}
+
+button.cls2 {
+	float: right;
+	font-size: 15px;
+}
+
+#qna_qnaList {
+	width: 100%;
+	border-collapse: collapse;
+	margin-bottom: 20px;
+}
+
+#qna_qnaList tr {
+	height: 35px;
+	border-top: 1px solid gray;
+	border-bottom: 1px solid gray;
+}
+
+h3.qna_titName {
+	font-size: 35px;
+	font-weight: bold;
+	letter-spacing: -2.7px;
+	color: #161616;
+	text-align: center;
+	border-bottom: 1px solid gray;
+	padding: 0px 0px 30px; 0px;
+	margin: 80px 0px 15px; 0px;
+}
+
+#qna_smallNav {
+	float: right;
+	margin-bottom: 50px;
+}

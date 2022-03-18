@@ -17,11 +17,17 @@
    src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="${contextPath}/resources/js/jquery-ui.js"></script>
 <script src="${contextPath}/resources/js/jquery.scrollTo-min.js"></script>
+<script src="https://kit.fontawesome.com/fc92373f81.js" crossorigin="anonymous"></script>
 <link href="${contextPath}/resources/css/header.css" rel="stylesheet"
    type="text/css">
 <link href="${contextPath}/resources/css/common.css" rel="stylesheet"
    type="text/css">
-
+<script>
+	function shareFacebook() {
+		var sendUrl = "https://www.naver.com/"; 
+		window.open("http://www.facebook.com/sharer/sharer.php?u=" + sendUrl);
+	}
+</script>
 
 </head>
 
@@ -40,9 +46,10 @@
                   <li><a href="#"> <img
                         src="${contextPath}/resources/image/kakaotalk.png" height="25px">
                   </a></li>
-                  <li><a href="#"> <img
-                        src="${contextPath}/resources/image/facebook.png" height="25px">
-                  </a></li>
+                  <li><a id="btnFacebook" href="javascript:shareFacebook();">
+								<img src="${contextPath}/resources/image/facebook.png"
+								height="25px">
+						</a></li>
                   <li><a href="#"> <img
                         src="${contextPath}/resources/image/insta.png" height="25px">
                   </a></li>
@@ -88,15 +95,15 @@
                            <li><a href="${contextPath}/boardNotice/listArticles.do">공지사항</a></li>
                            <li><a href="#">문의사항</a></li>
                            <li><a href="${contextPath}/qna/freqQna.do"> - 자주 묻는 질문</a></li>
-                           <li><a href="#"> - 상담게시판</a></li>
+                           <li><a href="${contextPath}/qna/listQnas.do"> - 상담게시판</a></li>
                            <li><a href="#">기타자료실</a></li>
                            <li><a href="#">자유게시판</a></li>
                         </ul></li>
                      <li class="menu" style="width: 200px;"><a href="#">월세지원</a>
                         <ul class="submenu submenu1">
                            <li><a href="${contextPath}/month/monthApplyInfo.do">청년월세지원 안내</a></li>
-                           <li><a href="#">청년월세지원(2022)</a></li>
-                           <li><a href="#">청년월세지원(2023)</a></li>
+                           <li><a href="https://www.bokjiro.go.kr/ssis-teu/index.do">청년월세지원신청(2022)</a></li>
+                           <li><a href="${contextPath}/month/monthApplyForm2.do">청년월세지원신청(2023)</a></li>
                            <li><a href="#">선정 결과 확인</a></li>
 
                         </ul></li>
@@ -129,25 +136,17 @@
             <c:choose>
                <c:when test="${isLogOn == true  && member!= null}">
 
-                  <a href="${contextPath}/member/logout.do"><img
-                     src="${contextPath}/resources/image/user.png">로그아웃</a>
-                  <a href="${contextPath}/member/logout.do"><img
-                     src="${contextPath}/resources/image/file.png">마이페이지</a>
-                  <script>
-                     window.onload = function() {
-                        alert("로그인 되었습니다.");
-                     }
-                  </script>
+                  <a href="${contextPath}/member/logout.do"><i class="fa-solid fa-arrow-right-from-bracket"></i>&nbsp;로그아웃</a>
+                  <a href="${contextPath}/mypage/confirmPwdView.do"><i class="fa-solid fa-house"></i>&nbsp;마이페이지</a>
+                  
 
 
                </c:when>
 
 
                <c:otherwise>
-                  <a href="${contextPath}/member/loginForm.do"><img
-                     src="${contextPath}/resources/image/user.png">로그인</a>
-                  <a href="${contextPath}/member/memberForm.do"><img
-                     src="${contextPath}/resources/image/file.png">회원가입</a>
+                  <a href="${contextPath}/member/loginForm.do"><i class="fa-solid fa-user"></i>&nbsp;로그인</a>
+                  <a href="${contextPath}/member/memberForm.do"><i class="fa-regular fa-file"></i>&nbsp;회원가입</a>
                </c:otherwise>
             </c:choose>
 

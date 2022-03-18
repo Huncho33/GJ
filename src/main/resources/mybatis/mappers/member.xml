@@ -12,8 +12,12 @@
 		<result property="member_gender" column="member_gender" />
 		<result property="member_birth" column="member_birth" />
 		<result property="member_phoneno" column="member_phoneno" />
-		<result property="member_email" column="member_email" />
-		<result property="member_address" column="member_address" />
+		<result property="member_email1" column="member_email1" />
+		<result property="member_email2" column="member_email2" />
+		<result property="member_zipcode" column="member_zipcode" />
+		<result property="member_roadAddress" column="member_roadAddress" />
+		<result property="member_jibunAddress" column="member_jibunAddress" />
+		<result property="member_namujiAddress" column="member_namujiAddress" />
 	</resultMap>
 
 	<!-- 잠깐 추가 -->
@@ -52,8 +56,12 @@
 		 					member_gender,
 		 					member_birth,
 		 					member_phoneno,
-		 					member_email,
-		 					member_address) 
+		 					member_email1,
+		 					member_email2,
+		 					member_zipcode,
+		 					member_roadAddress,
+		 					member_jibunAddress,
+		 					member_namujiAddress) 
 		 					
 		 values(#{member_id}, 
 		 		#{member_pw},
@@ -61,15 +69,19 @@
 		 		#{member_gender},
 		 		#{member_birth},
 		 		#{member_phoneno},
-		 		#{member_email},
-		 		#{member_address}) 
+		 		#{member_email1},
+		 		#{member_email2},
+		 		#{member_zipcode},
+		 		#{member_roadAddress},
+		 		#{member_jibunAddress},
+		 		#{member_namujiAddress}) 
 		]]>
 	</insert>
 
 	<update id="updateMember" parameterType="memberVO">
      <![CDATA[
 	     update member
-	     set pwd=#{member_pw}, name=#{member_name}, email=#{member_email}
+	     set pwd=#{member_pw}, name=#{member_name}, email=#{member_email1}
 	     where
 	     id=#{member_id}
       ]]>

@@ -1,0 +1,278 @@
+@charset "utf-8";
+
+#Memjoin1_bground {
+	width: 100%;
+	position: relative;
+}
+
+#Memjoin1_total {
+	position: relative;
+	width: 1100px;
+	margin: 0 auto;
+}
+
+#kkhs_sub h3.kkhs_subTit {
+	font-size: 45px;
+	font-weight: bold;
+	letter-spacing: -2.7px;
+	color: #161616;
+	text-align: center;
+	margin: 80px 0px 110px 0px;
+}
+
+/* 확인 취소 버튼 */
+.kkhs_btnWrap>button {
+	height: 60px;
+	line-height: 60px;
+	width: 200px;
+	font-size: 19px;
+	letter-spacing: -0.5px;
+	margin: 0 5px;
+}
+
+.kkhs_gray {
+	background-color: #555;
+	color: #fff;
+}
+
+.kkhs_btnWrap>button {
+	height: 60px;
+	line-height: 60px;
+	width: 200px;
+	font-size: 19px;
+	letter-spacing: -0.5px;
+	margin: 0 5px;
+}
+
+.kkhs_red {
+	background-color: #c84343;
+	color: #fff;
+}
+
+.kkhs_btn-c {
+	margin-left: 700px;
+	margin-top: 50px;
+}
+
+.kkhs_checkBox .kkhs_mg-right {
+	margin-right: 15px;
+}
+
+#kkhs_sub ul.kkhs_processTab li.kkhs_on {
+	background-color: dodgerblue;
+	font-weight: bold;
+	color: #fff;
+}
+
+#kkhs_sub ul.kkhs_processTab li {
+	margin-top: -20px;
+}
+
+ul.kkhs_processTab {
+	text-align: center;
+	margin-bottom: 77px;
+}
+
+#kkhs_agreeBox .kkhs_box {
+	margin-bottom: 70px;
+}
+
+h2.kkhs_joinTit {
+	font-size: 25px;
+	display: inline-block;
+	font-weight: 600;
+	margin-bottom: 20px;
+	color: dodgerblue;
+}
+
+#kkhs_agreeBox .kkhs_box .kkhs_cont {
+	width: 100%;
+	height: 230px;
+	overflow-y: scroll;
+	border: 1px solid #e7d5d5;
+	border-top: 2px solid dodgerblue;
+	padding: 33px 41px;
+	margin-bottom: 17px;
+	box-sizing: border-box;
+	font-size: 16px;
+	line-height: 1.5;
+	letter-spacing: -0.8px;
+	color: #333;
+}
+
+#kkhs_frm {
+	display: block;
+	margin-top: 0em;
+}
+
+.kkhs_inner {
+	max-width: 1240px;
+	margin: 0 auto;
+}
+
+h2.kkhs_joinTit {
+	font-size: 25px;
+	display: inline-block;
+	font-weight: 600;
+	margin-bottom: 20px;
+	color: dodgerblue;
+}
+
+/* 회원가입 약관동의 이미지 */
+ul.kkhs_processTab li {
+	display: inline-block;
+	width: 150px;
+	height: 60px;
+	border-radius: 50%;
+	font-size: 16px;
+	letter-spacing: -0.4px;
+	color: #666;
+	font-weighT: normal;
+	margin-right: 75px;
+	padding-top: 93px;
+	position: relative;
+}
+
+ul.kkhs_processTab li:nth-child(4)::after {
+	display: none;
+}
+
+ul.kkhs_processTab li::after {
+	content: "";
+	position: absolute;
+	width: 9px;
+	height: 14px;
+	right: -61px;
+	top: 76px;
+	background:
+		url(https://sns.daegu.go.kr/images/jeonseLoan/portal/signup_next.png)
+		50%;
+}
+
+ul.kkhs_processTab li:nth-child(1) {
+	background: #eee 38px;
+}
+
+ul.kkhs_processTab li:nth-child(2) {
+	background: #eee 38px;
+}
+
+ul.kkhs_processTab li:nth-child(3) {
+	background: #eee 38px;
+}
+
+ul.kkhs_processTab li:nth-child(4) {
+	background: #eee no-repeat 50% 38px;
+	margin-right: 0;
+}
+
+ul.kkhs_processTab li.kkhs_on {
+	background-color: #f8ecec;
+	font-weight: bold;
+	color: dodgerblue;
+	margin-top: -20px;
+}
+
+.kkhs_mg-right {
+	cursor: default;
+}
+
+.kkhs_fl-r {
+	float: right;
+}
+
+.kkhs_agreeChk[type="checkbox"]:checked+label::before {
+	content: '';
+	border: none;
+}
+
+.kkhs_agreeChk[type="checkbox"]:checked+label::before {
+	content: '';
+	border: 2px solid dodgerblue !important;
+	background: #f2e9e9
+		url(https://sns.daegu.go.kr/images/jeonseLoan/portal/signup_check.png)
+		no-repeat 50%;
+	box-sizing: border-box;
+}
+
+.kkhs_agreeChk[type="checkbox"]+label::before {
+	content: '';
+	display: inline-block;
+	vertical-align: middle;
+	margin-right: 11px;
+}
+
+.kkhs_agreeChk[type="checkbox"]+label::before {
+	content: '';
+	display: inline-block;
+	vertical-align: middle;
+	margin-right: 11px;
+	width: 26px;
+	height: 26px;
+	background-color: #e9ebf2;
+	box-sizing: border-box;
+}
+
+.kkhs_allAgree {
+    content: '';
+	display: inline-block;
+	vertical-align: middle;
+	margin-right: 11px;
+	box-sizing: border-box;
+    margin-left: 500px;
+
+}
+
+/* 버튼 커서 */
+.kkhs_btn-c kkhs_btnWrap button {
+	border: 0;
+	overflow: visible;
+	-webkit-appearance: button; /* for input */
+	-webkit-user-select: none; /* for button */
+	-moz-user-select: none;
+	-ms-user-select: none;
+	cursor: pointer;
+}
+
+/* 확인 취소 버튼 색상 */
+.kkhs_red {
+	background-color: dodgerblue;
+	color: #fff;
+}
+
+.kkhs_gray {
+	background-color: #555;
+	color: #fff;
+}
+.join_btn1 input {
+	width: 200px;
+	height: 60px;
+	font-size: 15px;
+	border: 0px;
+	border-radius: 3em;
+	background-color: darkgray;
+	color: white;
+	cursor: pointer;
+}
+
+.join_btn2 input {
+	width: 200px;
+	height: 60px;
+	font-size: 15px;
+	border: 0px;
+	border-radius: 3em;
+	background-color: dodgerblue;
+	color: white;
+	cursor: pointer;
+}
+
+.join_btn1 {
+	float: left;
+	margin-right: 30px;
+}
+
+.join_btn_list {
+	width: 100%;
+	margin-top: 60px;
+	margin-left: 700px;
+}

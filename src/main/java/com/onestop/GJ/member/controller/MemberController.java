@@ -27,4 +27,5 @@ public interface MemberController {
 
 	ResponseEntity overlapped(String id, HttpServletRequest request, HttpServletResponse response) throws Exception;
 
+//	ModelAndView memberForm3(HttpServletRequest request, HttpServletResponse response) throws Exception;
 }

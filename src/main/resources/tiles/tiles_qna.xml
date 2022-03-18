@@ -16,9 +16,27 @@
 	
 	
 	<definition name="/qna/freqQna" extends="baseLayout">
-		<put-attribute name="title" value="자주 묻는 질문(FAQ)" />
+		<put-attribute name="title" value="원스톱청년주거::자주 묻는 질문(FAQ)" />
 		<put-attribute name="body"
 			value="/WEB-INF/views/qna/freqQna.jsp" />
+	</definition>
+	
+	<definition name="/qna/listQnas" extends="baseLayout">
+		<put-attribute name="title" value="원스톱청년주거::상담게시판" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/qna/listQnas.jsp" />
+	</definition>
+	
+	<definition name="/qna/QnaForm" extends="baseLayout">
+		<put-attribute name="title" value="원스톱청년주거::상담게시판" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/qna/QnaForm.jsp" />
+	</definition>
+	
+	<definition name="/qna/viewQna" extends="baseLayout">
+		<put-attribute name="title" value="원스톱청년주거::상담게시판" />
+		<put-attribute name="body"
+			value="/WEB-INF/views//qna/viewQna.jsp" />
 	</definition>
 
 </tiles-definitions>
