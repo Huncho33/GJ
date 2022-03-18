@@ -47,12 +47,19 @@
 
 	<insert id="insertMember" parameterType="memberVO">
 		<![CDATA[
-		 insert into member(member_id, member_name, member_pw,  
-		 					member_gender, member_birth, member_phoneno, 
-		 					member_email1, member_email2, 
-		 					member_zipcode, member_roadAddress,
-		 					member_jibunAddress, member_namujiAddress) 
-		 					
+
+		 insert into member(member_id,
+		 					member_pw,
+		 					member_name,
+		 					member_gender,
+		 					member_birth,
+		 					member_phoneno,
+		 					member_email1,
+		 					member_email2,
+		 					member_zipcode,
+		 					member_roadAddress,
+		 					member_jibunAddress,
+		 					member_namujiAddress) 			
 		 values(#{member_id}, 
 		 		#{member_name},
 		 		#{member_pw},
@@ -71,7 +78,7 @@
 	<update id="updateMember" parameterType="memberVO">
      <![CDATA[
 	     update member
-	     set pwd=#{member_pw}, name=#{member_name}, email=#{member_email}
+	     set pwd=#{member_pw}, name=#{member_name}, email=#{member_email1}
 	     where
 	     id=#{member_id}
       ]]>

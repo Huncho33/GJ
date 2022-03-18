@@ -7,7 +7,10 @@
 		<typeAlias type="com.onestop.GJ.member.vo.MemberVO"  alias="memberVO" />
 
 	  	<typeAlias type="com.onestop.GJ.board.notice.vo.BoardNoticeVO"  alias="boardNoticeVO" />
-		<typeAlias type="com.onestop.GJ.board.notice.vo.BoardNoticeImageVO"  alias="BoardNoticeImageVO" />
+
+		<typeAlias type="com.onestop.GJ.board.notice.vo.BoardNoticeImageVO"  alias="boardNoticeImageVO" />
+		
+		<typeAlias type="com.onestop.GJ.board.QNA.vo.QnaVO"  alias="QnaVO" />
 
 	</typeAliases>
 

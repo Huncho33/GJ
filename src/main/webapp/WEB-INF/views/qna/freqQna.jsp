@@ -37,6 +37,9 @@
 	padding: 30px 0px 50px 0px;
 
 }
+
+.panel-group {
+}
 </style>
 </head>
 
@@ -52,7 +55,7 @@
 					aria-multiselectable="true">
 					<!-- 하나의 item입니다. data-parent 설청과 href 설정만 제대로 하면 문제없이 작동합니다. -->
 					<div class="panel panel-default">
-						<div class="panel-heading" role="tab">
+						<div class="panel-heading" role="tab" width="1000px">
 							<a role="button" data-toggle="collapse" href="#collapse1"
 								aria-expanded="false"> <i class="fa-regular fa-q"></i>&nbsp;&nbsp;
 								:: 자주 묻는 질문1 입니다.

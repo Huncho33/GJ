@@ -1,0 +1,178 @@
+@charset "UTF-8";
+
+#monthApply_bground {
+	width: 100%;
+	position: relative;
+}
+
+#monthApply_total {
+	position: relative;
+	width: 1100px;
+	margin: 0 auto;
+}
+
+#kkhs_sub {
+	padding: 20px 0px 0px 0px;
+	height: 300px;
+}
+
+#monthApply_title {
+	height: 40px;
+	border-bottom: 1px solid #E6E6E6;
+}
+
+#monthApply_title2 {
+	height: 40px;
+	padding-bottom: 40px;
+	border-bottom: 1px solid #E6E6E6;
+}
+
+#monthApply_table {
+	position: relative;
+	margin: 0 auto;
+}
+
+#join_detail_table {
+	margin: 30px 0px 0px 50px;
+}
+
+.monthApply_tit {
+	font-size: 13pt;
+	margin-left: 30px;
+}
+
+.join_rule {
+	font-size: 8pt;
+	color: dodgerblue;
+}
+
+tbody>tr {
+	height: 40px;
+}
+
+.fixed_join {
+	width: 120px;
+	font-size: 10pt;
+}
+
+.fixed_join1 {
+	width: 128px;
+}
+
+.postcode {
+	font-size: 8pt;
+	text-decoration: none;
+	color: black;
+}
+
+.join_btn1 input {
+	width: 200px;
+	height: 60px;
+	font-size: 15px;
+	border: 0px;
+	border-radius: 3em;
+	background-color: darkgray;
+	color: white;
+	cursor: pointer;
+}
+
+.join_btn2 input {
+	width: 200px;
+	height: 60px;
+	font-size: 15px;
+	border: 0px;
+	border-radius: 3em;
+	background-color: dodgerblue;
+	color: white;
+	cursor: pointer;
+}
+
+.join_btn1 {
+	float: left;
+	margin-right: 30px;
+}
+
+.join_btn_list {
+	width: 100%;
+	margin-top: 60px;
+	margin-left: 330px;
+}
+
+#kkhs_sub h3.kkhs_subTit {
+	font-size: 45px;
+	font-weight: bold;
+	letter-spacing: -2.7px;
+	color: #161616;
+	text-align: center;
+	margin: 80px 0px 110px 0px;
+}
+
+#kkhs_sub ul.kkhs_processTab li.kkhs_on {
+	background-color: dodgerblue;
+	font-weight: bold;
+	color: #fff;
+}
+
+#kkhs_sub ul.kkhs_processTab li {
+	margin-top: -20px;
+}
+
+ul.kkhs_processTab {
+	text-align: center;
+	margin-bottom: 77px;
+}
+
+/* 회원가입 약관동의 이미지 */
+ul.kkhs_processTab li {
+	display: inline-block;
+	width: 150px;
+	height: 60px;
+	border-radius: 50%;
+	font-size: 16px;
+	letter-spacing: -0.4px;
+	color: #666;
+	font-weighT: normal;
+	margin-right: 75px;
+	padding-top: 93px;
+	position: relative;
+}
+
+ul.kkhs_processTab li:nth-child(4)::after {
+	display: none;
+}
+
+ul.kkhs_processTab li::after {
+	content: "";
+	position: absolute;
+	width: 9px;
+	height: 14px;
+	top: 76px;
+	right: -52px;
+	background:
+		url(https://sns.daegu.go.kr/images/jeonseLoan/portal/signup_next.png)
+		50%;
+}
+
+ul.kkhs_processTab li:nth-child(1) {
+	background: #eee 38px;
+}
+
+ul.kkhs_processTab li:nth-child(2) {
+	background: #eee 38px;
+}
+
+ul.kkhs_processTab li:nth-child(3) {
+	background: #eee 38px;
+}
+
+ul.kkhs_processTab li:nth-child(4) {
+	background: #eee no-repeat 50% 38px;
+	margin-right: 0;
+}
+
+ul.kkhs_processTab li.kkhs_on {
+	background-color: dodgerblue;
+	font-weight: bold;
+	color: #fff;
+	margin-top: -20px;
+}

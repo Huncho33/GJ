@@ -5,7 +5,6 @@
 
 <tiles-definitions>
 
-
 	<definition name="baseLayout"
 		template="/WEB-INF/views/common/layout.jsp">
 		<put-attribute name="title" value="" />

@@ -1,8 +1,6 @@
 package com.onestop.GJ.member.controller;
 
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,11 +21,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.onestop.GJ.member.service.MemberService;
 import com.onestop.GJ.member.vo.MemberVO;
 
-import javafx.scene.control.Alert;
-
 @Controller("memberController")
 
-public class MemberControllerImpl implements MemberController  {
+public class MemberControllerImpl implements MemberController {
 	@Autowired
 	private MemberService memberService;
 	@Autowired
@@ -78,11 +74,11 @@ public class MemberControllerImpl implements MemberController  {
 		ModelAndView mav = new ModelAndView();
 
 		rAttr.addAttribute("result", "logOut");
+		session.invalidate();
 		mav.setViewName("redirect:/main.do");
 		return mav;
 
 	}
-
 
 	@RequestMapping(value = "/member/*Form.do", method = RequestMethod.GET)
 	private ModelAndView form(@RequestParam(value = "result", required = false) String result,
@@ -129,7 +125,7 @@ public class MemberControllerImpl implements MemberController  {
 		try {
 			memberService.addMember(_memberVO);
 			message = "<script>";
-			message += " alert('회원 가입을 마쳤습니다.로그인창으로 이동합니다.');";
+			message += " alert('회원 가입이 완료되었습니다. 로그인창으로 이동합니다.');";
 			message += " location.href='" + request.getContextPath() + "/member/loginForm.do';";
 			message += " </script>";
 
@@ -155,6 +151,7 @@ public class MemberControllerImpl implements MemberController  {
 		resEntity = new ResponseEntity(result, HttpStatus.OK);
 		return resEntity;
 	}
+
 
 	// 비밀번호 찾기 폼 출력 메서드
 	@RequestMapping(value = "/member/find_pw_form.do", method = RequestMethod.GET)
@@ -223,6 +220,9 @@ public class MemberControllerImpl implements MemberController  {
 		resEntity1 = new ResponseEntity(message, responseHeaders1, HttpStatus.OK);
 		return resEntity1;
 		
+
+
+
 	}
 
 }

@@ -1,10 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
+<<<<<<< HEAD
    pageEncoding="UTF-8" isELIgnored="false"%>
+=======
+	pageEncoding="UTF-8" isELIgnored="false"%>
+>>>>>>> refs/remotes/origin/memberJsp2
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
 
 <%
+<<<<<<< HEAD
    request.setCharacterEncoding("UTF-8");
+=======
+	request.setCharacterEncoding("UTF-8");
+>>>>>>> refs/remotes/origin/memberJsp2
 %>
 
 <!DOCTYPE html>
@@ -18,10 +26,15 @@
 <script src="${contextPath}/resources/js/memberForm1.js"></script>
 <!-- intro CSS -->
 <link rel="stylesheet"
+<<<<<<< HEAD
    href="${contextPath}/resources/css/memberForm/memberForm1.css">
+=======
+	href="${contextPath}/resources/css/memberForm/memberForm1.css">
+>>>>>>> refs/remotes/origin/memberJsp2
 
 <script type="text/javascript">
 $(document).ready(function(){
+<<<<<<< HEAD
    //전체 체크박스 클릭
    $("#checkAll").click(function(){
       if ($("#checkAll").prop("checked")) {
@@ -39,6 +52,25 @@ $(document).ready(function(){
          $("#checkAll").prop("checked", false);
       }
    });
+=======
+	//전체 체크박스 클릭
+	$("#checkAll").click(function(){
+		if ($("#checkAll").prop("checked")) {
+			$(".kkhs_agreeChk").prop("checked", true);
+		} else {
+			$(".kkhs_agreeChk").prop("checked", false);
+		}
+	});
+	
+	// 전체 체크박스 선택 중 체크박스 하나를 풀었을 때 전체 체크 해제
+	$(".kkhs_agreeChk").click(function(){
+		if($("input[name='check']:checked").length == 3) {
+		   $("#checkAll").prop("checked", true);
+		} else {
+		   $("#checkAll").prop("checked", false);
+		}
+	});
+>>>>>>> refs/remotes/origin/memberJsp2
 });
 
 
@@ -63,6 +95,7 @@ $(document).ready(function(){
 
 </head>
 <body>
+<<<<<<< HEAD
    <div id="Memjoin1_bground">
       <div id="#Memjoin1_total">
          <div id="kkhs_sub" class="kkhs_joinCommon">
@@ -81,6 +114,26 @@ $(document).ready(function(){
                   <h2 class="kkhs_joinTit">(필수)회원가입약관</h2>
                   <div class="kkhs_box">
                      <textarea class="kkhs_cont" id="kkhs_scroll" readonly>
+=======
+	<div id="Memjoin1_bground">
+		<div id="#Memjoin1_total">
+			<div id="kkhs_sub" class="kkhs_joinCommon">
+				<div id="kkhs_subVisual">
+					<h3 class="kkhs_subTit">회원가입</h3>
+				</div>
+				<ul class="kkhs_processTab">
+					<li class="kkhs_on"><div style="margin-top: -20px;">약관동의</div></li>
+					<li><div style="margin-top: -20px;">본인인증</div></li>
+					<li><div style="margin-top: -20px;">정보입력</div></li>
+					<li><div style="margin-top: -20px;">가입완료</div></li>
+				</ul>
+				<form id="kkhs_frm" name="kkhs_frm" method="get"
+					action="${contextPath}/member/memberForm2.do">
+					<div id="kkhs_agreeBox" class="kkhs_inner">
+						<h2 class="kkhs_joinTit">(필수)회원가입약관</h2>
+						<div class="kkhs_box">
+							<textarea class="kkhs_cont" id="kkhs_scroll" readonly>
+>>>>>>> refs/remotes/origin/memberJsp2
 원스톱청년주거 홈페이지 이용약관
 
 제1장 총칙 
@@ -371,6 +424,7 @@ $(document).ready(function(){
       
  부 칙 
  (시행일) 이 약관은 2020년 4월 1일부터 적용합니다.
+<<<<<<< HEAD
                </textarea>
                      <div class="kkhs_checkBox kkhs_fl-r ">
                         <input type="checkbox" class="kkhs_agreeChk" name="check" id="check_1"
@@ -448,6 +502,85 @@ $(document).ready(function(){
          </div>
       </div>
    </div>
+=======
+					</textarea>
+							<div class="kkhs_checkBox kkhs_fl-r ">
+								<input type="checkbox" class="kkhs_agreeChk" name="check" id="check_1"
+									style="float: right;"> 회원가입 약관에 동의합니다.
+							</div>
+						</div>
+						<div class="kkhs_box">
+							<h2 class="kkhs_joinTit">(필수)개인정보처리약관</h2>
+							<textarea class="kkhs_cont" id="kkhs_scroll">
+원스톱청년주거 서비스 개인정보 수집 및 이용에 대한 안내
+		
+원스톱청년주거는 정보주체의 동의에 의해 개인정보를 수집·이용합니다.
+		
+정보주체는 개인정보의 수집·이용목적에 대한 동의를 거부할 수 있으며,   
+동의 거부 시 원스톱청년주거에 회원가입이 되지 않으며,
+원스톱청년주거 홈페이지에서 제공하는 서비스를 이용할 수 없습니다.
+		
+홈페이지 회원관리를 위해 수집·보유하고 있는 주요 개인정보 파일은 다음과 같습니다.
+
+- 수집 및 이용목적 : 원스톱청년주거 홈페이지의 원활한 서비스 이용
+- 개인정보 항목 : 이름, 생년월일, 성별, 전화번호, 휴대전화번호, 이메일, 주소, 혼인신고일자
+- 보유 및 이용기간 : 회원가입 ~ 회원탈퇴(탈퇴 시 삭제)
+- 정보주체의 권리 : 본인에 관한 개인정보 열람, 정정.삭제 청구권
+					</textarea>
+							<div class="kkhs_checkBox kkhs_fl-r">
+								<input type="checkbox" class="kkhs_agreeChk" name="check" id="check_2"
+									style="float: right;"> 개인정보처리 약관에 동의합니다.
+							</div>
+						</div>
+						<div class="kkhs_box">
+							<h2 class="kkhs_joinTit">(선택)소식지수신여부동의</h2>
+							<textarea class="kkhs_cont" id="kkhs_scroll" readonly>
+원스톱청년주거는 신혼부부 전세자금  융자이자 지원을 위해  개인정보보호법   제15조, 제 18조, 제22조 및 신용정보의 이용 및 보호에 관한 법률 제 15조2항, 32조 1항, 33조, 24조에  의거  동의가 필요합니다
+					
+■ 정보 수집·이용 출처  및  목적
+       수집출처 : 대구광역시
+       이용목적 : 신혼부부 전용 전세자금(주택도시기금) 융자이자 지원 사업 추진
+            (지원대상 선정 및 알림(문제메세지), 지원액 산정 및 지급, 지급 변동사항 확인 및 관리 등) 
+                    
+■ 수집·이용 항목
+      기본 개인정보 : 성명, 생년월일, 주민등록 주소지, 임차주택 주소지, 가족관계, 자녀수, 자녀출생일, 신청자 연락처
+               (주민등록 번호 뒷자리 미기재) 주민등록 등본, 가족관계확인서 
+      신용정보 : 대출자명, 대출상품명, 대출계약일, 대출약정일, 대출금, 대출금리, 이자납입액, 대출 및 입금 계좌번호, 대출은행
+                                       
+■ 보유·이용 기간 
+      이자지원기간 종료일로부터 5년간 보유, 이용되며, 지원기간 종료일 후에는 감사, 민원처리, 법령상 의무이행을 위해서만 보유 이용됨  
+                        
+■ 수집·이용 제한
+       개인정보 제공자가 동의한 내용 외 다른목적으로는 이용하지 않으며, 개인정보처리자에게 열람, 정정, 삭제를 요구할 수 있음
+                                       
+■ 수집·동의  거부  및  동의 거부에  다른 불이익 내용 
+       개인(신용)정보 제공자의  정보에 오류, 누락 이 있을 시 지원 시  절차지연, 지원금 조정 및 중지 등의 불이익을  초래할 수 있고, 신청자(대출자)의 동의가 없을 시 이자지원사업 대상에서 제외 됨 
+                	</textarea>
+							<div style="float: center">
+								<div class="kkhs_checkBox kkhs_fl-r">
+									<input type="checkbox" class="kkhs_agreeChk" name="check"
+										style="float: right;"> 소식지 수신 여부에 동의합니다.
+								</div>
+							</div>
+						</div>
+						<div class="kkhs_allAgree">
+							전체 약관에 모두 동의합니다.<input type="checkbox" class="kkhs_agreeChk"
+								id="checkAll" name="checkAll" style="float: right;">
+						</div>
+					</div>
+					<div class="join_btn_list">
+						<div class="join_btn join_btn1">
+							<input type="reset" value="취소">
+						</div>
+						<div class="join_btn join_btn2">
+							<input type="submit" id="nextBtn" value="다음">
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+>>>>>>> refs/remotes/origin/memberJsp2
 
 </body>
 </html>

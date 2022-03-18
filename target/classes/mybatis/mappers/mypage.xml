@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.mypage">
+
+
+	<!-- 수정/업데이트 할 아이디 조회 -->
+	<select id="selectMemberById" resultType="memberVO"
+		parameterType="String">
+		<![CDATA[
+			SELECT * FROM member
+			WHERE member_id=#{member_id}
+		]]>
+	</select>
+
+	<!-- 회원 정보 수정 -->
+	<update id="updateMember" parameterType="java.util.HashMap">
+			UPDATE member
+			<set>
+				<if test=" member_pw!='' and member_pw!=null">
+					member_pw=#{member_pw},
+				</if>
+				<if test=" member_phoneno!='' and member_phoneno!=null">
+					member_phoneno=#{member_phoneno},
+				</if>
+				<if test=" member_email1!='' and member_email1!=null">
+					member_email1=#{member_email1},
+				</if>
+				<if test=" member_email2!='' and member_email2!=null">
+					member_email2=#{member_email2},
+				</if>
+				<if test=" member_zipcode!='' and member_zipcode!=null">
+					member_zipcode=#{member_zipcode},
+				</if>
+				<if test=" member_roadAddress!='' and member_roadAddress!=null">
+					member_roadAddress=#{member_roadAddress},
+				</if>
+				<if test=" member_jibunAddress!='' and member_jibunAddress!=null">
+					member_jibunAddress=#{member_jibunAddress},
+				</if>
+				<if test=" member_namujiAddress!='' and member_namujiAddress!=null">
+					member_namujiAddress=#{member_namujiAddress}
+				</if>
+			</set> 
+			WHERE member_id=#{member_id}
+	</update>
+
+
+	<!-- 회원 삭제 -->
+	<delete id="deleteMember" parameterType="String">
+		<![CDATA[
+			DELETE FROM member 
+			WHERE member_id=#{member_id}
+    	]]>
+	</delete>
+
+
+	<!-- 마이페이지 비밀번호 체크 -->
+	<select id="checkPwd" resultType="int">
+		select COUNT(*) from member
+		where member_id=#{member_id} AND member_pw=#{member_pw}
+	</select>
+
+</mapper>
