@@ -22,8 +22,11 @@ public class FileDownloadController {
 	protected void download(@RequestParam("up_fileName") String up_fileName,
 		                 	@RequestParam("noti_NO") String noti_NO,
 			                 HttpServletResponse response) throws Exception {
+		
 		OutputStream out = response.getOutputStream();
+
 		String filePath=ARTICLE_IMAGE_REPO+"\\"+noti_NO+"\\"+up_fileName;
+		
 		File image=new File(filePath);
 
 		response.setHeader("Cache-Control","no-cache");
@@ -39,6 +42,8 @@ public class FileDownloadController {
 		in.close();
 		out.close();
 	}
+	
+	
 	
 	//½æ³×ÀÏ
 //	@RequestMapping("/thumbnails.do")

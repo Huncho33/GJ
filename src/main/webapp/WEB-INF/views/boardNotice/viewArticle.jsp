@@ -282,9 +282,12 @@ tr input {
 
                         <tr class="tr_modEnable" id="tr_sub${status.count }">
                            <td></td>
+                           
                            <td><input type="file" name="up_fileName${status.index }"
                               id="up_fileName${status.index }"
                               onchange="readURL(this, ${status.index });" /> 
+                              
+                              
                               <input type="button" value="이미지 삭제하기"
                               onclick="fn_removeModImage(${item.up_fileNO },  ${item.noti_NO }, '${item.up_fileName }', ${status.count })" />
                            </td>
@@ -336,6 +339,7 @@ tr input {
             </table>
 
             <div id="tr_btn_modify" align="center">
+            
                <input type=button value="수정반영하기"
                   onClick="fn_modify_article(frmArticle)"> <input
                   type=button value="취소" onClick="backToList(frmArticle)">
