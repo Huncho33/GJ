@@ -29,6 +29,8 @@
 	}
 </script>
 
+
+
 </head>
 
 <body>
@@ -136,14 +138,13 @@
 
             <c:choose>
                <c:when test="${isLogOn == true  && member!= null}">
-
                   <a href="${contextPath}/member/logout.do"><i class="fa-solid fa-arrow-right-from-bracket"></i>&nbsp;로그아웃</a>
                   <a href="${contextPath}/mypage/confirmPwdView.do"><i class="fa-solid fa-house"></i>&nbsp;마이페이지</a>
                   
 
 
-               </c:when>
 
+               </c:when>
 
                <c:otherwise>
                   <a href="${contextPath}/member/loginForm.do"><i class="fa-solid fa-user"></i>&nbsp;로그인</a>

@@ -28,11 +28,10 @@
 
 	var cnt = 1;
 	function fn_addFile() {
-		$("#d_file")
-				.append("<br>" + "<input type='file' name='up_fileName"+cnt+"' />");
+		$("#d_file").append(
+				"<br>" + "<input type='file' name='up_fileName"+cnt+"' />");
 		cnt++;
 	}
-
 </script>
 <title>글쓰기창</title>
 </head>
@@ -42,13 +41,13 @@
 	<form name="articleForm" method="post" accept-charset="utf-8"
 		action="${contextPath}/boardNotice/addNewArticle.do"
 		enctype="multipart/form-data">
-		
+
 		<table border="0" align="center">
 			<tr>
 				<td align="right">작성자</td>
 				<td colspan=2 align="left"><input type="text" size="20"
-
-					maxlength="100" name="member_id" value="${member.member_id}" readonly /></td>
+					maxlength="100" name="member_id" value="${member.member_id}"
+					readonly /></td>
 
 			</tr>
 			<tr>
@@ -62,18 +61,19 @@
 						maxlength="4000"></textarea></td>
 			</tr>
 			<tr>
-				<td align="right">이미지파일 첨부</td>
+				<td align="right">이미지파일 첨부: </td>
 				<td align="left"><input type="button" value="파일 추가"
 					onClick="fn_addFile()" /></td>
-					<td colspan="4"><div id="d_file"></div></td>
+				<td colspan="4"><div id="d_file"></div></td>
 			</tr>
-			
+
 			<tr>
 				<td align="right"></td>
 				<td colspan="2"><input type="submit" value="글쓰기" /> <input
 					type=button value="목록보기" onClick="backToList(this.form)" /></td>
 			</tr>
 		</table>
-		
+	</form>
+
 </body>
 </html>

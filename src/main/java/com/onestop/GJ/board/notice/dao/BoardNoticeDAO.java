@@ -5,23 +5,41 @@ import java.util.Map;
 
 import org.springframework.dao.DataAccessException;
 
+import com.onestop.GJ.board.notice.vo.BoardNoticeImageVO;
 import com.onestop.GJ.board.notice.vo.BoardNoticeVO;
 
 public interface BoardNoticeDAO {
 
-	List selectAllArticlesList() throws Exception;
+	List selectAllArticlesList(Map pagingMap) throws Exception;
 
 	BoardNoticeVO selectArticle(int noti_NO) throws DataAccessException;
 
+	int insertNewArticle(Map articleMap) throws DataAccessException;
+
+	List selectImageFileList(int noti_NO) throws DataAccessException;
+
+	void insertNewImage(Map articleMap) throws DataAccessException;
+	
 	void updateArticle(Map articleMap) throws DataAccessException;
 
 	void deleteArticle(int noti_NO) throws DataAccessException;
 
-	int insertNewArticle(Map articleMap) throws DataAccessException;
+	void boardHits(int noti_NO) throws Exception;
 
-//	List selectImageFileList(int noti_NO) throws DataAccessException;
+	int selectTotArticles() throws DataAccessException;
 
-//	void insertNewImage(Map articleMap) throws DataAccessException;
+	List selectBoardListBySearchWord(Map pagingMap) throws DataAccessException;
+
+	int selectSearchTotArticles(Map pagingMap) throws DataAccessException;
+
+	void updateImageFile(Map articleMap) throws DataAccessException;
+
+	void insertModNewImage(Map articleMap) throws DataAccessException;
+
+	void deleteModImage(BoardNoticeImageVO boardNoticeImageVO) throws DataAccessException;
+
+
+
 
 	
 

@@ -21,16 +21,66 @@
 	</resultMap>
 
 
-	<!-- 게시판 리스트 불러오기기 -->
-	<select id="selectAllArticlesList" resultMap="articlesResult">
+
+
+	<!-- 게시판 리스트 불러오기기 <select id="selectAllArticlesList" resultMap="articlesResult"> 
+		<![CDATA[ SELECT noti_NO, noti_title, noti_context, noti_date, up_fileName, 
+		noti_hits, member_id from board_Notice ]]> </select> -->
+
+	<!-- 게시판 리스트, 페이징 -->
+	<select id="selectAllArticlesList" parameterType="java.util.Map"
+		resultMap="articlesResult">
     <![CDATA[
-      SELECT noti_NO, noti_title, noti_context, noti_date, up_fileName, noti_hits, member_id
-      from board_Notice
-     
+    select a.* from(
+      select ROW_NUMBER() over(order by noti_no desc) as recNUM,
+      noti_NO,
+      noti_title,
+      noti_context,
+      noti_date,
+      up_fileName,
+      member_id,
+      noti_hits from board_Notice) a
+      where Recnum between(#{section}-1)*100+(#{pageNum}-1)*10+1 and (#{section}-1)*100+#{pageNum}*10
+      order by noti_NO desc
+      
     ]]>
 	</select>
 
-	<!-- 게시판 상세글 조회하기 -->
+	<!-- 검색창 -->
+	<select id="selectBoardListBySearchWord" parameterType="java.util.Map"
+		resultMap="articlesResult" >
+     <![CDATA[
+      select a.* from(
+      select ROW_NUMBER() over(order by noti_no desc) as recNUM,
+      noti_NO,
+      noti_title,
+      noti_context,
+      noti_date,
+      up_fileName,
+      member_id,
+      noti_hits from board_Notice
+      where noti_title like '%' || #{searchWord} || '%') a
+      where Recnum between(#{section}-1)*100+(#{pageNum}-1)*10+1 and (#{section}-1)*100+#{pageNum}*10
+      order by noti_NO desc	
+		]]>
+		
+	</select>
+
+	<select id="selectTotArticles" resultType="int">
+    <![CDATA[
+     select count(noti_NO) from board_Notice
+    ]]>
+	</select>
+	
+	<select id="selectSearchTotArticles" parameterType="java.util.Map" resultType="int">
+    <![CDATA[
+     select count(noti_NO) from board_Notice
+     where noti_title like '%' || #{searchWord } || '%'
+    ]]>
+	</select>
+
+	<!--게시판 상세글 조회하기 -->
+
 	<select id="selectArticle" resultType="boardNoticeVO"
 		parameterType="int">
     <![CDATA[
@@ -40,7 +90,7 @@
 	</select>
 
 	<!-- 게시글 번호 생성 -->
-	
+
 	<select id="selectNewArticleNO" resultType="int">
 <![CDATA[
    SELECT  nvl(max(noti_NO),0) +1 from board_Notice
@@ -51,20 +101,22 @@
 	<!-- 게시글 추가하기 -->
 	<insert id="insertNewArticle" parameterType="java.util.Map">
     <![CDATA[
-      INSERT into board_Notice(noti_NO, noti_title, noti_context,  up_fileName, member_id)
-      values(#{noti_NO}, #{noti_title}, #{noti_context}, #{up_fileName}, #{member_id})
+      INSERT into board_Notice(noti_NO, noti_title, noti_context, up_fileName, member_id)
+      values(#{noti_NO}, #{noti_title}, #{noti_context}, 'test2입니다', #{member_id})
     ]]>
 	</insert>
-	
+
 
 
 	<!-- 이미지 추가 -->
 	<insert id="insertNewImage" parameterType="java.util.Map">
-		 <foreach item="item" collection="list" open="INSERT ALL"
+		<foreach item="item" collection="list" open="INSERT ALL"
 			separator=" " close="SELECT * FROM DUAL">
-			INTO noti_file(up_fileNO, up_fileName, noti_NO,up_date)
-			VALUES (#{item.up_fileNO}, #{item.up_fileName},	#{item.noti_NO}, sysdate)
-		</foreach>   
+			INTO noti_file(up_fileNO, up_fileName, noti_NO,
+			up_date)
+			VALUES (#{item.up_fileNO}, #{item.up_fileName},
+			#{item.noti_NO}, SYSDATE)	
+		</foreach>
 	</insert>
 
 	<select id="selectNewImageFileNO" resultType="int">
@@ -73,8 +125,8 @@
 ]]>
 	</select>
 
-	
 
+	<!-- 이미지 표시하기 -->
 	<select id="selectImageFileList" resultMap="imgResult"
 		parameterType="int">
     <![CDATA[
@@ -82,6 +134,77 @@
       where noti_NO=#{noti_NO}   
     ]]>
 	</select>
+	
+
+	<!-- 글 삭제하기 -->
+	<delete id="deleteArticle" parameterType="int">
+    <![CDATA[
+      delete from board_Notice
+      where noti_NO in (
+         SELECT noti_NO FROM  board_Notice
+         where noti_NO = #{noti_NO})
+       
+    ]]>
+	</delete>
+
+		<!-- 다중 파일 수정하기 -->
+	<update id="updateArticle" parameterType="java.util.Map">
+		update board_Notice
+		set noti_title=#{noti_title},
+		noti_context=#{noti_context}
+		where noti_NO=#{noti_NO}
+	</update>
+	
+		<update id="updateImageFile" parameterType="java.util.List">
+		<foreach collection="list" item="item" separator=";" open="DECLARE BEGIN" close="; END;">
+			<choose>
+				<when test="item.up_fileName != null ">
+					update noti_file
+					set up_fileName = #{item.up_fileName}
+					where
+					noti_NO=#{item.noti_NO}
+					and up_fileNO = #{item.up_fileNO}
+				</when>
+				<otherwise>
+
+				</otherwise>
+			</choose>
+		</foreach>
+	</update>
+	
+		<delete id="deleteModImage" parameterType="boardNoticeImageVO">
+	    <![CDATA[
+	      delete from noti_file
+	      where noti_NO = #{noti_NO}
+	      and up_fileNO = #{up_fileNO}
+	    ]]>
+	</delete>
+	
+		<insert id="insertModNewImage" parameterType="java.util.Map">
+		<foreach item="item" collection="list" open="INSERT ALL" separator=" " close="SELECT * FROM DUAL">
+			INTO noti_file(up_fileNO, up_fileName, noti_NO, up_date)
+			VALUES (#{item.up_fileNO},
+						#{item.up_fileName},
+						#{item.noti_NO},
+						sysdate)
+		</foreach>
+	</insert>
+	
+	
+
+
+	<!-- 게시판 조회수 -->
+	<update id="boardHits" parameterType="int">
+		UPDATE board_Notice SET
+		noti_hits = noti_hits+1
+		WHERE noti_NO = #{noti_NO}
+	</update>
+
+
+
+
+
 
 
 </mapper>
+	
