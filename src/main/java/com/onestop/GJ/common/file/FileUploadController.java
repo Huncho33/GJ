@@ -13,21 +13,23 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class FileUploadController {
-	private static final String CURR_IMAGE_REPO_PATH = "C:\\GJ\\file_repo";
+	private static final String CURR_IMAGE_REPO_PATH = "C:\\GJ\\file_repo\\board\\notice";
 	
 	@RequestMapping(value="/form")
 	public String form() {
 		return "uploadForm";
 	}
 	
-	@RequestMapping(value="/upload", method = RequestMethod.POST)
-	public ModelAndView upload(MultipartHttpServletRequest multipartRequest, HttpServletResponse response) throws Exception {
+	@RequestMapping(value="/upload.do", method = RequestMethod.POST)
+	public ModelAndView upload(@RequestParam("up_fileName") String up_fileName, @RequestParam("noti_NO") String noti_NO,
+			MultipartHttpServletRequest multipartRequest, HttpServletResponse response) throws Exception {
 		multipartRequest.setCharacterEncoding("utf-8");
 		Map map = new HashMap();
 		Enumeration enu = multipartRequest.getParameterNames();
@@ -45,6 +47,7 @@ public class FileUploadController {
 	}
 	
 	private List<String> fileProcess(MultipartHttpServletRequest multipartRequest) throws Exception {
+		
 		List<String> fileList = new ArrayList<String>();
 		Iterator<String> fileNames = multipartRequest.getFileNames();
 		while(fileNames.hasNext()) {

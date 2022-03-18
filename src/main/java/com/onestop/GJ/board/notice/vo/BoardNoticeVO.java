@@ -94,5 +94,9 @@ public int getNoti_hits() {
                e.printStackTrace();
             }
          }
+      @Override
+      public String toString() {
+         return "BoardNoticeVO [up_fileName=" + up_fileName +  "]";
+      }
 
 }

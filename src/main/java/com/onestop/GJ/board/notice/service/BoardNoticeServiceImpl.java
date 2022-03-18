@@ -118,7 +118,4 @@ public class BoardNoticeServiceImpl implements BoardNoticeService {
 	}
 	
 
-   
-
-   
 }

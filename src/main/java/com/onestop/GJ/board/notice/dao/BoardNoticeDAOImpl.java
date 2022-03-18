@@ -49,12 +49,15 @@ public class BoardNoticeDAOImpl implements BoardNoticeDAO {
 		List<BoardNoticeImageVO> imageFileList = (ArrayList) articleMap.get("imageFileList");
 		int noti_NO = (Integer) articleMap.get("noti_NO");
 		int up_fileNO = selectNewImageFileNO();
+		 if (imageFileList != null && imageFileList.size() != 0) {
 		for (BoardNoticeImageVO boardNoticeImageVO : imageFileList) {
 			boardNoticeImageVO.setUp_fileNO(++up_fileNO);
 			boardNoticeImageVO.setNoti_NO(noti_NO);
 		}
+		System.out.println("imageFileList"+ imageFileList);
 		sqlSession.insert("mapper.boardNotice.insertNewImage", imageFileList);
 	}
+}
     		
    private int selectNewArticleNO() throws DataAccessException {
       return sqlSession.selectOne("mapper.boardNotice.selectNewArticleNO");
@@ -131,6 +134,7 @@ public class BoardNoticeDAOImpl implements BoardNoticeDAO {
 		}
 		
 		if(imageFileList != null && imageFileList.size() != 0) {
+			System.out.println("imageFileList"+ imageFileList);
 			sqlSession.update("mapper.boardNotice.updateImageFile", imageFileList);
 		}
    	}
@@ -139,7 +143,7 @@ public class BoardNoticeDAOImpl implements BoardNoticeDAO {
 		public void insertModNewImage(Map articleMap) throws DataAccessException {
 			List<BoardNoticeImageVO> modAddimageFileList = (ArrayList<BoardNoticeImageVO>)articleMap.get("modAddimageFileList");
 			int noti_NO = Integer.parseInt((String)articleMap.get("noti_NO"));
-			
+			System.out.println("modAddimageFileList"+ modAddimageFileList);
 			int up_fileNO = selectNewImageFileNO();
 			
 			for(BoardNoticeImageVO boardNoticeImageVO : modAddimageFileList){
