@@ -1,5 +1,13 @@
 package com.onestop.GJ.board.data.controller;
 
-public class BoardDataController {
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
+
+public interface BoardDataController {
+
 
 }

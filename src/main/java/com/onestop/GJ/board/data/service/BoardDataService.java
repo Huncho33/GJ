@@ -1,5 +1,9 @@
 package com.onestop.GJ.board.data.service;
 
-public class BoardDataService {
+import java.util.Map;
 
+import com.onestop.GJ.board.data.vo.BoardDataImageVO;
+
+
+public class BoardDataService {
 }
