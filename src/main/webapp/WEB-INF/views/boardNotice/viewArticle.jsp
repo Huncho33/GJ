@@ -27,6 +27,10 @@
 #tr_no {
    display: none;
 }
+#filedown a {
+	border : 1;
+	 text-decoration-line : none;
+}
 
 .tr_modEnable {
    display: none;
@@ -164,7 +168,8 @@ tr input {
                 data: {up_fileNO : _up_fileNO,  noti_NO : _noti_NO, up_fileName : _up_fileName},
                 success:function (result, textStatus){
                    if(result == 'success'){
-                       alert("이미지를 삭제했습니다.");
+                	      
+                       alert("파일을 삭제했습니다.");
                      
                       location.href="http://localhost:8090/GJ/boardNotice/viewArticle.do?removeCompleted=true&noti_NO=" + _noti_NO;
                              
@@ -172,7 +177,7 @@ tr input {
                    $('#tr_sub'+rowNum).remove();
                   
                    
-                  
+              	 
                      
                    }else{
                       alert("다시 시도해 주세요");
@@ -233,7 +238,7 @@ tr input {
 
    <div id="noti_view_bground">
       <div id="noti_view_container">
-         <form name="frmArticle" method="post" action="${contextPath}"
+         <form name="frmArticle" method="post" action="${contextPath}"  accept-charset="UTF-8"
             enctype="multipart/form-data">
             <table id=noti_select_view border=0 align="center">
                <tr id="tr_no">
@@ -259,9 +264,11 @@ tr input {
                   <td><input type=text value="${article.noti_hits }"
                      name="noti_hits" id="noti_hits" disabled /></td>
                </tr>
-
-
-
+				
+               <tr>
+                  <td width="150" align="center" bgcolor="#f2f8ff">내용</td>
+                  <td><textarea rows="20" cols="60" name="noti_context" id="noti_context" disabled>${article.noti_context }</textarea></td>
+               </tr>
                <!--  파일 업로드 -->
                <c:set var="img_index" />
                <c:choose>
@@ -269,23 +276,28 @@ tr input {
                      test="${not empty imageFileList && imageFileList!='null' }">
                      <c:forEach var="item" items="${imageFileList}" varStatus="status">
                         <tr id="tr_${status.count }">
-                           <td width="150" align="center" bgcolor="#f2f8ff" rowspan="1">
-                              첨부파일${status.count }</td>
+                           <td width="150" align="center" bgcolor="#f2f8ff" rowspan="1">  첨부파일${status.count }</td>
 
                            <td colspan=2><input type="hidden" name="oldFileName"
                               value="${item.up_fileName }" /> <input type="hidden"
-                              name="up_fileNO" value="${item.up_fileNO }" /> <img
-                              src="${contextPath}/download.do?noti_NO=${article.noti_NO}&up_fileName=${item.up_fileName}"
-                              id="preview${status.index }" /><br></td>
+                              name="up_fileNO" value="${item.up_fileNO }" /> 
+                              
+                               <!-- <img src="${contextPath}/upload.do?noti_NO=${article.noti_NO}&up_fileName=${item.up_fileName}" id="preview${status.index }" />-->
+                              <div id="filedown"> 	 	
+                              <a href="${contextPath}/download.do?noti_NO=${article.noti_NO}&up_fileName=${item.up_fileName}" >${item.up_fileName}</a><br>
+                              </div>
+                              </td>
 
                         </tr>
 
                         <tr class="tr_modEnable" id="tr_sub${status.count }">
                            <td></td>
-                           <td><input type="file" name="up_fileName${status.index }"
+                           <td>
+                            
+                           <input type="file" name="up_fileName${status.index }"
                               id="up_fileName${status.index }"
                               onchange="readURL(this, ${status.index });" /> 
-                              <input type="button" value="이미지 삭제하기"
+                              <input type="button" value="파일 삭제하기"
                               onclick="fn_removeModImage(${item.up_fileNO },  ${item.noti_NO }, '${item.up_fileName }', ${status.count })" />
                            </td>
                         </tr>
@@ -314,13 +326,6 @@ tr input {
                </c:choose>
 
                <tr>
-                  <td width="150" align="center" bgcolor="#f2f8ff">내용</td>
-                  <td><textarea rows="20" cols="60" name="noti_context"
-                        id="noti_context" disabled />${article.noti_context }</textarea></td>
-                  </td>
-               </tr>
-
-               <tr>
                   <td colspan="2">
                      <table id="tb_addImage" align="center">
                      </table>
@@ -328,7 +333,7 @@ tr input {
                </tr>
 
                <tr class="tr_modEnable">
-                  <td colspan="2"><input type="button" value="이미지 추가"
+                  <td colspan="2"><input type="button" value="파일 추가"
                      onclick="fn_addModImage(${img_index})" /></td>
                </tr>
 
@@ -336,8 +341,9 @@ tr input {
             </table>
 
             <div id="tr_btn_modify" align="center">
+           
                <input type=button value="수정반영하기"
-                  onClick="fn_modify_article(frmArticle)"> <input
+                  onClick="fn_modify_article(frmArticle)" > <input
                   type=button value="취소" onClick="backToList(frmArticle)">
             </div>
 
@@ -357,4 +363,5 @@ tr input {
    </div>
 </body>
 </html>
+
 

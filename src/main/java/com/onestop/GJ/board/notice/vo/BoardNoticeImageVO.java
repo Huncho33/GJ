@@ -1,7 +1,7 @@
 package com.onestop.GJ.board.notice.vo;
 
 import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
+import java.net.URLDecoder;
 import java.sql.Date;
 
 public class BoardNoticeImageVO {
@@ -19,7 +19,7 @@ public class BoardNoticeImageVO {
    public String getUp_fileName() {
 	   try {
 	         if(up_fileName!= null && up_fileName.length()!=0) {
-	            up_fileName = URLEncoder.encode(up_fileName,"UTF-8");
+	            up_fileName = URLDecoder.decode(up_fileName,"UTF-8");
 	         }
 	      } catch (UnsupportedEncodingException e) {
 	         e.printStackTrace();
@@ -29,7 +29,7 @@ public class BoardNoticeImageVO {
    public void setUp_fileName(String up_fileName) {
       try {
          if(up_fileName!= null && up_fileName.length()!=0) {
-            this.up_fileName = URLEncoder.encode(up_fileName,"UTF-8");
+            this.up_fileName = URLDecoder.decode(up_fileName,"UTF-8");
          }
       } catch (UnsupportedEncodingException e) {
          e.printStackTrace();
@@ -49,5 +49,10 @@ public class BoardNoticeImageVO {
    }
    public void setNoti_NO(int noti_NO) {
       this.noti_NO = noti_NO;
+   }
+   @Override
+   public String toString() {
+      return "BoardNoticeImageVO [up_fileName=" + up_fileName + ", up_fileNO=" + up_fileNO + ", noti_NO="
+            + noti_NO + ", up_date=" + up_date +  "]";
    }
 }
