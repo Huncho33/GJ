@@ -3,20 +3,20 @@
       PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="mapper.boardData">
-	<resultMap id="articlesResult" type="boardDataVO">
-		<result property="etc_NO" column="etc_NO" />
-		<result property="etc_title" column="etc_title" />
-		<result property="etc_context" column="etc_context" />
-		<result property="etc_date" column="etc_date" />
+<mapper namespace="mapper.boardFree">
+	<resultMap id="articlesResult" type="boardFreeVO">
+		<result property="fr_NO" column="fr_NO" />
+		<result property="fr_title" column="fr_title" />
+		<result property="fr_context" column="fr_context" />
+		<result property="fr_date" column="fr_date" />
 		<result property="up_fileName" column="up_fileName" />
-		<result property="etc_hits" column="etc_hits" />
+		<result property="fr_hits" column="fr_hits" />
 
 	</resultMap>
 	
-	<resultMap id="imgResult" type="boardDataImageVO">
+	<resultMap id="imgResult" type="boardFreeImageVO">
 		<result property="up_fileNO" column="up_fileNO" />
-		<result property="etc_NO" column="etc_NO" />
+		<result property="fr_NO" column="fr_NO" />
 		<result property="up_fileName" column="up_fileName" />
 	</resultMap>
 
@@ -28,16 +28,16 @@
 		resultMap="articlesResult">
     <![CDATA[
     select a.* from(
-      select ROW_NUMBER() over(order by etc_no desc) as recNUM,
-      etc_NO,
-      etc_title,
-      etc_context,
-      etc_date,
+      select ROW_NUMBER() over(order by fr_NO desc) as recNUM,
+      fr_NO,
+      fr_title,
+      fr_context,
+      fr_date,
       up_fileName,
       member_id,
-      etc_hits from board_Data) a
+      fr_hits from board_free) a
       where Recnum between(#{section}-1)*100+(#{pageNum}-1)*10+1 and (#{section}-1)*100+#{pageNum}*10
-      order by etc_NO desc
+      order by fr_NO desc
       
     ]]>
 	</select>
@@ -47,41 +47,41 @@
 		resultMap="articlesResult" >
      <![CDATA[
       select a.* from(
-      select ROW_NUMBER() over(order by etc_NO desc) as recNUM,
-       etc_NO,
-      etc_title,
-      etc_context,
-      etc_date,
+      select ROW_NUMBER() over(order by fr_NO desc) as recNUM,
+      fr_NO,
+      fr_title,
+      fr_context,
+      fr_date,
       up_fileName,
       member_id,
-      etc_hits from board_Data
-      where etc_title like '%' || #{searchWord} || '%') a
+      fr_hits from board_free
+      where fr_title like '%' || #{searchWord} || '%') a
       where Recnum between(#{section}-1)*100+(#{pageNum}-1)*10+1 and (#{section}-1)*100+#{pageNum}*10
-      order by etc_NO desc	
+      order by fr_NO desc	
 		]]>
 		
 	</select>
 
 	<select id="selectTotArticles" resultType="int">
     <![CDATA[
-     select count(etc_NO) from board_Data
+     select count(fr_NO) from board_Free
     ]]>
 	</select>
 	
 	<select id="selectSearchTotArticles" parameterType="java.util.Map" resultType="int">
     <![CDATA[
-     select count(etc_NO) from board_Data
-     where etc_title like '%' || #{searchWord } || '%'
+     select count(fr_NO) from board_Free
+     where fr_title like '%' || #{searchWord } || '%'
     ]]>
 	</select>
 
 	<!--게시판 상세글 조회하기 -->
 
-	<select id="selectArticle" resultType="boardDataVO"
+	<select id="selectArticle" resultType="boardFreeVO"
 		parameterType="int">
     <![CDATA[
-      SELECT * from board_Data
-      where etc_NO = #{etc_NO}      
+      SELECT * from board_Free
+      where fr_NO = #{fr_NO}      
     ]]>
 	</select>
 
@@ -89,7 +89,7 @@
 
 	<select id="selectNewArticleNO" resultType="int">
 <![CDATA[
-   SELECT  nvl(max(etc_NO),0) +1 from board_Data
+   SELECT  nvl(max(fr_NO),0) +1 from board_Free
 ]]>
 	</select>
 
@@ -97,8 +97,8 @@
 	<!-- 게시글 추가하기 -->
 	<insert id="insertNewArticle" parameterType="java.util.Map">
     <![CDATA[
-      INSERT into board_Data(etc_NO, etc_title, etc_context, up_fileName, member_id)
-      values(#{etc_NO}, #{etc_title}, #{etc_context}, null , #{member_id})
+      INSERT into board_Free(fr_NO, fr_title, fr_context, up_fileName, member_id)
+      values(#{fr_NO}, #{fr_title}, #{fr_context}, null , #{member_id})
     ]]>
 	</insert>
 
@@ -108,16 +108,16 @@
 	<insert id="insertNewImage" parameterType="java.util.Map">
 		<foreach item="item" collection="list" open="INSERT ALL"
 			separator=" " close="SELECT * FROM DUAL">
-			INTO data_file(up_fileNO, up_fileName, etc_NO,
+			INTO free_file(up_fileNO, up_fileName, fr_NO,
 			up_date)
 			VALUES (#{item.up_fileNO}, #{item.up_fileName},
-			#{item.etc_NO}, SYSDATE)	
+			#{item.fr_NO}, SYSDATE)	
 		</foreach>
 	</insert>
 
 	<select id="selectNewImageFileNO" resultType="int">
 <![CDATA[
-   SELECT nvl(max(up_fileNO),0) from data_file
+   SELECT nvl(max(up_fileNO),0) from free_file
 ]]>
 	</select>
 
@@ -126,8 +126,8 @@
 	<select id="selectImageFileList" resultMap="imgResult"
 		parameterType="int">
     <![CDATA[
-      SELECT * from data_file
-      where etc_NO=#{etc_NO}   
+      SELECT * from free_file
+      where fr_NO=#{fr_NO}   
     ]]>
 	</select>
 	
@@ -135,20 +135,20 @@
 	<!-- 글 삭제하기 -->
 	<delete id="deleteArticle" parameterType="int">
     <![CDATA[
-      delete from board_data
-      where etc_NO in (
-         SELECT etc_NO FROM  board_data
-         where etc_NO = #{etc_NO})
+      delete from board_free
+      where fr_NO in (
+         SELECT fr_NO FROM  board_free
+         where fr_NO = #{fr_NO})
        
     ]]>
 	</delete>
 
 		<!-- 다중 파일 수정하기 -->
 	<update id="updateArticle" parameterType="java.util.Map">
-		update board_data
-		set etc_title=#{etc_title},
-		etc_context=#{etc_context}
-		where etc_NO=#{etc_NO}
+		update board_free
+		set fr_title=#{fr_title},
+			fr_context=#{fr_context}
+		where fr_NO=#{fr_NO}
 	</update>
 	
 		<update id="updateImageFile" parameterType="java.util.List">
@@ -158,7 +158,7 @@
 					update data_file
 					set up_fileName = #{item.up_fileName}
 					where
-					etc_NO=#{item.etc_NO}
+					fr_NO=#{item.fr_NO}
 					and up_fileNO = #{item.up_fileNO}
 				</when>
 				<otherwise>
@@ -168,20 +168,20 @@
 		</foreach>
 	</update>
 	
-		<delete id="deleteModImage" parameterType="boardDataImageVO">
+		<delete id="deleteModImage" parameterType="boardFreeImageVO">
 	    <![CDATA[
-	      delete from data_file
-	      where etc_NO = #{etc_NO}
+	      delete from free_file
+	      where fr_NO = #{fr_NO}
 	      and up_fileNO = #{up_fileNO}
 	    ]]>
 	</delete>
 	
 		<insert id="insertModNewImage" parameterType="java.util.Map">
 		<foreach item="item" collection="list" open="INSERT ALL" separator=" " close="SELECT * FROM DUAL">
-			INTO data_file(up_fileNO, up_fileName, etc_NO, up_date)
+			INTO free_file(up_fileNO, up_fileName, fr_NO, up_date)
 			VALUES (#{item.up_fileNO},
 						#{item.up_fileName},
-						#{item.etc_NO},
+						#{item.fr_NO},
 						sysdate)
 		</foreach>
 	</insert>
@@ -191,9 +191,9 @@
 
 	<!-- 게시판 조회수 -->
 	<update id="boardHits" parameterType="int">
-		UPDATE board_data SET
-		etc_hits = etc_hits + 1
-		WHERE etc_NO = #{etc_NO}
+		UPDATE board_free SET
+		fr_hits = fr_hits + 1
+		WHERE fr_NO = #{fr_NO}
 	</update>
 
 

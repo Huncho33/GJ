@@ -1,13 +1,13 @@
-package com.onestop.GJ.board.data.vo;
+package com.onestop.GJ.board.free.vo;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.sql.Date;
 
-public class BoardDataImageVO {
+public class BoardFreeImageVO {
 	private String up_fileName;
 	private int up_fileNO;
-	private int etc_NO;
+	private int fr_NO;
 	private Date up_date;
 
 	public int getUp_fileNO() {
@@ -47,12 +47,13 @@ public class BoardDataImageVO {
 		this.up_date = up_date;
 	}
 
-	public int getEtc_NO() {
-		return etc_NO;
+	public int getFr_NO() {
+		return fr_NO;
 	}
 
-	public void setEtc_NO(int etc_NO) {
-		this.etc_NO = etc_NO;
+	public void setFr_NO(int fr_NO) {
+		this.fr_NO = fr_NO;
 	}
+
 
 }

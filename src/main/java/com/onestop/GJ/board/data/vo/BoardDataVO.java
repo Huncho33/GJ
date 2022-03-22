@@ -92,5 +92,9 @@ public String getUp_fileName() {
                e.printStackTrace();
             }
          }
+      @Override
+      public String toString() {
+         return "BoardDataVO [etc_hits=" + etc_hits +  "]";
+      }
 
 }

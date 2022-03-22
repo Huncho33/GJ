@@ -25,40 +25,40 @@
 	font-size: 30px;
 }
 
-#data_bground {
+#fr_bground {
 	width: 100%;
 	position: relative;
 }
 
-#data_container {
+#fr_container {
 	position: relative;
 	margin: 0 auto;
 	align: center;
 	width: 1200px;
 }
 
-#data_title {
+#fr_title {
 	padding: 50px 0px 30px 0px;
 	border-bottom: 1px solid #cfcfcf;
 	margin-bottom: 30px;
 }
 
-#data_list_tab {
+#fr_list_tab {
 	border-collapse: collapse;
 }
 
-#data_list_tab td {
+#fr_list_tab td {
 	text-indent: 10px;
 	font-size: 15px;
 	border: solid 1px #e5e5e5;
 }
 
-#data_list_tab tr {
+#fr_list_tab tr {
 	border-left: none;
 	border-right: none;
 }
 
-.data_subnavi {
+.fr_subnavi {
 	margin-bottom: 20px;
 	float: right;
 }
@@ -87,30 +87,30 @@
 			location.href = articleForm;
 		} else {
 			alert("로그인 후 글쓰기가 가능합니다.")
-			location.href = loginForm + '?action=/boardData/articleForm.do';
+			location.href = loginForm + '?action=/boardFree/articleForm.do';
 		}
 	}
 	
 
 </script>
 <body>
-	<div id="data_bground">
-		<div id="data_container">
-			<div id="data_title">
-				<h1 align="center">기타자료실</h1>
+	<div id="fr_bground">
+		<div id="fr_container">
+			<div id="fr_title">
+				<h1 align="center">공지사항</h1>
 			</div>
 			<span>[총 게시물: ${totArticles }건]</span>
-			<span class="data_subnavi" >청년패키지>기타자료실></span>
+			<span class="fr_subnavi" >청년패키지>공지사항></span>
 			
 			<!-- 검색 창 -->
 			<div id="search" >
-		<form name="frmSearch" action="${contextPath}/boardData/searchBoardList.do" >
+		<form name="frmSearch" action="${contextPath}/boardFree/searchBoardList.do" >
 			<input name="searchWord"  type="text" > 
 			<input type="submit" name="search" value="검 색" >
 		</form>
 	</div>
 			
-			<table id=data_list_tab align="center" width="100%">
+			<table id=fr_list_tab align="center" width="100%">
 				<tr height="40" align="center" bgcolor="#abd1f6">
 					<td>글번호</td>
 					<td>제목</td>
@@ -133,13 +133,13 @@
 							varStatus="articleNum">
 							<tr align="center" height="35">
 
-								<td width="10%">${article.etc_NO}</td>
+								<td width="10%">${article.fr_NO}</td>
 								<td width="55%"><a class='cls1'
-									href="${contextPath}/boardData/viewArticle.do?etc_NO=${article.etc_NO }">
-										${article.etc_title }</a>
+									href="${contextPath}/boardFree/viewArticle.do?fr_NO=${article.fr_NO }">
+										${article.fr_title }</a>
 									<td width="10%">${article.member_id }</td>
-							<td width="15%">${article.etc_date}</td>
-							<td width="10%">${article.etc_hits}</td>
+							<td width="15%">${article.fr_date}</td>
+							<td width="10%">${article.fr_hits}</td>
 						</tr>
 					</c:forEach>
 				</c:when>
@@ -156,15 +156,15 @@
                <c:forEach var="page" begin="1" end="10" step="1">
                   <c:if test="${section >1 && page==1 }">
                      <a class="no-uline"
-										href="${contextPath }/boardData/listArticles.do?section=${section-1}&pageNum=${(section-1)*10 +1 }">&nbsp;
+										href="${contextPath }/boardFree/listArticles.do?section=${section-1}&pageNum=${(section-1)*10 +1 }">&nbsp;
                         < </a>
                   </c:if>
                   <a class="no-uline"
-									href="${contextPath }/boardData/listArticles.do?section=${section}&pageNum=${page}">${(section-1)*10 +page }
+									href="${contextPath }/boardFree/listArticles.do?section=${section}&pageNum=${page}">${(section-1)*10 +page }
                   </a>
                   <c:if test="${page ==10 }">
                      <a class="no-uline"
-										href="${contextPath }/boardData/listArticles.do?section=${section+1}&pageNum=${section*10+1}">&nbsp;
+										href="${contextPath }/boardFree/listArticles.do?section=${section+1}&pageNum=${section*10+1}">&nbsp;
                         ></a>
                   </c:if>
                </c:forEach>
@@ -183,12 +183,12 @@
                   <c:choose>
                      <c:when test="${page==pageNum }">
                         <a class="sel-page"
-											href="${contextPath }/boardData/listArticles.do?section=${section}&pageNum=${page}">${page }
+											href="${contextPath }/boardFree/listArticles.do?section=${section}&pageNum=${page}">${page }
                         </a>
                      </c:when>
                      <c:otherwise>
                         <a class="no-uline"
-											href="${contextPath }/boardData/listArticles.do?section=${section}&pageNum=${page}">${page }
+											href="${contextPath }/boardFree/listArticles.do?section=${section}&pageNum=${page}">${page }
                         </a>
                      </c:otherwise>
                   </c:choose>
@@ -201,7 +201,7 @@
 
 
 <a class="cls1"
-				href="javascript:fn_articleForm('${isLogOn}','${contextPath}/boardData/articleForm.do', 
+				href="javascript:fn_articleForm('${isLogOn}','${contextPath}/boardFree/articleForm.do', 
                                                     '${contextPath}/member/loginForm.do')"><p
 					class="cls2">글쓰기</p></a>
 	</div>

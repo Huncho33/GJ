@@ -45,12 +45,12 @@
    border: none;
 }
 
-#data_view_bground {
+#fr_view_bground {
    width: 100%;
    position: relative;
 }
 
-#data_view_container {
+#fr_view_container {
    position: relative;
    margin: 0 auto;
    align: center;
@@ -64,7 +64,7 @@ tr input {
    font-size: 15px;
 }
 
-#data_select_view td {
+#fr_select_view td {
    text-indent: 10px;
    font-size: 15px;
    border: solid 1px #e5e5e5;
@@ -72,13 +72,13 @@ tr input {
    border-right: none;
 }
 
-#data_select_view {
+#fr_select_view {
    border-collapse: collapse;
    width: 1200px;
    align: center;
 }
 
-#data_view_btn {
+#fr_view_btn {
    width: 1200px;
    align: center;
    margin: 40 auto;
@@ -100,15 +100,15 @@ tr input {
 
 <script type="text/javascript">
      function backToList(obj){
-       obj.action="${contextPath}/boardData/listArticles.do";
+       obj.action="${contextPath}/boardFree/listArticles.do";
        obj.submit();
      }
      
     function fn_enable(obj){
-       document.getElementById("etc_title").disabled=false;
-       document.getElementById("etc_context").disabled=false;
+       document.getElementById("fr_title").disabled=false;
+       document.getElementById("fr_context").disabled=false;
        document.getElementById("tr_btn_modify").style.display="block";
-       document.getElementById("etc_view_btn").style.display="none";
+       document.getElementById("fr_view_btn").style.display="none";
        fn_tr_modEnable();
     }
     
@@ -121,20 +121,20 @@ tr input {
     
     
     function fn_modify_article(obj){
-       obj.action="${contextPath}/boardData/modArticle.do";
+       obj.action="${contextPath}/boardFree/modArticle.do";
        obj.submit();
     }
     
-    function fn_remove_article(url,etc_NO){
+    function fn_remove_article(url,fr_NO){
        var form = document.createElement("form");
        form.setAttribute("method", "post");
        form.setAttribute("action", url);
-        var etc_NOInput = document.createElement("input");
-        etc_NOInput.setAttribute("type","hidden");
-        etc_NOInput.setAttribute("name","etc_NO");
-        etc_NOInput.setAttribute("value", etc_NO);
+        var fr_NOInput = document.createElement("input");
+        fr_NOInput.setAttribute("type","hidden");
+        fr_NOInput.setAttribute("name","fr_NO");
+        fr_NOInput.setAttribute("value", fr_NO);
        
-        form.appendChild(etc_NOInput);
+        form.appendChild(fr_NOInput);
         document.body.appendChild(form);
         form.submit();
     
@@ -158,20 +158,20 @@ tr input {
          cnt++;
       }*/
       
-      function fn_removeModImage(_up_fileNO, _etc_NO, _up_fileName, rowNum){
+      function fn_removeModImage(_up_fileNO, _fr_NO, _up_fileName, rowNum){
           alert(rowNum);
              $.ajax({
                 type:"post",
                 async:false,  
-                url:"http://localhost:8090/GJ/boardData/removeModImage.do",
+                url:"http://localhost:8090/GJ/boardFree/removeModImage.do",
                 dataType:"text",
-                data: {up_fileNO : _up_fileNO,  etc_NO : _etc_NO, up_fileName : _up_fileName},
+                data: {up_fileNO : _up_fileNO,  fr_NO : _fr_NO, up_fileName : _up_fileName},
                 success:function (result, textStatus){
                    if(result == 'success'){
                 	      
                        alert("파일을 삭제했습니다.");
                      
-                      location.href="http://localhost:8090/GJ/boardData/viewArticle.do?removeCompleted=true&etc_NO=" + _etc_NO;
+                      location.href="http://localhost:8090/GJ/boardFree/viewArticle.do?removeCompleted=true&fr_NO=" + _fr_NO;
                              
                     $('#tr_'+rowNum).remove();
                    $('#tr_sub'+rowNum).remove();
@@ -236,38 +236,38 @@ tr input {
 </head>
 <body>
 
-   <div id="etc_view_bground">
-      <div id="etc_view_container">
+   <div id="fr_view_bground">
+      <div id="fr_view_container">
          <form name="frmArticle" method="post" action="${contextPath}"  accept-charset="UTF-8"
             enctype="multipart/form-data">
-            <table id=etc_select_view border=0 align="center">
+            <table id=fr_select_view border=0 align="center">
                <tr id="tr_no">
                   <td width=200px align="center" bgcolor=#f2f8ff>글번호</td>
-                  <td colspan=3><input type="text" value="${article.etc_NO }"
-                     disabled /> <input type="hidden" name="etc_NO"
-                     value="${article.etc_NO}" /></td>
+                  <td colspan=3><input type="text" value="${article.fr_NO }"
+                     disabled /> <input type="hidden" name="fr_NO"
+                     value="${article.fr_NO}" /></td>
                </tr>
 
 
                <tr height="40px">
                   <td width="200px" align="center" bgcolor="#f2f8ff">제목</td>
-                  <td colspan=3><input type=text value="${article.etc_title}"
-                     name="etc_title" id="etc_title" disabled /></td>
+                  <td colspan=3><input type=text value="${article.fr_title}"
+                     name="fr_title" id="fr_title" disabled /></td>
                </tr>
 
                <tr height="40px">
                   <td width="200px" align="center" bgcolor="#f2f8ff">등록일자</td>
                   <td><input type=text
-                     value="<fmt:formatDate value="${article.etc_date}"/>" disabled /></td>
+                     value="<fmt:formatDate value="${article.fr_date}"/>" disabled /></td>
 
                   <td width="200px" align="center" bgcolor="#f2f8ff">조회수</td>
-                  <td><input type=text value="${article.etc_hits }"
-                     name="etc_hits" id="etc_hits" disabled /></td>
+                  <td><input type=text value="${article.fr_hits }"
+                     name="fr_hits" id="fr_hits" disabled /></td>
                </tr>
 				
                <tr>
                   <td width="150" align="center" bgcolor="#f2f8ff">내용</td>
-                  <td><textarea rows="20" cols="60" name="etc_context" id="etc_context" disabled>${article.etc_context }</textarea></td>
+                  <td><textarea rows="20" cols="60" name="fr_context" id="fr_context" disabled>${article.fr_context }</textarea></td>
                </tr>
                <!--  파일 업로드 -->
                <c:set var="img_index" />
@@ -278,13 +278,11 @@ tr input {
                         <tr id="tr_${status.count }">
                            <td width="150" align="center" bgcolor="#f2f8ff" rowspan="1">  첨부파일${status.count }</td>
 
-                           <td colspan=2><input type="hidden" name="oldFileName"
-                              value="${item.up_fileName }" /> <input type="hidden"
-                              name="up_fileNO" value="${item.up_fileNO }" /> 
-                              
-                              <div id="filedown"> 	 	
-                              <a href="${contextPath}/dataDownload.do?etc_NO=${article.etc_NO}&up_fileName=${item.up_fileName}" >${item.up_fileName}</a><br>
-                              </div>
+                           <td colspan=2><input type="hidden" name="oldFileName" value="${item.up_fileName }" /> 
+                           <input type="hidden" name="up_fileNO" value="${item.up_fileNO }" /> 
+                         	<img src="${contextPath}/freeDownload.do?fr_NO=${article.fr_NO}&up_fileName=${item.up_fileName}" id="preview${status.index }" />
+                              	 	
+                              <!-- <a href="${contextPath}/freeDownload.do?fr_NO=${article.fr_NO}&up_fileName=${item.up_fileName}" >${item.up_fileName}</a><br> -->
                               </td>
 
                         </tr>
@@ -297,7 +295,7 @@ tr input {
                               id="up_fileName${status.index }"
                               onchange="readURL(this, ${status.index });" /> 
                               <input type="button" value="파일 삭제하기"
-                              onclick="fn_removeModImage(${item.up_fileNO },  ${item.etc_NO }, '${item.up_fileName }', ${status.count })" />
+                              onclick="fn_removeModImage(${item.up_fileNO },  ${item.fr_NO }, '${item.up_fileName }', ${status.count })" />
                            </td>
                         </tr>
 
@@ -346,12 +344,12 @@ tr input {
                   type=button value="취소" onClick="backToList(frmArticle)">
             </div>
 
-            <div id="etc_view_btn">
+            <div id="fr_view_btn">
                <div>
                   <c:if test="${member.member_id == article.member_id }">
                      <input type=button value="수정하기" onClick="fn_enable(this.form)">
                      <input type=button value="삭제하기"
-                        onClick="fn_remove_article('${contextPath}/boardData/removeArticle.do', ${article.etc_NO})">
+                        onClick="fn_remove_article('${contextPath}/boardFree/removeArticle.do', ${article.fr_NO})">
                   </c:if>
                   <input type=button value="리스트로 돌아가기"
                      onClick="backToList(this.form)">

@@ -16,7 +16,7 @@ import com.onestop.GJ.board.notice.vo.BoardNoticeVO;
 
 
 
-@Service("boardService")
+@Service("boardNoticeService")
 @Transactional(propagation = Propagation.REQUIRED)
 public class BoardNoticeServiceImpl implements BoardNoticeService {
    @Autowired
@@ -28,6 +28,7 @@ public class BoardNoticeServiceImpl implements BoardNoticeService {
       int totArticles = boardDAO.selectTotArticles();
       articlesMap.put("articlesList", articlesList);
       articlesMap.put("totArticles", totArticles);
+      System.out.println("±Û¸ñ·Ï : " + articlesList);
 //      articlesMap.put("totArticles", 170);
       return articlesMap;
       

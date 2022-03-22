@@ -91,8 +91,8 @@
                            <li><a href="#">문의사항</a></li>
                            <li><a href="${contextPath}/qna/freqQna.do"> - 자주 묻는 질문</a></li>
                            <li><a href="#"> - 상담게시판</a></li>
-                           <li><a href="#">기타자료실</a></li>
-                           <li><a href="#">자유게시판</a></li>
+                           <li><a href="${contextPath}/boardData/listArticles.do">기타자료실</a></li>
+                           <li><a href="${contextPath}/boardFree/listArticles.do">자유게시판</a></li>
                         </ul></li>
                      <li class="menu" style="width: 200px;"><a href="#">월세지원</a>
                         <ul class="submenu submenu1">

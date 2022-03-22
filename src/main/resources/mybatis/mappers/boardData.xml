@@ -23,10 +23,6 @@
 
 
 
-	<!-- 게시판 리스트 불러오기기 <select id="selectAllArticlesList" resultMap="articlesResult"> 
-		<![CDATA[ SELECT noti_NO, noti_title, noti_context, noti_date, up_fileName, 
-		noti_hits, member_id from board_Notice ]]> </select> -->
-
 	<!-- 게시판 리스트, 페이징 -->
 	<select id="selectAllArticlesList" parameterType="java.util.Map"
 		resultMap="articlesResult">
@@ -182,7 +178,7 @@
 	
 		<insert id="insertModNewImage" parameterType="java.util.Map">
 		<foreach item="item" collection="list" open="INSERT ALL" separator=" " close="SELECT * FROM DUAL">
-			INTO noti_file(up_fileNO, up_fileName, etc_NO, up_date)
+			INTO data_file(up_fileNO, up_fileName, etc_NO, up_date)
 			VALUES (#{item.up_fileNO},
 						#{item.up_fileName},
 						#{item.etc_NO},
@@ -196,7 +192,7 @@
 	<!-- 게시판 조회수 -->
 	<update id="boardHits" parameterType="int">
 		UPDATE board_data SET
-		etc_hits = etc_hits+1
+		etc_hits = etc_hits + 1
 		WHERE etc_NO = #{etc_NO}
 	</update>
 

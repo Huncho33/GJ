@@ -9,6 +9,8 @@
 		<typeAlias type="com.onestop.GJ.board.notice.vo.BoardNoticeImageVO"  alias="boardNoticeImageVO" />
 		<typeAlias type="com.onestop.GJ.board.data.vo.BoardDataVO"  alias="boardDataVO" />
 		<typeAlias type="com.onestop.GJ.board.data.vo.BoardDataImageVO"  alias="boardDataImageVO" />
+		<typeAlias type="com.onestop.GJ.board.free.vo.BoardFreeVO"  alias="boardFreeVO" />
+		<typeAlias type="com.onestop.GJ.board.free.vo.BoardFreeImageVO"  alias="boardFreeImageVO" />
 
 	</typeAliases>
 

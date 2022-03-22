@@ -284,7 +284,7 @@ tr input {
                               
                                <!-- <img src="${contextPath}/upload.do?noti_NO=${article.noti_NO}&up_fileName=${item.up_fileName}" id="preview${status.index }" />-->
                               <div id="filedown"> 	 	
-                              <a href="${contextPath}/download.do?noti_NO=${article.noti_NO}&up_fileName=${item.up_fileName}" >${item.up_fileName}</a><br>
+                              <a href="${contextPath}/noticeDownload.do?noti_NO=${article.noti_NO}&up_fileName=${item.up_fileName}" >${item.up_fileName}</a><br>
                               </div>
                               </td>
 

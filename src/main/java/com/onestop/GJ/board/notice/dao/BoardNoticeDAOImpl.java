@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 import com.onestop.GJ.board.notice.vo.BoardNoticeImageVO;
 import com.onestop.GJ.board.notice.vo.BoardNoticeVO;
 
-@Repository("boardDAO")
+@Repository("boardNoticeDAO")
 public class BoardNoticeDAOImpl implements BoardNoticeDAO {
    @Autowired
    private SqlSession sqlSession;
@@ -95,6 +95,7 @@ public class BoardNoticeDAOImpl implements BoardNoticeDAO {
 
    @Override
    public void deleteArticle(int noti_NO) throws DataAccessException {
+	   System.out.println("noti3 : "+ noti_NO);
       sqlSession.delete("mapper.boardNotice.deleteArticle", noti_NO);
    }
 

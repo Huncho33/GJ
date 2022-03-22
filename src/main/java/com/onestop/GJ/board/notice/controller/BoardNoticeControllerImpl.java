@@ -32,7 +32,7 @@ import com.onestop.GJ.board.notice.vo.BoardNoticeImageVO;
 import com.onestop.GJ.board.notice.vo.BoardNoticeVO;
 import com.onestop.GJ.member.vo.MemberVO;
 
-@Controller("boardController")
+@Controller("boardNoticeController")
 public class BoardNoticeControllerImpl implements BoardNoticeController {
    private static String ARTICLE_IMAGE_REPO = "C:\\GJ\\file_repo\\board\\notice";
    @Autowired
@@ -43,7 +43,7 @@ public class BoardNoticeControllerImpl implements BoardNoticeController {
    @Override
    @RequestMapping(value = { "/boardNotice/listArticles.do" }, method = { RequestMethod.GET, RequestMethod.POST })
    public ModelAndView listArticles(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
+	   System.out.println("오다들림");
       String _section = request.getParameter("section");
       String _pageNum = request.getParameter("pageNum");
       int section = Integer.parseInt(((_section == null) ? "1" : _section));
@@ -57,6 +57,7 @@ public class BoardNoticeControllerImpl implements BoardNoticeController {
       articlesMap.put("pageNum", pageNum);
 
       String viewName = (String) request.getAttribute("viewName");
+      System.out.println("viewname : "+ viewName);
       ModelAndView mav = new ModelAndView(viewName);
       mav.addObject("articlesMap", articlesMap);
       return mav;
@@ -160,7 +161,7 @@ public class BoardNoticeControllerImpl implements BoardNoticeController {
 
          message = " <script>";
          message += " alert('오류가 발생했습니다. 다시 시도해 주세요');');";
-         message += " location.href='" + multipartRequest.getContextPath() + "/board/articleForm.do'; ";
+         message += " location.href='" + multipartRequest.getContextPath() + "/boardNotice/articleForm.do'; ";
          message += " </script>";
          resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
          e.printStackTrace();
@@ -237,8 +238,10 @@ public class BoardNoticeControllerImpl implements BoardNoticeController {
       HttpHeaders responseHeaders = new HttpHeaders();
       responseHeaders.add("Content-Type", "text/html; charset=utf-8");
       try {
+    	  System.out.println("noti : "+ noti_NO);
          boardService.removeArticle(noti_NO);
          File destDir = new File(ARTICLE_IMAGE_REPO + "\\" + noti_NO);
+         System.out.println("삭제파일2 : "+ destDir);
          FileUtils.deleteDirectory(destDir);
 
          message = "<script>";
