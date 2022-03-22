@@ -1,3 +1,4 @@
+
 package com.onestop.GJ.common.file;
 
 import java.io.File;
@@ -16,25 +17,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class FileDownloadController {
-	private static String ARTICLE_IMAGE_REPO = "C:\\GJ\\file_repo\\board\\notice";
-	@RequestMapping("/download.do")
-	protected void download(@RequestParam("up_fileName") String up_fileName, @RequestParam("noti_NO") String noti_NO,
+public class FileFreeDownloadController {
+	private static String ARTICLE_IMAGE_REPO = "C:\\GJ\\file_repo\\board\\free";
+	@RequestMapping("/freeDownload.do")
+	protected void download(@RequestParam("up_fileName") String up_fileName, @RequestParam("fr_NO") String fr_NO,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		
 		try {
 			
-			System.out.println("왔다감");
+			System.out.println("왔다감3");
 			String originFileName = null;
 			originFileName = URLDecoder.decode(up_fileName, "UTF-8");
             String onlyFileName = originFileName.substring(originFileName.lastIndexOf("_") + 1);
             
          //   headers.add("Content-Dispostion", "attachment; filename=" + new String(resourceName.getBytes("UTF-8"),"ㅑ냬-8859-1"));
-            String filePath = ARTICLE_IMAGE_REPO + "\\" + noti_NO + "\\" + up_fileName;
+            String filePath = ARTICLE_IMAGE_REPO + "\\" + fr_NO + "\\" + up_fileName;
 
             File file = new File(filePath);
-            System.out.println("파일: "+file);
+            System.out.println("파일3: "+file);
             if(file.exists()) {
                 String agent = request.getHeader("User-Agent");
 
