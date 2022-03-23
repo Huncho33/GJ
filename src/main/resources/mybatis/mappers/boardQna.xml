@@ -5,24 +5,51 @@
 
 <mapper namespace="mapper.boardQna">
 	<resultMap id="qnasResult" type="QnaVO">
-		<result property="level" column="level" />
+		<result property="level" column="lvl" />
 		<result property="qna_no" column="qna_no" />
 		<result property="qnaparent_no" column="qnaparent_no" />
 		<result property="qna_title" column="qna_title" />
 		<result property="qna_content" column="qna_content" />
 		<result property="qna_date" column="qna_date" />
+		<result property="qna_pw" column="qna_pw" />
+		<result property="qna_policy" column="qna_policy" />
 	</resultMap>
 
 
 	<!-- 상담글 리스트 불러오기 -->
-	<select id="selectAllQnasList" resultMap="qnasResult">
+	<select id="selectAllQnasList" parameterType="java.util.Map" resultMap="qnasResult">
     <![CDATA[
-      SELECT level, qna_no, qnaparent_no, qna_title, qna_content, qna_date, member_id
-      FROM board_qna
-      START WITH  qnaparent_no=0
-      CONNECT BY PRIOR qna_no=qnaparent_no 
-      ORDER SIBLINGS BY qna_no DESC 
+    SELECT * FROM (
+				select ROWNUM  as recNum,
+                                    lvl,
+                                    qna_no,
+                                    qnaparent_no,
+                                    qna_title,
+                                    member_id,
+                                    qna_pw,
+                                    qna_date
+		                            from (select LEVEL as lvl,
+		                            						qna_no,
+															qnaparent_no,
+															qna_title,
+															member_id,
+															qna_pw,
+															qna_date
+														   from board_qna
+														   START WITH  qnaparent_no=0
+														   CONNECT BY PRIOR qna_no = qnaparent_no
+														   ORDER SIBLINGS BY qna_no DESC)
+					)                         
+					where recNum between(#{section}-1)*100+(#{pageNum}-1)*10+1 and (#{section}-1)*100+#{pageNum}*10
+      
     ]]>
+	</select>
+	
+	<select id="selectTotQnas" resultType="int">
+	<![CDATA[
+		SELECT count(qna_no) FROM board_qna
+	]]>
+	
 	</select>
 	
 	<!-- 새 상담글 내용 셀렉하기 -->
@@ -36,17 +63,46 @@
 	<!-- 상담글 추가하기 -->
 	<insert id="insertNewQna" parameterType="java.util.Map">
     <![CDATA[
-      INSERT INTO board_qna(qna_no, qnaparent_no, member_id, qna_title, qna_content)
-      VALUES(#{qna_no}, #{qnaparent_no}, #{member_id}, #{qna_title}, #{qna_content})
+      INSERT INTO board_qna(qna_no, qnaparent_no, member_id, qna_title, qna_content, qna_pw, qna_policy)
+      VALUES(#{qna_no}, #{qnaparent_no}, #{member_id}, #{qna_title}, #{qna_content}, #{qna_pw, jdbcType=VARCHAR}, #{qna_policy})
     ]]>
 	</insert>
 	
-	<!--  -->
 	<select id="selectQna" resultType="QnaVO" parameterType="int">
     <![CDATA[
       SELECT * from board_qna
       WHERE qna_no = #{qna_no}		
     ]]>
 	</select>
-
+	
+	
+	
+	
+	<update id="updateQna" parameterType="java.util.Map">
+	<![CDATA[
+		UPDATE board_qna
+		SET qna_title = #{qna_title},
+			qna_content = #{qna_content},
+			qna_pw = #{qna_pw}
+		WHERE qna_no = #{qna_no}
+	]]>
+	</update>
+	
+	
+	<delete id="deleteQna" parameterType="int">
+	<![CDATA[
+		DELETE FROM board_qna
+		WHERE qna_no IN (
+			SELECT qna_no FROM board_qna
+			START WITH qna_no = #{qna_no}
+			CONNECT BY PRIOR qna_no = qnaparent_no )
+	]]>
+	</delete>
+	
+	<!-- 비밀글 비밀번호 체크 -->
+	<select id="checkPwd" resultType="int">
+		SELECT COUNT(*) FROM board_qna
+		WHERE qna_no=#{qna_no} AND qna_pw=#{qna_pw}
+	</select>
+	
 </mapper>

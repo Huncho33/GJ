@@ -13,6 +13,9 @@ public class QnaVO {
 	private String qna_content;
 	private String member_id;
 	private Date qna_date;
+	private int qna_pw;
+	private String qna_policy;
+	
 	
 	
 	public int getLevel() {
@@ -57,6 +60,23 @@ public class QnaVO {
 	public void setQna_date(Date qna_date) {
 		this.qna_date = qna_date;
 	}
+	public int getQna_pw() {
+		return qna_pw;
+	}
+	public void setQna_pw(int qna_pw) {
+		this.qna_pw = qna_pw;
+	}
+	public String getQna_policy() {
+		return qna_policy;
+	}
+	public void setQna_policy(String qna_policy) {
+		this.qna_policy = qna_policy;
+	}
 	
+	
+	@Override
+	public String toString() {
+		return "qnaVO [qna_pw=" + qna_pw + "qna_no=" + qna_no + "]";
+	}
 	
 }

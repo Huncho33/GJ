@@ -22,18 +22,6 @@ public class MypageServiceImpl implements MypageService {
 		return mypageDAO.pwdConfirm(memberVO);
 	}
 
-//	// 아이디로 조회하여 회원 선택
-//	@Override
-//	public MemberVO selectMemberById(String member_id) throws Exception {
-//		return mypageDAO.selectMemberById(member_id);
-//	}
-
-//	// 회원 정보 수정 (int)
-//	@Override
-//	public int updateMember(MemberVO memberVO) throws Exception {
-//		return mypageDAO.updateMember(memberVO);
-//	}
-//
 	// 회원 정보 수정
 	@Override
 	public MemberVO modifyMember(Map memberMap) throws Exception {
@@ -41,13 +29,6 @@ public class MypageServiceImpl implements MypageService {
 		mypageDAO.updateMember(memberMap);
 		return mypageDAO.selectMemberById(member_id);
 	}
-	
-//	// 회원 정보 수정 (void)
-//	@Override
-//	public void updateMember(MemberVO memberVO) throws Exception {
-//		mypageDAO.updateMember(memberVO);
-//	}
-	
 	
 
 	// 회원 탈퇴

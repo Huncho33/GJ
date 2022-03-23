@@ -9,14 +9,72 @@
 
 <head>
 <meta charset="UTF-8">
-<link href="${contextPath}/resources/css/qna/QnaForm.css" rel="stylesheet" type="text/css">
+<link href="${contextPath}/resources/css/qna/QnaForm.css"
+	rel="stylesheet" type="text/css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
 <script type="text/javascript">
+
+	// 체크박스 체크 여부로 비밀번호란 활성화-비활성화
+	$(function (){
+		$("#qna_secret").change(function(){
+			if(this.checked){
+				$("input#qna_pw").prop("disabled", false);
+			} else {
+				$("input#qna_pw").prop("disabled", true);
+			}
+		});
+	});
+
+	
+	// 목록으로 돌아가기
 	function backToList(obj) {
-		obj.action = "${contextPath}/qna/listQnas.do";
-		obj.submit();
+		if (confirm("글 작성을 취소하고 목록으로 돌아가시겠습니까?") == true) {
+			window.location.href = "${contextPath}/qna/listQnas.do";
+		} else {
+			return false;
+		}
 	}
+
+	// 제목, 내용 필수 alert
+	function QnaformCheck(form) {
+		var pw_chkBox = document.getElementById('qna_secret').checked;
+
+		if (form.qna_title.value == "") {
+			alert("제목 입력은 필수입니다.")
+			form.qna_title.focus();
+			return false;
+		}
+		if (pw_chkBox == true && form.qna_pw.value == ""){
+			alert("비밀글로 등록하려면 비밀번호를 입력하세요.")
+			form.qna_pw.focus();
+			return false;
+		}
+		if (pw_chkBox == false && form.qna_pw.value != ""){
+			alert("비밀글로 등록하려면 비밀글 여부에 체크해주세요.")
+			form.qna_secret.focus();
+			return false;
+		}
+		if (form.qna_content.value == "") {
+			alert("내용 입력은 필수입니다.")
+			form.qna_content.focus();
+			return false;
+		}
+		if (form.qna_policy.value == "none") {
+			alert("상담 받을 정책 분야를 선택해주십시오.")
+			form.qna_policy.focus();
+			return false;
+		}
+	}
+	
+	
 </script>
+
+<style>
+#chkBox_qnaLock {
+	display: none;
+}
+</style>
 </head>
 <body>
 	<div id="qnaFrm_bground">
@@ -31,14 +89,14 @@
 							style="font-weight: bold; color: red;">*</span>는 필수입력사항입니다.)
 					</p>
 				</div>
+				<form name="QnaForm" method="post" accept-charset="utf-8"  action="${contextPath}/qna/addNewQna.do">
 				<div id="qnaFrm_title2">
 					<p class="qnaFrm_tit">
 					<table id="qnaFrm_detail_table">
 						<tr class="dot_line">
 							<td class="fixed_join">:: 신청 분야</td>
-							<td><select id="qnaFrm_PolicyName" name="qnaFrm_PolicyName"
-								onChange=policySelect() title="qnaFrm_PolicyName">
-									<option value="#" selected>-----상담할 정책 분야 선택-----</option>
+							<td><select id="qna_policy" name="qna_policy" title="qnaFrm_PolicyName">
+									<option value="none" selected>-----상담할 정책 분야 선택-----</option>
 									<option value="청년월세지원">청년월세지원</option>
 									<option value="전월세보증금이자지원">전월세보증금이자지원</option>
 									<option value="전세반환보증금보증료지원">전세반환보증금보증료지원</option>
@@ -49,8 +107,7 @@
 					</table>
 					</p>
 				</div>
-				<form name="QnaForm" method="post" accept-charset="utf-8"
-					action="${contextPath}/qna/addNewQna.do">
+				
 					<div id="qnaFrm_table">
 						<tbody>
 							<table id="qnaFrm_detail_table">
@@ -60,19 +117,23 @@
 										id="member_id" name="member_id" maxlength="100"
 										value="${member.member_id }" readonly /></td>
 								</tr>
-								<!-- 
 								<tr class="dot_line">
-									<td align="right">비밀번호:</td>
-									<td colspan="2"><input type="text" size="67" maxlength="500"
-										id="qna_password" name="qna_password" /></td>
+									<td class="fixed_join">:: 비밀글여부</td>
+									<td><input type="checkbox" value="1" id="qna_secret"
+										name="qna_secret" style="font-size: 8pt;" />&nbsp;&nbsp;해당 상담글을 잠급니다.(답변 확인 시에도 동일한 비밀번호를 사용합니다.)</td>
 								</tr>
-								 -->
+								<tr class="dot_line">
+									<td class="fixed_join">:: 비밀번호</td>
+									<td colspan=2><input type="password" size="20"
+										maxlength="4" id="qna_pw" name="qna_pw"
+										placeholder="숫자 네자리를 입력하세요." disabled /><input type="hidden" size="20"
+										maxlength="4" id="qna_pw2" name="qna_pw2"></td>
+								</tr>
 								<tr class="dot_line">
 									<td class="fixed_join">:: 글제목</td>
 									<td colspan="2"><input type="text" size="67"
 										maxlength="500" id="qna_title" name="qna_title" /></td>
 								</tr>
-
 								<tr class="dot_line">
 									<td class="fixed_join"><br>:: 글내용</td>
 									<td colspan=2><textarea id="qna_content"
@@ -86,7 +147,7 @@
 							<input type="button" value="목록" onClick="backToList(this.form)">
 						</div>
 						<div class="qnaFrm_btn qnaFrm_btn2">
-							<input type="submit" value="등록">
+							<input type="submit" value="등록" onClick="return QnaformCheck(this.form)">
 						</div>
 					</div>
 				</form>

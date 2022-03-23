@@ -15,9 +15,14 @@ public interface QnaController {
 	
 	ResponseEntity addNewQna(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
-//
-//	ResponseEntity removeQna(int QnaNO, HttpServletRequest request, HttpServletResponse response)
-//			throws Exception;
+	ResponseEntity removeQna(int qna_no, HttpServletRequest request, HttpServletResponse response) throws Exception;
+
+//	String modalPwdCheck(int qna_no, int qna_pw) throws Exception;
+
+
+	String modalPwdCheck(int qna_no, int qna_pw, HttpServletRequest request, HttpServletResponse response)
+			throws Exception;
+
 
 
 

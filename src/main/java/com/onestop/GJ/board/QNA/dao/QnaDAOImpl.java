@@ -1,5 +1,6 @@
 package com.onestop.GJ.board.QNA.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -10,16 +11,22 @@ import org.springframework.stereotype.Repository;
 
 import com.onestop.GJ.board.QNA.vo.QnaVO;
 
-
 @Repository("QnaDAO")
 public class QnaDAOImpl implements QnaDAO {
 	@Autowired
 	private SqlSession sqlSession;
 
 	@Override
-	public List selectAllQnasList() throws Exception {
-		List<QnaVO> QnasList = sqlSession.selectList("mapper.boardQna.selectAllQnasList");
+	public List selectAllQnasList(Map pagingMap) throws Exception {
+		List<QnaVO> QnasList = sqlSession.selectList("mapper.boardQna.selectAllQnasList", pagingMap);
 		return QnasList;
+	}
+
+	@Override
+	public int selectTotQnas() throws DataAccessException {
+		int totQnas = sqlSession.selectOne("mapper.boardQna.selectTotQnas");
+		return totQnas;
+
 	}
 
 	// 상담글 추가하기
@@ -35,20 +42,44 @@ public class QnaDAOImpl implements QnaDAO {
 	private int selectNewQnaNO() throws DataAccessException {
 		return sqlSession.selectOne("mapper.boardQna.selectNewQnaNO");
 	}
-	
 
+	// 상세글 보기 할 글 고르기
 	@Override
 	public QnaVO selectQna(int qna_no) throws DataAccessException {
 		return sqlSession.selectOne("mapper.boardQna.selectQna", qna_no);
 	}
 
-//	@Override
-//	public void updateQna(Map QnaMap) throws DataAccessException {
-//		sqlSession.update("mapper.board.updateQna", QnaMap);
-//	}
-//
-//	@Override
-//	public void deleteQna(int QnaNO) throws DataAccessException {
-//		sqlSession.delete("mapper.board.deleteQna", QnaNO);
-//	}
+	// 상세글 보기 할 글 고르기
+	@Override
+	public QnaVO selectParentQna(int _qnaparent_no) throws DataAccessException {
+		System.out.println("DAO :" + _qnaparent_no);
+		return sqlSession.selectOne("mapper.boardQna.selectQna", _qnaparent_no);
+	}
+
+	// 글 수정 업데이트
+	@Override
+	public void updateQna(Map QnaMap) throws DataAccessException {
+		sqlSession.update("mapper.boardQna.updateQna", QnaMap);
+	}
+
+	// 글 삭제하기
+	@Override
+	public void deleteQna(int qna_no) throws DataAccessException {
+		sqlSession.delete("mapper.boardQna.deleteQna", qna_no);
+	}
+
+	// 비밀번호 재확인을 위한 조회 기능
+	@Override
+	public boolean checkPwd(int qna_no, int qna_pw) throws DataAccessException {
+		boolean result = false;
+		System.out.println("dao qna_no:" + qna_no + " / dao qna_pw:" + qna_pw);
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("qna_no", qna_no);
+		map.put("qna_pw", qna_pw);
+		int count = sqlSession.selectOne("mapper.boardQna.checkPwd", map);
+		if (count == 1) {
+			result = true;
+		}
+		return result;
+	}
 }

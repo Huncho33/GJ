@@ -24,7 +24,7 @@ public class MemberVO {
 	private String member_namujiAddress;
 
 	private Date member_last_log;
-
+	private String member_right;
 	public String getMember_id() {
 		return member_id;
 	}
@@ -128,7 +128,12 @@ public class MemberVO {
 	public void setMember_last_log(Date member_last_log) {
 		this.member_last_log = member_last_log;
 	}
-
+	public String getMember_right() {
+		return member_right;
+	}
+	public void setMember_right(String member_right) {
+		this.member_right = member_right;
+	}
 	@Override
 	   public String toString() {
 	      return "MemberVO [member_id=" + member_id + ", member_pw=" + member_pw + ", member_phoneno=" + member_phoneno + ", member_email1="
