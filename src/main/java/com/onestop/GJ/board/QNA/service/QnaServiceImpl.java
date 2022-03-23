@@ -12,44 +12,67 @@ import org.springframework.transaction.annotation.Transactional;
 import com.onestop.GJ.board.QNA.dao.QnaDAO;
 import com.onestop.GJ.board.QNA.vo.QnaVO;
 
-
 @Service("QnaService")
 @Transactional(propagation = Propagation.REQUIRED)
 public class QnaServiceImpl implements QnaService {
 	@Autowired
 	QnaDAO QnaDAO;
 
-	public List<QnaVO> listQnas() throws Exception {
-		List<QnaVO> QnasList = QnaDAO.selectAllQnasList();
-		return QnasList;
+	public Map listQnas(Map pagingMap) throws Exception {
+		Map qnasMap = new HashMap();
+		List<QnaVO> QnasList = QnaDAO.selectAllQnasList(pagingMap);
+		int totQnas = QnaDAO.selectTotQnas();
+		qnasMap.put("QnasList", QnasList);
+		qnasMap.put("totQnas", totQnas);
+		return qnasMap;
 	}
 
-	
 	// 글 추가하기
 	@Override
 	public int addNewQna(Map QnaMap) throws Exception {
 		int QnaNO = QnaDAO.insertNewQna(QnaMap);
 		return QnaNO;
 	}
-	
-	//다중 파일 보이기
-	   @Override
-	   public Map viewQna(int qna_no) throws Exception {
-	      Map QnaMap = new HashMap();
-	      QnaVO QnaVO = QnaDAO.selectQna(qna_no);
-	      QnaMap.put("Qna", QnaVO);
-	      return QnaMap;
-	   }
 
-	   
-	   
-//	@Override
-//	public void modQna(Map QnaMap) throws Exception {
-//		boardDAO.updateQna(QnaMap);
-//	}
-//
-//	@Override
-//	public void removeQna(int QnaNO) throws Exception {
-//		boardDAO.deleteQna(QnaNO);
-//	}
+	// 상세글 보기
+	@Override
+	public Map viewQna(int qna_no) throws Exception {
+		Map QnaMap = new HashMap();
+		QnaVO QnaVO = QnaDAO.selectQna(qna_no);
+		QnaMap.put("Qna", QnaVO);
+		return QnaMap;
+	}
+	
+	// 부모글 조회하기
+	@Override
+	public Map selectParentQna(String qnaparent_no) throws Exception {
+		System.out.println("SERVICE :" + qnaparent_no);
+		int _qnaparent_no = Integer.parseInt(qnaparent_no);
+		Map QnaParentMap = new HashMap();
+		QnaVO QnaVO = QnaDAO.selectParentQna(_qnaparent_no);
+		QnaParentMap.put("QnaVO", QnaVO);
+		System.out.println("QnaParentMap SERVICE: " + QnaParentMap );
+		return QnaParentMap;
+	}
+
+	// 글 수정하기
+	@Override
+	public void modQna(Map QnaMap) throws Exception {
+		QnaDAO.updateQna(QnaMap);
+	}
+
+	// 글 삭제하기
+	@Override
+	public void removeQna(int qna_no) throws Exception {
+		QnaDAO.deleteQna(qna_no);
+	}
+	
+	// 비밀번호 재확인 기능
+	@Override
+	public boolean checkPwd(int qna_no, int qna_pw) throws Exception {
+		System.out.println("서비스 qna_no:"+qna_no + " / 서비스 qna_pw:"+ qna_pw);
+		return QnaDAO.checkPwd(qna_no, qna_pw);
+	}
+
+	
 }

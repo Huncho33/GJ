@@ -1,0 +1,158 @@
+@charset "UTF-8";
+
+#qnaView_bground {
+	position: relative;
+	width: 100%;
+}
+
+#qnaView_cnt {
+	width: 1100px;
+	position: relative;
+	margin: 0 auto;
+}
+
+h3.qna_titName {
+	font-size: 35px;
+	font-weight: bold;
+	letter-spacing: -2.7px;
+	color: #161616;
+	text-align: center;
+	border-bottom: 1px solid gray;
+	padding: 0px 0px 30px 0px;
+	margin: 50px 0px 100px 0px;
+}
+
+#qnaView_title {
+	height: 40px;
+	border-bottom: 1px solid #E6E6E6;
+}
+
+#qnaView_title2 {
+	height: 40px;
+	padding-bottom: 40px;
+	border-bottom: 1px solid #E6E6E6;
+}
+
+
+.qnaView_tit {
+	font-size: 13pt;
+}
+
+#qnaView_table {
+	position: relative;
+	margin: 0 auto;
+}
+
+#qnaView_detail_table {
+	margin: 30px 0px 0px 50px;
+}
+
+tbody>tr {
+	height: 40px;
+}
+
+.fixed_join {
+	width: 120px;
+	font-size: 10pt;
+}
+
+.fixed_join1 {
+	width: 128px;
+}
+
+.qnaView_btn1 input {
+	width: 100px; 
+	height : 30px; 
+	font-size : 10px;
+	border: 0px;
+	border-radius: 3em;
+	background-color: darkgray;
+	color: white;
+	cursor: pointer;
+	height: 30px;
+	font-size: 10px;
+}
+
+.qnaView_btn3 input {
+	width: 100px; 
+	height : 30px; 
+	font-size : 10px;
+	border: 0px;
+	border-radius: 3em;
+	background-color: #e59656;
+	color: white;
+	cursor: pointer;
+	height: 30px;
+	font-size: 10px;
+}
+
+.qnaView_btn2 input {
+	width: 100px;
+	height: 30px;
+	font-size: 10px;
+	border: 0px;
+	border-radius: 3em;
+	background-color: dodgerblue;
+	color: white;
+	cursor: pointer;
+}
+
+.qnaView_btn4 input {
+	width: 100px;
+	height: 30px;
+	font-size: 10px;
+	border: 0px;
+	border-radius: 3em;
+	background-color: darkgrey;
+	color: white;
+	cursor: pointer;
+}
+
+.qnaView_btn1 {
+	float: left;
+	margin-right: 30px;
+}
+
+.qnaView_btn3 {
+	float: left;
+	margin-right: 30px;
+}
+
+.qnaView_btn4 {
+	margin-top: 15px;
+	margin-left: 73.8%;
+}
+
+
+.qnaView_btn_list {
+	width: 100%;
+	margin-top: 100px;
+	margin-left: 62%;
+}
+
+.qnaView_btn_list2 {
+	width: 100%;
+	margin-top: 100px;
+	margin-left: 50%;
+}
+
+#qnaView_btn_modify {
+	display: none;
+	width: 100%;
+	margin-top: 100px;
+	margin-left: 62%;
+}
+
+.tr_modEnable {
+    visibility:hidden;
+}
+
+input {
+	border: 0;
+	background: #fff;
+}
+
+textarea {
+	border: 1px solid #f6f6f6;
+	background: #fff;
+}

@@ -36,7 +36,13 @@
 	<definition name="/qna/viewQna" extends="baseLayout">
 		<put-attribute name="title" value="원스톱청년주거::상담게시판" />
 		<put-attribute name="body"
-			value="/WEB-INF/views//qna/viewQna.jsp" />
+			value="/WEB-INF/views/qna/viewQna.jsp" />
+	</definition>
+	
+	<definition name="/qna/replyForm" extends="baseLayout">
+		<put-attribute name="title" value="원스톱청년주거::답글쓰기" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/qna/replyForm.jsp" />
 	</definition>
 
 </tiles-definitions>
