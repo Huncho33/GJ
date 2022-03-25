@@ -25,6 +25,9 @@ public class MemberVO {
 
 	private Date member_last_log;
 	private String member_right;
+	private Date member_joinDate;
+	
+	
 	public String getMember_id() {
 		return member_id;
 	}
@@ -134,6 +137,15 @@ public class MemberVO {
 	public void setMember_right(String member_right) {
 		this.member_right = member_right;
 	}
+
+	public Date getMember_joinDate() {
+		return member_joinDate;
+	}
+
+	public void setMember_joinDate(Date member_joinDate) {
+		this.member_joinDate = member_joinDate;
+	}
+
 	@Override
 	   public String toString() {
 	      return "MemberVO [member_id=" + member_id + ", member_pw=" + member_pw + ", member_phoneno=" + member_phoneno + ", member_email1="
