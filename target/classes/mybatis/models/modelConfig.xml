@@ -12,6 +12,7 @@
 		<typeAlias type="com.onestop.GJ.board.data.vo.BoardDataImageVO"  alias="boardDataImageVO" />
 		<typeAlias type="com.onestop.GJ.board.free.vo.BoardFreeVO"  alias="boardFreeVO" />
 		<typeAlias type="com.onestop.GJ.board.free.vo.BoardFreeImageVO"  alias="boardFreeImageVO" />
+		<typeAlias type="com.onestop.GJ.admin.member.vo.AdminMemberVO"  alias="adminMemberVO" />
 	</typeAliases>
 
 </configuration>
