@@ -1,21 +1,17 @@
 @charset "UTF-8";
 
-#qnaFrm_bground {
+#freeFrm_bground {
 	position: relative;
 	width: 100%;
 }
 
-#chkBox_qnaLock {
-	display: none;
-}
-
-#qnaFrm_cnt {
+#freeFrm_cnt {
 	width: 1100px;
 	position: relative;
 	margin: 0 auto;
 }
 
-h3.qna_titName {
+h3.freeFrm_titName {
 	font-size: 35px;
 	font-weight: bold;
 	letter-spacing: -2.7px;
@@ -26,27 +22,28 @@ h3.qna_titName {
 	margin: 50px 0px 100px 0px;
 }
 
-#qnaFrm_title {
+#freeFrm_title {
 	height: 40px;
 	border-bottom: 1px solid #E6E6E6;
 }
 
-#qnaFrm_title2 {
+#freeFrm_title2 {
 	height: 40px;
 	padding-bottom: 40px;
 	border-bottom: 1px solid #E6E6E6;
 }
 
-.qnaFrm_tit {
+.freeFrm_tit {
+	margin-left: 50px;
 	font-size: 13pt;
 }
 
-#qnaFrm_table {
+#freeFrm_table {
 	position: relative;
 	margin: 0 auto;
 }
 
-#qnaFrm_detail_table {
+#freeFrm_detail_table {
 	margin: 30px 0px 0px 50px;
 }
 
@@ -63,7 +60,7 @@ tbody>tr {
 	width: 128px;
 }
 
-.qnaFrm_btn1 input {
+.freeFrm_btn1 input {
 	width: 100px; 
 	height : 30px; 
 	font-size : 10px;
@@ -76,7 +73,7 @@ tbody>tr {
 	font-size: 10px;
 }
 
-.qnaFrm_btn2 input {
+.freeFrm_btn2 input {
 	width: 100px;
 	height: 30px;
 	font-size: 10px;
@@ -87,12 +84,12 @@ tbody>tr {
 	cursor: pointer;
 }
 
-.qnaFrm_btn1 {
+.freeFrm_btn1 {
 	float: left;
 	margin-right: 30px;
 }
 
-.qnaFrm_btn_list {
+.freeFrm_btn_list {
 	width: 100%;
 	margin-top: 100px;
 	margin-left: 75%;

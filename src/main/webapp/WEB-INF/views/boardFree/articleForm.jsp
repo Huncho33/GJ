@@ -10,70 +10,66 @@
 <head>
 <meta charset="UTF-8">
 
+<link href="${contextPath }/resources/css/free/articleForm.css"
+	rel="stylesheet" type="text/css">
+<script src="${contextPath }/resources/js/free/articleForm.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script type="text/javascript">
-	function readURL(input) {
-		if (input.files && input.files[0]) {
-			var reader = new FileReader();
-			reader.onload = function(e) {
-				$('#preview').attr('src', e.target.result);
-			}
-			reader.readAsDataURL(input.files[0]);
-		}
-	}
-	function backToList(obj) {
-		obj.action = "${contextPath}/boardFree/listArticles.do";
-		obj.submit();
-	}
-
-	var cnt = 1;
-	function fn_addFile() {
-		$("#d_file").append(
-				"<br>" + "<input type='file' name='up_fileName"+cnt+"' />");
-		cnt++;
-	}
-</script>
-<title>글쓰기창</title>
 </head>
-
 <body>
-	<h1 style="text-align: center">글쓰기</h1>
-	<form name="articleForm" method="post" accept-charset="utf-8"
-		action="${contextPath}/boardFree/addNewArticle.do"
-		enctype="multipart/form-data">
+	<div id="freeFrm_bground">
+		<div id="freeFrm_cnt">
+			<div id="freeFrm_tit">
+				<h3 class="freeFrm_titName">자유게시판</h3>
+			</div>
+			<div id="freeFrm_table">
+				<div id="freeFrm_title">
+					<p class="freeFrm_tit" style="font-weight: bold;">
+						<i class="fa-solid fa-pen"></i>&nbsp;자유게시판 게시글 작성
+					</p>
+				</div>
+				<form name="articleForm" method="post" accept-charset="utf-8"
+					action="${contextPath}/boardFree/addNewArticle.do"
+					enctype="multipart/form-data">
+					<div id="freeFrm_table">
+						<tbody>
+							<table id="freeFrm_detail_table">
+								<tr class="dot_line">
+									<td class="fixed_join">:: 작성자</td>
+									<td colspan=2 align="left"><input type="text" size="20"
+										maxlength="100" name="member_id" value="${member.member_id}"
+										readonly /></td>
 
-		<table border="0" align="center">
-			<tr>
-				<td align="right">작성자</td>
-				<td colspan=2 align="left"><input type="text" size="20"
-					maxlength="100" name="member_id" value="${member.member_id}"
-					readonly /></td>
-
-			</tr>
-			<tr>
-				<td align="right">글제목:</td>
-				<td colspan="2"><input type="text" size="67" maxlength="500"
-					name="fr_title" /></td>
-			</tr>
-			<tr>
-				<td align="right" valign="top"><br>글내용:</td>
-				<td colspan=2><textarea name="fr_context" rows="10" cols="65"
-						maxlength="4000"></textarea></td>
-			</tr>
-			<tr>
-				<td align="right">이미지파일 첨부: </td>
-				<td align="left"><input type="button" value="파일 추가"
-					onClick="fn_addFile()" /></td>
-				<td colspan="4"><div id="d_file"></div></td>
-			</tr>
-
-			<tr>
-				<td align="right"></td>
-				<td colspan="2"><input type="submit" value="글쓰기" /> <input
-					type=button value="목록보기" onClick="backToList(this.form)" /></td>
-			</tr>
-		</table>
-	</form>
-
+								</tr>
+								<tr class="dot_line">
+									<td class="fixed_join">:: 글제목</td>
+									<td colspan="2"><input type="text" size="67"
+										maxlength="500" name="fr_title" /></td>
+								</tr>
+								<tr class="dot_line">
+									<td class="fixed_join" valign="top"><br>:: 글내용</td>
+									<td colspan=2><textarea name="fr_context" rows="10"
+											cols="65" maxlength="4000"></textarea></td>
+								</tr>
+								<tr class="dot_line">
+									<td class="fixed_join">:: 이미지파일 첨부</td>
+									<td align="left"><input type="button" value="파일 추가"
+										onClick="fn_addFile()" /></td>
+									<td colspan="4"><div id="d_file"></div></td>
+								</tr>
+							</table>
+						</tbody>
+					</div>
+					<div class="freeFrm_btn_list">
+						<div class="freeFrm_btn freeFrm_btn1">
+							<input type="button" value="목록" onClick="backToList(this.form)">
+						</div>
+						<div class="freeFrm_btn freeFrm_btn2">
+							<input type="submit" value="등록" >
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

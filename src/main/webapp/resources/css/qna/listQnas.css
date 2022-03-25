@@ -6,31 +6,22 @@
 }
 
 #qna_cnt {
-	width: 1200px;
+	width: 1300px;
 	position: relative;
 	margin: 0 auto;
 }
 
-.cls1 {
-	text-decoration: none;
-}
-
-button.cls2 {
+p.cls2 {
 	float: right;
 	font-size: 15px;
+	border: 1px solid #585858;
+	border-radius: 0.2em;
+	padding: 3px;
+	background-color: #E6E6E6;
+	color: black;
+	margin-right: 20px;
 }
 
-#qna_qnaList {
-	width: 100%;
-	border-collapse: collapse;
-	margin-bottom: 20px;
-}
-
-#qna_qnaList tr {
-	height: 35px;
-	border-top: 1px solid gray;
-	border-bottom: 1px solid gray;
-}
 
 h3.qna_titName {
 	font-size: 35px;
@@ -40,16 +31,37 @@ h3.qna_titName {
 	text-align: center;
 	border-bottom: 1px solid gray;
 	padding: 0px 0px 30px; 0 px;
-	margin: 80px 0px 15px;
-	0
-	px;
+	margin: 80px 0px 15px 0px;
+	
+}
+
+#qna_qnaList {
+	border-collapse: collapse;
+	margin-bottom: 20px;
+}
+
+#qna_qnaList td {
+	text-indent: 10px;
+	font-size: 15px;
+	border: solid 1px #e5e5e5;
+}
+
+#qna_qnaList tr {
+	border-left: none;
+	border-right: none;
 }
 
 #qna_smallNav {
-	float: right;
-	margin-bottom: 50px;
+	height: 40px;
+	margin-bottom: 20px;
 }
 
+.qna_subnavi {
+	float: right;
+}
+
+
+/* 모달 css */
 #qna_modal {
 	display: none;
 	z-index: 110;
@@ -90,13 +102,15 @@ h3.qna_titName {
 	cursor: pointer;
 }
 
+
+/* 페이지네이션 css */
 .no-uline {
 	text-decoration: none;
 }
 
 .sel-page {
 	text-decoration: none;
-	color: blue;
+	color: #2E9AFE;
 }
 
 .cls1 {

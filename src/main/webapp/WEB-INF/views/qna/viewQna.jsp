@@ -13,8 +13,7 @@
 <head>
 <meta charset="utf-8">
 
-<link href="${contextPath}/resources/css/qna/viewQna.css"
-	rel="stylesheet" type="text/css">
+<link href="${contextPath}/resources/css/qna/viewQna.css" rel="stylesheet" type="text/css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <c:choose>
 	<c:when test="${removeCompleted eq true }">
@@ -26,9 +25,6 @@
 	</c:when>
 </c:choose>
 <script type="text/javascript">
-
-	
-	
 	// 제목, 내용 필수 alert
 	function formCheck(obj) {
 		var pw_chkBox = document.getElementById('qna_Lock').checked;
@@ -66,7 +62,7 @@
 	
 	
 	// 수정폼으로 변환
-	function fn_enable( ){
+	function fn_enable(obj){
 		 document.getElementById("qna_title").disabled=false;
 		 document.getElementById("qna_content").disabled=false;
 		 document.getElementById("qna_secretTr").style.display="table-row";
@@ -122,67 +118,61 @@
 				<h3 class="qna_titName">상담게시판</h3>
 			</div>
 			<div id="qnaView_table">
-				<div id="qnaView_title2">
-					<p class="qnaView_tit">
-					<table id="qnaView_detail_table">
-						<tr class="dot_line">
-							<td class="fixed_join">:: 신청 분야</td>
-							<td><input type="text" value="${qna.qna_policy}" disabled></td>
-						</tr>
-					</table>
-					</p>
-				</div>
 				<form name="QnaForm" method="post">
 					<div id="qnaView_table">
-						<tbody>
-							<table id="qnaView_detail_table">
-								<tr class="dot_line">
-									<td class="fixed_join">:: 글번호</td>
-									<td colspan=2><input type="text" size="20" id="qna_no"
+						<table id="qnaView_detail_table">
+							<tbody>
+								<tr id="table_mainCnt" class="table_title">
+									<td class="table_category" >:: 신청 분야</td>
+									<td class="table_container"><input type="text" value="${qna.qna_policy}" disabled></td>
+								</tr>
+								<tr id="table_mainCnt">
+									<td class="table_category">:: 글번호</td>
+									<td class="table_container" colspan=2><input type="text" size="20" id="qna_no"
 										name="qna_no" value="${qna.qna_no }" disabled /> <input
 										type="hidden" size="20" id="qna_no" name="qna_no"
 										value="${qna.qna_no }" /></td>
 								</tr>
-								<tr class="dot_line">
-									<td class="fixed_join">:: 작성자</td>
-									<td colspan=2><input type="text" size="20" id="member_id"
+								<tr id="table_mainCnt">
+									<td class="table_category">:: 작성자</td>
+									<td class="table_container" colspan=2><input type="text" size="20" id="member_id"
 										name="member_id" value="${qna.member_id }" disabled /></td>
 								</tr>
-								<tr class="dot_line" id="qna_secretTr">
-									<td class="fixed_join">:: 비밀글여부</td>
-									<td><input type="checkbox" value="1" id="qna_secret"
+								<tr id="qna_secretTr" >
+									<td class="table_category">:: 비밀글여부</td>
+									<td class="table_container"><input type="checkbox" value="1" id="qna_secret"
 										name="qna_secret" />&nbsp;&nbsp;해당 상담글을 잠급니다.</td>
 								</tr>
-								<tr class="dot_line">
-									<td class="fixed_join">:: 비밀번호</td>
+								<tr id="table_mainCnt">
+									<td class="table_category">:: 비밀번호</td>
 									<c:choose>
 										<c:when test="${member.member_right == 'ADMIN'}">
-											<td colspan=2><input type="text" size="20"
+											<td class="table_container" colspan=2><input type="text" size="20"
 										maxlength="4" id="qna_pw" name="qna_pw"
 										value="${qna.qna_pw }" readonly /></td>
 										</c:when>
 										<c:otherwise>
-											<td colspan=2><input type="password" size="20"
+											<td class="table_container" colspan=2><input type="password" size="20"
 										maxlength="4" id="qna_pw" name="qna_pw"
 										value="${qna.qna_pw }" readonly /></td>
 										</c:otherwise>
 									</c:choose>
 								</tr>
-								<tr class="dot_line">
-									<td class="fixed_join">:: 상담 제목</td>
-									<td colspan="2"><input type="text" id="qna_title"
+								<tr id="table_mainCnt" class="table_title">
+									<td class="table_category">:: 상담 제목</td>
+									<td class="table_container" colspan="2"><input type="text" id="qna_title"
 										name="qna_title" value="${qna.qna_title }" disabled /></td>
 								</tr>
-								<tr class="dot_line">
-									<td class="fixed_join" style="vertical-align: top;"><br>::
+								<tr id="table_mainCnt">
+									<td class="table_category" style="vertical-align: top;"><br>::
 										상담 내용</td>
-									<td colspan=2><textarea id="qna_content"
-											name="qna_content" rows="10" cols="65" maxlength="4000"
+									<td class="table_container" colspan=2><textarea id="qna_content"
+											name="qna_content" rows="20" cols="125" maxlength="4000"
 											disabled>${qna.qna_content }</textarea></td>
 								</tr>
-								<tr>
-									<td class="fixed_join">:: 등록일자</td>
-									<td class="fixed_join" colspan=2>${qna.qna_date }</td>
+								<tr id="table_mainCnt">
+									<td class="table_category">:: 등록일자</td>
+									<td class="table_container" colspan=2><p class="qna_sysDate">${qna.qna_date }</p></td>
 								</tr>
 								</tbody>
 							</table>
@@ -201,8 +191,7 @@
 						<c:if test="${member.member_id == qna.member_id && member.member_right eq 'MEMBER'}">
 							<div class="qnaView_btn_list">
 								<div class="qnaView_btn qnaView_btn1">
-									<input type="button" value="삭제하기"
-										onClick="fn_remove_qna('${contextPath}/qna/removeQna.do', ${qna.qna_no})">
+									<input type="button" value="삭제하기" onClick="fn_remove_qna('${contextPath}/qna/removeQna.do', ${qna.qna_no})">
 								</div>
 								<div class="qnaView_btn qnaView_btn2">
 									<input type="button" value="수정하기" onClick="fn_enable()">
@@ -233,7 +222,5 @@
 			</div>
 		</div>
 	</div>
-
-
 </body>
 </html>

@@ -19,34 +19,9 @@
 
 <link href="${contextPath}/resources/css/qna/listQnas.css"
 	rel="stylesheet" type="text/css">
+<script src="${contextPath}/resources/js/qna/listQnas.js"></script>
 <script src="https://kit.fontawesome.com/fc92373f81.js"
 	crossorigin="anonymous"></script>
-<script>
-	function fn_QnaForm(isLogOn, QnaForm, loginForm) {
-		if (isLogOn != '' && isLogOn != 'false') {
-			location.href = QnaForm;
-		} else {
-			alert("로그인 후 글쓰기가 가능합니다.")
-			location.href = loginForm + '?action=/qna/QnaForm.do';
-		}
-	}
-	
-	
-	// 모달창 보이기
-	function fn_modalOpen(no) {
-		var modal = document.getElementById('qna_modal');
-		modal.style.display = 'block';
-		qna_no.value = Number(no);
-	}
-	
-	// 모달창 감추기
-	function fn_modalClose() {
-		var modal = document.getElementById('qna_modal');
-		modal.style.display = 'none';
-	}
-	
-</script>
-
 </head>
 
 <body>
@@ -57,19 +32,20 @@
 			</div>
 			<div id="qna_smallNav">
 				<p>
-					<span href="#">청년패키지</span>><span href="#">상담게시판</span>
+					<span>[총 게시물: ${totQnas }건]</span> <span class="qna_subnavi">청년패키지
+						> 상담게시판</span>
 				</p>
 			</div>
-			<table id="qna_qnaList" align="center">
-				<tr width="400px" height="20" align="center" bgcolor="#abd1f6">
-					<td width="30px">글번호</td>
-					<td width="250px">제목</td>
-					<td width="50px">작성자</td>
-					<td width="70px">작성일</td>
+			<table id="qna_qnaList" align="center" width="100%">
+				<tr height="40" align="center" bgcolor="#abd1f6">
+					<td>글번호</td>
+					<td>제목</td>
+					<td>작성자</td>
+					<td>작성일</td>
 				</tr>
 				<c:choose>
 					<c:when test="${empty QnasList }">
-						<tr height="10">
+						<tr height="35">
 							<td colspan="4">
 								<p align="center">
 									<b><span style="font-size: 9pt;">등록된 글이 없습니다.</span></b>
@@ -79,9 +55,9 @@
 					</c:when>
 					<c:when test="${not empty QnasList }">
 						<c:forEach var="qna" items="${QnasList }" varStatus="qnaNum">
-							<tr align="center">
-								<td width="5%">${qnaNum.count}</td>
-								<td width="35%">
+							<tr align="center" height="35">
+								<td width="15%">${qnaNum.count}</td>
+								<td width="60%">
 								<c:if test="${member.member_right == 'ADMIN'}">
 									<c:choose>
 										<c:when test="${(qna.qna_pw != '') && (qna.level > 1)}">
@@ -155,7 +131,7 @@
 									</c:otherwise>
 								</c:choose>
 								</td>
-								<td width="10%">${qna.qna_date}</td>
+								<td width="15%">${qna.qna_date}</td>
 							</tr>
 						</c:forEach>
 					</c:when>
@@ -163,8 +139,8 @@
 			</table>
 			<a class="cls1"
 				href="javascript:fn_QnaForm('${isLogOn}','${contextPath}/qna/QnaForm.do', 
-                                                    '${contextPath}/member/loginForm.do')"><button
-					class="cls2">글쓰기</button></a> <br>
+                                                    '${contextPath}/member/loginForm.do')"><p
+					class="cls2">글쓰기</p></a>
 		</div>
 	</div>
 
@@ -218,10 +194,8 @@
 					</c:choose>
 				</c:if>
 			</div>
-
 		</div>
 	</div>
-
 	<!-- 모달창 -->
 	<div id="qna_modal">
 		<div id="qna_modalCnt">
@@ -236,6 +210,5 @@
 			</form>
 		</div>
 	</div>
-
 </body>
 </html>

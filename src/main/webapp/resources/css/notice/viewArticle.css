@@ -1,17 +1,17 @@
 @charset "UTF-8";
 
-#qnaView_bground {
+#notiView_bground {
 	position: relative;
 	width: 100%;
 }
 
-#qnaView_cnt {
+#notiView_cnt {
 	width: 1100px;
 	position: relative;
 	margin: 0 auto;
 }
 
-h3.qna_titName {
+h3.notiView_titName {
 	font-size: 35px;
 	font-weight: bold;
 	letter-spacing: -2.7px;
@@ -22,39 +22,22 @@ h3.qna_titName {
 	margin: 50px 0px 0px 0px;
 }
 
-#qnaView_title {
-	height: 40px;
-	border-bottom: 1px solid #E6E6E6;
-}
-
-#qnaView_title2 {
-	height: 40px;
-	padding-bottom: 40px;
-	border-bottom: 1px solid #E6E6E6;
-}
-
-
-.qnaView_tit {
-	font-size: 13pt;
-}
-
-#qnaView_table {
+#notiView_table {
 	position: relative;
 	width: 100%;
-	
 }
 
-#qnaView_detail_table {
+#noti_select_view{
 	width: 1100px;
 	position: relative;
 	margin: 0 auto;
 	border-collapse: collapse;
-	font-size: 11pt;
+	font-size: 12pt;
 	border-bottom: 2px solid darkgray;
-	margin-bottom: 60px;
+	
 }
 
-#qnaView_detail_table tr{
+#noti_select_view tr{
 	border-left: none;
 	border-right: none;
 	height: 55px;
@@ -72,44 +55,65 @@ td.table_category{
 	width: 200px;
 	text-align: center;
 	font-weight: bold;
-	font-size: 11pt;
+}
+
+#noti_select_view td{
+	border-left: none;
+	border-right: none;
+}
+
+td.table_container1 {
+	height: 30px;
 }
 
 td.table_container>input{
 	border: 0px;
 	background: none;
-	font-size: 11pt;
 }
 
-#qnaView_btn_default>input{
+textarea {
+	padding: 20px 0px 20px 0px;
+	border: none;
+	background: none;
+	resize: none;
+}
+
+#filedown>a {
 	font-size: 10pt;
+	text-decoration: underline;
+	color: black;
+	
 }
 
-.qnaView_btn1 input {
+.notiView_btn_list1 {
+	width: 100%;
+	margin-top: 50px;
+	margin-left: 67%;
+}
+
+.notiView_btn_list2 {
+	width: 100%;
+	margin-top: 50px;
+	margin-left: 79%;
+}
+
+.notiView_btn1 input {
 	width: 100px; 
 	height : 30px; 
+	font-size : 10px;
 	border: 0px;
 	border-radius: 3em;
 	background-color: darkgray;
 	color: white;
 	cursor: pointer;
 	height: 30px;
+	font-size: 10px;
 }
 
-.qnaView_btn3 input {
-	width: 100px; 
-	height : 30px; 
-	border: 0px;
-	border-radius: 3em;
-	background-color: #e59656;
-	color: white;
-	cursor: pointer;
-	height: 30px;
-}
-
-.qnaView_btn2 input {
+.notiView_btn2 input {
 	width: 100px;
 	height: 30px;
+	font-size: 10px;
 	border: 0px;
 	border-radius: 3em;
 	background-color: dodgerblue;
@@ -117,64 +121,31 @@ td.table_container>input{
 	cursor: pointer;
 }
 
-.qnaView_btn4 input {
+.notiView_btn3 input {
 	width: 100px;
 	height: 30px;
+	font-size: 10px;
 	border: 0px;
 	border-radius: 3em;
-	background-color: darkgrey;
+	background-color: darkgray;
 	color: white;
 	cursor: pointer;
 }
 
-.qnaView_btn1 {
+.notiView_btn1 {
 	float: left;
 	margin-right: 30px;
 }
 
-.qnaView_btn3 {
+.notiView_btn3 {
 	float: left;
 	margin-right: 30px;
 }
 
-.qnaView_btn4 {
-	margin-top: 15px;
-	margin-left: 90%;
-}
-
-
-.qnaView_btn_list {
-	width: 100%;
-	margin-top: 100px;
-	margin-left: 78%;
-}
-
-.qnaView_btn_list2 {
-	width: 100%;
-	margin-top: 100px;
-	margin-left: 66.5%;
-}
-
-#qnaView_btn_modify {
+#tr_btn_modify {
 	display: none;
-	width: 100%;
-	margin-top: 100px;
-	margin-left: 78%;
 }
 
-#qna_secretTr {
-	display: none;
-	border: 1px solid #c0c0c0;
-}
-
-.tr_modEnable {
-    visibility:hidden;
-}
-
-
-textarea {
-	padding: 20px 0px 20px 0px;
-	border: none;
-	background: none;
-	resize: none;
+#notiView_mainBtn {
+	display: block;
 }

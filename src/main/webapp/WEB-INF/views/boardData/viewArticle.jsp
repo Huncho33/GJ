@@ -17,74 +17,7 @@
 
 <head>
 <meta charset="utf-8">
-<title>글보기</title>
-
-<style>
-#tr_btn_modify {
-   display: none;
-}
-
-#tr_no {
-   display: none;
-}
-#filedown a {
-	border : 1;
-	 text-decoration-line : none;
-}
-
-.tr_modEnable {
-   display: none;
-}
-
-#tr_btn_addFile {
-   display: none;
-}
-
-#tr_up_fileName {
-   display: none;
-   border: none;
-}
-
-#data_view_bground {
-   width: 100%;
-   position: relative;
-}
-
-#data_view_container {
-   position: relative;
-   margin: 0 auto;
-   align: center;
-   width: 1200px;
-   font-size: 15px
-}
-
-tr input {
-   border: none;
-   background: white;
-   font-size: 15px;
-}
-
-#data_select_view td {
-   text-indent: 10px;
-   font-size: 15px;
-   border: solid 1px #e5e5e5;
-   border-left: none;
-   border-right: none;
-}
-
-#data_select_view {
-   border-collapse: collapse;
-   width: 1200px;
-   align: center;
-}
-
-#data_view_btn {
-   width: 1200px;
-   align: center;
-   margin: 40 auto;
-}
-</style>
-
+<link href="${contextPath }/resources/css/data/viewArticle.css" rel="stylesheet" type="text/css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 <c:choose>
@@ -108,14 +41,14 @@ tr input {
        document.getElementById("etc_title").disabled=false;
        document.getElementById("etc_context").disabled=false;
        document.getElementById("tr_btn_modify").style.display="block";
-       document.getElementById("etc_view_btn").style.display="none";
+       document.getElementById("dataView_mainBtn").style.display="none";
        fn_tr_modEnable();
     }
     
     function fn_tr_modEnable(){
        x=document.getElementsByClassName("tr_modEnable");
        for(var i =0; i < x.length; i++){
-          x[i].style.display="block";
+          x[i].style.display="table-row";
        }
     }
     
@@ -235,131 +168,148 @@ tr input {
 
 </head>
 <body>
+	<div id="dataView_bground">
+		<div id="dataView_cnt">
+			<div id="dataView_tit">
+				<h3 class="dataView_titName">기타자료실</h3>
+			</div>
+			<div id="dataView_table">
+				<form name="frmArticle" method="post" accept-charset="UTF-8"
+					enctype="multipart/form-data">
+					<table id="etc_select_view">
+						<tr id="table_mainCnt" class="table_title">
+							<td class="table_category">제목</td>
+							<td class="table_container" colspan=3><input type=text
+								value="${article.etc_title}" name="etc_title" id="etc_title"
+								disabled /></td>
+						</tr>
+						<tr id="table_mainCnt">
+							<td class="table_category">글번호</td>
+							<td class="table_container" colspan=3><input type="text"
+								value="${article.etc_NO }" disabled /> <input type="hidden"
+								name="etc_NO" value="${article.etc_NO}" /></td>
+						</tr>
+						<tr id="table_mainCnt">
+							<td class="table_category">등록일자</td>
+							<td class="table_container"><input type=text
+								value="<fmt:formatDate value="${article.etc_date}"/>" disabled /></td>
 
-   <div id="etc_view_bground">
-      <div id="etc_view_container">
-         <form name="frmArticle" method="post" action="${contextPath}"  accept-charset="UTF-8"
-            enctype="multipart/form-data">
-            <table id=etc_select_view border=0 align="center">
-               <tr id="tr_no">
-                  <td width=200px align="center" bgcolor=#f2f8ff>글번호</td>
-                  <td colspan=3><input type="text" value="${article.etc_NO }"
-                     disabled /> <input type="hidden" name="etc_NO"
-                     value="${article.etc_NO}" /></td>
-               </tr>
+							<td class="table_category">조회수</td>
+							<td class="table_container"><input type=text
+								value="${article.etc_hits }" name="etc_hits" id="etc_hits"
+								disabled /></td>
+						</tr>
 
+						<tr id="table_mainCnt">
+							<td class="table_category">내용</td>
+							<td class="table_container" colspan=3><textarea rows="20"
+									cols="125" name="etc_context" id="etc_context" disabled>${article.etc_context }</textarea></td>
+						</tr>
+						<!--  파일 업로드 -->
+						<c:set var="img_index" />
+						<c:choose>
+							<c:when
+								test="${not empty imageFileList && imageFileList!='null' }">
+								<c:forEach var="item" items="${imageFileList}"
+									varStatus="status">
+									<tr id="tr_${status.count }" class="table_fileTr">
+										<td class="table_category" rowspan="1">첨부파일${status.count }</td>
+										<td class="table_container table_container1" colspan=2><input
+											type="hidden" name="oldFileName" value="${item.up_fileName }" />
+											<input type="hidden" name="up_fileNO"
+											value="${item.up_fileNO }" /> <!-- <img src="${contextPath}/upload.do?etc_NO=${article.etc_NO}&up_fileName=${item.up_fileName}" id="preview${status.index }" />-->
+											<div id="filedown">
+												<a
+													href="${contextPath}/dataDownload.do?etc_NO=${article.etc_NO}&up_fileName=${item.up_fileName}">${item.up_fileName}</a><br>
+											</div></td>
 
-               <tr height="40px">
-                  <td width="200px" align="center" bgcolor="#f2f8ff">제목</td>
-                  <td colspan=3><input type=text value="${article.etc_title}"
-                     name="etc_title" id="etc_title" disabled /></td>
-               </tr>
+									</tr>
 
-               <tr height="40px">
-                  <td width="200px" align="center" bgcolor="#f2f8ff">등록일자</td>
-                  <td><input type=text
-                     value="<fmt:formatDate value="${article.etc_date}"/>" disabled /></td>
+									<tr colspan="4" class="tr_modEnable" id="tr_sub${status.count }" style="display:none;">
+										<td></td>
+										<td colspan="3">
+											<input type="file" name="up_fileName${status.index }"
+												id="up_fileName${status.index }"
+												onchange="readURL(this, ${status.index });" />
+											<input
+												type="button" value="기존파일 삭제"
+												onclick="fn_removeModImage(${item.up_fileNO },  ${item.etc_NO }, '${item.up_fileName }', ${status.count })" />
+										</td>
+									</tr>
 
-                  <td width="200px" align="center" bgcolor="#f2f8ff">조회수</td>
-                  <td><input type=text value="${article.etc_hits }"
-                     name="etc_hits" id="etc_hits" disabled /></td>
-               </tr>
-				
-               <tr>
-                  <td width="150" align="center" bgcolor="#f2f8ff">내용</td>
-                  <td><textarea rows="20" cols="60" name="etc_context" id="etc_context" disabled>${article.etc_context }</textarea></td>
-               </tr>
-               <!--  파일 업로드 -->
-               <c:set var="img_index" />
-               <c:choose>
-                  <c:when
-                     test="${not empty imageFileList && imageFileList!='null' }">
-                     <c:forEach var="item" items="${imageFileList}" varStatus="status">
-                        <tr id="tr_${status.count }">
-                           <td width="150" align="center" bgcolor="#f2f8ff" rowspan="1">  첨부파일${status.count }</td>
-
-                           <td colspan=2><input type="hidden" name="oldFileName"
-                              value="${item.up_fileName }" /> <input type="hidden"
-                              name="up_fileNO" value="${item.up_fileNO }" /> 
-                              
-                              <div id="filedown"> 	 	
-                              <a href="${contextPath}/dataDownload.do?etc_NO=${article.etc_NO}&up_fileName=${item.up_fileName}" >${item.up_fileName}</a><br>
-                              </div>
-                              </td>
-
-                        </tr>
-
-                        <tr class="tr_modEnable" id="tr_sub${status.count }">
-                           <td></td>
-                           <td>
-                            
-                           <input type="file" name="up_fileName${status.index }"
-                              id="up_fileName${status.index }"
-                              onchange="readURL(this, ${status.index });" /> 
-                              <input type="button" value="파일 삭제하기"
-                              onclick="fn_removeModImage(${item.up_fileNO },  ${item.etc_NO }, '${item.up_fileName }', ${status.count })" />
-                           </td>
-                        </tr>
-
-                        <c:if test="${status.last eq true }">
-                           <c:set var="img_index" value="${status.count}" />
-                           <input type="hidden" name="pre_img_num" value="${status.count}" />
-                           <!-- 기존의 이미지수 -->
-                           <input type="hidden" id="added_img_num" name="added_img_num"
-                              value="${status.count}" />
-                           <!--   수정시 새로 추가된 이미지 수  -->
-                        </c:if>
-
-         
-                     </c:forEach>
-                  </c:when>
-                  <c:otherwise>
-                     <c:set var="img_index" value="${0}" />
-                     <input type="hidden" name="pre_img_num" value="${0}" />
-                     <!-- 기존의 이미지수 -->
-                     <input type="hidden" id="added_img_num" name="added_img_num"
-                        value="${0}" />
-                     <!--   수정시 새로 추가된 이미지 수  -->
-                  </c:otherwise>
-
-               </c:choose>
-
-               <tr>
-                  <td colspan="2">
-                     <table id="tb_addImage" align="center">
-                     </table>
-                  </td>
-               </tr>
-
-               <tr class="tr_modEnable">
-                  <td colspan="2"><input type="button" value="파일 추가"
-                     onclick="fn_addModImage(${img_index})" /></td>
-               </tr>
+									<c:if test="${status.last eq true }">
+										<c:set var="img_index" value="${status.count}" />
+										<input type="hidden" name="pre_img_num"
+											value="${status.count}" />
+										<!-- 기존의 이미지수 -->
+										<input type="hidden" id="added_img_num" name="added_img_num"
+											value="${status.count}" />
+										<!--   수정시 새로 추가된 이미지 수  -->
+									</c:if>
 
 
-            </table>
+								</c:forEach>
+							</c:when>
+							<c:otherwise>
+								<c:set var="img_index" value="${0}" />
+								<input type="hidden" name="pre_img_num" value="${0}" />
+								<!-- 기존의 이미지수 -->
+								<input type="hidden" id="added_img_num" name="added_img_num"
+									value="${0}" />
+								<!--   수정시 새로 추가된 이미지 수  -->
+							</c:otherwise>
 
-            <div id="tr_btn_modify" align="center">
-           
-               <input type=button value="수정반영하기"
-                  onClick="fn_modify_article(frmArticle)" > <input
-                  type=button value="취소" onClick="backToList(frmArticle)">
-            </div>
-
-            <div id="etc_view_btn">
-               <div>
-                  <c:if test="${member.member_id == article.member_id }">
-                     <input type=button value="수정하기" onClick="fn_enable(this.form)">
-                     <input type=button value="삭제하기"
-                        onClick="fn_remove_article('${contextPath}/boardData/removeArticle.do', ${article.etc_NO})">
-                  </c:if>
-                  <input type=button value="리스트로 돌아가기"
-                     onClick="backToList(this.form)">
-               </div>
-            </div>
-         </form>
-      </div>
-   </div>
+						</c:choose>
+						<tr>
+							<td colspan="2">
+								<table id="tb_addImage" align="center">
+								</table>
+							</td>
+						</tr>
+						
+						<tr>
+							<td colspan="3"></td>
+							<td align="right">
+								<div id="tr_btn_modify">
+									<input type="button" value="파일 추가" onclick="fn_addModImage(${img_index})" />
+									<input type="button" value="수정반영하기" onClick="fn_modify_article(frmArticle)">
+								</div>
+							</td>
+						</tr>
+						
+					</table>
+					<c:if test="${member.member_id == article.member_id }">
+						<div class="dataView_btn_list dataView_btn_list1">
+							<div id="dataView_mainBtn">
+								<div id="dataView_mainBtn" class="dataView_btn dataView_btn3">
+										<input type=button value="삭제하기"
+											onClick="fn_remove_article('${contextPath}/boardData/removeArticle.do', ${article.etc_NO})">
+								</div>
+								<div id="dataView_mainBtn" class="dataView_btn dataView_btn1">
+									<input type=button value="목록" onClick="backToList(this.form)">
+								</div>
+								<div id="dataView_mainBtn" class="dataView_btn dataView_btn2">
+									<input type=button value="수정하기" onClick="fn_enable(this.form)">
+								</div>
+							</div>
+						</div>
+					</c:if>
+					<c:if test="${member.member_id != article.member_id }">
+						<div class="dataView_btn_list dataView_btn_list2">
+							<div id="dataView_mainBtn">
+								<div class="dataView_btn dataView_btn1">
+								<input type=button value="목록" onClick="backToList(this.form)">
+								</div>
+								<div class="dataView_btn dataView_btn2">
+									<input type=button value="수정하기" onClick="fn_enable()">
+								</div>
+							</div>
+						</div>
+					</c:if>
+				</form>
+			</div>
+		</div>
+	</div>
 </body>
 </html>
 

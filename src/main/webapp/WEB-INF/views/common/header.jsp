@@ -91,18 +91,18 @@
             <div id="header_nav">
                <div id="header_navWrap">
                   <ul>
-                     <li class="menu" style="width: 200px;"><a href="#">청년패키지</a>
+                     <li class="menu" style="width: 230px;"><a href="#">청년패키지</a>
                         <ul class="submenu submenu1">
                            <li><a href="${contextPath}/boardIntro/yIntro.do">청년패키지란?</a></li>
                            <li><a href="${contextPath}/boardNotice/listArticles.do">공지사항</a></li>
-                           <li><a href="#">문의사항</a></li>
+                           <li><a href="${contextPath}/qna/listQnas.do">문의사항</a></li>
                            <li><a href="${contextPath}/qna/freqQna.do"> - 자주 묻는 질문</a></li>
                            <li><a href="${contextPath}/qna/listQnas.do"> - 상담게시판</a></li>
                            <li><a href="${contextPath}/boardData/listArticles.do">기타자료실</a></li>
                            <li><a href="${contextPath}/boardFree/listArticles.do">자유게시판</a></li>
                         </ul></li>
-                     <li class="menu" style="width: 200px;"><a href="#">월세지원</a>
-                        <ul class="submenu submenu1">
+                     <li class="menu" style="width: 230px;"><a href="#">월세지원</a>
+                        <ul class="submenu submenu4">
                            <li><a href="${contextPath}/month/monthApplyInfo.do">청년월세지원 안내</a></li>
                            <li><a href="https://www.bokjiro.go.kr/ssis-teu/index.do">청년월세지원신청(2022)</a></li>
                            <li><a href="${contextPath}/month/monthApplyForm2.do">청년월세지원신청(2023)</a></li>
@@ -122,7 +122,7 @@
                            <li><a href="#"> - 귀환신혼부부전세이자지원 신청</a></li>
                            <li><a href="#"> - 귀환신혼부부전세이자지원 결과</a></li>
                         </ul></li>
-                     <li class="menu" style="width: 230px;"><a href="#">공공임대주택</a>
+                     <li class="menu" style="width: 250px;"><a href="#">공공임대주택</a>
                         <ul class="submenu submenu3">
                            <li><a href="#">청년공공임대주택 안내</a></li>
                            <li><a href="#">청년희망주택공급 안내</a></li>
@@ -137,15 +137,14 @@
          <div class="info">
 
             <c:choose>
-               <c:when test="${isLogOn == true  && member!= null}">
+            	<c:when test="${isLogOn == true  &&  member!= null && member.member_right == 'ADMIN'}">
+                  <a href="${contextPath}/member/logout.do"><i class="fa-solid fa-arrow-right-from-bracket"></i>&nbsp;로그아웃</a>
+                  <a href="${contextPath}/mypage/confirmPwdView.do"><i class="fa-solid fa-gear"></i>&nbsp;관리페이지</a>
+               </c:when>
+               <c:when test="${isLogOn == true  && member!= null && member.member_right != 'ADMIN'}">
                   <a href="${contextPath}/member/logout.do"><i class="fa-solid fa-arrow-right-from-bracket"></i>&nbsp;로그아웃</a>
                   <a href="${contextPath}/mypage/confirmPwdView.do"><i class="fa-solid fa-house"></i>&nbsp;마이페이지</a>
-                  
-
-
-
                </c:when>
-
                <c:otherwise>
                   <a href="${contextPath}/member/loginForm.do"><i class="fa-solid fa-user"></i>&nbsp;로그인</a>
                   <a href="${contextPath}/member/memberForm.do"><i class="fa-regular fa-file"></i>&nbsp;회원가입</a>

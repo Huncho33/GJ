@@ -25,6 +25,8 @@ public class MemberVO {
 
 	private Date member_last_log;
 	private String member_right;
+	
+	
 	public String getMember_id() {
 		return member_id;
 	}
