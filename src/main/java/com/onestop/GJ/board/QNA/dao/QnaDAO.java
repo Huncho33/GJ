@@ -26,6 +26,8 @@ public interface QnaDAO {
 
 	QnaVO selectParentQna(int qnaparent_no) throws DataAccessException;
 
+	void updateReply(Map QnaMap) throws DataAccessException;
+
 	
 
 	

@@ -22,5 +22,7 @@ public interface QnaService {
 
 	Map selectParentQna(String qnaparent_no) throws Exception;
 
+	void updateReply(Map QnaMap) throws Exception;
+
 
 }

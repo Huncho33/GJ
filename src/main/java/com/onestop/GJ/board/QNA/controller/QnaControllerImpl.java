@@ -108,6 +108,58 @@ public class QnaControllerImpl implements QnaController {
 		return resEnt;
 	}
 	
+	
+	// 답글 작성하기
+		@Override
+		@RequestMapping(value = { "/qna/addNewReply.do" }, method = RequestMethod.POST)
+		@ResponseBody
+		public ResponseEntity addNewReply(HttpServletRequest request, HttpServletResponse response) throws Exception {
+			
+			request.setCharacterEncoding("utf-8");
+
+			Map QnaMap = new HashMap();
+			Enumeration enu = request.getParameterNames();
+			while (enu.hasMoreElements()) {
+				String name = (String) enu.nextElement();
+				String value = request.getParameter(name);
+				QnaMap.put(name, value);
+			}
+
+			// 로그인 시 세션에 저장된 회원 정보에서 글쓴이 아이디를 얻어와서 Map에 저장합니다.
+			HttpSession session = request.getSession();
+			MemberVO memberVO = (MemberVO)session.getAttribute("member");
+			String member_id = memberVO.getMember_id();
+			QnaMap.put("member_id", member_id);
+			String qnaparent_no = (String)session.getAttribute("qnaparent_no");
+			QnaMap.put("qnaparent_no", (qnaparent_no == null ? 0 : qnaparent_no));
+
+			String message;
+			ResponseEntity resEnt = null;
+			HttpHeaders responseHeaders = new HttpHeaders();
+			responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+			try {
+				qnaService.addNewQna(QnaMap);
+				qnaService.updateReply(QnaMap);
+
+				message = "<script>";
+				message += " alert('새글을 추가했습니다.');";
+				message += " location.href='" + request.getContextPath() + "/qna/listQnas.do'; ";
+				message += " </script>";
+				resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+			} catch (Exception e) {
+
+				message = " <script>";
+				message += " alert('오류가 발생했습니다. 다시 시도해주세요.');');";
+				message += " location.href='" + request.getContextPath() + "/qna/QnaForm.do'; ";
+				message += " </script>";
+				resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+				e.printStackTrace();
+			}
+			return resEnt;
+		}
+	
+	
+	
 	// 글쓰기창 호출
 	@RequestMapping(value = "/qna/QnaForm.do", method = RequestMethod.GET)
 	private ModelAndView form(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -244,5 +296,7 @@ public class QnaControllerImpl implements QnaController {
 		}
 		return resEnt;
 	}
+	
+	
 
 }

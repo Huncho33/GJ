@@ -1,0 +1,118 @@
+@charset "UTF-8";@charset "UTF-8";
+
+#myQna_wrapper {
+	position: relative;
+	width: 100%;
+}
+
+#myQna_total {
+	position: relative;
+	margin: 0 auto;
+	width: 1300px;
+}
+
+#myQna_tot {
+	width: 900px;
+	margin-left: 300px;
+}
+
+#myQna_container {
+	width: 100%;
+}
+
+#myQna_tit2 {
+	margin-bottom: 20px;
+}
+
+h3.myQna_tit {
+	font-size: 24px;
+	font-weight: bold;
+	letter-spacing: -2.7px;
+	color: #272727;
+	text-align: center;
+	padding: 50px 0px 30px 0px;
+	border-bottom: 1px solid #cfcfcf;
+	margin-bottom: 60px;
+}
+
+.myQna_cnt1 {
+	padding: 20px 40px 20px 40px;
+	margin-bottom: 30px;
+}
+
+.myQna_info {
+	text-align: center;
+	font-size: 11pt;
+}
+
+.myQna_cnt2 {
+	width: 100%;
+}
+
+
+tr.myQna_qnaTitle{
+	background-color: #E6E6E6;
+	font-size: 10pt;
+}
+
+#myQna_qnaList {
+	border-top: 2px solid #a6a6a6;
+	border-bottom: 2px solid #a6a6a6;
+	margin-bottom: 30px;
+	
+}
+
+#myQna_qnaList tr{
+	height: 30px;	
+}
+
+#myQna_qnaList td{
+	font-size: 10pt;
+}
+
+
+/* 모달 css */
+#myQna_modal {
+	display: none;
+	z-index: 110;
+	background-color : rgba( 0, 0, 0, .3);
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, .3);
+}
+
+#myQna_modalCnt {
+	width: 300px;
+	margin: 100px auto;
+	padding: 20px;
+	position: relative;
+	background-color: #fff;
+	border: 1px solid gray;
+}
+
+#myQna_modal .myQna_modalClose {
+	position: absolute;
+	top: 4px;
+	right: 4px;
+	font-size: 20px;
+	border: 0;
+	background-color: #fff;
+}
+
+#myQna_modal .myQna_modalLabel{
+	font-size: 9pt;
+}
+
+#myQna_modal .myQna_modalClose:hover, #myQna_modal .myQna_modalClose:focus {
+	color: #000;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.modi_btn{
+	text-decoration: none;
+	color: black;
+}

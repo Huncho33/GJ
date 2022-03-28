@@ -53,6 +53,11 @@ public class AdminMemberDAOImpl implements AdminMemberDAO {
   public MemberVO selectMember(String member_id) throws DataAccessException {
      return sqlSession.selectOne("mapper.adminMember.selectMember", member_id);
   }
+  
+  @Override
+  public MemberVO selectMemberId(String member_id) throws DataAccessException {
+     return sqlSession.selectOne("mapper.adminMember.selectMember", member_id);
+  }
 
 	@Override
 	public int insertMember(MemberVO memberVO) throws DataAccessException {

@@ -20,6 +20,8 @@ import com.onestop.GJ.member.vo.MemberVO;
 public class AdminMemberServiceImpl implements AdminMemberService {
 	@Autowired
 	private AdminMemberDAOImpl adminMemberDAO;
+	
+	
 	@Override
 	public Map listMembers(Map pagingMap) throws DataAccessException {
 		
@@ -62,6 +64,14 @@ public class AdminMemberServiceImpl implements AdminMemberService {
 		return adminMemberDAO.insertMember(member);
 	}
 	
+	
+	//셀렉한 멤버VO 가져오기
+	@Override
+	public MemberVO selectMemberId(String member_id) throws DataAccessException {
+		return adminMemberDAO.selectMember(member_id);
+	}
+	
+	
 	// 회원 정보 수정
 	@Override
 	public MemberVO modifyMember_adm(Map membersMap) throws Exception {
@@ -70,11 +80,6 @@ public class AdminMemberServiceImpl implements AdminMemberService {
 		return adminMemberDAO.selectMember(member_id);
 	}
 	
-	//셀렉한 멤버VO 가져오기
-		@Override
-		public MemberVO selectMemberId(String member_id) throws DataAccessException {
-			return adminMemberDAO.selectMember(member_id);
-		}
 		
 	//회원 정보 삭제
 		@Override

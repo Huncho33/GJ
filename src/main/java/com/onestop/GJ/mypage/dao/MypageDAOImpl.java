@@ -1,6 +1,7 @@
 package com.onestop.GJ.mypage.dao;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
+import com.onestop.GJ.board.QNA.vo.QnaVO;
 import com.onestop.GJ.member.vo.MemberVO;
 
 @Repository
@@ -29,31 +31,11 @@ public class MypageDAOImpl implements MypageDAO {
 		return memberVO;
 	}
 
-//	// 선택된 아이디 회원 정보 수정 (int)
-//	@Override
-//	public int updateMember(MemberVO memberVO) throws DataAccessException {
-//		int result = sqlSession.update("mapper.mypage.updateMember", memberVO);
-//		return result;
-//	}
-
-//	// 아이디로 조회하여 회원 선택
-//	@Override
-//	public MemberVO selectMemberById(String member_id) throws DataAccessException {
-//		MemberVO memberVO = (MemberVO) sqlSession.selectOne("mapper.mypage.selectMemberById", member_id);
-//		return memberVO;
-//	}
-
-//	// 선택된 아이디 회원 정보 수정 (void)
-//	@Override
-//	public void updateMember(MemberVO memberVO) throws DataAccessException {
-//		sqlSession.update("mapper.mypage.updateMember", memberVO);
-//	}
-	
 	// 회원 정보 수정
 	public void updateMember(Map memberMap) throws DataAccessException {
 		sqlSession.update("mapper.mypage.updateMember", memberMap);
 	}
-	
+
 	// 회원 탈퇴
 	@Override
 	public int deleteMember(String member_id) throws DataAccessException {
@@ -73,6 +55,41 @@ public class MypageDAOImpl implements MypageDAO {
 			result = true;
 		}
 		return result;
+	}
+
+	// 상담글-월세지원 카테고리만 조회
+	@Override
+	public List selectMonthQnasList(String member_id) throws Exception {
+		List<QnaVO> monthQnaList = sqlSession.selectList("mapper.mypage.selectMonthQnasList", member_id);
+		return monthQnaList;
+	}
+
+	// 상담글-전월세보증금 카테고리만 조회
+	@Override
+	public List selectRentQnasList(String member_id) throws Exception {
+		List<QnaVO> QnasList = sqlSession.selectList("mapper.mypage.selectRentQnasList", member_id);
+		return QnasList;
+	}
+
+	// 상담글-전세반환보증금 카테고리만 조회
+	@Override
+	public List selectReturnQnasList(String member_id) throws Exception {
+		List<QnaVO> QnasList = sqlSession.selectList("mapper.mypage.selectReturnQnasList", member_id);
+		return QnasList;
+	}
+
+	// 상담글-신혼부부전세자금 카테고리만 조회
+	@Override
+	public List selectWeddingQnasList(String member_id) throws Exception {
+		List<QnaVO> QnasList = sqlSession.selectList("mapper.mypage.selectWeddingQnasList", member_id);
+		return QnasList;
+	}
+
+	// 상담글-청년희망주택 카테고리만 조회
+	@Override
+	public List selectShareQnasList(String member_id) throws Exception {
+		List<QnaVO> QnasList = sqlSession.selectList("mapper.mypage.selectShareQnasList", member_id);
+		return QnasList;
 	}
 
 }

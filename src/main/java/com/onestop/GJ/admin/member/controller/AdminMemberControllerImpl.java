@@ -30,6 +30,7 @@ public class AdminMemberControllerImpl implements AdminMemberController {
 	@Autowired
 	private MemberVO memberVO ;
 	@Autowired
+
 	private MypageService mypageService;
 	
 	//회원정보리스트
@@ -120,6 +121,10 @@ public class AdminMemberControllerImpl implements AdminMemberController {
 									@RequestParam("value") String value,
 									@RequestParam("member_id") String sltmember_id,
 					HttpServletRequest request, HttpServletResponse response) throws Exception {
+			
+			String viewName = (String) request.getAttribute("viewName");
+			ModelAndView mav = new ModelAndView(viewName);
+			
 			Map<String, String> membersMap = new HashMap<String, String>();
 			String val[] = null;
 			System.out.println("sltmember_id:" + sltmember_id);
@@ -139,10 +144,15 @@ public class AdminMemberControllerImpl implements AdminMemberController {
 			} else {
 				membersMap.put(attribute, value);
 			}
+			membersMap.put("member_id", sltmember_id);
+			System.out.println("수정 전  memberVO: " + memberVO);
+			memberVO = (MemberVO)mypageService.modifyMember(membersMap);
+			System.out.println("수정 후  memberVO: " + memberVO);
 			
 			membersMap.put("member_id", sltmember_id);
 			
 			System.out.println(membersMap);
+
 			
 			System.out.println("수정 전  memberVO: " + memberVO);
 			memberVO = (MemberVO)mypageService.modifyMember(membersMap);
@@ -161,12 +171,12 @@ public class AdminMemberControllerImpl implements AdminMemberController {
 	@RequestMapping(value="/admin/member/removeMember.do" ,method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView removeMember(@RequestParam(value="member_id") String member_id, 
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
-		request.setCharacterEncoding("utf-8");
-		
+		request.setCharacterEncoding("utf-8");		
 		ModelAndView mav = new ModelAndView();
 		adminMemberService.removeMember(member_id);
 		System.out.println("member_id con" + member_id);
 		mav.setViewName("redirect:/admin/member/listMembers.do");
+
 		return mav;
 	}
 

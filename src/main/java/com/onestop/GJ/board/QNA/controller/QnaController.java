@@ -23,6 +23,8 @@ public interface QnaController {
 	String modalPwdCheck(int qna_no, int qna_pw, HttpServletRequest request, HttpServletResponse response)
 			throws Exception;
 
+	ResponseEntity addNewReply(HttpServletRequest request, HttpServletResponse response) throws Exception;
+
 
 
 

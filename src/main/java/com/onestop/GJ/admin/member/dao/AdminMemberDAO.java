@@ -1,6 +1,5 @@
 package com.onestop.GJ.admin.member.dao;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -23,5 +22,7 @@ public interface AdminMemberDAO {
 	int selectSearchTotMembers(Map pagingMap) throws DataAccessException;
 
 	MemberVO selectMember(String member_id) throws DataAccessException;
+
+	MemberVO selectMemberId(String member_id) throws DataAccessException;
 
 }

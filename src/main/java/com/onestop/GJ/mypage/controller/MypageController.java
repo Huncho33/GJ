@@ -31,6 +31,14 @@ public interface MypageController {
 	ModelAndView deleteMember(@RequestParam(value = "memDel_id2") String member_id, RedirectAttributes rAttr,
 			HttpServletRequest request, HttpServletResponse response) throws Exception;
 
+	ModelAndView myQna(HttpServletRequest request, HttpServletResponse response) throws Exception;
+
+	ResponseEntity removeQna(int qna_no, HttpServletRequest request, HttpServletResponse response) throws Exception;
+
+	String modalPwdCheck(int qna_no, int qna_pw, HttpServletRequest request, HttpServletResponse response)
+			throws Exception;
+
+
 //	ModelAndView modMyInfo(MemberVO memberVO, HttpServletRequest request, HttpServletResponse response)
 //			throws Exception;
 }
