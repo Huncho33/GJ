@@ -216,7 +216,13 @@ function backToList(obj){
 							  	<tr height="50">
 									<td width="150">:: 회원가입일</td>
 									<td><input type="text" name="member_joinDate" id="member_joinDate" value="${member.member_joinDate}"
-										size="30"></td>
+										size="30" disabled></td>
+								</tr>
+								
+								<tr height="50">
+									<td width="150">:: 권한</td>
+									<td><input type="text" name="member_right" id="member_right" value="${member.member_right}"
+										size="30" disabled></td>
 								</tr>
 								
 								<tr height="50">
@@ -224,11 +230,7 @@ function backToList(obj){
 									<td><input type="text" name="member_last_log" id="member_last_log" value="${member.member_last_log}"
 										size="30"></td>
 								</tr>
-								<tr height="50">
-									<td width="150">:: 권한</td>
-									<td><input type="text" name="member_right" id="member_right" value="${member.member_right}"
-										size="30"></td>
-								</tr>
+								
 							</table>
 						</div>
 					</div>
@@ -240,11 +242,18 @@ function backToList(obj){
 					<div id="memberInfo_container">
 						<div class="memberInfo_cnt1">
 							<table>
+							<tr height="50">
+									<td width="150">:: 성별</td>
+									<td colspan="2"><input type="text" name="member_gender"
+										id="member_gender" value="${member.member_gender}" size="30" disabled/></td>
+								</tr>
+								
 								<tr height="50">
 									<td width="150">:: 휴대전화번호</td>
 									<td colspan="2"><input type="text" name="member_phoneno"
 										id="member_phoneno" value="${member.member_phoneno}" size="30" /></td>
 								</tr>
+								
 								<tr height="50">
 									<td width="150">:: 이메일(E-Mail)</td>
 									<td colspan="2"><input size="15" type="text"
@@ -332,7 +341,8 @@ function backToList(obj){
 							<div class="join_btn join_btn2">
 								<input type="button" value="삭제" id="memberInfo_del"
 									name="memberInfo_del"
-									onClick="fn_remove_mem('${contextPath}/admin/member/removeMember.do', ${qna.qna_no})">
+									onClick="fn_remove_mem('${contextPath}/admin/member/removeMember.do', '${member.member_id}')">
+									
 							</div>
 							<div class="join_btn join_btn1">
 								<input type="reset" value="취소">

@@ -159,7 +159,7 @@ public class AdminMemberControllerImpl implements AdminMemberController {
 	
 	//회원삭제
 	@RequestMapping(value="/admin/member/removeMember.do" ,method = {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView removeMember(@RequestParam(value="member_id", required=false) String member_id, 
+	public ModelAndView removeMember(@RequestParam(value="member_id") String member_id, 
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		
