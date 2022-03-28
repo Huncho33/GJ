@@ -40,9 +40,9 @@
 						<li><a id="khs_left khs_left1" class="khs_lnb"><p>사용자
 									관리</p></a>
 							<ul class="khs_depth2">
-								<li><a href="${contextPath}/admin/member/listMembers.do">-
-										사용자 관리</a></li>
-								<li><a href="#">- 관리자 관리</a></li>
+								<li><a href="${contextPath}/admin/member/listMembers.do">- 사용자 관리</a></li>
+								<li><a href="#">-
+										관리자 관리</a></li>
 							</ul></li>
 						<li><a id="khs_left khs_left2" class="khs_lnb"><p>신청
 									관리</p></a>
@@ -72,8 +72,8 @@
 					<span>[검색 회원: ${searchTotMembers }명]</span>
 					<form name="frmSearch"
 						action="${contextPath}/admin/member/searchMemberList.do">
-						<input name="searchMember" type="text"> <input
-							type="submit" name="search" value="검 색">
+						<input
+							type="submit" name="search" value="검 색"><input name="searchMember" type="text"> 
 					</form>
 				</div>
 				<table id=adm_memberManage_list_tab align="center" width="100%">

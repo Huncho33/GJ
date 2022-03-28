@@ -151,8 +151,8 @@ function backToList(obj){
 						<li><a id="khs_left khs_left1" class="khs_lnb"><p>사용자
 									관리</p></a>
 							<ul class="khs_depth2">
-								<li><a href="${contextPath}/mypage/myInfo.do">- 사용자 관리</a></li>
-								<li><a href="${contextPath}/mypage/memDeleteForm.do">-
+								<li><a href="${contextPath}/admin/member/listMembers.do">- 사용자 관리</a></li>
+								<li><a href="#">-
 										관리자 관리</a></li>
 							</ul></li>
 						<li><a id="khs_left khs_left2" class="khs_lnb"><p>신청
@@ -176,7 +176,7 @@ function backToList(obj){
 			</div>
 			<div id="memberInfo_tot">
 				<div id="memberInfo_tit1">
-					<h3 class="memberInfo_tit">내 정보 수정</h3>
+					<h3 class="memberInfo_tit">사용자 정보 수정</h3>
 				</div>
 				<form id="memberInfo_frm" name="memberInfo_frm">
 					<div id="memberInfo_tit2">
@@ -191,7 +191,7 @@ function backToList(obj){
 								<tr height="50">
 									<td width="150">:: 아이디</td>
 									<td><input type="text" name="member_id" id="member_id" value="${member.member_id}" size="30" disabled><input
-										type="text" name="member_id2" id="member_id2" value="${member.member_id}"></td>
+										type="hidden" name="member_id2" id="member_id2" value="${member.member_id}"></td>
 								</tr>
 								<tr height="50">
 									<td width="150">:: 이름</td>
