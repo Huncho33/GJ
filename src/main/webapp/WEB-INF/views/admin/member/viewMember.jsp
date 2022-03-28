@@ -3,9 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
-<c:set var="result" value="${param.result }" />
 <c:set var="member" value="${membersMap.member}" />
-<c:set var="removeCompleted" value="${membersMap.removeCompleted}" />
 <%
 	request.setCharacterEncoding("UTF-8");
 %>
@@ -92,8 +90,8 @@ function backToList(obj){
 	function fn_modFormData(attribute) {
 		var value;
 		var memberInfo_frm = document.memberInfo_frm;
+		var member_id = document.getElementById("member_id").value;
 		if(attribute == 'member'){
-			var member_id = document.getElementById("member_id").value;
 			var member_pw = document.getElementById("member_pw").value;
 			var member_phoneno = document.getElementById("member_phoneno").value;
 			var member_email1 = document.getElementById("member_email1").value;
@@ -114,6 +112,7 @@ function backToList(obj){
 			data : {
 				attribute:attribute,
 				value:value,
+				member_id:member_id,
 			},
 			success : function(data, textStatus) {
 				if(data.trim()=='mod_success'){
@@ -133,6 +132,21 @@ function backToList(obj){
 			}
 		}); //end ajax
 	}
+	
+	 // 회원 정보 삭제하기
+	 function fn_remove_mem(url,member_id){
+		 var form = document.createElement("form");
+		 form.setAttribute("method", "post");
+		 form.setAttribute("action", url);
+	     var member_idInput = document.createElement("input");
+	     member_idInput.setAttribute("type","hidden");
+	     member_idInput.setAttribute("name","member_id");
+	     member_idInput.setAttribute("value", member_id);
+		 
+	     form.appendChild(member_idInput);
+	     document.body.appendChild(form);
+	     form.submit();
+	 }
 	
 </script>
 
@@ -187,7 +201,7 @@ function backToList(obj){
 								<tr height="50">
 									<td width="150">:: 아이디</td>
 									<td><input type="text" name="member_id" id="member_id" value="${member.member_id}" size="30" disabled><input
-										type="hidden" name="member_id2" id="member_id2"></td>
+										type="hidden" name="member_id" id="member_id"  value="${member.member_id}"></td>
 								</tr>
 								<tr height="50">
 									<td width="150">:: 이름</td>
@@ -199,7 +213,7 @@ function backToList(obj){
 										size="30"></td>
 								</tr>
 								
-								<tr height="50">
+							  	<tr height="50">
 									<td width="150">:: 회원가입일</td>
 									<td><input type="text" name="member_joinDate" id="member_joinDate" value="${member.member_joinDate}"
 										size="30"></td>
@@ -208,6 +222,11 @@ function backToList(obj){
 								<tr height="50">
 									<td width="150">:: 최종접속일</td>
 									<td><input type="text" name="member_last_log" id="member_last_log" value="${member.member_last_log}"
+										size="30"></td>
+								</tr>
+								<tr height="50">
+									<td width="150">:: 권한</td>
+									<td><input type="text" name="member_right" id="member_right" value="${member.member_right}"
 										size="30"></td>
 								</tr>
 							</table>
@@ -309,6 +328,11 @@ function backToList(obj){
 								<input type="submit" value="수정" id="memberInfo_mod"
 									name="memberInfo_mod"
 									onClick="fn_modFormData('member');">
+							</div>
+							<div class="join_btn join_btn2">
+								<input type="button" value="삭제" id="memberInfo_del"
+									name="memberInfo_del"
+									onClick="fn_remove_mem('${contextPath}/admin/member/removeMember.do', ${qna.qna_no})">
 							</div>
 							<div class="join_btn join_btn1">
 								<input type="reset" value="취소">

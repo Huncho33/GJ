@@ -1,5 +1,6 @@
 package com.onestop.GJ.admin.member.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -8,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
-import com.onestop.GJ.admin.member.vo.AdminMemberVO;
+import com.onestop.GJ.member.vo.MemberVO;
 
 
 @Repository("adminMemberDAO")
@@ -18,7 +19,7 @@ public class AdminMemberDAOImpl implements AdminMemberDAO {
 
 	@Override
 	public List selectAllMemberList(Map pagingMap) throws DataAccessException {
-		List<AdminMemberVO> membersList = null;
+		List<MemberVO> membersList = null;
 		membersList = sqlSession.selectList("mapper.adminMember.selectAllMemberList_adm", pagingMap);
 		return membersList;
 	}
@@ -26,7 +27,7 @@ public class AdminMemberDAOImpl implements AdminMemberDAO {
 	 //검색창
  	@Override
  	public List selectMemberListBySearchMember(Map pagingMap) throws DataAccessException{
- 		List<AdminMemberVO> membersList=sqlSession.selectList("mapper.adminMember.selectMemberListBySearchMember", pagingMap);
+ 		List<MemberVO> membersList=sqlSession.selectList("mapper.adminMember.selectMemberListBySearchMember", pagingMap);
  	     System.out.println("검색"+ membersList.size());
  		 return membersList;
  	}
@@ -49,13 +50,13 @@ public class AdminMemberDAOImpl implements AdminMemberDAO {
    	
 //  회원 상세보기
   @Override
-  public AdminMemberVO selectMember(String member_id) throws DataAccessException {
+  public MemberVO selectMember(String member_id) throws DataAccessException {
      return sqlSession.selectOne("mapper.adminMember.selectMember", member_id);
   }
 
 	@Override
-	public int insertMember(AdminMemberVO adminMemberVO) throws DataAccessException {
-		int result = sqlSession.insert("mapper.adminMember.insertMember_adm", adminMemberVO);
+	public int insertMember(MemberVO memberVO) throws DataAccessException {
+		int result = sqlSession.insert("mapper.adminMember.insertMember_adm", memberVO);
 		return result;
 	}
 	
@@ -67,9 +68,9 @@ public class AdminMemberDAOImpl implements AdminMemberDAO {
 	
 	
 
-	@Override
-	public int deleteMember(String member_id) throws DataAccessException {
-		int result = sqlSession.delete("mapper.adminMember.deleteMember_adm", member_id);
-		return result;
+	public void deleteMember(String member_id) throws DataAccessException {
+		System.out.println("dao"+member_id);
+		sqlSession.delete("mapper.adminMember.deleteMember", member_id);
 	}
+	
 }

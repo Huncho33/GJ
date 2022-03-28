@@ -5,7 +5,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -19,8 +18,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.onestop.GJ.admin.member.service.AdminMemberService;
-import com.onestop.GJ.admin.member.vo.AdminMemberVO;
 import com.onestop.GJ.member.vo.MemberVO;
+import com.onestop.GJ.mypage.service.MypageService;
 
 
 
@@ -29,7 +28,9 @@ public class AdminMemberControllerImpl implements AdminMemberController {
 	@Autowired
 	private AdminMemberService adminMemberService;
 	@Autowired
-	private AdminMemberVO adminMemberVO ;
+	private MemberVO memberVO ;
+	@Autowired
+	private MypageService mypageService;
 	
 	//회원정보리스트
 	@Override
@@ -89,7 +90,7 @@ public class AdminMemberControllerImpl implements AdminMemberController {
 	
 	@Override
 	@RequestMapping(value="/admin/member/addMember.do" ,method = RequestMethod.POST)
-	public ModelAndView addMember(@ModelAttribute("member") AdminMemberVO member,
+	public ModelAndView addMember(@ModelAttribute("member") MemberVO member,
 			                  HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("html/text;charset=utf-8");
@@ -102,11 +103,9 @@ public class AdminMemberControllerImpl implements AdminMemberController {
 //  게시글 상세
   @RequestMapping(value = "/admin/member/viewMember.do", method = RequestMethod.GET)
   public ModelAndView viewMember(@RequestParam("member_id") String member_id,
-        @RequestParam(value="removeCompleted", required=false) String removeCompleted,
         HttpServletRequest request, HttpServletResponse response) throws Exception {
      String viewName = (String) request.getAttribute("viewName");
      Map membersMap = adminMemberService.viewMember(member_id);
-     membersMap.put("removeCompleted", removeCompleted );
      ModelAndView mav = new ModelAndView();
      mav.setViewName(viewName);
      mav.addObject("membersMap", membersMap);
@@ -114,17 +113,19 @@ public class AdminMemberControllerImpl implements AdminMemberController {
   }
   
 
-	// 내정보 수정 기능 (responseEntity)
+//내정보 수정 기능 (responseEntity)
 		@Override
 		@RequestMapping(value = "/admin/member/modMemberInfo.do", method = RequestMethod.POST)
 		public ResponseEntity modMemberInfo(@RequestParam("attribute") String attribute,
 									@RequestParam("value") String value,
+									@RequestParam("member_id") String sltmember_id,
 					HttpServletRequest request, HttpServletResponse response) throws Exception {
 			Map<String, String> membersMap = new HashMap<String, String>();
 			String val[] = null;
-			HttpSession session = request.getSession();
-			adminMemberVO=(AdminMemberVO)session.getAttribute("member");
-			String member_id = adminMemberVO.getMember_id();
+			System.out.println("sltmember_id:" + sltmember_id);
+			MemberVO memberVO = (MemberVO)adminMemberService.selectMemberId(sltmember_id);
+			System.out.println("수정할 값 memberVO: " + memberVO);
+			
 			if(attribute.equals("member")) {
 				val = value.split(",");
 				membersMap.put("member_pw", val[0]);
@@ -139,12 +140,13 @@ public class AdminMemberControllerImpl implements AdminMemberController {
 				membersMap.put(attribute, value);
 			}
 			
-			membersMap.put("member_id", member_id);
+			membersMap.put("member_id", sltmember_id);
 			
-			adminMemberVO = (AdminMemberVO)adminMemberService.modifyMember_adm(membersMap);
-			session.removeAttribute("member");
-			session.setAttribute("member", adminMemberVO);
+			System.out.println(membersMap);
 			
+			System.out.println("수정 전  memberVO: " + memberVO);
+			memberVO = (MemberVO)mypageService.modifyMember(membersMap);
+			System.out.println("수정 후  memberVO: " + memberVO);
 			String message = null;
 			ResponseEntity resEntity = null;
 			HttpHeaders responseHeaders = new HttpHeaders();
@@ -156,15 +158,19 @@ public class AdminMemberControllerImpl implements AdminMemberController {
 		}
 	
 	//회원삭제
-	@Override
-	@RequestMapping(value="/admin/member/removeMember.do" ,method = RequestMethod.GET)
-	public ModelAndView removeMember(@RequestParam("member_id") String member_id, 
-			           HttpServletRequest request, HttpServletResponse response) throws Exception{
+	@RequestMapping(value="/admin/member/removeMember.do" ,method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView removeMember(@RequestParam(value="member_id", required=false) String member_id, 
+			HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
+		
+		ModelAndView mav = new ModelAndView();
 		adminMemberService.removeMember(member_id);
-		ModelAndView mav = new ModelAndView("redirect:/admin/member/listMembers.do");
+		System.out.println("member_id con" + member_id);
+		mav.setViewName("redirect:/admin/member/listMembers.do");
 		return mav;
 	}
+
+	
 	
 	private String getViewName(HttpServletRequest request) throws Exception {
 		String contextPath = request.getContextPath();

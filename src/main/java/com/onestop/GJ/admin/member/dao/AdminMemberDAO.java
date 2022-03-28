@@ -1,18 +1,18 @@
 package com.onestop.GJ.admin.member.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.dao.DataAccessException;
 
-import com.onestop.GJ.admin.member.vo.AdminMemberVO;
+import com.onestop.GJ.member.vo.MemberVO;
 
 public interface AdminMemberDAO {
 
 
-	int insertMember(AdminMemberVO adminMemberVO) throws DataAccessException;
+	int insertMember(MemberVO memberVO) throws DataAccessException;
 
-	int deleteMember(String member_id) throws DataAccessException;
 
 	List selectAllMemberList(Map pagingMap) throws DataAccessException;
 
@@ -22,6 +22,6 @@ public interface AdminMemberDAO {
 
 	int selectSearchTotMembers(Map pagingMap) throws DataAccessException;
 
-	AdminMemberVO selectMember(String member_id) throws DataAccessException;
+	MemberVO selectMember(String member_id) throws DataAccessException;
 
 }
