@@ -15,8 +15,7 @@
 
 <html>
 <head>
-<meta charset=UTF-8">
-<title>회원 정보 출력창</title>
+<meta charset="UTF-8">
 <script src="https://kit.fontawesome.com/fc92373f81.js"
 	crossorigin="anonymous"></script>
 <link href="${contextPath}/resources/css/admin/memberManage.css"
@@ -39,9 +38,9 @@
 						<li><a id="khs_left khs_left1" class="khs_lnb"><p>사용자
 									관리</p></a>
 							<ul class="khs_depth2">
-								<li><a href="${contextPath}/mypage/myInfo.do">- 사용자 관리</a></li>
-								<li><a href="${contextPath}/mypage/memDeleteForm.do">-
-										관리자 관리</a></li>
+								<li><a href="${contextPath}/admin/member/listMembers.do">-
+										사용자 관리</a></li>
+								<li><a href="#">- 관리자 관리</a></li>
 							</ul></li>
 						<li><a id="khs_left khs_left2" class="khs_lnb"><p>신청
 									관리</p></a>
@@ -68,10 +67,11 @@
 				</div>
 				<!-- 검색 창 -->
 				<div id="adm_memberManage_search">
-				<span>[총 회원: ${totMembers }명]</span>
+					<span>[총 회원: ${totMembers }명]</span>
 					<form name="frmSearch"
 						action="${contextPath}/admin/member/searchMemberList.do">
-						<input type="submit" name="search" value="검 색"><input name="searchMember" type="text">  
+						<input type="submit" name="search" value="검 색"><input
+							name="searchMember" type="text">
 					</form>
 				</div>
 
@@ -99,7 +99,7 @@
 								<tr align="center">
 									<td width="20%"><a class='memberInfo'
 										href="${contextPath}/admin/member/viewMember.do?member_id=${member.member_id }">
-											${member.member_id}</a>
+											${member.member_id}</a></td>
 									<td width="20%">${member.member_name}</td>
 									<td width="30%">${member.member_email1}@${member.member_email2}</td>
 									<td width="15%">${member.member_joinDate}</td>
@@ -164,7 +164,6 @@
 						</c:choose>
 					</c:if>
 				</div>
-
 			</div>
 		</div>
 	</div>
