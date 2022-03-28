@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.dao.DataAccessException;
 
 import com.onestop.GJ.admin.member.vo.AdminMemberVO;
+import com.onestop.GJ.member.vo.MemberVO;
 
 public interface AdminMemberDAO {
 
@@ -22,6 +23,8 @@ public interface AdminMemberDAO {
 
 	int selectSearchTotMembers(Map pagingMap) throws DataAccessException;
 
-	AdminMemberVO selectMember(String member_id) throws DataAccessException;
+	MemberVO selectMember(String member_id) throws DataAccessException;
+
+	MemberVO selectMemberId(String member_id) throws DataAccessException;
 
 }

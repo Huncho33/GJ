@@ -31,6 +31,12 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/mypage/memDeleteForm.jsp" />
 	</definition>
+	
+	<definition name="/mypage/myQna" extends="baseLayout">
+		<put-attribute name="title" value="마이페이지 ::나의 게시글 및 상담" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/mypage/myQna.jsp" />
+	</definition>
 
 </tiles-definitions>
 

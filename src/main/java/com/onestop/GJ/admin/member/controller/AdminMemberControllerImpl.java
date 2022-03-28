@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.onestop.GJ.admin.member.service.AdminMemberService;
 import com.onestop.GJ.admin.member.vo.AdminMemberVO;
 import com.onestop.GJ.member.vo.MemberVO;
+import com.onestop.GJ.mypage.service.MypageService;
 
 
 
@@ -29,7 +30,7 @@ public class AdminMemberControllerImpl implements AdminMemberController {
 	@Autowired
 	private AdminMemberService adminMemberService;
 	@Autowired
-	private AdminMemberVO adminMemberVO ;
+	private MypageService mypageService;
 	
 	//회원정보리스트
 	@Override
@@ -119,12 +120,20 @@ public class AdminMemberControllerImpl implements AdminMemberController {
 		@RequestMapping(value = "/admin/member/modMemberInfo.do", method = RequestMethod.POST)
 		public ResponseEntity modMemberInfo(@RequestParam("attribute") String attribute,
 									@RequestParam("value") String value,
+									@RequestParam("member_id") String sltmember_id,
 					HttpServletRequest request, HttpServletResponse response) throws Exception {
+			
+			String viewName = (String) request.getAttribute("viewName");
+			ModelAndView mav = new ModelAndView(viewName);
+			
 			Map<String, String> membersMap = new HashMap<String, String>();
 			String val[] = null;
+			System.out.println("sltmember_id:" + sltmember_id);
+			MemberVO memberVO = (MemberVO)adminMemberService.selectMemberId(sltmember_id);
+			System.out.println("수정할 값 memberVO: " + memberVO);
 			HttpSession session = request.getSession();
-			adminMemberVO=(AdminMemberVO)session.getAttribute("member");
-			String member_id = adminMemberVO.getMember_id();
+			session.getAttribute("member");
+			
 			if(attribute.equals("member")) {
 				val = value.split(",");
 				membersMap.put("member_pw", val[0]);
@@ -138,12 +147,11 @@ public class AdminMemberControllerImpl implements AdminMemberController {
 			} else {
 				membersMap.put(attribute, value);
 			}
+			membersMap.put("member_id", sltmember_id);
+			System.out.println("수정 전  memberVO: " + memberVO);
+			memberVO = (MemberVO)mypageService.modifyMember(membersMap);
+			System.out.println("수정 후  memberVO: " + memberVO);
 			
-			membersMap.put("member_id", member_id);
-			
-			adminMemberVO = (AdminMemberVO)adminMemberService.modifyMember_adm(membersMap);
-			session.removeAttribute("member");
-			session.setAttribute("member", adminMemberVO);
 			
 			String message = null;
 			ResponseEntity resEntity = null;
@@ -161,7 +169,7 @@ public class AdminMemberControllerImpl implements AdminMemberController {
 	public ModelAndView removeMember(@RequestParam("member_id") String member_id, 
 			           HttpServletRequest request, HttpServletResponse response) throws Exception{
 		request.setCharacterEncoding("utf-8");
-		adminMemberService.removeMember(member_id);
+		mypageService.deleteMember(member_id);
 		ModelAndView mav = new ModelAndView("redirect:/admin/member/listMembers.do");
 		return mav;
 	}

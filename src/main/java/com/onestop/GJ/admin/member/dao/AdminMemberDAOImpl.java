@@ -9,6 +9,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
 import com.onestop.GJ.admin.member.vo.AdminMemberVO;
+import com.onestop.GJ.member.vo.MemberVO;
 
 
 @Repository("adminMemberDAO")
@@ -18,7 +19,7 @@ public class AdminMemberDAOImpl implements AdminMemberDAO {
 
 	@Override
 	public List selectAllMemberList(Map pagingMap) throws DataAccessException {
-		List<AdminMemberVO> membersList = null;
+		List<MemberVO> membersList = null;
 		membersList = sqlSession.selectList("mapper.adminMember.selectAllMemberList_adm", pagingMap);
 		return membersList;
 	}
@@ -26,7 +27,7 @@ public class AdminMemberDAOImpl implements AdminMemberDAO {
 	 //검색창
  	@Override
  	public List selectMemberListBySearchMember(Map pagingMap) throws DataAccessException{
- 		List<AdminMemberVO> membersList=sqlSession.selectList("mapper.adminMember.selectMemberListBySearchMember", pagingMap);
+ 		List<MemberVO> membersList=sqlSession.selectList("mapper.adminMember.selectMemberListBySearchMember", pagingMap);
  	     System.out.println("검색"+ membersList.size());
  		 return membersList;
  	}
@@ -49,7 +50,12 @@ public class AdminMemberDAOImpl implements AdminMemberDAO {
    	
 //  회원 상세보기
   @Override
-  public AdminMemberVO selectMember(String member_id) throws DataAccessException {
+  public MemberVO selectMember(String member_id) throws DataAccessException {
+     return sqlSession.selectOne("mapper.adminMember.selectMember", member_id);
+  }
+  
+  @Override
+  public MemberVO selectMemberId(String member_id) throws DataAccessException {
      return sqlSession.selectOne("mapper.adminMember.selectMember", member_id);
   }
 

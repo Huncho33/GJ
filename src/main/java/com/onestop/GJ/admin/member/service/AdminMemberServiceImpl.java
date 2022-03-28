@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.onestop.GJ.admin.member.dao.AdminMemberDAOImpl;
 import com.onestop.GJ.admin.member.vo.AdminMemberVO;
+import com.onestop.GJ.member.vo.MemberVO;
 
 
 @Service("adminMemberService")
@@ -20,11 +21,13 @@ import com.onestop.GJ.admin.member.vo.AdminMemberVO;
 public class AdminMemberServiceImpl implements AdminMemberService {
 	@Autowired
 	private AdminMemberDAOImpl adminMemberDAO;
+	
+	
 	@Override
 	public Map listMembers(Map pagingMap) throws DataAccessException {
 		
 		Map membersMap = new HashMap();
-		List<AdminMemberVO> membersList = adminMemberDAO.selectAllMemberList(pagingMap);
+		List<MemberVO> membersList = adminMemberDAO.selectAllMemberList(pagingMap);
 		int totMembers = adminMemberDAO.selectTotMembers();
 		membersMap.put("membersList", membersList);
 		membersMap.put("totMembers", totMembers);
@@ -36,7 +39,7 @@ public class AdminMemberServiceImpl implements AdminMemberService {
 	   @Override
 		public Map searchMemberList(Map pagingMap) throws Exception{
 		   Map membersMap = new HashMap();
-			List<AdminMemberVO> membersList=adminMemberDAO.selectMemberListBySearchMember(pagingMap);
+			List<MemberVO> membersList=adminMemberDAO.selectMemberListBySearchMember(pagingMap);
 			int searchTotMembers = adminMemberDAO.selectSearchTotMembers(pagingMap);
 			int totMembers = adminMemberDAO.selectTotMembers();
 			membersMap.put("membersList", membersList);
@@ -50,8 +53,8 @@ public class AdminMemberServiceImpl implements AdminMemberService {
 	   @Override
 	   public Map viewMember(String member_id) throws Exception {
 	      Map membersMap = new HashMap();
-	      AdminMemberVO adminMemberVO = adminMemberDAO.selectMember(member_id);
-	      membersMap.put("member", adminMemberVO);
+	      MemberVO memberVO = adminMemberDAO.selectMember(member_id);
+	      membersMap.put("member", memberVO);
 	      Collection<String> value = membersMap.values();      
 	      return membersMap;
 	      
@@ -62,9 +65,17 @@ public class AdminMemberServiceImpl implements AdminMemberService {
 		return adminMemberDAO.insertMember(member);
 	}
 	
+	
+	//셀렉한 멤버VO 가져오기
+	@Override
+	public MemberVO selectMemberId(String member_id) throws DataAccessException {
+		return adminMemberDAO.selectMember(member_id);
+	}
+	
+	
 	// 회원 정보 수정
 	@Override
-	public AdminMemberVO modifyMember_adm(Map membersMap) throws Exception {
+	public MemberVO modifyMember_adm(Map membersMap) throws Exception {
 		String member_id = (String) membersMap.get("member_id");
 		adminMemberDAO.updateMember_adm(membersMap);
 		return adminMemberDAO.selectMember(member_id);

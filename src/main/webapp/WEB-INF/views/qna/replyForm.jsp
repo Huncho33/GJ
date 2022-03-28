@@ -70,7 +70,7 @@
 							style="font-weight: bold; color: red;">*</span>는 필수입력사항입니다.)
 					</p>
 				</div>
-				<form name="QnaForm" method="post" accept-charset="utf-8" action="${contextPath}/qna/addNewQna.do">
+				<form name="QnaForm" method="post" accept-charset="utf-8" action="${contextPath}/qna/addNewReply.do">
 					<div id="replyFrm_title2">
 						<p class="replyFrm_tit">
 						<table id="replyFrm_detail_table">
@@ -93,7 +93,7 @@
 										id="member_id" name="member_id" maxlength="100"
 										value="${member.member_id }" disabled /></td>
 								</tr>
-								<tr class="dot_line" hidden>
+								<tr class="dot_line">
 									<td class="fixed_join">:: 비밀글여부</td>
 									<td><input type="checkbox" value="1" id="qna_secret"
 										name="qna_secret" />&nbsp;&nbsp;해당 상담글을 잠급니다.</td>

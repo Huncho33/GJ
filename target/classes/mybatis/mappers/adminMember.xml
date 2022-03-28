@@ -4,7 +4,7 @@
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
    <mapper namespace="mapper.adminMember">
-	<resultMap id="adminMemResult" type="adminMemberVO">
+	<resultMap id="adminMemResult" type="MemberVO">
 		<result property="member_id" column="member_id" />
 		<result property="member_pw" column="member_pw" />
 		<result property="member_name" column="member_name" />
@@ -96,7 +96,7 @@
 	
 		<!--회원 상세 조회하기 -->
 
-	<select id="selectMember" resultType="AdminMemberVO"
+	<select id="selectMember" resultType="MemberVO"
 		parameterType="String">
     <![CDATA[
       SELECT * from member

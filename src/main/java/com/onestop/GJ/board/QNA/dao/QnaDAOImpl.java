@@ -38,6 +38,12 @@ public class QnaDAOImpl implements QnaDAO {
 		return qna_no;
 	}
 
+	// 답변여부 상태 변경
+	@Override
+	public void updateReply(Map QnaMap) throws DataAccessException {
+		sqlSession.update("mapper.boardQna.updateReply", QnaMap);
+	}
+
 	// 상담글 추가하기 :: 새 상담글 내용 셀렉하기
 	private int selectNewQnaNO() throws DataAccessException {
 		return sqlSession.selectOne("mapper.boardQna.selectNewQnaNO");

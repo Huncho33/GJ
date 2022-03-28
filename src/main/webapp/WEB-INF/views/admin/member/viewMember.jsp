@@ -92,8 +92,8 @@ function backToList(obj){
 	function fn_modFormData(attribute) {
 		var value;
 		var memberInfo_frm = document.memberInfo_frm;
+		var member_id = document.getElementById("member_id2").value;
 		if(attribute == 'member'){
-			var member_id = document.getElementById("member_id").value;
 			var member_pw = document.getElementById("member_pw").value;
 			var member_phoneno = document.getElementById("member_phoneno").value;
 			var member_email1 = document.getElementById("member_email1").value;
@@ -114,6 +114,7 @@ function backToList(obj){
 			data : {
 				attribute:attribute,
 				value:value,
+				member_id:member_id,
 			},
 			success : function(data, textStatus) {
 				if(data.trim()=='mod_success'){
@@ -143,30 +144,33 @@ function backToList(obj){
 		<div id="memberInfo_total">
 			<div id="khs_sideMenu_tot">
 				<div id="khs_leftTitle">
-					<p>마이페이지</p>
+					<p>관리페이지</p>
 				</div>
 				<div id="khs_subMenu">
 					<ul>
-						<li><a id="khs_left khs_left1" class="khs_lnb"><p>회원정보
+						<li><a id="khs_left khs_left1" class="khs_lnb"><p>사용자
 									관리</p></a>
 							<ul class="khs_depth2">
-								<li><a href="${contextPath}/mypage/memberInfo.do">- 내 정보 수정</a></li>
+								<li><a href="${contextPath}/mypage/myInfo.do">- 사용자 관리</a></li>
 								<li><a href="${contextPath}/mypage/memDeleteForm.do">-
-										회원탈퇴</a></li>
+										관리자 관리</a></li>
 							</ul></li>
-						<li><a id="khs_left khs_left2" class="khs_lnb"><p>나의
-									신청 현황</p></a>
+						<li><a id="khs_left khs_left2" class="khs_lnb"><p>신청
+									관리</p></a>
 							<ul class="khs_depth2">
-								<li><a href="">- 월세지원 신청 현황</a></li>
-								<li><a href="">- 전세지원 신청 현황</a></li>
-								<li><a href="">- 행복주택지원 신청 현황</a></li>
+								<li><a href="">- 신청자 관리</a></li>
+								<li><a href="">- 신청 통계</a></li>
 							</ul></li>
-						<li><a id="khs_left khs_left3" class="khs_lnb"><p>나의
-									게시글 및 상담</p></a>
+						<li><a id="khs_left khs_left3" class="khs_lnb"><p>게시판
+									관리</p></a>
 							<ul class="khs_depth2">
-								<li><a href="">- 나의 게시글 목록</a></li>
-								<li><a href="">- 나의 상담 목록</a></li>
+								<li><a href="">- 공지사항 관리</a></li>
+								<li><a href="">- 기타자료실 관리</a></li>
+								<li><a href="">- 상담게시판 관리</a></li>
+								<li><a href="">- 자유게시판 관리</a></li>
+								<li><a href="">- 알림게시판 관리</a></li>
 							</ul></li>
+						<li><a id="khs_left khs_left3" class="khs_lnb"><p>통계</p></a></li>
 					</ul>
 				</div>
 			</div>
@@ -187,7 +191,7 @@ function backToList(obj){
 								<tr height="50">
 									<td width="150">:: 아이디</td>
 									<td><input type="text" name="member_id" id="member_id" value="${member.member_id}" size="30" disabled><input
-										type="hidden" name="member_id2" id="member_id2"></td>
+										type="text" name="member_id2" id="member_id2" value="${member.member_id}"></td>
 								</tr>
 								<tr height="50">
 									<td width="150">:: 이름</td>

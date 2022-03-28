@@ -1,5 +1,6 @@
 package com.onestop.GJ.mypage.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.dao.DataAccessException;
@@ -18,9 +19,15 @@ public interface MypageDAO {
 
 	void updateMember(Map memberMap) throws DataAccessException;
 
-//	void updateMember(MemberVO memberVO) throws DataAccessException;
+	List selectMonthQnasList(String member_id) throws Exception;
 
-//	int updateMember(MemberVO memberVO) throws DataAccessException;
+	List selectRentQnasList(String member_id) throws Exception;
+
+	List selectReturnQnasList(String member_id) throws Exception;
+
+	List selectWeddingQnasList(String member_id) throws Exception;
+
+	List selectShareQnasList(String member_id) throws Exception;
 
 
 }

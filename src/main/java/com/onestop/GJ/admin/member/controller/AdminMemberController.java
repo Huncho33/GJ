@@ -21,7 +21,7 @@ public interface AdminMemberController {
 	ModelAndView searchMemberList(String searchMember, HttpServletRequest request, HttpServletResponse response)
 			throws Exception;
 
-	ResponseEntity modMemberInfo(String attribute, String value, HttpServletRequest request,
+	ResponseEntity modMemberInfo(String attribute, String value, String sltmember_id, HttpServletRequest request,
 			HttpServletResponse response) throws Exception;
 
 }

@@ -25,6 +25,7 @@
 /* 사이드메뉴 대분류  */
 #khs_subMenu>ul>li {
 	list-style: none;
+	cursor: pointer;
 }
 
 #khs_subMenu>ul>li>a {

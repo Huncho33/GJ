@@ -13,6 +13,7 @@
 		<result property="qna_date" column="qna_date" />
 		<result property="qna_pw" column="qna_pw" />
 		<result property="qna_policy" column="qna_policy" />
+		<result property="qna_reply" column="qna_reply" />
 	</resultMap>
 
 
@@ -76,6 +77,14 @@
 	</select>
 	
 	
+	<!-- 답변여부 상태 변경 -->
+	<update id="updateReply" parameterType="java.util.Map">
+	<![CDATA[
+		UPDATE board_qna
+		SET qna_reply = 'true'
+		WHERE qna_no = #{qnaparent_no}
+	]]>
+	</update>
 	
 	
 	<update id="updateQna" parameterType="java.util.Map">

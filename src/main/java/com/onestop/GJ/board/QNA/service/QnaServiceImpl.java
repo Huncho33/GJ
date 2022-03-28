@@ -16,7 +16,7 @@ import com.onestop.GJ.board.QNA.vo.QnaVO;
 @Transactional(propagation = Propagation.REQUIRED)
 public class QnaServiceImpl implements QnaService {
 	@Autowired
-	QnaDAO QnaDAO;
+	private QnaDAO QnaDAO;
 
 	public Map listQnas(Map pagingMap) throws Exception {
 		Map qnasMap = new HashMap();
@@ -34,6 +34,12 @@ public class QnaServiceImpl implements QnaService {
 		return QnaNO;
 	}
 
+	// 원글 답변여부 상태 변경
+	@Override
+	public void updateReply(Map QnaMap) throws Exception {
+		QnaDAO.updateReply(QnaMap);
+	}
+
 	// 상세글 보기
 	@Override
 	public Map viewQna(int qna_no) throws Exception {
@@ -42,7 +48,7 @@ public class QnaServiceImpl implements QnaService {
 		QnaMap.put("Qna", QnaVO);
 		return QnaMap;
 	}
-	
+
 	// 부모글 조회하기
 	@Override
 	public Map selectParentQna(String qnaparent_no) throws Exception {
@@ -51,7 +57,7 @@ public class QnaServiceImpl implements QnaService {
 		Map QnaParentMap = new HashMap();
 		QnaVO QnaVO = QnaDAO.selectParentQna(_qnaparent_no);
 		QnaParentMap.put("QnaVO", QnaVO);
-		System.out.println("QnaParentMap SERVICE: " + QnaParentMap );
+		System.out.println("QnaParentMap SERVICE: " + QnaParentMap);
 		return QnaParentMap;
 	}
 
@@ -66,13 +72,12 @@ public class QnaServiceImpl implements QnaService {
 	public void removeQna(int qna_no) throws Exception {
 		QnaDAO.deleteQna(qna_no);
 	}
-	
+
 	// 비밀번호 재확인 기능
 	@Override
 	public boolean checkPwd(int qna_no, int qna_pw) throws Exception {
-		System.out.println("서비스 qna_no:"+qna_no + " / 서비스 qna_pw:"+ qna_pw);
+		System.out.println("서비스 qna_no:" + qna_no + " / 서비스 qna_pw:" + qna_pw);
 		return QnaDAO.checkPwd(qna_no, qna_pw);
 	}
 
-	
 }
