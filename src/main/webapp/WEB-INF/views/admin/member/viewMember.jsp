@@ -3,9 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
-<c:set var="result" value="${param.result }" />
 <c:set var="member" value="${membersMap.member}" />
-<c:set var="removeCompleted" value="${membersMap.removeCompleted}" />
 <%
 	request.setCharacterEncoding("UTF-8");
 %>
@@ -92,7 +90,7 @@ function backToList(obj){
 	function fn_modFormData(attribute) {
 		var value;
 		var memberInfo_frm = document.memberInfo_frm;
-		var member_id = document.getElementById("member_id2").value;
+		var member_id = document.getElementById("member_id").value;
 		if(attribute == 'member'){
 			var member_pw = document.getElementById("member_pw").value;
 			var member_phoneno = document.getElementById("member_phoneno").value;
@@ -135,6 +133,21 @@ function backToList(obj){
 		}); //end ajax
 	}
 	
+	 // 회원 정보 삭제하기
+	 function fn_remove_mem(url,member_id){
+		 var form = document.createElement("form");
+		 form.setAttribute("method", "post");
+		 form.setAttribute("action", url);
+	     var member_idInput = document.createElement("input");
+	     member_idInput.setAttribute("type","hidden");
+	     member_idInput.setAttribute("name","member_id");
+	     member_idInput.setAttribute("value", member_id);
+		 
+	     form.appendChild(member_idInput);
+	     document.body.appendChild(form);
+	     form.submit();
+	 }
+	
 </script>
 
 </head>
@@ -144,39 +157,36 @@ function backToList(obj){
 		<div id="memberInfo_total">
 			<div id="khs_sideMenu_tot">
 				<div id="khs_leftTitle">
-					<p>관리페이지</p>
+					<p>마이페이지</p>
 				</div>
 				<div id="khs_subMenu">
 					<ul>
-						<li><a id="khs_left khs_left1" class="khs_lnb"><p>사용자
+						<li><a id="khs_left khs_left1" class="khs_lnb"><p>회원정보
 									관리</p></a>
 							<ul class="khs_depth2">
-								<li><a href="${contextPath}/admin/member/listMembers.do">- 사용자 관리</a></li>
-								<li><a href="#">-
-										관리자 관리</a></li>
+								<li><a href="${contextPath}/mypage/memberInfo.do">- 내 정보 수정</a></li>
+								<li><a href="${contextPath}/mypage/memDeleteForm.do">-
+										회원탈퇴</a></li>
 							</ul></li>
-						<li><a id="khs_left khs_left2" class="khs_lnb"><p>신청
-									관리</p></a>
+						<li><a id="khs_left khs_left2" class="khs_lnb"><p>나의
+									신청 현황</p></a>
 							<ul class="khs_depth2">
-								<li><a href="">- 신청자 관리</a></li>
-								<li><a href="">- 신청 통계</a></li>
+								<li><a href="">- 월세지원 신청 현황</a></li>
+								<li><a href="">- 전세지원 신청 현황</a></li>
+								<li><a href="">- 행복주택지원 신청 현황</a></li>
 							</ul></li>
-						<li><a id="khs_left khs_left3" class="khs_lnb"><p>게시판
-									관리</p></a>
+						<li><a id="khs_left khs_left3" class="khs_lnb"><p>나의
+									게시글 및 상담</p></a>
 							<ul class="khs_depth2">
-								<li><a href="">- 공지사항 관리</a></li>
-								<li><a href="">- 기타자료실 관리</a></li>
-								<li><a href="">- 상담게시판 관리</a></li>
-								<li><a href="">- 자유게시판 관리</a></li>
-								<li><a href="">- 알림게시판 관리</a></li>
+								<li><a href="">- 나의 게시글 목록</a></li>
+								<li><a href="">- 나의 상담 목록</a></li>
 							</ul></li>
-						<li><a id="khs_left khs_left3" class="khs_lnb"><p>통계</p></a></li>
 					</ul>
 				</div>
 			</div>
 			<div id="memberInfo_tot">
 				<div id="memberInfo_tit1">
-					<h3 class="memberInfo_tit">사용자 정보 수정</h3>
+					<h3 class="memberInfo_tit">내 정보 수정</h3>
 				</div>
 				<form id="memberInfo_frm" name="memberInfo_frm">
 					<div id="memberInfo_tit2">
@@ -191,7 +201,7 @@ function backToList(obj){
 								<tr height="50">
 									<td width="150">:: 아이디</td>
 									<td><input type="text" name="member_id" id="member_id" value="${member.member_id}" size="30" disabled><input
-										type="hidden" name="member_id2" id="member_id2" value="${member.member_id}"></td>
+										type="hidden" name="member_id" id="member_id"  value="${member.member_id}"></td>
 								</tr>
 								<tr height="50">
 									<td width="150">:: 이름</td>
@@ -203,10 +213,16 @@ function backToList(obj){
 										size="30"></td>
 								</tr>
 								
-								<tr height="50">
+							  	<tr height="50">
 									<td width="150">:: 회원가입일</td>
 									<td><input type="text" name="member_joinDate" id="member_joinDate" value="${member.member_joinDate}"
-										size="30"></td>
+										size="30" disabled></td>
+								</tr>
+								
+								<tr height="50">
+									<td width="150">:: 권한</td>
+									<td><input type="text" name="member_right" id="member_right" value="${member.member_right}"
+										size="30" disabled></td>
 								</tr>
 								
 								<tr height="50">
@@ -214,6 +230,7 @@ function backToList(obj){
 									<td><input type="text" name="member_last_log" id="member_last_log" value="${member.member_last_log}"
 										size="30"></td>
 								</tr>
+								
 							</table>
 						</div>
 					</div>
@@ -225,11 +242,18 @@ function backToList(obj){
 					<div id="memberInfo_container">
 						<div class="memberInfo_cnt1">
 							<table>
+							<tr height="50">
+									<td width="150">:: 성별</td>
+									<td colspan="2"><input type="text" name="member_gender"
+										id="member_gender" value="${member.member_gender}" size="30" disabled/></td>
+								</tr>
+								
 								<tr height="50">
 									<td width="150">:: 휴대전화번호</td>
 									<td colspan="2"><input type="text" name="member_phoneno"
 										id="member_phoneno" value="${member.member_phoneno}" size="30" /></td>
 								</tr>
+								
 								<tr height="50">
 									<td width="150">:: 이메일(E-Mail)</td>
 									<td colspan="2"><input size="15" type="text"
@@ -313,6 +337,12 @@ function backToList(obj){
 								<input type="submit" value="수정" id="memberInfo_mod"
 									name="memberInfo_mod"
 									onClick="fn_modFormData('member');">
+							</div>
+							<div class="join_btn join_btn2">
+								<input type="button" value="삭제" id="memberInfo_del"
+									name="memberInfo_del"
+									onClick="fn_remove_mem('${contextPath}/admin/member/removeMember.do', '${member.member_id}')">
+									
 							</div>
 							<div class="join_btn join_btn1">
 								<input type="reset" value="취소">
