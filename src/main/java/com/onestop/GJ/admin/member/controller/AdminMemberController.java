@@ -16,10 +16,10 @@ public interface AdminMemberController {
 	ModelAndView addMember(MemberVO member, HttpServletRequest request, HttpServletResponse response)
 			throws Exception;
 
-	ModelAndView searchMemberList(String searchMember, HttpServletRequest request, HttpServletResponse response)
-			throws Exception;
-
 	ResponseEntity modMemberInfo(String attribute, String value, String sltmember_id, HttpServletRequest request,
+			HttpServletResponse response) throws Exception;
+
+	ModelAndView searchMemberList(String searchMember, String searchType, HttpServletRequest request,
 			HttpServletResponse response) throws Exception;
 
 }

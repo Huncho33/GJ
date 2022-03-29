@@ -76,6 +76,10 @@ h3.adm_memberManage_titName {
 	margin-bottom: 10px;
 }
 
+#searchType{
+	float: right;
+}
+
 #adm_memberManage_search span{
 	float: left;
 	margin-bottom: 10px;

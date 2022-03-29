@@ -70,8 +70,18 @@
 					<span>[총 회원: ${totMembers }명]</span>
 					<form name="frmSearch"
 						action="${contextPath}/admin/member/searchMemberList.do">
+						
 						<input type="submit" name="search" value="검 색"><input
 							name="searchMember" type="text">
+							
+								<select id="searchType" name="searchType">
+						<option value="member_id" 
+						<c:if test="${searchType eq 'member_id' }">selected</c:if>>ID</option>
+						<option value="member_name"
+						<c:if test="${searchType eq 'member_name' }">selected</c:if>>이름</option>
+						<option value="member_right"
+						<c:if test="${searchType eq 'member_right' }">selected</c:if>>권한</option>
+						</select>
 					</form>
 				</div>
 
@@ -81,6 +91,7 @@
 						<td><b>이름</b></td>
 						<td><b>이메일</b></td>
 						<td><b>가입일</b></td>
+						<td><b>권한</b></td>
 						<td><b>최종접속일</b></td>
 					</tr>
 					<c:choose>
@@ -97,12 +108,13 @@
 							<c:forEach var="member" items="${membersList}"
 								varStatus="memberNum">
 								<tr align="center">
-									<td width="20%"><a class='memberInfo'
+									<td width="18%"><a class='memberInfo'
 										href="${contextPath}/admin/member/viewMember.do?member_id=${member.member_id }">
 											${member.member_id}</a></td>
-									<td width="20%">${member.member_name}</td>
-									<td width="30%">${member.member_email1}@${member.member_email2}</td>
+									<td width="15%">${member.member_name}</td>
+									<td width="25%">${member.member_email1}@${member.member_email2}</td>
 									<td width="15%">${member.member_joinDate}</td>
+									<td width="12%">${member.member_right}</td>
 									<td width="15%">${member.member_last_log}</td>
 								</tr>
 							</c:forEach>

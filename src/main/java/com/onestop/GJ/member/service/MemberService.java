@@ -26,5 +26,7 @@ public interface MemberService {
 	void find_pw(HttpServletResponse response, MemberVO member) throws Exception;
 // ID Ã£±â
 	MemberVO findId_hp(MemberVO memberVO) throws Exception;
+
+	void last_log(String member_id) throws Exception;
 	
 }

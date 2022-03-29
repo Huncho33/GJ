@@ -50,6 +50,12 @@ public class MemberServiceImpl implements MemberService {
 	public MemberVO login(MemberVO memberVO) throws Exception {
 		return memberDAO.loginById(memberVO);
 	}
+	
+	@Override
+	public void last_log(String member_id) throws Exception {
+		memberDAO.last_logOn(member_id);
+	}
+	
 
 	@Override
 	public String overlapped(String id) throws Exception {

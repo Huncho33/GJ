@@ -44,10 +44,15 @@ public class MemberControllerImpl implements MemberController {
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		memberVO = memberService.login(member);
+		
+		
 		if (memberVO != null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("member", memberVO);
 			session.setAttribute("isLogOn", true);
+			
+			String member_id = memberVO.getMember_id();
+			memberService.last_log(member_id);
 
 			String action = (String) session.getAttribute("action");
 			session.removeAttribute("action");

@@ -63,7 +63,9 @@ public class AdminMemberControllerImpl implements AdminMemberController {
 	 // 검색창
 	   @Override
 	   @RequestMapping(value = "/admin/member/searchMemberList.do", method = RequestMethod.GET)
-	   public ModelAndView searchMemberList(@RequestParam("searchMember") String searchMember, HttpServletRequest request,
+	   public ModelAndView searchMemberList(@RequestParam("searchMember") String searchMember,
+			   								@RequestParam("searchType") String searchType,
+			   HttpServletRequest request,
 	         HttpServletResponse response) throws Exception {
 	      response.setContentType("text/html;charset=utf-8");
 	      response.setCharacterEncoding("utf-8");
@@ -76,11 +78,13 @@ public class AdminMemberControllerImpl implements AdminMemberController {
 	      pagingMap.put("section", section);
 	      pagingMap.put("pageNum", pageNum);
 	      pagingMap.put("searchMember", searchMember);
+	      pagingMap.put("searchType", searchType);
 	      Map membersMap = adminMemberService.searchMemberList(pagingMap);
 
 	      membersMap.put("section", section);
 	      membersMap.put("pageNum", pageNum);
 	      membersMap.put("searchMember", searchMember);
+	      membersMap.put("searchType", searchType);
 
 	      String viewName = (String) request.getAttribute("viewName");
 	      ModelAndView mav = new ModelAndView(viewName);
@@ -141,22 +145,15 @@ public class AdminMemberControllerImpl implements AdminMemberController {
 				membersMap.put("member_roadAddress", val[5]);
 				membersMap.put("member_jibunAddress", val[6]);
 				membersMap.put("member_namujiAddress", val[7]);
+				membersMap.put("member_right", val[8]);
 			} else {
 				membersMap.put(attribute, value);
 			}
 			membersMap.put("member_id", sltmember_id);
 			System.out.println("수정 전  memberVO: " + memberVO);
-			memberVO = (MemberVO)mypageService.modifyMember(membersMap);
+			memberVO = (MemberVO)adminMemberService.modifyMember_adm(membersMap);
 			System.out.println("수정 후  memberVO: " + memberVO);
 			
-			membersMap.put("member_id", sltmember_id);
-			
-			System.out.println(membersMap);
-
-			
-			System.out.println("수정 전  memberVO: " + memberVO);
-			memberVO = (MemberVO)mypageService.modifyMember(membersMap);
-			System.out.println("수정 후  memberVO: " + memberVO);
 			String message = null;
 			ResponseEntity resEntity = null;
 			HttpHeaders responseHeaders = new HttpHeaders();
@@ -178,39 +175,6 @@ public class AdminMemberControllerImpl implements AdminMemberController {
 		mav.setViewName("redirect:/admin/member/listMembers.do");
 
 		return mav;
-	}
-
-	
-	
-	private String getViewName(HttpServletRequest request) throws Exception {
-		String contextPath = request.getContextPath();
-		String uri = (String) request.getAttribute("javax.servlet.include.request_uri");
-		if (uri == null || uri.trim().equals("")) {
-			uri = request.getRequestURI();
-		}
-
-		int begin = 0;
-		if (!((contextPath == null) || ("".equals(contextPath)))) {
-			begin = contextPath.length();
-		}
-
-		int end;
-		if (uri.indexOf(";") != -1) {
-			end = uri.indexOf(";");
-		} else if (uri.indexOf("?") != -1) {
-			end = uri.indexOf("?");
-		} else {
-			end = uri.length();
-		}
-
-		String viewName = uri.substring(begin, end);
-		if (viewName.indexOf(".") != -1) {
-			viewName = viewName.substring(0, viewName.lastIndexOf("."));
-		}
-		if (viewName.lastIndexOf("/") != -1) {
-			viewName = viewName.substring(viewName.lastIndexOf("/", 1), viewName.length());
-		}
-		return viewName;
 	}
 
 }

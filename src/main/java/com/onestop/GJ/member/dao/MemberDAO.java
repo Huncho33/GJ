@@ -28,6 +28,9 @@ public interface MemberDAO {
 	//ID Ã£±â
 	MemberVO certHp_Id(MemberVO memberVO) throws DataAccessException;
 
+	void last_logOn(String member_id) throws DataAccessException;
+
+
 	
 
 

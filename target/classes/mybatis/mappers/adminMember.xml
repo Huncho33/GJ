@@ -24,6 +24,8 @@
 			column="member_namujiAddress" />
 		<result property="member_last_log" column="member_last_log" />
 		<result property="member_joinDate" column="member_joinDate" />
+		<result property="member_right" column="member_right" />
+		
 	</resultMap> 
 	
 		<select id="selectAllMemberList_adm"  parameterType="java.util.Map"  resultMap="adminMemResult">
@@ -43,7 +45,8 @@
       member_jibunAddress,
       member_namujiAddress,
       member_last_log,
-      member_joinDate
+      member_joinDate,
+      member_right
       from member) a
       where Recnum between(#{section}-1)*100+(#{pageNum}-1)*10+1 and (#{section}-1)*100+#{pageNum}*10
       order by member_joinDate desc
@@ -70,9 +73,21 @@
       member_jibunAddress,
       member_namujiAddress,
       member_last_log,
-      member_joinDate
-      from member
-      where member_id like '%' || #{searchMember} || '%') a
+      member_joinDate,
+      member_right
+      from member]]>
+      
+      <if test='searchType.equals("member_id")'>
+      where lower(member_id) like lower('%' || #{searchMember} || '%')) a
+      </if>
+       <if test='searchType.equals("member_name")'>
+      where lower(member_name) like lower('%' || #{searchMember} || '%')) a
+      </if>
+       <if test='searchType.equals("member_right")'>
+      where lower(member_right) like lower('%' || #{searchMember} || '%')) a
+      </if>
+      
+       <![CDATA[
       where Recnum between(#{section}-1)*100+(#{pageNum}-1)*10+1 and (#{section}-1)*100+#{pageNum}*10
       order by member_id desc	
 		]]>
@@ -90,8 +105,16 @@
 	<select id="selectSearchTotMembers" parameterType="java.util.Map" resultType="int">
     <![CDATA[
      select count(member_id) from member
-     where member_id like '%' || #{searchMember } || '%'
     ]]>
+      <if test='searchType.equals("member_id")'>
+      where lower(member_id) like lower('%' || #{searchMember} || '%') 
+      </if>
+       <if test='searchType.equals("member_name")'>
+      where lower(member_name) like lower('%' || #{searchMember} || '%') 
+      </if>
+       <if test='searchType.equals("member_right")'>
+      where lower(member_right) like lower('%' || #{searchMember} || '%') 
+      </if>
 	</select>
 	
 		<!--회원 상세 조회하기 -->
@@ -130,7 +153,10 @@
 					member_jibunAddress=#{member_jibunAddress},
 				</if>
 				<if test=" member_namujiAddress!='' and member_namujiAddress!=null">
-					member_namujiAddress=#{member_namujiAddress}
+					member_namujiAddress=#{member_namujiAddress},
+				</if>
+				<if test=" member_right!='' and member_right!=null">
+					member_right=#{member_right}
 				</if>
 			</set> 
 			WHERE member_id=#{member_id}

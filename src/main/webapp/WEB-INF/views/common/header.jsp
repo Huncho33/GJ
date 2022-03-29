@@ -137,11 +137,11 @@
          <div class="info">
 
             <c:choose>
-            	<c:when test="${isLogOn == true  &&  member!= null && member.member_right == 'ADMIN'}">
+            	<c:when test="${isLogOn == true  &&  member!= null && member.member_right != 'MEMBER'}">
                   <a href="${contextPath}/member/logout.do"><i class="fa-solid fa-arrow-right-from-bracket"></i>&nbsp;로그아웃</a>
                   <a href="${contextPath}/admin/member/listMembers.do"><i class="fa-solid fa-gear"></i>&nbsp;관리페이지</a>
                </c:when>
-               <c:when test="${isLogOn == true  && member!= null && member.member_right != 'ADMIN'}">
+               <c:when test="${isLogOn == true  && member!= null && member.member_right == 'MEMBER'}">
                   <a href="${contextPath}/member/logout.do"><i class="fa-solid fa-arrow-right-from-bracket"></i>&nbsp;로그아웃</a>
                   <a href="${contextPath}/mypage/confirmPwdView.do"><i class="fa-solid fa-house"></i>&nbsp;마이페이지</a>
 

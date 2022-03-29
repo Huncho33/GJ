@@ -61,8 +61,8 @@
 		 					member_jibunAddress,
 		 					member_namujiAddress) 			
 		 values(#{member_id}, 
-		 		#{member_name},
 		 		#{member_pw},
+		 		#{member_name},
 		 		#{member_gender},
 		 		#{member_birth},
 		 		#{member_phoneno},
@@ -74,6 +74,16 @@
 		 		#{member_namujiAddress}) 
 		]]>
 	</insert>
+	
+	<update id="last_logOn" parameterType="String">
+		
+	UPDATE member
+		SET member_last_log
+		= to_date(sysdate)
+		WHERE member_id = #{member_id}
+	
+	</update>
+	
 
 	<update id="updateMember" parameterType="memberVO">
      <![CDATA[

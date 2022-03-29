@@ -85,6 +85,11 @@ function backToList(obj){
 	function emailSelect() {
 		$('#member_email2').val($('#_member_email2').val())
 	}
+	
+	// 권한 선택 - 자동입력 기능
+	function rightSelect() {
+		$('#member_right').val($('#_member_right').val())
+	}
 
 	// ajax 입력값 전송 기능
 	function fn_modFormData(attribute) {
@@ -100,8 +105,9 @@ function backToList(obj){
 			var member_roadAddress = document.getElementById("member_roadAddress").value;
 			var member_jibunAddress = document.getElementById("member_jibunAddress").value;
 			var member_namujiAddress = document.getElementById("member_namujiAddress").value;
+			var member_right = document.getElementById("member_right").value;
 			
-			value = member_pw +","+ member_phoneno +","+ member_email1 +","+ member_email2 +","+ member_zipcode +","+ member_roadAddress +","+ member_jibunAddress +","+ member_namujiAddress;
+			value = member_pw +","+ member_phoneno +","+ member_email1 +","+ member_email2 +","+ member_zipcode +","+ member_roadAddress +","+ member_jibunAddress +","+ member_namujiAddress +","+ member_right;
 		}
 		console.log(value);
 		
@@ -147,40 +153,52 @@ function backToList(obj){
 	     document.body.appendChild(form);
 	     form.submit();
 	 }
+	 
+	 //관리자 권한
+		function adm_reg(member_right) {
+			console.log(member_right);
+			if (member_right == "SuperAdmin") {
+				var a = document.getElementById("_member_right");
+				a.style.display = "block";
+			}
+		}
 	
 </script>
 
 </head>
 
-<body>
+<body onload="adm_reg('${member.member_right}')">
 	<div id="memberInfo_wrapper">
 		<div id="memberInfo_total">
 			<div id="khs_sideMenu_tot">
 				<div id="khs_leftTitle">
-					<p>마이페이지</p>
+					<p>관리페이지</p>
 				</div>
 				<div id="khs_subMenu">
 					<ul>
-						<li><a id="khs_left khs_left1" class="khs_lnb"><p>회원정보
+						<li><a id="khs_left khs_left1" class="khs_lnb"><p>사용자
 									관리</p></a>
 							<ul class="khs_depth2">
-								<li><a href="${contextPath}/mypage/memberInfo.do">- 내 정보 수정</a></li>
-								<li><a href="${contextPath}/mypage/memDeleteForm.do">-
-										회원탈퇴</a></li>
+								<li><a href="${contextPath}/admin/member/listMembers.do">- 사용자 관리</a></li>
+								<li><a href="#">-
+										관리자 관리</a></li>
 							</ul></li>
-						<li><a id="khs_left khs_left2" class="khs_lnb"><p>나의
-									신청 현황</p></a>
+						<li><a id="khs_left khs_left2" class="khs_lnb"><p>신청
+									관리</p></a>
 							<ul class="khs_depth2">
-								<li><a href="">- 월세지원 신청 현황</a></li>
-								<li><a href="">- 전세지원 신청 현황</a></li>
-								<li><a href="">- 행복주택지원 신청 현황</a></li>
+								<li><a href="">- 신청자 관리</a></li>
+								<li><a href="">- 신청 통계</a></li>
 							</ul></li>
-						<li><a id="khs_left khs_left3" class="khs_lnb"><p>나의
-									게시글 및 상담</p></a>
+						<li><a id="khs_left khs_left3" class="khs_lnb"><p>게시판
+									관리</p></a>
 							<ul class="khs_depth2">
-								<li><a href="">- 나의 게시글 목록</a></li>
-								<li><a href="">- 나의 상담 목록</a></li>
+								<li><a href="">- 공지사항 관리</a></li>
+								<li><a href="">- 기타자료실 관리</a></li>
+								<li><a href="">- 상담게시판 관리</a></li>
+								<li><a href="">- 자유게시판 관리</a></li>
+								<li><a href="">- 알림게시판 관리</a></li>
 							</ul></li>
+						<li><a id="khs_left khs_left3" class="khs_lnb"><p>통계</p></a></li>
 					</ul>
 				</div>
 			</div>
@@ -221,8 +239,17 @@ function backToList(obj){
 								
 								<tr height="50">
 									<td width="150">:: 권한</td>
-									<td><input type="text" name="member_right" id="member_right" value="${member.member_right}"
-										size="30" disabled></td>
+									<td><input  type="text" name="member_right" id="member_right" value="${member.member_right}"
+										size="30" disabled >
+										<td><select
+										id="_member_right" name="_member_right"
+										onChange=rightSelect() title="선택" style='display:none'>
+											<option value="NONE">선택</option>
+											<option value="MEMBER">MEMBER</option>
+											<option value="ADMIN">ADMIN</option>
+											<option value="SuperAdmin">SuperAdmin</option>
+									</select></td>
+									
 								</tr>
 								
 								<tr height="50">
