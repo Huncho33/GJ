@@ -59,7 +59,10 @@ tr.myQna_qnaTitle{
 	border-top: 2px solid #a6a6a6;
 	border-bottom: 2px solid #a6a6a6;
 	margin-bottom: 30px;
-	
+}
+
+#myQna_qnaList a {
+	text-decoration: none;
 }
 
 #myQna_qnaList tr{

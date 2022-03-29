@@ -30,6 +30,9 @@ public interface MemberDAO {
 
 	void last_logOn(String member_id) throws DataAccessException;
 
+	List selectNotiList() throws Exception;
+
+	List selectDataList() throws Exception;
 
 	
 

@@ -23,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.onestop.GJ.board.QNA.service.QnaService;
+import com.onestop.GJ.board.free.service.BoardFreeService;
 import com.onestop.GJ.member.vo.MemberVO;
 import com.onestop.GJ.mypage.service.MypageService;
 
@@ -34,6 +35,8 @@ public class MypageControllerImpl implements MypageController {
 	private MemberVO memberVO;
 	@Autowired
 	private QnaService qnaService;
+	@Autowired
+	   private BoardFreeService boardFreeService;
 
 	// 비밀번호 재확인 페이지
 	@Override
@@ -205,5 +208,55 @@ public class MypageControllerImpl implements MypageController {
 		}
 
 	}
+
+	// 나의 게시글 및 상담
+	   // 글목록 페이지 출력
+	   @Override
+	   @RequestMapping(value = "/mypage/myBoardList.do", method = { RequestMethod.GET, RequestMethod.POST })
+	   public ModelAndView myBoardList(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	      String viewName = (String) request.getAttribute("viewName");
+
+	      HttpSession session = request.getSession();
+	      memberVO = (MemberVO) session.getAttribute("member");
+	      String member_id = memberVO.getMember_id();
+
+	      List myBoardList = mypageService.selectMyBoardList(member_id);
+
+	      ModelAndView mav = new ModelAndView(viewName);
+
+	      mav.addObject("myBoardList", myBoardList);
+
+	      return mav;
+	   }
+
+	   // 마이페이지상담글 삭제하기
+	   @Override
+	   @RequestMapping(value = "/mypage/removeArticle.do", method = RequestMethod.POST)
+	   @ResponseBody
+	   public ResponseEntity removeArticle(@RequestParam("fr_NO") int fr_NO, HttpServletRequest request,
+	         HttpServletResponse response) throws Exception {
+	      response.setContentType("text/html; charset=utf-8");
+	      String message;
+	      ResponseEntity resEnt = null;
+	      HttpHeaders responseHeaders = new HttpHeaders();
+	      responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+	      try {
+	         boardFreeService.removeArticle(fr_NO);
+
+	         message = "<script>";
+	         message += " alert('글을 삭제했습니다.');";
+	         message += " location.href='" + request.getContextPath() + "/mypage/myBoardList.do';";
+	         message += " </script>";
+	         resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+	      } catch (Exception e) {
+	         message = "<script>";
+	         message += " alert('오류가 발생했습니다.다시 시도해주세요');";
+	         message += " location.href='" + request.getContextPath() + "/mypage/myBoardList.do';";
+	         message += " </script>";
+	         resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+	         e.printStackTrace();
+	      }
+	      return resEnt;
+	   }
 
 }

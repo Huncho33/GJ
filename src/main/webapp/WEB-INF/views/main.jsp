@@ -88,7 +88,6 @@
 					</div>
 				</div>
 			</div>
-
 			<div id="main_container3">
 				<div class="main_cnt1">
 					<div class="main_tabs">
@@ -96,25 +95,69 @@
 							<li class="nav-item1"><a class="nav-link active"
 								aria-current="page">공지사항</a></li>
 							<li class="nav-item2"><a class="nav-link active">자료실</a></li>
-							<li class="nav-item3"><a href="#"><i
+							<li class="nav-item3"><a
+								href="${contextPath }/boardNotice/listArticles.do"><i
 									class="fa-solid fa-plus"></i></a></li>
 						</ul>
-						<div class="main_tablist1">등록된 공지사항이 없습니다.</div>
-						<div class="main_tablist2">등록된 자료글이 없습니다.</div>
+						<div class="main_tablist1">
+
+							<c:choose>
+								<c:when test="${empty notiList }">
+									<div id="main_notiNon">
+										<p>등록된 글이 없습니다.</p>
+									</div>
+								</c:when>
+								<c:when test="${not empty notiList }">
+									<table id="main_notiList">
+										<c:forEach var="article" items="${notiList }">
+											<tr>
+												<td width="5%"><span style="font-style: bold;">-</span></td>
+												<td width="80%"><a class='cls1'
+													href="${contextPath}/boardNotice/viewArticle.do?noti_NO=${article.noti_NO }">
+														${article.noti_title }</a></td>
+											</tr>
+										</c:forEach>
+									</table>
+								</c:when>
+							</c:choose>
+						</div>
+						<div class="main_tablist2">
+
+							<c:choose>
+								<c:when test="${empty dataList }">
+									<div id="main_dataNon">
+										<p>등록된 글이 없습니다.</p>
+									</div>
+								</c:when>
+								<c:when test="${not empty dataList }">
+									<table id="main_dataList">
+										<c:forEach var="article" items="${dataList }">
+											<tr>
+												<td width="5%"><span style="font-style: bold;">-</span></td>
+												<td width="80%"><a class='cls1'
+													href="${contextPath}/boardData/viewArticle.do?etc_NO=${article.etc_NO }">${article.etc_title }</a></td>
+											</tr>
+										</c:forEach>
+									</table>
+								</c:when>
+							</c:choose>
+
+						</div>
 					</div>
 				</div>
-
 				<div class="main_cnt2">
 					<div class="main_shortcut">
-						<div class="main_shortcut_tab" >
+						<div class="main_shortcut_tab">
 							<p>
 								<i class="fa-solid fa-pipe"></i>&nbsp;&nbsp;바로가기
 							</p>
 						</div>
 						<div class="main_shortcuts">
-							<a href="#"><div class="mn_shortcut mn_shortcut1">
+							<a href="#">
+								<div class="mn_shortcut mn_shortcut1">
 									<p>월세지원</p>
-								</div></a> <a href="#"><div class="mn_shortcut mn_shortcut2">
+								</div>
+							</a> <a href="#"><div class="mn_shortcut mn_shortcut2">
 									<p>전세지원</p>
 								</div></a> <a href="#"></a>
 							<div class="mn_shortcut mn_shortcut3">
@@ -124,14 +167,13 @@
 						</div>
 					</div>
 				</div>
-
 			</div>
 		</div>
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+			crossorigin="anonymous"></script>
 	</div>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-		crossorigin="anonymous"></script>
 
 </body>
 

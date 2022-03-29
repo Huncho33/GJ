@@ -3,12 +3,9 @@ package com.onestop.GJ.member.service;
 import java.io.PrintWriter;
 import java.util.List;
 
-import javax.mail.Message.RecipientType;
-import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.mail.HtmlEmail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -17,6 +14,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.onestop.GJ.board.data.vo.BoardDataVO;
+import com.onestop.GJ.board.notice.vo.BoardNoticeVO;
 import com.onestop.GJ.member.dao.MemberDAO;
 import com.onestop.GJ.member.vo.MemberVO;
 
@@ -25,7 +24,7 @@ import com.onestop.GJ.member.vo.MemberVO;
 public class MemberServiceImpl implements MemberService {
 	@Autowired
 	private MemberDAO memberDAO;
-	
+
 	@Autowired
 	private JavaMailSender mailSender;
 
@@ -73,9 +72,9 @@ public class MemberServiceImpl implements MemberService {
 	public void send_PwMail(MemberVO memberVO) throws Exception {
 		String to = memberVO.getMember_email1() + "@" + memberVO.getMember_email2();
 		String subject = "원스톱청년주거 플랫폼 임시 비밀번호 입니다.";
-		
+
 		MimeMessage message = mailSender.createMimeMessage();
-		
+
 		String body = "";
 		body += "<html><body>";
 		body += "<div style='margin:100px;'>";
@@ -91,10 +90,10 @@ public class MemberServiceImpl implements MemberService {
 		body += "임시 비밀번호 : <strong>";
 		body += memberVO.getMember_pw() + "</strong><div><br/> ";
 		body += "</div><body></html>";
-		
+
 		try {
 			MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
-			
+
 			messageHelper.setFrom("27minsub@gmail.com", "원스톱청년주거");
 			messageHelper.setSubject(subject);
 			messageHelper.setTo(to);
@@ -112,7 +111,6 @@ public class MemberServiceImpl implements MemberService {
 		PrintWriter out = response.getWriter();
 
 		String res_overlap = (memberDAO.selectOverlappedID(memberVO.getMember_id()));
-		
 
 		// 아이디가 없는 경우
 		if (res_overlap.equals("false")) {
@@ -120,14 +118,13 @@ public class MemberServiceImpl implements MemberService {
 			out.close();
 			System.out.println(memberVO.getMember_id());
 		}
-		
+
 		String input_email1 = memberVO.getMember_email1();
 		String input_email2 = memberVO.getMember_email2();
 		String mem_email1 = (memberDAO.SearchById(memberVO)).getMember_email1();
 		String mem_email2 = (memberDAO.SearchById(memberVO)).getMember_email2();
 		// 이메일이 가입 시 작성한 이메일이 아닐 경우
-		
-		
+
 		if (!((input_email1.equals(mem_email1)) && (input_email2.equals(mem_email2)))) {
 
 			out.print("가입 시 등록한 이메일이 아닙니다.");
@@ -141,26 +138,39 @@ public class MemberServiceImpl implements MemberService {
 			}
 			memberVO.setMember_pw(member_pw);
 			System.out.println(memberVO.toString());
-			
+
 			System.out.println("비밀번호 변경 아이디: " + memberVO.getMember_id());
-			
 
 			// 비밀번호 변경
 			memberDAO.update_pw(memberVO);
-			
+
 			// 비밀번호 변경 메일 발송
 			send_PwMail(memberVO);
 
 			out.print("이메일로 임시 비밀번호를 발송하였습니다. 임시 비밀번호로 이동해주세요.");
 			out.close();
-			
+
 		}
 	}
 
-	//	ID찾기
+	// ID찾기
 	@Override
 	public MemberVO findId_hp(MemberVO memberVO) throws Exception {
 		return memberDAO.certHp_Id(memberVO);
 	}
-	
+
+	// 공지사항 최근 5개 글 호출
+	@Override
+	public List<BoardNoticeVO> selectNotiList() throws Exception {
+		List<BoardNoticeVO> notiList = memberDAO.selectNotiList();
+		return notiList;
+	}
+
+	// 자료실 최근 5개 글 호출
+	@Override
+	public List<BoardDataVO> selectDataList() throws Exception {
+		List<BoardDataVO> dataList = memberDAO.selectDataList();
+		return dataList;
+	}
+
 }

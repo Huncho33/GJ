@@ -26,5 +26,7 @@ public interface MypageService {
 
 	List<QnaVO> selectShareQnasList(String member_id) throws Exception;
 
+	List<QnaVO> selectMyBoardList(String member_id) throws Exception;
+
 
 }

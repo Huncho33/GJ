@@ -18,7 +18,7 @@ html, body {
 
 #layout_container {
 	position: relative;
-	margin: 0px auto;
+	margin: 0 auto;
 	width: 100%;
 }
 
@@ -34,15 +34,12 @@ html, body {
 	width: 100%;
 	padding: 20px;
 	margin: 30px 0px 30px 0px;
-	
 
 }
 
 #layout_footer {
 	position :relative;
 	bottom : 0;
-	margin-top: 150px;
-	padding: 5px;
 }
 </style>
 

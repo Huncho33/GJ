@@ -16,6 +16,22 @@
 		<result property="qna_policy" column="qna_policy" />
 		<result property="qna_reply" column="qna_reply" />
 	</resultMap>
+	
+	<resultMap id="articlesResult" type="boardFreeVO">
+		<result property="fr_NO" column="fr_NO" />
+		<result property="fr_title" column="fr_title" />
+		<result property="fr_context" column="fr_context" />
+		<result property="fr_date" column="fr_date" />
+		<result property="up_fileName" column="up_fileName" />
+		<result property="fr_hits" column="fr_hits" />
+
+	</resultMap>
+	
+	<resultMap id="imgResult" type="boardFreeImageVO">
+		<result property="up_fileNO" column="up_fileNO" />
+		<result property="fr_NO" column="fr_NO" />
+		<result property="up_fileName" column="up_fileName" />
+	</resultMap>
 
 
 	<!-- 수정/업데이트 할 아이디 조회 -->
@@ -75,7 +91,14 @@
 		where member_id=#{member_id} AND member_pw=#{member_pw}
 	</select>
 	
-	
+	<!-- 마이페이지 내가 쓴 글 불러오기 -->
+	<select id="selectMyBoardList" resultMap="articlesResult">
+    <![CDATA[
+      SELECT fr_NO, member_id, fr_title, fr_date
+      FROM board_free
+      WHERE member_id=#{member_id}
+    ]]>
+	</select>
 	
 	<!-- 마이페이지 월세지원 상담글 불러오기 -->
 	<select id="selectMonthQnasList" resultMap="qnasResult">
