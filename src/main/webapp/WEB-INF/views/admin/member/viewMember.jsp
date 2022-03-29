@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
-<c:set var="member" value="${membersMap.member}" />
+<c:set var="viewMember" value="${membersMap.member}" />
 <%
 	request.setCharacterEncoding("UTF-8");
 %>
@@ -154,20 +154,13 @@ function backToList(obj){
 	     form.submit();
 	 }
 	 
-	 //관리자 권한
-		function adm_reg(member_right) {
-			console.log(member_right);
-			if (member_right == "SuperAdmin") {
-				var a = document.getElementById("_member_right");
-				a.style.display = "block";
-			}
-		}
+	
 	
 </script>
 
 </head>
 
-<body onload="adm_reg('${member.member_right}')">
+<body>
 	<div id="memberInfo_wrapper">
 		<div id="memberInfo_total">
 			<div id="khs_sideMenu_tot">
@@ -218,43 +211,46 @@ function backToList(obj){
 							<table>
 								<tr height="50">
 									<td width="150">:: 아이디</td>
-									<td><input type="text" name="member_id" id="member_id" value="${member.member_id}" size="30" disabled><input
-										type="hidden" name="member_id" id="member_id"  value="${member.member_id}"></td>
+									<td><input type="text" name="member_id" id="member_id" value="${viewMember.member_id}" size="30" disabled><input
+										type="hidden" name="member_id" id="member_id"  value="${viewMember.member_id}"></td>
 								</tr>
 								<tr height="50">
 									<td width="150">:: 이름</td>
-									<td><input type="text" value="${member.member_name}" size="30" disabled></td>
+									<td><input type="text" value="${viewMember.member_name}" size="30" disabled></td>
 								</tr>
 								<tr height="50">
 									<td width="150">:: 비밀번호</td>
-									<td><input type="text" name="member_pw" id="member_pw" value="${member.member_pw}"
+									<td><input type="text" name="member_pw" id="member_pw" value="${viewMember.member_pw}"
 										size="30"></td>
 								</tr>
 								
 							  	<tr height="50">
 									<td width="150">:: 회원가입일</td>
-									<td><input type="text" name="member_joinDate" id="member_joinDate" value="${member.member_joinDate}"
+									<td><input type="text" name="member_joinDate" id="member_joinDate" value="${viewMember.member_joinDate}"
 										size="30" disabled></td>
 								</tr>
 								
 								<tr height="50">
 									<td width="150">:: 권한</td>
-									<td><input  type="text" name="member_right" id="member_right" value="${member.member_right}"
+									<td><input  type="text" name="member_right" id="member_right" value="${viewMember.member_right}"
 										size="30" disabled >
-										<td><select
+										<td>
+										
+										<c:if test="${member.member_right == 'SuperAdmin' }">
+										<select
 										id="_member_right" name="_member_right"
-										onChange=rightSelect() title="선택" style='display:none'>
+										onChange=rightSelect() title="선택" >
 											<option value="NONE">선택</option>
 											<option value="MEMBER">MEMBER</option>
 											<option value="ADMIN">ADMIN</option>
 											<option value="SuperAdmin">SuperAdmin</option>
-									</select></td>
-									
+									</select></c:if>
+									</td>
 								</tr>
 								
 								<tr height="50">
 									<td width="150">:: 최종접속일</td>
-									<td><input type="text" name="member_last_log" id="member_last_log" value="${member.member_last_log}"
+									<td><input type="text" name="member_last_log" id="member_last_log" value="${viewMember.member_last_log}"
 										size="30"></td>
 								</tr>
 								
@@ -272,22 +268,22 @@ function backToList(obj){
 							<tr height="50">
 									<td width="150">:: 성별</td>
 									<td colspan="2"><input type="text" name="member_gender"
-										id="member_gender" value="${member.member_gender}" size="30" disabled/></td>
+										id="member_gender" value="${viewMember.member_gender}" size="30" disabled/></td>
 								</tr>
 								
 								<tr height="50">
 									<td width="150">:: 휴대전화번호</td>
 									<td colspan="2"><input type="text" name="member_phoneno"
-										id="member_phoneno" value="${member.member_phoneno}" size="30" /></td>
+										id="member_phoneno" value="${viewMember.member_phoneno}" size="30" /></td>
 								</tr>
 								
 								<tr height="50">
 									<td width="150">:: 이메일(E-Mail)</td>
 									<td colspan="2"><input size="15" type="text"
 										id="member_email1" name="member_email1"
-										value="${member.member_email1}" /> @ <input size="15"
+										value="${viewMember.member_email1}" /> @ <input size="15"
 										type="text" id="member_email2" name="member_email2"
-										value="${member.member_email2}" /> <select
+										value="${viewMember.member_email2}" /> <select
 										id="_member_email2" name="_member_email2"
 										onChange=emailSelect() title="직접입력">
 											<option value="non">직접입력</option>
@@ -304,7 +300,7 @@ function backToList(obj){
 									<td width="150">우편번호</td>
 									<td><input type="text" id="member_zipcode"
 										name="member_zipcode" size="10"
-										value="${member.member_zipcode}">
+										value="${viewMember.member_zipcode}">
 										<button>
 											<a href="javascript:execDaumPostcode()" class="postcode">우편번호검색</a>
 										</button></td>
@@ -316,21 +312,21 @@ function backToList(obj){
 									</td>
 									<td><input type="text" id="member_roadAddress"
 										name="member_roadAddress" size="50"
-										value="${member.member_roadAddress}"></td>
+										value="${viewMember.member_roadAddress}"></td>
 								</tr>
 								<tr height="30">
 									<td class="fixed_join"></td>
 									<td class="fixed_join fixed_join1">지번 주소</td>
 									<td><input type="text" id="member_jibunAddress"
 										name="member_jibunAddress" size="50"
-										value="${member.member_jibunAddress}"></td>
+										value="${viewMember.member_jibunAddress}"></td>
 								</tr>
 								<tr height="30">
 									<td class="fixed_join"></td>
 									<td class="fixed_join fixed_join1">상세 주소</td>
 									<td><input type="text" id="member_namujiAddress"
 										name="member_namujiAddress" size="50"
-										value="${member.member_namujiAddress}"></td>
+										value="${viewMember.member_namujiAddress}"></td>
 								</tr>
 							</table>
 						</div>
@@ -368,7 +364,7 @@ function backToList(obj){
 							<div class="join_btn join_btn2">
 								<input type="button" value="삭제" id="memberInfo_del"
 									name="memberInfo_del"
-									onClick="fn_remove_mem('${contextPath}/admin/member/removeMember.do', '${member.member_id}')">
+									onClick="fn_remove_mem('${contextPath}/admin/member/removeMember.do', '${viewMember.member_id}')">
 									
 							</div>
 							<div class="join_btn join_btn1">

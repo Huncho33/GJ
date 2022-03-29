@@ -25,8 +25,9 @@
 <link rel="stylesheet" href="${contextPath}/resources/css/sidemenu.css"
 	type="text/css">
 <script src="${contextPath}/resources/js/sidemenu.js"></script>
+
 </head>
-<body>
+<body >
 	<div id="adm_memberManage_bground">
 		<div id="adm_memberManage_contatiner">
 			<div id="khs_sideMenu_tot">
