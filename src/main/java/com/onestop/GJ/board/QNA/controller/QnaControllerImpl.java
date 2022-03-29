@@ -53,6 +53,7 @@ public class QnaControllerImpl implements QnaController {
 		qnasMap.put("section", section);
 		qnasMap.put("pageNum", pageNum);
 		
+		
 		String viewName = (String) request.getAttribute("viewName");
 
 		ModelAndView mav = new ModelAndView(viewName);
@@ -207,7 +208,6 @@ public class QnaControllerImpl implements QnaController {
 
 	}
 
-	
 	
 	// 상담글 수정하기
 	@RequestMapping(value = "/qna/modQna.do", method = RequestMethod.POST)

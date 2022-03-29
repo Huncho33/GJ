@@ -76,7 +76,7 @@ $(document).ready(function(){
 						<li><a id="khs_left khs_left3" class="khs_lnb"><p>나의
 									게시글 및 상담</p></a>
 							<ul class="khs_depth2">
-								<li><a href="">- 나의 게시글 목록</a></li>
+								<li><a href="${contextPath}/mypage/myBoardList.do">- 나의 게시글 목록</a></li>
 								<li><a href="${contextPath}/mypage/myQna.do">- 나의 상담 목록</a></li>
 							</ul></li>
 					</ul>

@@ -18,13 +18,6 @@ public interface MypageController {
 
 	ModelAndView myInfo(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
-//	ModelAndView modMyInfo(@RequestParam("member_id") String member_id,
-//			HttpServletRequest request, HttpServletResponse response) throws Exception;
-
-//	ModelAndView modMyInfo(@RequestParam(value = "member_id2") String member_id,
-//			@ModelAttribute(value = "member") MemberVO memberVO, Model model, 
-//			HttpServletRequest request, HttpServletResponse response) throws Exception;
-
 	ResponseEntity modMyInfo(@RequestParam("attribute") String attribute, @RequestParam("value") String value,
 			HttpServletRequest request, HttpServletResponse response) throws Exception;
 
@@ -38,7 +31,8 @@ public interface MypageController {
 	String modalPwdCheck(int qna_no, int qna_pw, HttpServletRequest request, HttpServletResponse response)
 			throws Exception;
 
+	ModelAndView myBoardList(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
-//	ModelAndView modMyInfo(MemberVO memberVO, HttpServletRequest request, HttpServletResponse response)
-//			throws Exception;
+	ResponseEntity removeArticle(int fr_NO, HttpServletRequest request, HttpServletResponse response) throws Exception;
+
 }

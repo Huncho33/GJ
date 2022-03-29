@@ -1,6 +1,7 @@
 package com.onestop.GJ.member.controller;
 
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.onestop.GJ.board.data.vo.BoardDataVO;
+import com.onestop.GJ.board.notice.vo.BoardNoticeVO;
 import com.onestop.GJ.member.service.MemberService;
 import com.onestop.GJ.member.vo.MemberVO;
 
@@ -28,12 +31,20 @@ public class MemberControllerImpl implements MemberController {
 	private MemberService memberService;
 	@Autowired
 	private MemberVO memberVO;
+	
 
 	@RequestMapping(value = { "/*/*.do", "/main.do" }, method = RequestMethod.GET)
-	private ModelAndView main(HttpServletRequest request, HttpServletResponse response) {
+	private ModelAndView main(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = (String) request.getAttribute("viewName");
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName(viewName);
+		
+		List<BoardNoticeVO> notiList = memberService.selectNotiList();
+		List<BoardDataVO> dataList = memberService.selectDataList();
+		
+		ModelAndView mav = new ModelAndView(viewName);
+		
+		mav.addObject("notiList", notiList);
+		mav.addObject("dataList", dataList);
+		
 		return mav;
 	}
 

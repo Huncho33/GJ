@@ -29,5 +29,7 @@ public interface MypageDAO {
 
 	List selectShareQnasList(String member_id) throws Exception;
 
+	List selectMyBoardList(String member_id) throws Exception;
+
 
 }

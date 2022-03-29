@@ -44,7 +44,14 @@ public class MypageServiceImpl implements MypageService {
 	public boolean checkPwd(String member_id, String member_pw) throws Exception {
 		return mypageDAO.checkPwd(member_id, member_pw);
 	}
-	
+
+	// 마이페이지 내가 쓴 글 조회
+	@Override
+	public List<QnaVO> selectMyBoardList(String member_id) throws Exception {
+		List<QnaVO> monthQnaList = mypageDAO.selectMyBoardList(member_id);
+		return monthQnaList;
+	}
+
 	// 상담글-월세지원 카테고리만 조회
 	@Override
 	public List<QnaVO> selectMonthQnasList(String member_id) throws Exception {

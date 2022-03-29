@@ -28,6 +28,10 @@ public interface MemberDAO {
 	//ID Ã£±â
 	MemberVO certHp_Id(MemberVO memberVO) throws DataAccessException;
 
+	List selectNotiList() throws Exception;
+
+	List selectDataList() throws Exception;
+
 	
 
 

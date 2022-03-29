@@ -57,6 +57,13 @@ public class MypageDAOImpl implements MypageDAO {
 		return result;
 	}
 
+	// 마이페이지 내가 쓴 글 조회
+	@Override
+	public List selectMyBoardList(String member_id) throws Exception {
+		List<QnaVO> monthQnaList = sqlSession.selectList("mapper.mypage.selectMyBoardList", member_id);
+		return monthQnaList;
+	}
+
 	// 상담글-월세지원 카테고리만 조회
 	@Override
 	public List selectMonthQnasList(String member_id) throws Exception {

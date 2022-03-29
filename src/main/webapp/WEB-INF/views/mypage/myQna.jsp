@@ -13,7 +13,6 @@
 
 <head>
 <meta charset="UTF-8">
-<title>비밀번호 확인</title>
 <script src="https://kit.fontawesome.com/fc92373f81.js"
 	crossorigin="anonymous"></script>
 <link href="${contextPath}/resources/css/mypage/myQna.css"
@@ -136,7 +135,7 @@ function fn_modalClose() {
 											</c:choose></td>
 										<td width="10%" style="color: blue;"><c:if
 												test="${qna.qna_reply == 'true'}">
-												답변
+												답변완료
 											</c:if> <c:if test="${qna.qna_reply == 'false'}">
 												미답변
 											</c:if></td>
@@ -191,7 +190,7 @@ function fn_modalClose() {
 											</c:choose></td>
 										<td width="10%" style="color: blue;"><c:if
 												test="${qna.qna_reply == 'true'}">
-												답변
+												답변완료
 											</c:if> <c:if test="${qna.qna_reply == 'false'}">
 												미답변
 											</c:if></td>
@@ -247,7 +246,7 @@ function fn_modalClose() {
 											</c:choose></td>
 										<td width="10%" style="color: blue;"><c:if
 												test="${qna.qna_reply == 'true'}">
-												답변
+												답변완료
 											</c:if> <c:if test="${qna.qna_reply == 'false'}">
 												미답변
 											</c:if></td>
@@ -303,7 +302,7 @@ function fn_modalClose() {
 											</c:choose></td>
 										<td width="10%" style="color: blue;"><<c:if
 												test="${qna.qna_reply == 'true'}">
-												답변
+												답변완료
 											</c:if> <c:if test="${qna.qna_reply == 'false'}">
 												미답변
 											</c:if>
@@ -359,7 +358,7 @@ function fn_modalClose() {
 											</c:choose></td>
 										<td width="10%" style="color: blue;"><c:if
 												test="${qna.qna_reply == 'true'}">
-												답변
+												답변완료
 											</c:if> <c:if test="${qna.qna_reply == 'false'}">
 												미답변
 											</c:if></td>

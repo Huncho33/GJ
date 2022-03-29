@@ -43,7 +43,6 @@ public class BoardNoticeControllerImpl implements BoardNoticeController {
    @Override
    @RequestMapping(value = { "/boardNotice/listArticles.do" }, method = { RequestMethod.GET, RequestMethod.POST })
    public ModelAndView listArticles(HttpServletRequest request, HttpServletResponse response) throws Exception {
-	   System.out.println("오다들림");
       String _section = request.getParameter("section");
       String _pageNum = request.getParameter("pageNum");
       int section = Integer.parseInt(((_section == null) ? "1" : _section));
