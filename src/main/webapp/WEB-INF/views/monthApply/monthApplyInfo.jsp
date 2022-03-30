@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" isELIgnored="false"%>
+	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	request.setCharacterEncoding("UTF-8");
@@ -17,6 +18,7 @@
 <link href="${contextPath}/resources/css/common.css" rel="stylesheet"
 	type="text/css">
 </head>
+
 
 <body>
 	<div id="monthApply_bground">
@@ -132,7 +134,8 @@
 								</a>
 							</div>
 							<div class="intro_Button intro_Button2">
-								<a href="${contextPath}/month/monthApplyForm2.do">
+								<a href="javascript:apply_form('${isLogOn}','${contextPath}/month/monthApplyForm1.do',
+								'${contextPath}/member/loginForm.do')">
 									<div class="intro_apply_btn2">
 										<p>2023청년월세지원 신청</p>
 									</div>
@@ -145,5 +148,16 @@
 		</div>
 	</div>
 </body>
+						<script>
+						  function apply_form(isLogOn,applyForm,loginForm){
+				                  if(isLogOn != '' && isLogOn != 'false'){
+				                	  location.href = applyForm;
+				                 } else{
+				                    alert("로그인 후 이용해주세요.");
+				                    location.href = loginForm + '?action=/month/monthApplyForm1.do';
+				                 }
+				              }
 
+						</script>
 </html>
+

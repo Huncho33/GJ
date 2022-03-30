@@ -21,10 +21,36 @@
 			value="/WEB-INF/views/monthApply/monthApplyInfo.jsp" />
 	</definition>
 	
+	<definition name="/month/monthApplyForm1" extends="baseLayout">
+		<put-attribute name="title" value="청년월세지원 신청1" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/monthApply/monthApplyForm1.jsp" />
+	</definition>
+	
 	<definition name="/month/monthApplyForm2" extends="baseLayout">
-		<put-attribute name="title" value="청년월세지원 소개" />
+		<put-attribute name="title" value="청년월세지원 신청2" />
 		<put-attribute name="body"
 			value="/WEB-INF/views/monthApply/monthApplyForm2.jsp" />
 	</definition>
+	
+	<definition name="/month/monthApplyForm3" extends="baseLayout">
+		<put-attribute name="title" value="청년월세지원 신청3" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/monthApply/monthApplyForm3.jsp" />
+	</definition>
+	
+	<definition name="/month/monthApplyForm4" extends="baseLayout">
+		<put-attribute name="title" value="청년월세지원 신청4" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/monthApply/monthApplyForm4.jsp" />
+	</definition>
+	
+	<definition name="/month/monthApplyResult" extends="baseLayout">
+		<put-attribute name="title" value="청년월세지원 결과페이지" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/monthApply/monthApplyResult.jsp" />
+	</definition>
+	
+	
 
 </tiles-definitions>

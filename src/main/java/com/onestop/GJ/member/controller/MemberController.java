@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.onestop.GJ.apply.mon23.vo.ApplyMonVO;
 import com.onestop.GJ.member.vo.MemberVO;
 
 public interface MemberController {
@@ -30,5 +31,6 @@ public interface MemberController {
 	// IDÃ£±â
 	ResponseEntity sendPhone(MemberVO member, RedirectAttributes rAttr, HttpServletRequest request,
 			HttpServletResponse response) throws Exception;
+
 
 }

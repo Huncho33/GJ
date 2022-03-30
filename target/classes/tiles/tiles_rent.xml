@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+	<definition name="baseLayout"
+		template="/WEB-INF/views/common/layout.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="header"
+			value="/WEB-INF/views/common/header.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer"
+			value="/WEB-INF/views/common/footer.jsp" />
+	</definition>
+	
+	
+	<definition name="/rent/rentApplyInfo" extends="baseLayout">
+		<put-attribute name="title" value="전월세보증금 소개" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/rentApply/rentApplyInfo.jsp" />
+	</definition>
+	
+	<definition name="/rent/rentApplyForm1" extends="baseLayout">
+		<put-attribute name="title" value="전월세보증금 신청1" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/rentApply/rentApplyForm1.jsp" />
+	</definition>
+	
+	<definition name="/rent/rentApplyForm2" extends="baseLayout">
+		<put-attribute name="title" value="전월세보증금 신청2" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/rentApply/rentApplyForm2.jsp" />
+	</definition>
+	
+	<definition name="/rent/rentApplyForm3" extends="baseLayout">
+		<put-attribute name="title" value="전월세보증금 신청3" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/rentApply/rentApplyForm3.jsp" />
+	</definition>
+	
+	<definition name="/rent/rentApplyForm4" extends="baseLayout">
+		<put-attribute name="title" value="전월세보증금 신청4" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/rentApply/rentApplyForm4.jsp" />
+	</definition>
+	
+	<definition name="/rent/rentApplyResult" extends="baseLayout">
+		<put-attribute name="title" value="전월세보증금 결과페이지" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/rentApply/rentApplyResult.jsp" />
+	</definition>
+	
+	
+
+</tiles-definitions>

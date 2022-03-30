@@ -38,7 +38,6 @@
 
 .monthApply_tit {
 	font-size: 13pt;
-	margin-left: 30px;
 }
 
 .join_rule {
@@ -117,12 +116,13 @@ tbody>tr {
 	margin-top: -20px;
 }
 
+
+/* 과정 원버튼 이미지 */
 ul.kkhs_processTab {
 	text-align: center;
 	margin-bottom: 77px;
 }
 
-/* 회원가입 약관동의 이미지 */
 ul.kkhs_processTab li {
 	display: inline-block;
 	width: 150px;

@@ -19,6 +19,22 @@
 		<typeAlias type="com.onestop.GJ.admin.data.vo.AdminDataImageVO"  alias="adminDataImageVO" />
 		<typeAlias type="com.onestop.GJ.admin.free.vo.AdminFreeVO"  alias="adminFreeVO" />
 		<typeAlias type="com.onestop.GJ.admin.free.vo.AdminFreeImageVO"  alias="adminFreeImageVO" />
+		
+		<typeAlias type="com.onestop.GJ.apply.mon23.vo.ApplyMonVO"  alias="ApplyMonVO" />
+		<typeAlias type="com.onestop.GJ.apply.mon23.vo.ApplyMonFileVO"  alias="ApplyMonFileVO" />
+		
+		<typeAlias type="com.onestop.GJ.apply.rent.vo.ApplyRentVO"  alias="ApplyRentVO" />
+		<typeAlias type="com.onestop.GJ.apply.rent.vo.ApplyRentFileVO"  alias="ApplyRentFileVO" />
+		
+		<typeAlias type="com.onestop.GJ.apply.rent_return.vo.ApplyRentReturnVO"  alias="ApplyRentReturnVO" />
+		<typeAlias type="com.onestop.GJ.apply.rent_return.vo.ApplyRentReturnFileVO"  alias="ApplyRentReturnFileVO" />
+		
+		<typeAlias type="com.onestop.GJ.apply.back.vo.ApplyBackVO"  alias="ApplyBackVO" />
+		<typeAlias type="com.onestop.GJ.apply.back.vo.ApplyBackFileVO"  alias="ApplyBackFileVO" />
+		
+		<typeAlias type="com.onestop.GJ.apply.share.vo.ApplyShareVO"  alias="ApplyShareVO" />
+		<typeAlias type="com.onestop.GJ.apply.share.vo.ApplyShareFileVO"  alias="ApplyShareFileVO" />
+
 	</typeAliases>
 
 </configuration>

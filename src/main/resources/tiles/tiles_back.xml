@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+	<definition name="baseLayout"
+		template="/WEB-INF/views/common/layout.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="header"
+			value="/WEB-INF/views/common/header.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer"
+			value="/WEB-INF/views/common/footer.jsp" />
+	</definition>
+	
+	
+	<definition name="/back/backApplyInfo" extends="baseLayout">
+		<put-attribute name="title" value="귀환신혼부부전세지원 소개" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/backApply/backApplyInfo.jsp" />
+	</definition>
+	
+	<definition name="/back/backApplyForm1" extends="baseLayout">
+		<put-attribute name="title" value="귀환신혼부부전세지원 신청1" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/backApply/backApplyForm1.jsp" />
+	</definition>
+	
+	<definition name="/back/backApplyForm2" extends="baseLayout">
+		<put-attribute name="title" value="귀환신혼부부전세지원 신청2" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/backApply/backApplyForm2.jsp" />
+	</definition>
+	
+	<definition name="/back/backApplyForm3" extends="baseLayout">
+		<put-attribute name="title" value="귀환신혼부부전세지원 신청3" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/backApply/backApplyForm3.jsp" />
+	</definition>
+	
+	<definition name="/back/backApplyForm4" extends="baseLayout">
+		<put-attribute name="title" value="귀환신혼부부전세지원 신청4" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/backApply/backApplyForm4.jsp" />
+	</definition>
+	
+	<definition name="/back/backApplyResult" extends="baseLayout">
+		<put-attribute name="title" value="귀환신혼부부전세지원 결과페이지" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/backApply/backApplyResult.jsp" />
+	</definition>
+	
+	
+
+</tiles-definitions>
