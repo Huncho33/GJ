@@ -1,0 +1,160 @@
+@charset "UTF-8";
+
+#freeView_bground {
+	position: relative;
+	width: 100%;
+}
+
+#freeView_cnt {
+	width: 1300px;
+	position: relative;
+	margin: 0 auto;
+}
+
+#adm_free_tot {
+	width: 900px;
+	margin-left: 300px;
+}
+h3.freeView_titName {
+	font-size: 35px;
+	font-weight: bold;
+	letter-spacing: -2.7px;
+	color: #161616;
+	text-align: center;
+	border-bottom: 2px solid darkgray;
+	padding: 0px 0px 50px 0px;
+	margin: 50px 0px 0px 0px;
+}
+
+#freeView_table {
+	position: relative;
+	width: 100%;
+}
+
+#fr_select_view{
+	width: 900px;
+	position: relative;
+	margin: 0 auto;
+	border-collapse: collapse;
+	font-size: 12pt;
+	
+}
+
+#fr_select_view tr{
+	border-left: none;
+	border-right: none;
+	height: 55px;
+}
+
+#table_mainCnt {
+	border: 1px solid #c0c0c0;
+}
+
+tr.table_title {
+	background-color: #f2f8ff;
+}
+
+td.table_category{
+	width: 200px;
+	text-align: center;
+	font-weight: bold;
+}
+
+#fr_select_view td{
+	border-left: none;
+	border-right: none;
+}
+
+td.table_container1 {
+	height: 30px;
+}
+
+td.table_container>input{
+	border: 0px;
+	background: none;
+}
+
+textarea {
+	padding: 20px 0px 20px 0px;
+	border: none;
+	background: none;
+	resize: none;
+}
+
+#filedown>a {
+	font-size: 10pt;
+	text-decoration: underline;
+	color: black;
+	
+}
+
+.freeView_btn_list1 {
+	width: 100%;
+	margin-top: 50px;
+	margin-left: 67%;
+}
+
+.freeView_btn_list2 {
+	width: 100%;
+	margin-top: 50px;
+	margin-left: 79%;
+}
+
+.freeView_btn_list3 {
+	width: 100%;
+	margin-top: 50px;
+	margin-left: 90%;
+}
+
+.freeView_btn1 input {
+	width: 100px; 
+	height : 30px; 
+	font-size : 10px;
+	border: 0px;
+	border-radius: 3em;
+	background-color: darkgray;
+	color: white;
+	cursor: pointer;
+	height: 30px;
+	font-size: 10px;
+}
+
+.freeView_btn2 input {
+	width: 100px;
+	height: 30px;
+	font-size: 10px;
+	border: 0px;
+	border-radius: 3em;
+	background-color: dodgerblue;
+	color: white;
+	cursor: pointer;
+}
+
+.freeView_btn3 input {
+	width: 100px;
+	height: 30px;
+	font-size: 10px;
+	border: 0px;
+	border-radius: 3em;
+	background-color: darkgray;
+	color: white;
+	cursor: pointer;
+}
+
+.freeView_btn1 {
+	float: left;
+	margin-right: 30px;
+}
+
+.freeView_btn3 {
+	float: left;
+	margin-right: 30px;
+}
+
+#tr_btn_modify {
+	display: none;
+}
+
+#freeView_mainBtn {
+	display: block;
+}

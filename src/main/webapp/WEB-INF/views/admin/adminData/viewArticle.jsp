@@ -17,7 +17,10 @@
 
 <head>
 <meta charset="utf-8">
-<link href="${contextPath }/resources/css/data/viewArticle.css" rel="stylesheet" type="text/css">
+<link href="${contextPath }/resources/css/admin/data/viewArticle.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="${contextPath}/resources/css/sidemenu.css"
+	type="text/css">
+<script src="${contextPath}/resources/js/sidemenu.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 <c:choose>
@@ -33,7 +36,7 @@
 
 <script type="text/javascript">
      function backToList(obj){
-       obj.action="${contextPath}/boardData/listArticles.do";
+       obj.action="${contextPath}/adminData/listArticles.do";
        obj.submit();
      }
      
@@ -54,7 +57,7 @@
     
     
     function fn_modify_article(obj){
-       obj.action="${contextPath}/boardData/modArticle.do";
+       obj.action="${contextPath}/adminData/modArticle.do";
        obj.submit();
     }
     
@@ -96,7 +99,7 @@
              $.ajax({
                 type:"post",
                 async:false,  
-                url:"http://localhost:8090/GJ/boardData/removeModImage.do",
+                url:"http://localhost:8090/GJ/adminData/removeModImage.do",
                 dataType:"text",
                 data: {up_fileNO : _up_fileNO,  etc_NO : _etc_NO, up_fileName : _up_fileName},
                 success:function (result, textStatus){
@@ -104,7 +107,7 @@
                 	      
                        alert("파일을 삭제했습니다.");
                      
-                      location.href="http://localhost:8090/GJ/boardData/viewArticle.do?removeCompleted=true&etc_NO=" + _etc_NO;
+                      location.href="http://localhost:8090/GJ/adminData/viewArticle.do?removeCompleted=true&etc_NO=" + _etc_NO;
                              
                     $('#tr_'+rowNum).remove();
                    $('#tr_sub'+rowNum).remove();
@@ -170,6 +173,39 @@
 <body>
 	<div id="dataView_bground">
 		<div id="dataView_cnt">
+		<div id="khs_sideMenu_tot">
+				<div id="khs_leftTitle">
+					<p>관리페이지</p>
+				</div>
+				<div id="khs_subMenu">
+					<ul>
+						<li><a id="khs_left khs_left1" class="khs_lnb"><p>사용자
+									관리</p></a>
+							<ul class="khs_depth2">
+								<li><a href="${contextPath}/admin/member/listMembers.do">- 사용자 관리</a></li>
+								<li><a href="#">-
+										관리자 관리</a></li>
+							</ul></li>
+						<li><a id="khs_left khs_left2" class="khs_lnb"><p>신청
+									관리</p></a>
+							<ul class="khs_depth2">
+								<li><a href="">- 신청자 관리</a></li>
+								<li><a href="">- 신청 통계</a></li>
+							</ul></li>
+						<li><a id="khs_left khs_left3" class="khs_lnb"><p>게시판
+									관리</p></a>
+							<ul class="khs_depth2">
+								<li><a href="${contextPath}/adminNotice/listArticles.do">- 공지사항 관리</a></li>
+								<li><a href="${contextPath}/adminData/listArticles.do">- 기타자료실 관리</a></li>
+								<li><a href="">- 상담게시판 관리</a></li>
+								<li><a href="${contextPath}/adminFree/listArticles.do">- 자유게시판 관리</a></li>
+								<li><a href="">- 알림게시판 관리</a></li>
+							</ul></li>
+						<li><a id="khs_left khs_left3" class="khs_lnb"><p>통계</p></a></li>
+					</ul>
+				</div>
+			</div>
+			<div id="adm_data_tot">
 			<div id="dataView_tit">
 				<h3 class="dataView_titName">기타자료실</h3>
 			</div>
@@ -283,7 +319,7 @@
 							<div id="dataView_mainBtn">
 								<div id="dataView_mainBtn" class="dataView_btn dataView_btn3">
 										<input type=button value="삭제하기"
-											onClick="fn_remove_article('${contextPath}/boardData/removeArticle.do', ${article.etc_NO})">
+											onClick="fn_remove_article('${contextPath}/adminData/removeArticle.do', ${article.etc_NO})">
 								</div>
 								<div id="dataView_mainBtn" class="dataView_btn dataView_btn1">
 									<input type=button value="목록" onClick="backToList(this.form)">
@@ -297,10 +333,12 @@
 					<c:if test="${member.member_id != article.member_id }">
 						<div class="dataView_btn_list dataView_btn_list2">
 							<div id="dataView_mainBtn">
-								<div class="dataView_btn dataView_btn2">
+								<div class="dataView_btn dataView_btn1">
 								<input type=button value="목록" onClick="backToList(this.form)">
 								</div>
-								
+								<div class="dataView_btn dataView_btn2">
+									<input type=button value="수정하기" onClick="fn_enable()">
+								</div>
 							</div>
 						</div>
 					</c:if>
