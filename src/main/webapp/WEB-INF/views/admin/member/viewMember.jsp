@@ -185,11 +185,11 @@ function backToList(obj){
 						<li><a id="khs_left khs_left3" class="khs_lnb"><p>게시판
 									관리</p></a>
 							<ul class="khs_depth2">
-								<li><a href="">- 공지사항 관리</a></li>
-								<li><a href="">- 기타자료실 관리</a></li>
-								<li><a href="">- 상담게시판 관리</a></li>
-								<li><a href="">- 자유게시판 관리</a></li>
-								<li><a href="">- 알림게시판 관리</a></li>
+								<li><a href="${contextPath}/adminNotice/listArticles.do">- 공지사항 관리</a></li>
+								<li><a href="${contextPath}/adminData/listArticles.do">- 기타자료실 관리</a></li>
+								<li><a href="${contextPath}/adminQna/listQnas.do">- 상담게시판 관리</a></li>
+								<li><a href="${contextPath}/adminFree/listArticles.do">- 자유게시판 관리</a></li>
+								<li><a href="${contextPath}/adminAlarm/listArticles.do">- 알림게시판 관리</a></li>
 							</ul></li>
 						<li><a id="khs_left khs_left3" class="khs_lnb"><p>통계</p></a></li>
 					</ul>

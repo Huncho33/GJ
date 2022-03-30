@@ -19,6 +19,7 @@
 		<typeAlias type="com.onestop.GJ.admin.data.vo.AdminDataImageVO"  alias="adminDataImageVO" />
 		<typeAlias type="com.onestop.GJ.admin.free.vo.AdminFreeVO"  alias="adminFreeVO" />
 		<typeAlias type="com.onestop.GJ.admin.free.vo.AdminFreeImageVO"  alias="adminFreeImageVO" />
+		<typeAlias type="com.onestop.GJ.admin.QNA.vo.AdminQnaVO"  alias="adminQnaVO" />
 		
 		<typeAlias type="com.onestop.GJ.apply.mon23.vo.ApplyMonVO"  alias="ApplyMonVO" />
 		<typeAlias type="com.onestop.GJ.apply.mon23.vo.ApplyMonFileVO"  alias="ApplyMonFileVO" />

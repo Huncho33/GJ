@@ -1,0 +1,185 @@
+@charset "UTF-8";
+
+#qnaView_bground {
+	position: relative;
+	width: 100%;
+}
+
+#qnaView_cnt {
+	width: 1300px;
+	position: relative;
+	margin: 0 auto;
+}
+#adm_qna_tot {
+	width: 900px;
+	margin-left: 300px;
+}
+
+
+h3.qna_titName {
+	font-size: 35px;
+	font-weight: bold;
+	letter-spacing: -2.7px;
+	color: #161616;
+	text-align: center;
+	border-bottom: 2px solid darkgray;
+	padding: 0px 0px 50px 0px;
+	margin: 50px 0px 0px 0px;
+}
+
+#qnaView_title {
+	height: 40px;
+	border-bottom: 1px solid #E6E6E6;
+}
+
+#qnaView_title2 {
+	height: 40px;
+	padding-bottom: 40px;
+	border-bottom: 1px solid #E6E6E6;
+}
+
+
+.qnaView_tit {
+	font-size: 13pt;
+}
+
+#qnaView_table {
+	position: relative;
+	width: 100%;
+	
+}
+
+#qnaView_detail_table {
+	width: 900px;
+	position: relative;
+	margin: 0 auto;
+	border-collapse: collapse;
+	font-size: 11pt;
+	border-bottom: 2px solid darkgray;
+	margin-bottom: 60px;
+}
+
+#qnaView_detail_table tr{
+	border-left: none;
+	border-right: none;
+	height: 55px;
+}
+
+#table_mainCnt {
+	border: 1px solid #c0c0c0;
+}
+
+tr.table_title {
+	background-color: #f2f8ff;
+}
+
+td.table_category{
+	width: 200px;
+	text-align: center;
+	font-weight: bold;
+	font-size: 11pt;
+}
+
+td.table_container>input{
+	border: 0px;
+	background: none;
+	font-size: 11pt;
+}
+
+#qnaView_btn_default>input{
+	font-size: 10pt;
+}
+
+.qnaView_btn1 input {
+	width: 100px; 
+	height : 30px; 
+	border: 0px;
+	border-radius: 3em;
+	background-color: darkgray;
+	color: white;
+	cursor: pointer;
+	height: 30px;
+}
+
+.qnaView_btn3 input {
+	width: 100px; 
+	height : 30px; 
+	border: 0px;
+	border-radius: 3em;
+	background-color: #e59656;
+	color: white;
+	cursor: pointer;
+	height: 30px;
+}
+
+.qnaView_btn2 input {
+	width: 100px;
+	height: 30px;
+	border: 0px;
+	border-radius: 3em;
+	background-color: dodgerblue;
+	color: white;
+	cursor: pointer;
+}
+
+.qnaView_btn4 input {
+	width: 100px;
+	height: 30px;
+	border: 0px;
+	border-radius: 3em;
+	background-color: darkgrey;
+	color: white;
+	cursor: pointer;
+}
+
+.qnaView_btn1 {
+	float: left;
+	margin-right: 30px;
+}
+
+.qnaView_btn3 {
+	float: left;
+	margin-right: 30px;
+}
+
+.qnaView_btn4 {
+	margin-top: 15px;
+	margin-left: 90%;
+}
+
+
+.qnaView_btn_list {
+	width: 100%;
+	margin-top: 100px;
+	margin-left: 78%;
+}
+
+.qnaView_btn_list2 {
+	width: 100%;
+	margin-top: 100px;
+	margin-left: 61%;
+}
+
+#qnaView_btn_modify {
+	display: none;
+	width: 100%;
+	margin-top: 100px;
+	margin-left: 78%;
+}
+
+#qna_secretTr {
+	display: none;
+	border: 1px solid #c0c0c0;
+}
+
+.tr_modEnable {
+    visibility:hidden;
+}
+
+
+textarea {
+	padding: 20px 0px 20px 0px;
+	border: none;
+	background: none;
+	resize: none;
+}
