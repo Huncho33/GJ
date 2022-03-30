@@ -10,6 +10,7 @@
 <c:set var="searchWord" value="${articlesMap.searchWord}" />
 <c:set var="totArticles" value="${articlesMap.totArticles}" />
 <c:set var="searchTotArticles" value="${articlesMap.searchTotArticles}" />
+<c:set var="searchType_notice" value="${articlesMap.searchType_notice}" />
 
 <%
 	request.setCharacterEncoding("UTF-8");
@@ -84,9 +85,7 @@
 			<div id="noti_search">
 				<form name="frmSearch"
 					action="${contextPath}/adminNotice/searchBoardList.do">
-					<input name="searchWord" type="text"> <input type="submit"
-						name="search" value="검 색">
-						<select id="searchType_notice" name="searchType_notice">
+					<select id="searchType_notice" name="searchType_notice">
 						<option value="noti_title_context" 
 						<c:if test="${searchType_notice eq 'noti_title_context'  }">selected</c:if>>제목+내용</option>
 						<option value="noti_title" 
@@ -94,6 +93,8 @@
 						<option value="noti_context"
 						<c:if test="${searchType_notice eq 'noti_context' }">selected</c:if>>내용</option>
 						</select>
+					<input name="searchWord" type="text"> <input type="submit"
+						name="search" value="검 색">
 				</form>
 			</div>
 
@@ -147,15 +148,15 @@
 							<c:forEach var="page" begin="1" end="10" step="1">
 								<c:if test="${section >1 && page==1 }">
 									<a class="no-uline"
-										href="${contextPath }/adminNotice/searchBoardList.do?searchWord=${searchWord }&search=검+색section=${section-1}&pageNum=${(section-1)*10 +1 }">&nbsp;
+										href="${contextPath }/adminNotice/searchBoardList.do?searchType_notice=${searchType_notice }&searchWord=${searchWord }&search=검+색section=${section-1}&pageNum=${(section-1)*10 +1 }">&nbsp;
 										</a>
 								</c:if>
 								<a class="no-uline"
-									href="${contextPath }/adminNotice/searchBoardList.do?searchWord=${searchWord }&search=검+색section=${section}&pageNum=${page}">${(section-1)*10 +page }
+									href="${contextPath }/adminNotice/searchBoardList.do?searchType_notice=${searchType_notice }&searchWord=${searchWord }&search=검+색section=${section}&pageNum=${page}">${(section-1)*10 +page }
 								</a>
 								<c:if test="${page ==10 }">
 									<a class="no-uline"
-										href="${contextPath }/adminNotice/searchBoardList.do?searchWord=${searchWord }&search=검+색section=${section+1}&pageNum=${section*10+1}">&nbsp;
+										href="${contextPath }/adminNotice/searchBoardList.do?searchType_notice=${searchType_notice }&searchWord=${searchWord }&search=검+색section=${section+1}&pageNum=${section*10+1}">&nbsp;
 										></a>
 								</c:if>
 							</c:forEach>
@@ -173,12 +174,12 @@
 								<c:choose>
 									<c:when test="${page==pageNum }">
 										<a class="sel-page"
-											href="${contextPath }/adminNotice/searchBoardList.do?searchWord=${searchWord }&search=검+색section=${section}&pageNum=${page}">${page }
+											href="${contextPath }/adminNotice/searchBoardList.do?searchType_notice=${searchType_notice }&searchWord=${searchWord }&search=검+색section=${section}&pageNum=${page}">${page }
 										</a>
 									</c:when>
 									<c:otherwise>
 										<a class="no-uline"
-											href="${contextPath }/adminNotice/searchBoardList.do?searchWord=${searchWord }&search=검+색section=${section}&pageNum=${page}">${page }
+											href="${contextPath }/adminNotice/searchBoardList.do?searchType_notice=${searchType_notice }&searchWord=${searchWord }&search=검+색section=${section}&pageNum=${page}">${page }
 										</a>
 									</c:otherwise>
 								</c:choose>

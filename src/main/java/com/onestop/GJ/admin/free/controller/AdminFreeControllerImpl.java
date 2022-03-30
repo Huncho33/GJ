@@ -68,7 +68,9 @@ public class AdminFreeControllerImpl implements AdminFreeController{
 	// °Ë»öÃ¢
 	   @Override
 	   @RequestMapping(value = "/adminFree/searchBoardList.do", method = RequestMethod.GET)
-	   public ModelAndView searchBoardList(@RequestParam("searchWord") String searchWord, HttpServletRequest request,
+	   public ModelAndView searchBoardList(@RequestParam("searchWord") String searchWord, 
+			   @RequestParam("searchType_fr") String searchType_fr,
+			   HttpServletRequest request,
 	         HttpServletResponse response) throws Exception {
 	      response.setContentType("text/html;charset=utf-8");
 	      response.setCharacterEncoding("utf-8");
@@ -81,11 +83,13 @@ public class AdminFreeControllerImpl implements AdminFreeController{
 	      pagingMap.put("section", section);
 	      pagingMap.put("pageNum", pageNum);
 	      pagingMap.put("searchWord", searchWord);
+	      pagingMap.put("searchType_fr", searchType_fr);
 	      Map articlesMap = boardService.searchBoardList(pagingMap);
 
 	      articlesMap.put("section", section);
 	      articlesMap.put("pageNum", pageNum);
 	      articlesMap.put("searchWord", searchWord);
+	      articlesMap.put("searchType_fr", searchType_fr);
 
 	      String viewName = (String) request.getAttribute("viewName");
 	      ModelAndView mav = new ModelAndView(viewName);
