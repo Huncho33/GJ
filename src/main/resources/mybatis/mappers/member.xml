@@ -34,10 +34,14 @@
 		from member
 		where member_id = #{id}
 	</select>
-
+	
+	
 	<!-- <select id="login" resultType="memberVO" parameterType="java.util.Map"> 
-		<![CDATA[ select * from member where member_id=#{member_id} and member_pw=#{member_pw} 
-		]]> </select> -->
+		<![CDATA[ select * from member 
+		where member_id=#{member_id} and member_pw=#{member_pw} 
+		
+		]]> 
+		</select>  -->
 
 	<select id="selectAllMemberList" resultMap="memResult">
       <![CDATA[
@@ -49,8 +53,8 @@
 		<![CDATA[
 
 		 insert into member(member_id,
-		 					member_pw,
 		 					member_name,
+		 					member_pw,
 		 					member_gender,
 		 					member_birth,
 		 					member_phoneno,
@@ -74,13 +78,22 @@
 		 		#{member_namujiAddress}) 
 		]]>
 	</insert>
-
+<!--  -->
 	<update id="updateMember" parameterType="memberVO">
      <![CDATA[
 	     update member
-	     set pwd=#{member_pw}, name=#{member_name}, email=#{member_email1}
+	     set
+	     member_id=#{member_id},
+		 member_pw=#{member_pw}, 
+	     member_phoneno=#{member_phoneno},
+	     member_email1=#{member_email1}, 
+	     member_email2=#{member_email2},
+	     member_zipcode=#{member_zipcode},
+		 member_roadAddress=#{member_roadAddress},
+		 member_jibunAddress=#{member_jibunAddress},
+		 member_namujiAddress=#{member_namujiAddress}
 	     where
-	     id=#{member_id}
+	     member_id=#{member_id}
       ]]>
 	</update>
 

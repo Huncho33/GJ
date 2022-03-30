@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.back">
+
+	<resultMap id="backApplyResult" type="ApplyBackVO">
+		<result property="ba_no" column="ba_no" />
+		<result property="up_filename" column="up_filename" />
+		<result property="member_id" column="member_id" />
+		<result property="ba_date" column="ba_date" />
+		<result property="ba_result" column="ba_result" />
+		<result property="ba_policy" column="ba_policy" />
+		<result property="ba_reason" column="ba_reason" />
+		
+	</resultMap>
+	
+	<resultMap id="backFileResult" type="ApplyBackFileVO">
+		<result property="up_fileno" column="up_fileno" />
+		<result property="up_filename" column="up_filename" />
+		<result property="up_date" column="up_date" />
+		<result property="ba_no" column="ba_no" />
+	</resultMap>
+
+
+	<select id="selectResult" resultType="ApplyBackVO"
+		parameterType="java.util.Map"> 
+		<![CDATA[ select ba_result from back_apply 
+		where member_id=#{member_id} 
+		
+		]]>
+	</select>
+
+
+	
+
+	<insert id="insertResult" parameterType="java.util.Map">
+		<![CDATA[
+
+		 insert into back_apply(ba_no,
+		 					   up_filename,
+		 					   member_id,
+		 					   ba_date,
+		 					   ba_reason
+		 					   ) 			
+		 values(#{ba_no}, 
+		 		null,
+		 		#{member_id},
+		 		sysdate,
+		 		#{ba_reason}) 	
+		]]>
+	</insert>
+	
+		<!-- 월세 신청 번호 생성 -->
+	<select id="insertResultNO" resultType="int">
+	<![CDATA[
+   select  nvl(max(ba_no),0) +1 from back_apply
+	]]>
+	</select>
+	
+	<!-- 파일 추가 -->
+	<insert id="insertNewImage" parameterType="java.util.Map">
+		 <foreach item="item" collection="list" open="INSERT ALL"
+			separator=" " close="SELECT * FROM DUAL">
+			into back_file(up_fileno, up_filename, up_date, ba_no)
+			values (#{item.up_fileno}, #{item.up_filename}, sysdate, #{item.ba_no})
+		</foreach>   
+	</insert>
+	
+	<!-- 월세지원 파일번호 생성 -->
+		<select id="selectMoFileNO" resultType="int">
+<![CDATA[
+   select nvl(max(up_fileno),0) from back_file
+]]>
+	</select>
+
+	
+	<!--결과페이지 관련, 아이디로 찾아서 아이디에 해당하는 값들 조회  -->	
+	<select id="all" resultMap="backApplyResult">
+		<![CDATA[
+         select * 
+         from back_apply
+         where member_id=#{member_id}
+      ]]>
+	</select>
+	<select id="findNo" resultMap="backApplyResult">
+		<![CDATA[
+         select * 
+         from back_apply
+         where ba_no=#{ba_no}
+      ]]>
+	</select>	
+		
+
+</mapper>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+	<definition name="baseLayout"
+		template="/WEB-INF/views/common/layout.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="header"
+			value="/WEB-INF/views/common/header.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer"
+			value="/WEB-INF/views/common/footer.jsp" />
+	</definition>
+	
+	
+	<definition name="/ret/rentReturnApplyInfo" extends="baseLayout">
+		<put-attribute name="title" value="전세반환보증금 소개" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/rentReturnApply/rentReturnApplyInfo.jsp" />
+	</definition>
+	
+	<definition name="/ret/rentReturnApplyForm1" extends="baseLayout">
+		<put-attribute name="title" value="전세반환보증금 신청1" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/rentReturnApply/rentReturnApplyForm1.jsp" />
+	</definition>
+	
+	<definition name="/ret/rentReturnApplyForm2" extends="baseLayout">
+		<put-attribute name="title" value="전세반환보증금 신청2" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/rentReturnApply/rentReturnApplyForm2.jsp" />
+	</definition>
+	
+	<definition name="/ret/rentReturnApplyForm3" extends="baseLayout">
+		<put-attribute name="title" value="전세반환보증금 신청3" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/rentReturnApply/rentReturnApplyForm3.jsp" />
+	</definition>
+	
+	<definition name="/ret/rentReturnApplyForm4" extends="baseLayout">
+		<put-attribute name="title" value="전세반환보증금 신청4" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/rentReturnApply/rentReturnApplyForm4.jsp" />
+	</definition>
+	
+	<definition name="/ret/rentReturnApplyResult" extends="baseLayout">
+		<put-attribute name="title" value="전세반환보증금 결과페이지" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/rentReturnApply/rentReturnApplyResult.jsp" />
+	</definition>
+	
+	
+
+</tiles-definitions>

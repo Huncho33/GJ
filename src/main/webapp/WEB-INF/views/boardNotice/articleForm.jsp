@@ -49,7 +49,7 @@
 				<td colspan=2 align="left"><input type="text" size="20"
 
 					maxlength="100" name="member_id" value="${member.member_id}" readonly /></td>
-
+<
 			</tr>
 			<tr>
 				<td align="right">글제목:</td>

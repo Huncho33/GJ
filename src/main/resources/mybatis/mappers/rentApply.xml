@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.rent">
+
+	<resultMap id="rentApplyResult" type="ApplyRentVO">
+		<result property="rent_no" column="rent_no" />
+		<result property="up_filename" column="up_filename" />
+		<result property="member_id" column="member_id" />
+		<result property="rent_date" column="rent_date" />
+		<result property="rent_result" column="rent_result" />
+		<result property="rent_policy" column="rent_policy" />
+		<result property="rent_reason" column="rent_reason" />
+
+		
+	</resultMap>
+	
+	<resultMap id="rentFileResult" type="ApplyRentFileVO">
+		<result property="up_fileno" column="up_fileno" />
+		<result property="up_filename" column="up_filename" />
+		<result property="up_date" column="up_date" />
+		<result property="rent_no" column="rent_no" />
+	</resultMap>
+
+
+	<select id="selectResult" resultType="ApplyRentVO"
+		parameterType="java.util.Map"> 
+		<![CDATA[ select rent_result from rent_apply 
+		where member_id=#{member_id} 
+		
+		]]>
+	</select>
+
+
+	
+
+	<insert id="insertResult" parameterType="java.util.Map">
+		<![CDATA[
+
+		 insert into rent_apply(rent_no,
+		 					   up_filename,
+		 					   member_id,
+		 					   rent_date,
+		 					   rent_reason
+		 					   ) 			
+		 values(#{rent_no}, 
+		 		null,
+		 		#{member_id},
+		 		sysdate,
+		 		#{rent_reason}) 	
+		]]>
+	</insert>
+	
+		<!-- 월세 신청 번호 생성 -->
+	<select id="insertResultNO" resultType="int">
+	<![CDATA[
+   select  nvl(max(rent_no),0) +1 from rent_apply
+	]]>
+	</select>
+	
+	<!-- 파일 추가 -->
+	<insert id="insertNewImage" parameterType="java.util.Map">
+		 <foreach item="item" collection="list" open="INSERT ALL"
+			separator=" " close="SELECT * FROM DUAL">
+			into rent_file(up_fileno, up_filename, up_date, rent_no)
+			values (#{item.up_fileno}, #{item.up_filename}, sysdate, #{item.rent_no})
+		</foreach>   
+	</insert>
+	
+	<!-- 월세지원 파일번호 생성 -->
+		<select id="selectRentFileNO" resultType="int">
+<![CDATA[
+   select nvl(max(up_fileno),0) from mon_file
+]]>
+	</select>
+
+	
+	<!--결과페이지 관련, 아이디로 찾아서 아이디에 해당하는 값들 조회  -->	
+	<select id="all" resultMap="rentApplyResult">
+		<![CDATA[
+         select * 
+         from rent_apply
+         where member_id=#{member_id}
+      ]]>
+	</select>
+	<select id="findNo" resultMap="rentApplyResult">
+		<![CDATA[
+         select * 
+         from rent_apply
+         where rent_no=#{rent_no}
+      ]]>
+	</select>		
+
+</mapper>

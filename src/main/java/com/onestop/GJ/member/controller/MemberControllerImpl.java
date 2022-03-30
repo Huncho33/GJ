@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.onestop.GJ.apply.mon23.service.ApplyMonService;
+import com.onestop.GJ.apply.mon23.vo.ApplyMonVO;
 import com.onestop.GJ.member.service.MemberService;
 import com.onestop.GJ.member.vo.MemberVO;
 
@@ -28,7 +30,11 @@ public class MemberControllerImpl implements MemberController {
 	private MemberService memberService;
 	@Autowired
 	private MemberVO memberVO;
-
+	@Autowired 
+	private ApplyMonVO applymonVO;
+	@Autowired
+	private ApplyMonService applymonService;
+	
 	@RequestMapping(value = { "/*/*.do", "/main.do" }, method = RequestMethod.GET)
 	private ModelAndView main(HttpServletRequest request, HttpServletResponse response) {
 		String viewName = (String) request.getAttribute("viewName");
@@ -40,15 +46,14 @@ public class MemberControllerImpl implements MemberController {
 	// 로그인
 	@Override
 	@RequestMapping(value = "/member/login.do", method = RequestMethod.POST)
-	public ModelAndView login(@ModelAttribute("member") MemberVO member, RedirectAttributes rAttr,
+	public ModelAndView login(@ModelAttribute("member") MemberVO memberVO, RedirectAttributes rAttr,
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView();
-		memberVO = memberService.login(member);
+		memberVO = memberService.login(memberVO);
 		if (memberVO != null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("member", memberVO);
 			session.setAttribute("isLogOn", true);
-
 			String action = (String) session.getAttribute("action");
 			session.removeAttribute("action");
 			if (action != null) {
@@ -82,15 +87,20 @@ public class MemberControllerImpl implements MemberController {
 
 	@RequestMapping(value = "/member/*Form.do", method = RequestMethod.GET)
 	private ModelAndView form(@RequestParam(value = "result", required = false) String result,
-			HttpServletRequest request, HttpServletResponse response) throws Exception {
+			@RequestParam(value = "action", required = false) String action, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
 		String viewName = (String) request.getAttribute("viewName");
+
+		HttpSession session = request.getSession();
+		session.setAttribute("action", action);
+
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("result", result);
 		mav.setViewName(viewName);
 		return mav;
 	}
-	
-	//회원가입
+
+	// 회원가입
 	@RequestMapping(value = "/member/memberForm2.do", method = RequestMethod.GET)
 	private ModelAndView memberForm2(@RequestParam(value = "result", required = false) String result,
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -140,7 +150,6 @@ public class MemberControllerImpl implements MemberController {
 		return resEntity;
 	}
 
-
 	// 회원가입 ID 중복체크
 	@Override
 	@RequestMapping(value = "/member/overlapped.do", method = RequestMethod.POST)
@@ -151,7 +160,6 @@ public class MemberControllerImpl implements MemberController {
 		resEntity = new ResponseEntity(result, HttpStatus.OK);
 		return resEntity;
 	}
-
 
 	// 비밀번호 찾기 폼 출력 메서드
 	@RequestMapping(value = "/member/find_pw_form.do", method = RequestMethod.GET)
@@ -182,46 +190,40 @@ public class MemberControllerImpl implements MemberController {
 
 	}
 
-	//	--아이디찾기
+	// --아이디찾기
 	@Override
 	@RequestMapping(value = "/member/findYourId.do", method = RequestMethod.POST)
 	public ResponseEntity sendPhone(@ModelAttribute("member") MemberVO member, RedirectAttributes rAttr,
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		memberVO = memberService.findId_hp(member);
-		
+
 		String message = null;
 		ResponseEntity resEntity1 = null;
 		HttpHeaders responseHeaders1 = new HttpHeaders();
 		responseHeaders1.add("Content-Type", "text/html; charset=utf-8");
-		
-		
+
 		if (memberVO != null) {
-			
+
 			message = "<script>";
-			message += " alert('" +"아이디 : "+  memberVO.getMember_id()  + "');";
+			message += " alert('" + "아이디 : " + memberVO.getMember_id() + "');";
 			message += " location.href='" + request.getContextPath() + "/member/loginForm.do';";
 			message += " </script>";
-			
 
-			System.out.println("ok~"+ memberVO.getMember_id());
-			
-		}else {
+			System.out.println("ok~" + memberVO.getMember_id());
+
+		} else {
 			System.out.println("not okay");
-			
+
 			message = "<script>";
-			message += " alert('" +" 입력한 정보가 올바르지 않습니다. "  + "');";
+			message += " alert('" + " 입력한 정보가 올바르지 않습니다. " + "');";
 			message += " location.href='" + request.getContextPath() + "/member/findId_cellph.do';";
 			message += " </script>";
-	
-	
+
 		}
-			
+
 		resEntity1 = new ResponseEntity(message, responseHeaders1, HttpStatus.OK);
 		return resEntity1;
-		
-
-
 
 	}
 

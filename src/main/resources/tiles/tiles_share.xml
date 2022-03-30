@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+	<definition name="baseLayout"
+		template="/WEB-INF/views/common/layout.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="header"
+			value="/WEB-INF/views/common/header.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer"
+			value="/WEB-INF/views/common/footer.jsp" />
+	</definition>
+	
+	
+	<definition name="/share/shareApplyInfo" extends="baseLayout">
+		<put-attribute name="title" value="청년희망주택이자지원 소개" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/shareApply/shareApplyInfo.jsp" />
+	</definition>
+	
+	<definition name="/share/shareApplyForm1" extends="baseLayout">
+		<put-attribute name="title" value="청년희망주택이자지원 신청1" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/shareApply/shareApplyForm1.jsp" />
+	</definition>
+	
+	<definition name="/share/shareApplyForm2" extends="baseLayout">
+		<put-attribute name="title" value="청년희망주택이자지원 신청2" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/shareApply/shareApplyForm2.jsp" />
+	</definition>
+	
+	<definition name="/share/shareApplyForm3" extends="baseLayout">
+		<put-attribute name="title" value="청년희망주택이자지원 신청3" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/shareApply/shareApplyForm3.jsp" />
+	</definition>
+	
+	<definition name="/share/shareApplyForm4" extends="baseLayout">
+		<put-attribute name="title" value="청년희망주택이자지원 신청4" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/shareApply/shareApplyForm4.jsp" />
+	</definition>
+	
+	<definition name="/share/shareApplyResult" extends="baseLayout">
+		<put-attribute name="title" value="청년희망주택이자지원 결과페이지" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/shareApply/shareApplyResult.jsp" />
+	</definition>
+	
+	
+
+</tiles-definitions>

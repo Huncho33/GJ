@@ -14,12 +14,12 @@
 
 <link href="${contextPath}/resources/css/qna/listQnas.css" rel="stylesheet" type="text/css">
 <script>
-	function fn_QnaForm(isLogOn, qnaForm, loginForm) {
+	function fn_QnaForm(isLogOn, QnaForm, loginForm) {
 		if (isLogOn != '' && isLogOn != 'false') {
 			location.href = qnaForm;
 		} else {
 			alert("로그인 후 글쓰기가 가능합니다.")
-			location.href = loginForm + '?action=/qna/qnaForm.do';
+			location.href = loginForm + '?action=/qna/QnaForm.do';
 		}
 	}
 </script>
