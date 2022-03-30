@@ -1,4 +1,4 @@
-package com.onestop.GJ.board.free.controller;
+package com.onestop.GJ.admin.notice.controller;
 
 import java.io.File;
 import java.io.PrintWriter;
@@ -27,24 +27,27 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.onestop.GJ.board.free.service.BoardFreeService;
-import com.onestop.GJ.board.free.vo.BoardFreeImageVO;
-import com.onestop.GJ.board.free.vo.BoardFreeVO;
+import com.onestop.GJ.admin.notice.service.AdminNoticeService;
+import com.onestop.GJ.admin.notice.vo.AdminNoticeImageVO;
+import com.onestop.GJ.admin.notice.vo.AdminNoticeVO;
+import com.onestop.GJ.board.notice.vo.BoardNoticeImageVO;
 import com.onestop.GJ.member.vo.MemberVO;
 
 
-@Controller("boardFreeController")
-public class BoardFreeControllerImpl implements BoardFreeController{
-	private static String ARTICLE_IMAGE_REPO = "C:\\GJ\\file_repo\\board\\free";
-	   @Autowired
-	   BoardFreeService boardService;
-	   @Autowired
-	   BoardFreeVO boardDataVO;
-	   
-	   @Override
-	   @RequestMapping(value = { "/boardFree/listArticles.do" }, method = { RequestMethod.GET, RequestMethod.POST })
-	   public ModelAndView listArticles(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
+@Controller("adminNoticeController")
+public class AdminNoticeControllerImpl implements AdminNoticeController {
+	private static String ARTICLE_IMAGE_REPO = "C:\\GJ\\file_repo\\board\\notice";
+	
+	 @Autowired
+	 AdminNoticeService boardService;
+	 @Autowired
+	 AdminNoticeVO boardNoticeVO;
+	  
+	 @Override
+	   @RequestMapping(value = { "/adminNotice/listArticles.do" }, method = { RequestMethod.GET, RequestMethod.POST })
+	   public ModelAndView listArticles(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		   System.out.println("오다들림");
 	      String _section = request.getParameter("section");
 	      String _pageNum = request.getParameter("pageNum");
 	      int section = Integer.parseInt(((_section == null) ? "1" : _section));
@@ -58,15 +61,16 @@ public class BoardFreeControllerImpl implements BoardFreeController{
 	      articlesMap.put("pageNum", pageNum);
 
 	      String viewName = (String) request.getAttribute("viewName");
+	      System.out.println("viewname : "+ viewName);
 	      ModelAndView mav = new ModelAndView(viewName);
 	      mav.addObject("articlesMap", articlesMap);
 	      return mav;
 
 	   }
-	   
-	// 검색창
+
+	   // 검색창
 	   @Override
-	   @RequestMapping(value = "/boardFree/searchBoardList.do", method = RequestMethod.GET)
+	   @RequestMapping(value = "/adminNotice/searchBoardList.do", method = RequestMethod.GET)
 	   public ModelAndView searchBoardList(@RequestParam("searchWord") String searchWord, HttpServletRequest request,
 	         HttpServletResponse response) throws Exception {
 	      response.setContentType("text/html;charset=utf-8");
@@ -89,12 +93,13 @@ public class BoardFreeControllerImpl implements BoardFreeController{
 	      String viewName = (String) request.getAttribute("viewName");
 	      ModelAndView mav = new ModelAndView(viewName);
 	      mav.addObject("articlesMap", articlesMap);
+	      System.out.println("??" + articlesMap.size());
 	      return mav;
 	   }
-	   
-	// 다중 이미지 글쓰기
+
+	   // 다중 이미지 글쓰기
 	   @Override
-	   @RequestMapping(value = "/boardFree/addNewArticle.do", method = RequestMethod.POST)
+	   @RequestMapping(value = "/adminNotice/addNewArticle.do", method = RequestMethod.POST)
 	   @ResponseBody
 	   public ResponseEntity addNewArticle(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)
 	         throws Exception {
@@ -116,12 +121,12 @@ public class BoardFreeControllerImpl implements BoardFreeController{
 	      articleMap.put("member_id", member_id);
 
 	      List<String> fileList = upload(multipartRequest, RequestMethod.POST);
-	      List<BoardFreeImageVO> imageFileList = new ArrayList<BoardFreeImageVO>();
+	      List<AdminNoticeImageVO> imageFileList = new ArrayList<AdminNoticeImageVO>();
 	      if (fileList != null && fileList.size() != 0) {
 	         for (String fileName : fileList) {
-	        	 BoardFreeImageVO boardFreeImageVO = new BoardFreeImageVO();
-	        	 boardFreeImageVO.setUp_fileName(fileName);
-	            imageFileList.add(boardFreeImageVO);
+	        	 AdminNoticeImageVO adminNoticeImageVO = new AdminNoticeImageVO();
+	        	 adminNoticeImageVO.setUp_fileName(fileName);
+	            imageFileList.add(adminNoticeImageVO);
 	         }
 	         articleMap.put("imageFileList", imageFileList);
 	      }
@@ -132,12 +137,12 @@ public class BoardFreeControllerImpl implements BoardFreeController{
 	      responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 
 	      try {
-	         int fr_NO = boardService.addNewArticle(articleMap);
+	         int noti_NO = boardService.addNewArticle(articleMap);
 	         if (imageFileList != null && imageFileList.size() != 0) {
-	            for (BoardFreeImageVO boardFreeImageVO : imageFileList) {
-	               up_fileName = boardFreeImageVO.getUp_fileName();
+	            for (AdminNoticeImageVO adminNoticeImageVO : imageFileList) {
+	               up_fileName = adminNoticeImageVO.getUp_fileName();
 	               File srcFile = new File(ARTICLE_IMAGE_REPO + "\\" + "temp" + "\\" + up_fileName);
-	               File destDir = new File(ARTICLE_IMAGE_REPO + "\\" + fr_NO);
+	               File destDir = new File(ARTICLE_IMAGE_REPO + "\\" + noti_NO);
 	               // destDir.mkdirs();
 	               FileUtils.moveFileToDirectory(srcFile, destDir, true);
 	            }
@@ -145,14 +150,14 @@ public class BoardFreeControllerImpl implements BoardFreeController{
 
 	         message = "<script>";
 	         message += " alert('새글을 추가했습니다.');";
-	         message += " location.href='" + multipartRequest.getContextPath() + "/boardFree/listArticles.do'; ";
+	         message += " location.href='" + multipartRequest.getContextPath() + "/adminNotice/listArticles.do'; ";
 	         message += " </script>";
 	         resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 
 	      } catch (Exception e) {
 	         if (imageFileList != null && imageFileList.size() != 0) {
-	            for (BoardFreeImageVO boardFreeImageVO : imageFileList) {
-	               up_fileName = boardFreeImageVO.getUp_fileName();
+	            for (AdminNoticeImageVO adminNoticeImageVO : imageFileList) {
+	               up_fileName = adminNoticeImageVO.getUp_fileName();
 	               File srcFile = new File(ARTICLE_IMAGE_REPO + "\\" + "temp" + "\\" + up_fileName);
 	               srcFile.delete();
 	            }
@@ -160,13 +165,37 @@ public class BoardFreeControllerImpl implements BoardFreeController{
 
 	         message = " <script>";
 	         message += " alert('오류가 발생했습니다. 다시 시도해 주세요');');";
-	         message += " location.href='" + multipartRequest.getContextPath() + "/boardFree/articleForm.do'; ";
+	         message += " location.href='" + multipartRequest.getContextPath() + "/adminNotice/articleForm.do'; ";
 	         message += " </script>";
 	         resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 	         e.printStackTrace();
 	      }
 	      return resEnt;
 	   }
+
+	//   // 한개 이미지 업로드하기
+	//   private String upload(MultipartHttpServletRequest multipartRequest) throws Exception {
+//	      String up_fileName = null;
+//	      Iterator<String> fileNames = multipartRequest.getFileNames();
+	//
+//	      while (fileNames.hasNext()) {
+//	         String fileName = fileNames.next();
+//	         MultipartFile mFile = multipartRequest.getFile(fileName);
+//	         up_fileName = mFile.getOriginalFilename();
+//	         File file = new File(ARTICLE_IMAGE_REPO + "\\" + fileName);
+//	         if (mFile.getSize() != 0) { // File Null Check
+//	            if (!file.exists()) { // 경로상에 파일이 존재하지 않을 경우
+//	               if (file.getParentFile().mkdirs()) { // 경로에 해당하는 디렉토리들을 생성
+//	                  file.createNewFile(); // 이후 파일 생성
+//	               }
+//	            }
+//	            mFile.transferTo(new File(ARTICLE_IMAGE_REPO + "\\" + "temp" + "\\" + up_fileName));
+//	            // 임시로 저장된 multipartFile을 실제 파일로 전송
+//	         }
+//	      }
+//	      return up_fileName;
+	//   }
+
 	   // 다중 이미지 업로드하기
 	   private List<String> upload(MultipartHttpServletRequest multipartRequest, RequestMethod post) throws Exception {
 	      List<String> fileList = new ArrayList<String>();
@@ -186,27 +215,26 @@ public class BoardFreeControllerImpl implements BoardFreeController{
 	      }
 	      return fileList;
 	   }
-	   
+
 	//   게시글 상세
-	   @RequestMapping(value = "/boardFree/viewArticle.do", method = RequestMethod.GET)
-	   public ModelAndView viewArticle(@RequestParam("fr_NO") int fr_NO,
+	   @RequestMapping(value = "/adminNotice/viewArticle.do", method = RequestMethod.GET)
+	   public ModelAndView viewArticle(@RequestParam("noti_NO") int noti_NO,
 	         @RequestParam(value="removeCompleted", required=false) String removeCompleted,
 	         HttpServletRequest request, HttpServletResponse response) throws Exception {
 	      String viewName = (String) request.getAttribute("viewName");
-	      Map articleMap = boardService.viewArticle(fr_NO);
+	      Map articleMap = boardService.viewArticle(noti_NO);
 	      articleMap.put("removeCompleted", removeCompleted );
 	      ModelAndView mav = new ModelAndView();
 	      mav.setViewName(viewName);
 	      mav.addObject("articleMap", articleMap);
-	      System.out.println("articleMap1 : "+ articleMap);
 	      return mav;
 	   }
-	   
-	// 글 삭제하기
+
+	   // 글 삭제하기
 	   @Override
-	   @RequestMapping(value = "/boardFree/removeArticle.do", method = RequestMethod.POST)
+	   @RequestMapping(value = "/adminNotice/removeArticle.do", method = RequestMethod.POST)
 	   @ResponseBody
-	   public ResponseEntity removeArticle(@RequestParam("fr_NO") int fr_NO, HttpServletRequest request,
+	   public ResponseEntity removeArticle(@RequestParam("noti_NO") int noti_NO, HttpServletRequest request,
 	         HttpServletResponse response) throws Exception {
 	      response.setContentType("text/html; charset=utf-8");
 	      String message;
@@ -214,31 +242,30 @@ public class BoardFreeControllerImpl implements BoardFreeController{
 	      HttpHeaders responseHeaders = new HttpHeaders();
 	      responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 	      try {
-	    	  System.out.println("fr : "+ fr_NO);
-	    	  boardService.removeArticle(fr_NO);
-	         File destDir = new File(ARTICLE_IMAGE_REPO + "\\" + fr_NO);
-	         System.out.println("삭제파일1 : "+ destDir);
+	    	  System.out.println("noti : "+ noti_NO);
+	         boardService.removeArticle(noti_NO);
+	         File destDir = new File(ARTICLE_IMAGE_REPO + "\\" + noti_NO);
+	         System.out.println("삭제파일2 : "+ destDir);
 	         FileUtils.deleteDirectory(destDir);
-	        
 
 	         message = "<script>";
 	         message += " alert('글을 삭제했습니다.');";
-	         message += " location.href='" + request.getContextPath() + "/boardFree/listArticles.do';";
+	         message += " location.href='" + request.getContextPath() + "/adminNotice/listArticles.do';";
 	         message += " </script>";
 	         resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 	      } catch (Exception e) {
 	         message = "<script>";
 	         message += " alert('오류가 발생했습니다.다시 시도해주세요');";
-	         message += " location.href='" + request.getContextPath() + "/boardFree/listArticles.do';";
+	         message += " location.href='" + request.getContextPath() + "/adminNotice/listArticles.do';";
 	         message += " </script>";
 	         resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 	         e.printStackTrace();
 	      }
 	      return resEnt;
 	   }
-	   
-	// 글 수정하기
-	   @RequestMapping(value = "/boardFree/modArticle.do", method = RequestMethod.POST)
+
+	   // 글 수정하기
+	   @RequestMapping(value = "/adminNotice/modArticle.do", method = RequestMethod.POST)
 	   @ResponseBody
 	   public ResponseEntity modArticle(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)
 	         throws Exception {
@@ -260,35 +287,35 @@ public class BoardFreeControllerImpl implements BoardFreeController{
 	            articleMap.put(name, value);
 	         }
 	      }
+
 	      List<String> fileList = uploadModImageFile(multipartRequest);//수정한 이미지 파일을 업로드한다.
 	      int added_img_num = Integer.parseInt((String) articleMap.get("added_img_num"));
 	      int pre_img_num = Integer.parseInt((String) articleMap.get("pre_img_num"));
 	      System.out.println("added_img_num : "+ added_img_num);
 	      System.out.println("pre_img_num : "+ pre_img_num);
-	      List<BoardFreeImageVO> imageFileList = new ArrayList<BoardFreeImageVO>();
-	      List<BoardFreeImageVO> modAddimageFileList = new ArrayList<BoardFreeImageVO>();
+	      List<AdminNoticeImageVO> imageFileList = new ArrayList<AdminNoticeImageVO>();
+	      List<AdminNoticeImageVO> modAddimageFileList = new ArrayList<AdminNoticeImageVO>();
 	      if (fileList != null && fileList.size() != 0) {
 	         String[] up_fileNO = (String[]) articleMap.get("up_fileNO");
 	         
 	         for (int i = 0; i < added_img_num; i++) {
 	            String up_fileName = fileList.get(i);
 	            
-	            BoardFreeImageVO boardFreeImageVO = new BoardFreeImageVO();
+	            AdminNoticeImageVO adminNoticeImageVO = new AdminNoticeImageVO();
 	            if (i < pre_img_num) {
-	            	boardFreeImageVO.setUp_fileName(up_fileName);
-	            	boardFreeImageVO.setUp_fileNO(Integer.parseInt(up_fileNO[i]));
-	               imageFileList.add(boardFreeImageVO);
+	            	adminNoticeImageVO.setUp_fileName(up_fileName);
+	            	adminNoticeImageVO.setUp_fileNO(Integer.parseInt(up_fileNO[i]));
+	               imageFileList.add(adminNoticeImageVO);
 	               articleMap.put("imageFileList", imageFileList);
 	            } else {
-	            	boardFreeImageVO.setUp_fileName(up_fileName);
-	               modAddimageFileList.add(boardFreeImageVO);
+	            	adminNoticeImageVO.setUp_fileName(up_fileName);
+	               modAddimageFileList.add(adminNoticeImageVO);
 	               articleMap.put("modAddimageFileList", modAddimageFileList);
 	            }
 	         }
 	      }
 
-	      String fr_NO = (String) articleMap.get("fr_NO");
-	      System.out.println("fr_NO1 : "+ fr_NO);
+	      String noti_NO = (String) articleMap.get("noti_NO");
 	      String message;
 	      ResponseEntity resEnt = null;
 	      HttpHeaders responseHeaders = new HttpHeaders();
@@ -301,20 +328,19 @@ public class BoardFreeControllerImpl implements BoardFreeController{
 	               if (i < pre_img_num) {
 	                  if (up_fileName != null) {
 	                     File srcFile = new File(ARTICLE_IMAGE_REPO + "\\" + "temp" + "\\" + up_fileName);
-	                     File destDir = new File(ARTICLE_IMAGE_REPO + "\\" + fr_NO);
+	                     File destDir = new File(ARTICLE_IMAGE_REPO + "\\" + noti_NO);
 	                     FileUtils.moveFileToDirectory(srcFile, destDir, true);
 
 	                     String[] oldName = (String[]) articleMap.get("oldFileName");
 	                     String oldFileName = oldName[i];
 
-	                     File oldFile = new File(ARTICLE_IMAGE_REPO + "\\" + fr_NO + "\\" + oldFileName);
+	                     File oldFile = new File(ARTICLE_IMAGE_REPO + "\\" + noti_NO + "\\" + oldFileName);
 	                     oldFile.delete();
 	                  }
 	               } else {
 	                  if (up_fileName != null) {
-	                	  
 	                     File srcFile = new File(ARTICLE_IMAGE_REPO + "\\" + "temp" + "\\" + up_fileName);
-	                     File destDir = new File(ARTICLE_IMAGE_REPO + "\\" + fr_NO);
+	                     File destDir = new File(ARTICLE_IMAGE_REPO + "\\" + noti_NO);
 	                     FileUtils.moveFileToDirectory(srcFile, destDir, true);
 	                  }
 	               }
@@ -322,8 +348,8 @@ public class BoardFreeControllerImpl implements BoardFreeController{
 	         }
 	         message = "<script>";
 	         message += " alert('글을 수정했습니다.');";
-	         message += " location.href='" + multipartRequest.getContextPath() + "/boardFree/viewArticle.do?fr_NO="
-	               + fr_NO + "';";
+	         message += " location.href='" + multipartRequest.getContextPath() + "/adminNotice/viewArticle.do?noti_NO="
+	               + noti_NO + "';";
 	         message += " </script>";
 	         resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 	      } catch (Exception e) {
@@ -336,17 +362,16 @@ public class BoardFreeControllerImpl implements BoardFreeController{
 	         }
 	         message = "<script>";
 	         message += " alert('오류가 발생했습니다.다시 수정해주세요');";
-	         message += " location.href='" + multipartRequest.getContextPath() + "/boardFree/viewArticle.do?fr_NO="
-	               + fr_NO + "';";
+	         message += " location.href='" + multipartRequest.getContextPath() + "/adminNotice/viewArticle.do?noti_NO="
+	               + noti_NO + "';";
 	         message += " </script>";
 	         resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 	      }
 	      return resEnt;
 	   }
 	   
-	   
 	   // 수정하기에서 이미지 삭제 기능
-	      @RequestMapping(value = "/boardFree/removeModImage.do", method = RequestMethod.POST)
+	      @RequestMapping(value = "/adminNotice/removeModImage.do", method = RequestMethod.POST)
 	      @ResponseBody
 	      public void removeModImage(HttpServletRequest request, HttpServletResponse response) throws Exception {
 	    	
@@ -357,18 +382,18 @@ public class BoardFreeControllerImpl implements BoardFreeController{
 	         try {
 	            String up_fileNO = (String) request.getParameter("up_fileNO");
 	            String up_fileName = (String) request.getParameter("up_fileName");
-	            String fr_NO = (String) request.getParameter("fr_NO");
+	            String noti_NO = (String) request.getParameter("noti_NO");
 
 	            
 	            System.out.println("up_fileNO = " + up_fileNO);
-	            System.out.println("fr_NO = " + fr_NO);
+	            System.out.println("noti_NO = " + noti_NO);
 
-	            BoardFreeImageVO boardFreeImageVO = new BoardFreeImageVO();
-	            boardFreeImageVO.setFr_NO(Integer.parseInt(fr_NO));
-	            boardFreeImageVO.setUp_fileNO(Integer.parseInt(up_fileNO));
-	            boardService.removeModImage(boardFreeImageVO);
+	            AdminNoticeImageVO adminNoticeImageVO = new AdminNoticeImageVO();
+	            adminNoticeImageVO.setNoti_NO(Integer.parseInt(noti_NO));
+	            adminNoticeImageVO.setUp_fileNO(Integer.parseInt(up_fileNO));
+	            boardService.removeModImage(adminNoticeImageVO);
 	            
-	            File oldFile = new File(ARTICLE_IMAGE_REPO + "\\" + fr_NO + "\\" + up_fileName);
+	            File oldFile = new File(ARTICLE_IMAGE_REPO + "\\" + noti_NO + "\\" + up_fileName);
 	            oldFile.delete();
 	            
 	            writer.print("success");
@@ -377,8 +402,8 @@ public class BoardFreeControllerImpl implements BoardFreeController{
 	         }
 
 	      }
-	      
-	   // 수정 시 다중 이미지 업로드하기
+			
+			// 수정 시 다중 이미지 업로드하기
 			private ArrayList<String> uploadModImageFile(MultipartHttpServletRequest multipartRequest) throws Exception {
 				ArrayList<String> fileList = new ArrayList<String>();
 				Iterator<String> fileNames = multipartRequest.getFileNames();
@@ -402,5 +427,44 @@ public class BoardFreeControllerImpl implements BoardFreeController{
 				}
 				return fileList;
 			}
+			
+			// 게시글 이동
+			@Override
+			@RequestMapping(value = "/adminNotice/modalCheck.do", method = RequestMethod.POST)
+			public ResponseEntity modalCheck(MultipartHttpServletRequest multipartRequest, HttpServletResponse response) throws Exception {
+				response.setContentType("text/html; charset=utf-8");
+				
+				  Map articleMap = new HashMap();
+				Enumeration enu = multipartRequest.getParameterNames();
+			      while (enu.hasMoreElements()) {
+			         String name = (String) enu.nextElement();
+
+			         if (name.equals("up_fileNO")) {
+			            String[] values = multipartRequest.getParameterValues(name);
+			            articleMap.put(name, values);
+			         } else if (name.equals("oldFileName")) {
+			            String[] values = multipartRequest.getParameterValues(name);
+			            articleMap.put(name, values);
+			         } else {
+			            String value = multipartRequest.getParameter(name);
+			            articleMap.put(name, value);
+			         }
+			      }
+				System.out.println("articleMap:"+articleMap);
+			//	boolean result = boardService.modalCheck(articleMap);
+			//	System.out.println("result: " + result);
+				return null;
+				
+			//	if (result == true) {
+					// 비밀번호가 맞다면 해당 글 상세창으로 이동
+				//	return "redirect:/adminNotice/listArticles";
+			//	} else {
+					//out.println("<script>alert('오류가 발생했습니다. 다시시도해주시기 바랍니다. '); location.href='" + request.getContextPath() + "/adminNotice/listArticles.do'; </script>");
+					//out.flush();
+				//	return null;
+			//	}
+
+			}
+
 	   
 }

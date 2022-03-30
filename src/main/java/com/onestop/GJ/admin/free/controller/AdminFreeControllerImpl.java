@@ -1,4 +1,4 @@
-package com.onestop.GJ.board.free.controller;
+package com.onestop.GJ.admin.free.controller;
 
 import java.io.File;
 import java.io.PrintWriter;
@@ -27,22 +27,22 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.onestop.GJ.board.free.service.BoardFreeService;
-import com.onestop.GJ.board.free.vo.BoardFreeImageVO;
-import com.onestop.GJ.board.free.vo.BoardFreeVO;
+import com.onestop.GJ.admin.free.service.AdminFreeService;
+import com.onestop.GJ.admin.free.vo.AdminFreeImageVO;
+import com.onestop.GJ.admin.free.vo.AdminFreeVO;
 import com.onestop.GJ.member.vo.MemberVO;
 
 
-@Controller("boardFreeController")
-public class BoardFreeControllerImpl implements BoardFreeController{
+@Controller("adminFreeController")
+public class AdminFreeControllerImpl implements AdminFreeController{
 	private static String ARTICLE_IMAGE_REPO = "C:\\GJ\\file_repo\\board\\free";
 	   @Autowired
-	   BoardFreeService boardService;
+	   AdminFreeService boardService;
 	   @Autowired
-	   BoardFreeVO boardDataVO;
+	   AdminFreeVO adminFreeVO;
 	   
 	   @Override
-	   @RequestMapping(value = { "/boardFree/listArticles.do" }, method = { RequestMethod.GET, RequestMethod.POST })
+	   @RequestMapping(value = { "/adminFree/listArticles.do" }, method = { RequestMethod.GET, RequestMethod.POST })
 	   public ModelAndView listArticles(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 	      String _section = request.getParameter("section");
@@ -52,6 +52,7 @@ public class BoardFreeControllerImpl implements BoardFreeController{
 	      Map pagingMap = new HashMap();
 	      pagingMap.put("section", section);
 	      pagingMap.put("pageNum", pageNum);
+	      System.out.println("hello");
 	      Map articlesMap = boardService.listArticles(pagingMap);
 
 	      articlesMap.put("section", section);
@@ -66,7 +67,7 @@ public class BoardFreeControllerImpl implements BoardFreeController{
 	   
 	// 검색창
 	   @Override
-	   @RequestMapping(value = "/boardFree/searchBoardList.do", method = RequestMethod.GET)
+	   @RequestMapping(value = "/adminFree/searchBoardList.do", method = RequestMethod.GET)
 	   public ModelAndView searchBoardList(@RequestParam("searchWord") String searchWord, HttpServletRequest request,
 	         HttpServletResponse response) throws Exception {
 	      response.setContentType("text/html;charset=utf-8");
@@ -94,7 +95,7 @@ public class BoardFreeControllerImpl implements BoardFreeController{
 	   
 	// 다중 이미지 글쓰기
 	   @Override
-	   @RequestMapping(value = "/boardFree/addNewArticle.do", method = RequestMethod.POST)
+	   @RequestMapping(value = "/adminFree/addNewArticle.do", method = RequestMethod.POST)
 	   @ResponseBody
 	   public ResponseEntity addNewArticle(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)
 	         throws Exception {
@@ -116,12 +117,12 @@ public class BoardFreeControllerImpl implements BoardFreeController{
 	      articleMap.put("member_id", member_id);
 
 	      List<String> fileList = upload(multipartRequest, RequestMethod.POST);
-	      List<BoardFreeImageVO> imageFileList = new ArrayList<BoardFreeImageVO>();
+	      List<AdminFreeImageVO> imageFileList = new ArrayList<AdminFreeImageVO>();
 	      if (fileList != null && fileList.size() != 0) {
 	         for (String fileName : fileList) {
-	        	 BoardFreeImageVO boardFreeImageVO = new BoardFreeImageVO();
-	        	 boardFreeImageVO.setUp_fileName(fileName);
-	            imageFileList.add(boardFreeImageVO);
+	        	 AdminFreeImageVO adminFreeImageVO = new AdminFreeImageVO();
+	        	 adminFreeImageVO.setUp_fileName(fileName);
+	            imageFileList.add(adminFreeImageVO);
 	         }
 	         articleMap.put("imageFileList", imageFileList);
 	      }
@@ -134,8 +135,8 @@ public class BoardFreeControllerImpl implements BoardFreeController{
 	      try {
 	         int fr_NO = boardService.addNewArticle(articleMap);
 	         if (imageFileList != null && imageFileList.size() != 0) {
-	            for (BoardFreeImageVO boardFreeImageVO : imageFileList) {
-	               up_fileName = boardFreeImageVO.getUp_fileName();
+	            for (AdminFreeImageVO adminFreeImageVO : imageFileList) {
+	               up_fileName = adminFreeImageVO.getUp_fileName();
 	               File srcFile = new File(ARTICLE_IMAGE_REPO + "\\" + "temp" + "\\" + up_fileName);
 	               File destDir = new File(ARTICLE_IMAGE_REPO + "\\" + fr_NO);
 	               // destDir.mkdirs();
@@ -145,14 +146,14 @@ public class BoardFreeControllerImpl implements BoardFreeController{
 
 	         message = "<script>";
 	         message += " alert('새글을 추가했습니다.');";
-	         message += " location.href='" + multipartRequest.getContextPath() + "/boardFree/listArticles.do'; ";
+	         message += " location.href='" + multipartRequest.getContextPath() + "/adminFree/listArticles.do'; ";
 	         message += " </script>";
 	         resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 
 	      } catch (Exception e) {
 	         if (imageFileList != null && imageFileList.size() != 0) {
-	            for (BoardFreeImageVO boardFreeImageVO : imageFileList) {
-	               up_fileName = boardFreeImageVO.getUp_fileName();
+	            for (AdminFreeImageVO adminFreeImageVO : imageFileList) {
+	               up_fileName = adminFreeImageVO.getUp_fileName();
 	               File srcFile = new File(ARTICLE_IMAGE_REPO + "\\" + "temp" + "\\" + up_fileName);
 	               srcFile.delete();
 	            }
@@ -160,7 +161,7 @@ public class BoardFreeControllerImpl implements BoardFreeController{
 
 	         message = " <script>";
 	         message += " alert('오류가 발생했습니다. 다시 시도해 주세요');');";
-	         message += " location.href='" + multipartRequest.getContextPath() + "/boardFree/articleForm.do'; ";
+	         message += " location.href='" + multipartRequest.getContextPath() + "/adminFree/articleForm.do'; ";
 	         message += " </script>";
 	         resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 	         e.printStackTrace();
@@ -188,7 +189,7 @@ public class BoardFreeControllerImpl implements BoardFreeController{
 	   }
 	   
 	//   게시글 상세
-	   @RequestMapping(value = "/boardFree/viewArticle.do", method = RequestMethod.GET)
+	   @RequestMapping(value = "/adminFree/viewArticle.do", method = RequestMethod.GET)
 	   public ModelAndView viewArticle(@RequestParam("fr_NO") int fr_NO,
 	         @RequestParam(value="removeCompleted", required=false) String removeCompleted,
 	         HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -204,7 +205,7 @@ public class BoardFreeControllerImpl implements BoardFreeController{
 	   
 	// 글 삭제하기
 	   @Override
-	   @RequestMapping(value = "/boardFree/removeArticle.do", method = RequestMethod.POST)
+	   @RequestMapping(value = "/adminFree/removeArticle.do", method = RequestMethod.POST)
 	   @ResponseBody
 	   public ResponseEntity removeArticle(@RequestParam("fr_NO") int fr_NO, HttpServletRequest request,
 	         HttpServletResponse response) throws Exception {
@@ -223,13 +224,13 @@ public class BoardFreeControllerImpl implements BoardFreeController{
 
 	         message = "<script>";
 	         message += " alert('글을 삭제했습니다.');";
-	         message += " location.href='" + request.getContextPath() + "/boardFree/listArticles.do';";
+	         message += " location.href='" + request.getContextPath() + "/adminFree/listArticles.do';";
 	         message += " </script>";
 	         resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 	      } catch (Exception e) {
 	         message = "<script>";
 	         message += " alert('오류가 발생했습니다.다시 시도해주세요');";
-	         message += " location.href='" + request.getContextPath() + "/boardFree/listArticles.do';";
+	         message += " location.href='" + request.getContextPath() + "/adminFree/listArticles.do';";
 	         message += " </script>";
 	         resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 	         e.printStackTrace();
@@ -238,7 +239,7 @@ public class BoardFreeControllerImpl implements BoardFreeController{
 	   }
 	   
 	// 글 수정하기
-	   @RequestMapping(value = "/boardFree/modArticle.do", method = RequestMethod.POST)
+	   @RequestMapping(value = "/adminFree/modArticle.do", method = RequestMethod.POST)
 	   @ResponseBody
 	   public ResponseEntity modArticle(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)
 	         throws Exception {
@@ -265,23 +266,23 @@ public class BoardFreeControllerImpl implements BoardFreeController{
 	      int pre_img_num = Integer.parseInt((String) articleMap.get("pre_img_num"));
 	      System.out.println("added_img_num : "+ added_img_num);
 	      System.out.println("pre_img_num : "+ pre_img_num);
-	      List<BoardFreeImageVO> imageFileList = new ArrayList<BoardFreeImageVO>();
-	      List<BoardFreeImageVO> modAddimageFileList = new ArrayList<BoardFreeImageVO>();
+	      List<AdminFreeImageVO> imageFileList = new ArrayList<AdminFreeImageVO>();
+	      List<AdminFreeImageVO> modAddimageFileList = new ArrayList<AdminFreeImageVO>();
 	      if (fileList != null && fileList.size() != 0) {
 	         String[] up_fileNO = (String[]) articleMap.get("up_fileNO");
 	         
 	         for (int i = 0; i < added_img_num; i++) {
 	            String up_fileName = fileList.get(i);
 	            
-	            BoardFreeImageVO boardFreeImageVO = new BoardFreeImageVO();
+	            AdminFreeImageVO adminFreeImageVO = new AdminFreeImageVO();
 	            if (i < pre_img_num) {
-	            	boardFreeImageVO.setUp_fileName(up_fileName);
-	            	boardFreeImageVO.setUp_fileNO(Integer.parseInt(up_fileNO[i]));
-	               imageFileList.add(boardFreeImageVO);
+	            	adminFreeImageVO.setUp_fileName(up_fileName);
+	            	adminFreeImageVO.setUp_fileNO(Integer.parseInt(up_fileNO[i]));
+	               imageFileList.add(adminFreeImageVO);
 	               articleMap.put("imageFileList", imageFileList);
 	            } else {
-	            	boardFreeImageVO.setUp_fileName(up_fileName);
-	               modAddimageFileList.add(boardFreeImageVO);
+	            	adminFreeImageVO.setUp_fileName(up_fileName);
+	               modAddimageFileList.add(adminFreeImageVO);
 	               articleMap.put("modAddimageFileList", modAddimageFileList);
 	            }
 	         }
@@ -322,7 +323,7 @@ public class BoardFreeControllerImpl implements BoardFreeController{
 	         }
 	         message = "<script>";
 	         message += " alert('글을 수정했습니다.');";
-	         message += " location.href='" + multipartRequest.getContextPath() + "/boardFree/viewArticle.do?fr_NO="
+	         message += " location.href='" + multipartRequest.getContextPath() + "/adminFree/viewArticle.do?fr_NO="
 	               + fr_NO + "';";
 	         message += " </script>";
 	         resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
@@ -336,7 +337,7 @@ public class BoardFreeControllerImpl implements BoardFreeController{
 	         }
 	         message = "<script>";
 	         message += " alert('오류가 발생했습니다.다시 수정해주세요');";
-	         message += " location.href='" + multipartRequest.getContextPath() + "/boardFree/viewArticle.do?fr_NO="
+	         message += " location.href='" + multipartRequest.getContextPath() + "/adminFree/viewArticle.do?fr_NO="
 	               + fr_NO + "';";
 	         message += " </script>";
 	         resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
@@ -346,7 +347,7 @@ public class BoardFreeControllerImpl implements BoardFreeController{
 	   
 	   
 	   // 수정하기에서 이미지 삭제 기능
-	      @RequestMapping(value = "/boardFree/removeModImage.do", method = RequestMethod.POST)
+	      @RequestMapping(value = "/adminFree/removeModImage.do", method = RequestMethod.POST)
 	      @ResponseBody
 	      public void removeModImage(HttpServletRequest request, HttpServletResponse response) throws Exception {
 	    	
@@ -363,10 +364,10 @@ public class BoardFreeControllerImpl implements BoardFreeController{
 	            System.out.println("up_fileNO = " + up_fileNO);
 	            System.out.println("fr_NO = " + fr_NO);
 
-	            BoardFreeImageVO boardFreeImageVO = new BoardFreeImageVO();
-	            boardFreeImageVO.setFr_NO(Integer.parseInt(fr_NO));
-	            boardFreeImageVO.setUp_fileNO(Integer.parseInt(up_fileNO));
-	            boardService.removeModImage(boardFreeImageVO);
+	            AdminFreeImageVO adminFreeImageVO = new AdminFreeImageVO();
+	            adminFreeImageVO.setFr_NO(Integer.parseInt(fr_NO));
+	            adminFreeImageVO.setUp_fileNO(Integer.parseInt(up_fileNO));
+	            boardService.removeModImage(adminFreeImageVO);
 	            
 	            File oldFile = new File(ARTICLE_IMAGE_REPO + "\\" + fr_NO + "\\" + up_fileName);
 	            oldFile.delete();
@@ -402,5 +403,4 @@ public class BoardFreeControllerImpl implements BoardFreeController{
 				}
 				return fileList;
 			}
-	   
 }
