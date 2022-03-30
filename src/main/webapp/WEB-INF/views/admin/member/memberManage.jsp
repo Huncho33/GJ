@@ -27,7 +27,7 @@
 <script src="${contextPath}/resources/js/sidemenu.js"></script>
 
 </head>
-<body >
+<body>
 	<div id="adm_memberManage_bground">
 		<div id="adm_memberManage_contatiner">
 			<div id="khs_sideMenu_tot">
@@ -39,9 +39,9 @@
 						<li><a id="khs_left khs_left1" class="khs_lnb"><p>사용자
 									관리</p></a>
 							<ul class="khs_depth2">
-								<li><a href="${contextPath}/admin/member/listMembers.do">- 사용자 관리</a></li>
-								<li><a href="#">-
-										관리자 관리</a></li>
+								<li><a href="${contextPath}/admin/member/listMembers.do">-
+										사용자 관리</a></li>
+								<li><a href="#">- 관리자 관리</a></li>
 							</ul></li>
 						<li><a id="khs_left khs_left2" class="khs_lnb"><p>신청
 									관리</p></a>
@@ -52,11 +52,16 @@
 						<li><a id="khs_left khs_left3" class="khs_lnb"><p>게시판
 									관리</p></a>
 							<ul class="khs_depth2">
-								<li><a href="${contextPath}/adminNotice/listArticles.do">- 공지사항 관리</a></li>
-								<li><a href="${contextPath}/adminData/listArticles.do">- 기타자료실 관리</a></li>
-								<li><a href="${contextPath}/adminQna/listQnas.do">- 상담게시판 관리</a></li>
-								<li><a href="${contextPath}/adminFree/listArticles.do">- 자유게시판 관리</a></li>
-								<li><a href="${contextPath}/adminAlarm/listArticles.do">- 알림게시판 관리</a></li>
+								<li><a href="${contextPath}/adminNotice/listArticles.do">-
+										공지사항 관리</a></li>
+								<li><a href="${contextPath}/adminData/listArticles.do">-
+										기타자료실 관리</a></li>
+								<li><a href="${contextPath}/adminQna/listQnas.do">-
+										상담게시판 관리</a></li>
+								<li><a href="${contextPath}/adminFree/listArticles.do">-
+										자유게시판 관리</a></li>
+								<li><a href="${contextPath}/adminAlarm/listArticles.do">-
+										알림게시판 관리</a></li>
 							</ul></li>
 						<li><a id="khs_left khs_left3" class="khs_lnb"><p>통계</p></a></li>
 					</ul>
@@ -71,17 +76,16 @@
 					<span>[총 회원: ${totMembers }명]</span>
 					<form name="frmSearch"
 						action="${contextPath}/admin/member/searchMemberList.do">
-						
+
 						<input type="submit" name="search" value="검 색"><input
-							name="searchMember" type="text">
-							
-								<select id="searchType" name="searchType">
-						<option value="member_id" 
-						<c:if test="${searchType eq 'member_id' }">selected</c:if>>ID</option>
-						<option value="member_name"
-						<c:if test="${searchType eq 'member_name' }">selected</c:if>>이름</option>
-						<option value="member_right"
-						<c:if test="${searchType eq 'member_right' }">selected</c:if>>권한</option>
+							name="searchMember" type="text"> <select id="searchType"
+							name="searchType">
+							<option value="member_id"
+								<c:if test="${searchType eq 'member_id' }">selected</c:if>>ID</option>
+							<option value="member_name"
+								<c:if test="${searchType eq 'member_name' }">selected</c:if>>이름</option>
+							<option value="member_right"
+								<c:if test="${searchType eq 'member_right' }">selected</c:if>>권한</option>
 						</select>
 					</form>
 				</div>
@@ -122,9 +126,10 @@
 						</c:when>
 					</c:choose>
 				</table>
-				<a id="adm_memberManage_write" class="cls2"
-					href="${contextPath}/member/memberForm.do">회원등록</a>
-
+				<div style="margin-bottom: 50px;">
+					<a id="adm_memberManage_write" class="cls2"
+						href="${contextPath}/member/memberForm.do">회원등록</a>
+				</div>
 
 				<div class="cls2">
 					<c:if test="${totMembers != null }">

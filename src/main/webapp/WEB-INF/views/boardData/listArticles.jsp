@@ -94,7 +94,10 @@
 					</c:when>
 				</c:choose>
 			</table>
-				<a class="cls2" id="data_write" href="javascript:fn_articleForm('${isLogOn}','${contextPath}/boardData/articleForm.do','${contextPath}/member/loginForm.do')"><p>글쓰기</p></a>
+			<div style="margin-bottom: 50px;">
+				<a class="cls2" id="data_write"
+					href="javascript:fn_articleForm('${isLogOn}','${contextPath}/boardData/articleForm.do','${contextPath}/member/loginForm.do')"><p>글쓰기</p></a>
+			</div>
 		</div>
 	</div>
 

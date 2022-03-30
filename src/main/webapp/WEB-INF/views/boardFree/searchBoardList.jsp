@@ -88,10 +88,12 @@
 					</c:when>
 				</c:choose>
 			</table>
-			<a class="cls1"
-				href="javascript:fn_articleForm('${isLogOn}','${contextPath}/boardFree/articleForm.do', 
+			<div style="margin-bottom: 50px;">
+				<a class="cls1"
+					href="javascript:fn_articleForm('${isLogOn}','${contextPath}/boardFree/articleForm.do', 
                                                     '${contextPath}/member/loginForm.do')"><p
-					class="cls2">글쓰기</p></a>
+						class="cls2">글쓰기</p></a>
+			</div>
 		</div>
 	</div>
 	<div id="fr_bground">
@@ -105,7 +107,7 @@
 								<c:if test="${section >1 && page==1 }">
 									<a class="no-uline"
 										href="${contextPath }/boardFree/searchBoardList.do?searchWord=${searchWord }&search=검+색section=${section-1}&pageNum=${(section-1)*10 +1 }">&nbsp;
-										</a>
+									</a>
 								</c:if>
 								<a class="no-uline"
 									href="${contextPath }/boardFree/searchBoardList.do?searchWord=${searchWord }&search=검+색section=${section}&pageNum=${page}">${(section-1)*10 +page }

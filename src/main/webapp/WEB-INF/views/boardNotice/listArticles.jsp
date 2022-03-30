@@ -95,9 +95,12 @@
 					</c:when>
 				</c:choose>
 			</table>
-			<a id="noti_write"
-				href="javascript:fn_articleForm('${isLogOn}','${contextPath}/boardNotice/articleForm.do', 
-                                                    '${contextPath}/member/loginForm.do')" class="cls2 ">글쓰기</a>
+			<div style="margin-bottom: 50px;">
+				<a id="noti_write"
+					href="javascript:fn_articleForm('${isLogOn}','${contextPath}/boardNotice/articleForm.do', 
+                                                    '${contextPath}/member/loginForm.do')"
+					class="cls2 ">글쓰기</a>
+			</div>
 		</div>
 	</div>
 	<div id="noti_bground">

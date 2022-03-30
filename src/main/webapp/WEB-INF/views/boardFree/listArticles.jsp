@@ -23,7 +23,6 @@
 <title>글목록창</title>
 </head>
 <script>
-
 	function fn_articleForm(isLogOn, articleForm, loginForm) {
 		if (isLogOn != '' && isLogOn != 'false') {
 			location.href = articleForm;
@@ -33,7 +32,7 @@
 		}
 	}
 </script>
-<body >
+<body>
 	<div id="fr_bground">
 		<div id="fr_container">
 			<div id="fr_title">
@@ -88,10 +87,12 @@
 					</c:when>
 				</c:choose>
 			</table>
-			<a class="cls1"
-				href="javascript:fn_articleForm('${isLogOn}','${contextPath}/boardFree/articleForm.do', 
+			<div style="margin-bottom: 50px;">
+				<a class="cls1"
+					href="javascript:fn_articleForm('${isLogOn}','${contextPath}/boardFree/articleForm.do', 
                                                     '${contextPath}/member/loginForm.do')"><p
-					class="cls2">글쓰기</p></a>
+						class="cls2">글쓰기</p></a>
+			</div>
 		</div>
 	</div>
 

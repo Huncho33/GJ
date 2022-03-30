@@ -57,40 +57,39 @@
 						<c:forEach var="qna" items="${QnasList }" varStatus="qnaNum">
 							<tr align="center" height="35">
 								<td width="15%">${qnaNum.count}</td>
-								<td width="60%">
-								<c:if test="${member.member_right == 'ADMIN'}">
-									<c:choose>
-										<c:when test="${(qna.qna_pw != '') && (qna.level > 1)}">
-											<c:forEach begin="1" end="${qna.level }" step="1">
-												<span style="padding-left: 20px"></span>
-											</c:forEach>
-											<span style="font-size: 12px;">└[답변완료]</span>
+								<td width="60%"><c:if
+										test="${member.member_right == 'ADMIN'}">
+										<c:choose>
+											<c:when test="${(qna.qna_pw != '') && (qna.level > 1)}">
+												<c:forEach begin="1" end="${qna.level }" step="1">
+													<span style="padding-left: 20px"></span>
+												</c:forEach>
+												<span style="font-size: 12px;">└[답변완료]</span>
 											&nbsp;<i class="fa-solid fa-lock"></i>&nbsp;<a class='cls1'
-												href="${contextPath}/qna/viewQna.do?
+													href="${contextPath}/qna/viewQna.do?
 =${qna.qna_no}">
-												${qna.qna_title}.</a>
-										</c:when>
-										<c:when test="${qna.qna_pw != '' }">
-											<i class="fa-solid fa-lock"></i>&nbsp;<a class='cls1'
-												href="${contextPath}/qna/viewQna.do?qna_no=${qna.qna_no}">
-												비밀글입니다.</a>
-										</c:when>
-										<c:when test='${qna.level > 1 }'>
-											<c:forEach begin="1" end="${qna.level }" step="1">
-												<span style="padding-left: 20px"></span>
-											</c:forEach>
-											<span style="font-size: 12px;">└[답변완료]</span>
-											<a class='cls1'
-												href="${contextPath}/qna/viewQna.do?qna_no=${qna.qna_no}">${qna.qna_title}</a>
-										</c:when>
-										<c:otherwise>
-											<a class='cls1'
-												href="${contextPath}/qna/viewQna.do?qna_no=${qna.qna_no}">${qna.qna_title }</a>
-										</c:otherwise>
-									</c:choose>
-								</c:if>
-								<c:if test="${member.member_right != 'ADMIN'}">
-									<c:choose>
+													${qna.qna_title}.</a>
+											</c:when>
+											<c:when test="${qna.qna_pw != '' }">
+												<i class="fa-solid fa-lock"></i>&nbsp;<a class='cls1'
+													href="${contextPath}/qna/viewQna.do?qna_no=${qna.qna_no}">
+													비밀글입니다.</a>
+											</c:when>
+											<c:when test='${qna.level > 1 }'>
+												<c:forEach begin="1" end="${qna.level }" step="1">
+													<span style="padding-left: 20px"></span>
+												</c:forEach>
+												<span style="font-size: 12px;">└[답변완료]</span>
+												<a class='cls1'
+													href="${contextPath}/qna/viewQna.do?qna_no=${qna.qna_no}">${qna.qna_title}</a>
+											</c:when>
+											<c:otherwise>
+												<a class='cls1'
+													href="${contextPath}/qna/viewQna.do?qna_no=${qna.qna_no}">${qna.qna_title }</a>
+											</c:otherwise>
+										</c:choose>
+									</c:if> <c:if test="${member.member_right != 'ADMIN'}">
+										<c:choose>
 											<c:when test='${qna.qna_pw != "" && qna.level > 1}'>
 												<c:forEach begin="1" end="${qna.level }" step="1">
 													<span style="padding-left: 20px"></span>
@@ -102,7 +101,7 @@
 													${qna.qna_title}</a>
 											</c:when>
 											<c:when test="${qna.qna_pw != '' }">
-													<i class="fa-solid fa-lock"></i>&nbsp;<a class='cls1'
+												<i class="fa-solid fa-lock"></i>&nbsp;<a class='cls1'
 													href="${contextPath}/qna/viewQna.do?qna_no=${qna.qna_no}"
 													onclick="fn_modalOpen(${qna.qna_no}); return false;">
 													비밀글입니다.</a>
@@ -119,29 +118,28 @@
 												<a class='cls1'
 													href="${contextPath}/qna/viewQna.do?qna_no=${qna.qna_no}">${qna.qna_title }</a>
 											</c:otherwise>
-									</c:choose>
-								</c:if>
-								</td>
-								<td width="10%">
-								<c:choose>
-									<c:when test="${qna.level > 1 }">
+										</c:choose>
+									</c:if></td>
+								<td width="10%"><c:choose>
+										<c:when test="${qna.level > 1 }">
 										관리자
 									</c:when>
-									<c:otherwise>
+										<c:otherwise>
 										${qna.member_id }
 									</c:otherwise>
-								</c:choose>
-								</td>
+									</c:choose></td>
 								<td width="15%">${qna.qna_date}</td>
 							</tr>
 						</c:forEach>
 					</c:when>
 				</c:choose>
 			</table>
-			<a class="cls1"
-				href="javascript:fn_QnaForm('${isLogOn}','${contextPath}/qna/QnaForm.do', 
+			<div style="margin-bottom: 50px;">
+				<a class="cls1"
+					href="javascript:fn_QnaForm('${isLogOn}','${contextPath}/qna/QnaForm.do', 
                                                     '${contextPath}/member/loginForm.do')"><p
-					class="cls2">글쓰기</p></a>
+						class="cls2">글쓰기</p></a>
+			</div>
 		</div>
 	</div>
 
@@ -202,11 +200,12 @@
 		<div id="qna_modalCnt">
 			<form id="qna_modalFrm" action="${contextPath}/qna/modalPwdCheck.do"
 				method="post">
-				<input type="button" value="✕" class="qna_modalClose" onclick="fn_modalClose();" />
-				<label class="qna_modalLabel"> 해당글은 비밀글입니다.<br>작성 시 설정했던 비밀번호를 입력해주세요.</label>
-				<input type="hidden" id="qna_no" name="qna_no">
-				<input type="password" id="qna_modalPwd" name="qna_modalPwd" />
-				<input type="submit" value="확인" id="qna_modalChk" name="qna_modalChk"
+				<input type="button" value="✕" class="qna_modalClose"
+					onclick="fn_modalClose();" /> <label class="qna_modalLabel">
+					해당글은 비밀글입니다.<br>작성 시 설정했던 비밀번호를 입력해주세요.
+				</label> <input type="hidden" id="qna_no" name="qna_no"> <input
+					type="password" id="qna_modalPwd" name="qna_modalPwd" /> <input
+					type="submit" value="확인" id="qna_modalChk" name="qna_modalChk"
 					onclick="fn_adminCheck()" />
 			</form>
 		</div>
