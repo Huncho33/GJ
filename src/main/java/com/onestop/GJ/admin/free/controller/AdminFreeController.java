@@ -11,12 +11,12 @@ public interface AdminFreeController {
 
 	ModelAndView listArticles(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
-	ModelAndView searchBoardList(String searchWord, HttpServletRequest request, HttpServletResponse response)
-			throws Exception;
-
 	ResponseEntity addNewArticle(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)
 			throws Exception;
 
 	ResponseEntity removeArticle(int fr_NO, HttpServletRequest request, HttpServletResponse response) throws Exception;
+
+	ModelAndView searchBoardList(String searchWord, String searchType_fr, HttpServletRequest request,
+			HttpServletResponse response) throws Exception;
 
 }

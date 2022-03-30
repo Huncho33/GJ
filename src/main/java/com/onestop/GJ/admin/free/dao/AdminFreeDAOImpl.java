@@ -29,8 +29,9 @@ public class AdminFreeDAOImpl implements AdminFreeDAO {
 	//검색창
 	 	@Override
 	 	public List selectBoardListBySearchWord(Map pagingMap) throws DataAccessException{
+	 		System.out.println("target"+ pagingMap);
 	 		List<AdminFreeVO> articlesList=sqlSession.selectList("mapper.adminFree.selectBoardListBySearchWord", pagingMap);
-	 	     System.out.println("검색"+ articlesList.size());
+	 	     System.out.println("검색 수" + articlesList.size() );
 	 		 return articlesList;
 	 	}
 

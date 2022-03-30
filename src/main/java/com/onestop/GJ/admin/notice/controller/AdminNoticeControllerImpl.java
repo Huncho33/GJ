@@ -71,8 +71,9 @@ public class AdminNoticeControllerImpl implements AdminNoticeController {
 	   // °Ë»öÃ¢
 	   @Override
 	   @RequestMapping(value = "/adminNotice/searchBoardList.do", method = RequestMethod.GET)
-	   public ModelAndView searchBoardList(@RequestParam("searchWord") String searchWord, HttpServletRequest request,
-	         HttpServletResponse response) throws Exception {
+	   public ModelAndView searchBoardList(@RequestParam("searchWord") String searchWord, 
+			   @RequestParam("searchType_notice") String searchType_notice,
+			   HttpServletRequest request,HttpServletResponse response) throws Exception {
 	      response.setContentType("text/html;charset=utf-8");
 	      response.setCharacterEncoding("utf-8");
 
@@ -84,11 +85,13 @@ public class AdminNoticeControllerImpl implements AdminNoticeController {
 	      pagingMap.put("section", section);
 	      pagingMap.put("pageNum", pageNum);
 	      pagingMap.put("searchWord", searchWord);
+	      pagingMap.put("searchType_notice", searchType_notice);
 	      Map articlesMap = boardService.searchBoardList(pagingMap);
 
 	      articlesMap.put("section", section);
 	      articlesMap.put("pageNum", pageNum);
 	      articlesMap.put("searchWord", searchWord);
+	      articlesMap.put("searchType_notice", searchType_notice);
 
 	      String viewName = (String) request.getAttribute("viewName");
 	      ModelAndView mav = new ModelAndView(viewName);

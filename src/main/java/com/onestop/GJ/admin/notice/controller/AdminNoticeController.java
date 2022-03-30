@@ -12,9 +12,6 @@ public interface AdminNoticeController {
 
 	ModelAndView listArticles(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
-	ModelAndView searchBoardList(String searchWord, HttpServletRequest request, HttpServletResponse response)
-			throws Exception;
-
 	ResponseEntity addNewArticle(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)
 			throws Exception;
 
@@ -24,5 +21,9 @@ public interface AdminNoticeController {
 
 	ResponseEntity modalCheck(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)
 			throws Exception;
+
+	ModelAndView searchBoardList(String searchWord, String searchType_notice, HttpServletRequest request,
+			HttpServletResponse response) throws Exception;
+
 
 }

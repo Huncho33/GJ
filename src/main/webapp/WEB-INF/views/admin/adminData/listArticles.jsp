@@ -17,8 +17,6 @@
 <head>
 <link href="${contextPath }/resources/css/admin/data/listArticles.css"
 	rel="stylesheet" type="text/css">
-<link href="${contextPath }/resources/css/data/listArticles.css"
-	rel="stylesheet" type="text/css">
 	<link rel="stylesheet" href="${contextPath}/resources/css/sidemenu.css"
 	type="text/css">
 <script src="${contextPath}/resources/js/sidemenu.js"></script>
@@ -93,6 +91,16 @@
 			<div id="data_search">
 				<form name="frmSearch"
 					action="${contextPath}/adminData/searchBoardList.do">
+					<select id="searchType_etc" name="searchType_etc">
+						<option value="etc_title_context" 
+						<c:if test="${searchType_etc eq 'etc_title_context'  }">selected</c:if>>제목+내용</option>
+						<option value="etc_title" 
+						<c:if test="${searchType_etc eq 'etc_title' }">selected</c:if>>제목</option>
+						<option value="etc_context"
+						<c:if test="${searchType_etc eq 'etc_context' }">selected</c:if>>내용</option>
+						<option value="member_id"
+						<c:if test="${searchType_etc eq 'member_id' }">selected</c:if>>작성자</option>
+						</select>
 					<input name="searchWord" type="text"> <input type="submit"
 						name="search" value="검 색">
 				</form>
@@ -124,7 +132,7 @@
 								<td width="45%"><a class='cls1'
 									href="${contextPath}/adminData/viewArticle.do?etc_NO=${article.etc_NO }">
 										${article.etc_title }</a>
-								<td width="15%">관리자</td>
+								<td width="15%">${article.member_id }</td>
 								<td width="20%">${article.etc_date}</td>
 								<td width="15%">${article.etc_hits}</td>
 							</tr>

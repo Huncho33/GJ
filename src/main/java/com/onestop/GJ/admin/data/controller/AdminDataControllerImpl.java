@@ -66,7 +66,9 @@ public class AdminDataControllerImpl implements AdminDataController {
 	// °Ë»öÃ¢
 	   @Override
 	   @RequestMapping(value = "/adminData/searchBoardList.do", method = RequestMethod.GET)
-	   public ModelAndView searchBoardList(@RequestParam("searchWord") String searchWord, HttpServletRequest request,
+	   public ModelAndView searchBoardList(@RequestParam("searchWord") String searchWord, 
+			   @RequestParam("searchType_etc") String searchType_etc,
+			   HttpServletRequest request,
 	         HttpServletResponse response) throws Exception {
 	      response.setContentType("text/html;charset=utf-8");
 	      response.setCharacterEncoding("utf-8");
@@ -79,11 +81,13 @@ public class AdminDataControllerImpl implements AdminDataController {
 	      pagingMap.put("section", section);
 	      pagingMap.put("pageNum", pageNum);
 	      pagingMap.put("searchWord", searchWord);
+	      pagingMap.put("searchType_etc", searchType_etc);
 	      Map articlesMap = boardService.searchBoardList(pagingMap);
 
 	      articlesMap.put("section", section);
 	      articlesMap.put("pageNum", pageNum);
 	      articlesMap.put("searchWord", searchWord);
+	      articlesMap.put("searchType_etc", searchType_etc);
 
 	      String viewName = (String) request.getAttribute("viewName");
 	      ModelAndView mav = new ModelAndView(viewName);

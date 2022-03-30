@@ -54,11 +54,26 @@
       etc_date,
       up_fileName,
       member_id,
-      etc_hits from board_Data
-      where etc_title like '%' || #{searchWord} || '%') a
+      etc_hits from board_Data	]]>
+      
+       <if test='searchType_etc.equals("etc_title_context")'>
+      where lower(etc_title) like lower('%' || #{searchWord} || '%') 
+      or lower(etc_context) like lower('%' || #{searchWord} || '%')) a
+      </if>
+      <if test='searchType_etc.equals("etc_title")'>
+      where lower(etc_title) like lower('%' || #{searchWord} || '%')) a
+      </if>
+      <if test='searchType_etc.equals("etc_context")'>
+      where lower(etc_context) like lower('%' || #{searchWord} || '%')) a
+      </if>
+         <if test='searchType_etc.equals("member_id")'>
+      where lower(member_id) like lower('%' || #{searchWord} || '%')) a
+      </if>
+      
+     <![CDATA[
       where Recnum between(#{section}-1)*100+(#{pageNum}-1)*10+1 and (#{section}-1)*100+#{pageNum}*10
       order by etc_NO desc	
-		]]>
+	]]>
 		
 	</select>
 
@@ -71,8 +86,21 @@
 	<select id="selectSearchTotArticles" parameterType="java.util.Map" resultType="int">
     <![CDATA[
      select count(etc_NO) from board_Data
-     where etc_title like '%' || #{searchWord } || '%'
-    ]]>
+      ]]>
+      <if test='searchType_etc.equals("etc_title_context")'>
+      where lower(etc_title) like lower('%' || #{searchWord} || '%')
+      or lower(etc_context) like lower('%' || #{searchWord} || '%')  
+      </if>
+        <if test='searchType_etc.equals("etc_title")'>
+      where lower(etc_title) like lower('%' || #{searchWord} || '%') 
+      </if>
+          <if test='searchType_etc.equals("fr_context")'>
+      where lower(etc_context) like lower('%' || #{searchWord} || '%') 
+      </if>
+       <if test='searchType_etc.equals("member_id")'>
+      where lower(member_id) like lower('%' || #{searchWord} || '%') 
+      </if>
+      
 	</select>
 
 	<!--게시판 상세글 조회하기 -->

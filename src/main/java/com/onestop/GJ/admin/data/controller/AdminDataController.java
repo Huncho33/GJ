@@ -11,12 +11,12 @@ public interface AdminDataController {
 
 	ModelAndView listArticles(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
-	ModelAndView searchBoardList(String searchWord, HttpServletRequest request, HttpServletResponse response)
-			throws Exception;
-
 	ResponseEntity addNewArticle(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)
 			throws Exception;
 
 	ResponseEntity removeArticle(int etc_NO, HttpServletRequest request, HttpServletResponse response) throws Exception;
+
+	ModelAndView searchBoardList(String searchWord, String searchType_etc, HttpServletRequest request,
+			HttpServletResponse response) throws Exception;
 
 }

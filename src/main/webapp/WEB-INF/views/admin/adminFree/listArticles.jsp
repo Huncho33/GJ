@@ -85,8 +85,21 @@
 			<div id="fr_search">
 				<form name="frmSearch"
 					action="${contextPath}/adminFree/searchBoardList.do">
+					<select id="searchType_fr" name="searchType_fr">
+						<option value="fr_title_context" 
+						<c:if test="${searchType_fr eq 'fr_title_context'  }">selected</c:if>>제목+내용</option>
+						<option value="fr_title" 
+						<c:if test="${searchType_fr eq 'fr_title' }">selected</c:if>>제목</option>
+						<option value="fr_context"
+						<c:if test="${searchType_fr eq 'fr_context' }">selected</c:if>>내용</option>
+						<option value="member_id"
+						<c:if test="${searchType_fr eq 'member_id' }">selected</c:if>>작성자</option>
+						</select>
+					
 					<input name="searchWord" type="text"> <input type="submit"
 						name="search" value="검 색">
+						
+						
 				</form>
 			</div>
 
