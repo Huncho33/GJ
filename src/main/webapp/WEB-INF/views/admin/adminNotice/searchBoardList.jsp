@@ -86,6 +86,14 @@
 					action="${contextPath}/adminNotice/searchBoardList.do">
 					<input name="searchWord" type="text"> <input type="submit"
 						name="search" value="검 색">
+						<select id="searchType_notice" name="searchType_notice">
+						<option value="noti_title_context" 
+						<c:if test="${searchType_notice eq 'noti_title_context'  }">selected</c:if>>제목+내용</option>
+						<option value="noti_title" 
+						<c:if test="${searchType_notice eq 'noti_title' }">selected</c:if>>제목</option>
+						<option value="noti_context"
+						<c:if test="${searchType_notice eq 'noti_context' }">selected</c:if>>내용</option>
+						</select>
 				</form>
 			</div>
 
