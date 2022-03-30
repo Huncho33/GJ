@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+	<definition name="baseLayout"
+		template="/WEB-INF/views/common/layout.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="header"
+			value="/WEB-INF/views/common/header.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer"
+			value="/WEB-INF/views/common/footer.jsp" />
+	</definition>
+	
+	
+	<definition name="/adminQna/freqQna" extends="baseLayout">
+		<put-attribute name="title" value="원스톱청년주거::자주 묻는 질문(FAQ)" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/adminQna/freqQna.jsp" />
+	</definition>
+	
+	<definition name="/adminQna/listQnas" extends="baseLayout">
+		<put-attribute name="title" value="원스톱청년주거::상담게시판" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/adminQna/listQnas.jsp" />
+	</definition>
+	
+	<definition name="/adminQna/QnaForm" extends="baseLayout">
+		<put-attribute name="title" value="원스톱청년주거::상담게시판" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/adminQna/QnaForm.jsp" />
+	</definition>
+	
+	<definition name="/adminQna/viewQna" extends="baseLayout">
+		<put-attribute name="title" value="원스톱청년주거::상담게시판" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/adminQna/viewQna.jsp" />
+	</definition>
+	
+	<definition name="/adminQna/replyForm" extends="baseLayout">
+		<put-attribute name="title" value="원스톱청년주거::답글쓰기" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/adminQna/replyForm.jsp" />
+	</definition>
+	
+	<definition name="/adminQna/searchBoardList"
+	extends="baseLayout">
+	<put-attribute name="title" value="글 검색창"/>
+	<put-attribute name="body" value="/WEB-INF/views/admin/adminQna/searchBoardList.jsp"/>
+	</definition>
+
+</tiles-definitions>
