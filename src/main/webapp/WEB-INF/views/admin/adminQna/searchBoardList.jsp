@@ -222,7 +222,7 @@
 											href="${contextPath }/adminQna/searchBoardList.do?searchType_qna=${searchType_qna}&searchWord=${searchWord }&search=검+색section=${section+1}&pageNum=${section*10+1}">&nbsp;
 											next</a>
 									</c:if>
-								</c:forEach>
+								</c:forEach>d
 							</c:when>
 							<c:when test="${totQnas ==100 }">
 								<!--등록된 글 개수가 100개인경우  -->

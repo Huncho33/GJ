@@ -184,5 +184,29 @@
 				ORDER BY etc_date desc)
 		where rowNum &lt; 6
 	</select>
+	
+	<!-- 방문자 정보  -->
+		<insert id="insertVisit" parameterType="java.util.Map">
+		<![CDATA[
+
+		 insert into visit (v_date,
+		 					member_id,
+		 					v_gender,
+		 					v_roadAddress,
+		 					v_birth) 			
+		 values(to_date(sysdate),
+		 		#{member_id},
+		 		#{member_gender},
+		 		#{member_roadAddress},
+		 		#{member_birth}) 
+		]]>
+	</insert>
+	
+	<!-- 방문자 수 -->
+	<select id="selectVisitList" resultType="int">
+    <![CDATA[
+     select count(v_date) from visit
+    ]]>
+	</select>
 
 </mapper>

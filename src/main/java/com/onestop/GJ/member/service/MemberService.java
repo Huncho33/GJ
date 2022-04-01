@@ -1,6 +1,7 @@
 package com.onestop.GJ.member.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -36,5 +37,9 @@ public interface MemberService {
 	List<BoardNoticeVO> selectNotiList() throws Exception;
 
 	List<BoardDataVO> selectDataList() throws Exception;
+
+	void insertVisit(Map visitMap);
+
+	Map getTotCnt(Map visitMap);
 
 }

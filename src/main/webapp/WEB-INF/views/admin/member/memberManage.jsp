@@ -63,10 +63,11 @@
 								<li><a href="${contextPath}/adminAlarm/listArticles.do">-
 										알림게시판 관리</a></li>
 							</ul></li>
-						<li><a id="khs_left khs_left3" class="khs_lnb"><p>통계</p></a></li>
+						<li><a   href="${contextPath}/admin/stats/stats.do" id="khs_left khs_left3" class="khs_lnb"><p>통계</p></a></li>
 					</ul>
 				</div>
 			</div>
+			
 			<div id="adm_memberManage_tot">
 				<div id="adm_memberManage_tit1">
 					<h3 class="adm_memberManage_tit">사용자 관리</h3>

@@ -1,7 +1,10 @@
 package com.onestop.GJ.member.controller;
 
 import java.io.PrintWriter;
+import java.sql.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -56,15 +59,31 @@ public class MemberControllerImpl implements MemberController {
 		ModelAndView mav = new ModelAndView();
 		memberVO = memberService.login(member);
 		
-		
 		if (memberVO != null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("member", memberVO);
 			session.setAttribute("isLogOn", true);
 			
 			String member_id = memberVO.getMember_id();
+			String member_gender = memberVO.getMember_gender();
+			String member_roadAddress = memberVO.getMember_roadAddress();
+			String member_birth = memberVO.getMember_birth();
+			
 			memberService.last_log(member_id);
-
+			Date member_last_log = memberVO.getMember_last_log();
+			
+			Map visitMap = new HashMap();
+			System.out.println("hi");
+			visitMap.put("member_id", member_id);
+			visitMap.put("member_gender", member_gender);
+			visitMap.put("member_roadAddress", member_roadAddress);
+			visitMap.put("member_birth", member_birth);
+			visitMap.put("member_last_log", member_last_log);
+			
+			memberService.insertVisit(visitMap);
+			
+			Map countMap = memberService.getTotCnt(visitMap); 
+			
 			String action = (String) session.getAttribute("action");
 			session.removeAttribute("action");
 			if (action != null) {

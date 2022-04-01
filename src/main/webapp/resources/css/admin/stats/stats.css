@@ -1,0 +1,105 @@
+@charset "UTF-8";
+
+#adm_stats_bground {
+	width: 100%;
+	position: relative;
+}
+
+#adm_stats_contatiner {
+	position: relative;
+	margin: 0 auto;
+	width: 1300px;
+}
+
+#adm_stats_tot {
+	width: 900px;
+	margin-left: 300px;
+}
+
+
+h3.adm_stats_tit {
+	font-size: 24px;
+	font-weight: bold;
+	letter-spacing: -2.7px;
+	color: #272727;
+	text-align: center;
+	padding: 50px 0px 30px 0px;
+	border-bottom: 1px solid #cfcfcf;
+	margin-bottom: 60px;
+}
+
+a.cls2 {
+	text-decoration: none;
+	float: right;
+	font-size: 15px;
+	border: 1px solid #585858;
+	border-radius: 0.2em;
+	padding: 3px;
+	background-color: #E6E6E6;
+	color: black;
+	margin-right: 20px;
+}
+
+h3.adm_memberManage_titName {
+	font-size: 35px;
+	font-weight: bold;
+	letter-spacing: -2.7px;
+	color: #161616;
+	text-align: center;
+	border-bottom: 1px solid gray;
+	padding: 0px 0px 30px 0px;
+	margin: 80px 0px 15px 0px;
+}
+
+#adm_memberManage_list_tab {
+	border-collapse: collapse;
+	margin-bottom: 20px;
+	border-top: 2px solid gray;
+	border-bottom: 2px solid gray;
+}
+
+#adm_memberManage_list_tab td {
+	text-indent: 10px;
+	font-size: 15px;
+	border: solid 1px #e5e5e5;
+}
+
+#adm_memberManage_list_tab tr {
+	height: 35px;
+	border-left: none;
+	border-right: none;
+}
+
+
+#adm_memberManage_search input {
+	float: right;
+	margin-bottom: 10px;
+}
+
+#searchType{
+	float: right;
+}
+
+#adm_memberManage_search span{
+	float: left;
+	margin-bottom: 10px;
+}
+
+
+.no-uline {
+	text-decoration: none;
+}
+
+.sel-page {
+	text-decoration: none;
+	color: #2E9AFE;
+}
+
+.cls1 {
+	text-decoration: none;
+}
+
+.cls2 {
+	text-align: center;
+	font-size: 15px;
+}
