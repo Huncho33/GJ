@@ -23,67 +23,67 @@ import com.onestop.GJ.member.vo.MemberVO;
 
 @Controller("adminStatsController")
 public class AdminStatsControllerImpl implements AdminStatsController {
-   @Autowired
-   private MemberVO memberVO;
-   
-   @Autowired
-   private AdminStatsService statsService;
-   
-   
-   @Override
-      @RequestMapping(value = { "/admin/stats/stats.do" }, method = { RequestMethod.GET, RequestMethod.POST })
-      public ModelAndView stats(HttpServletRequest request, HttpServletResponse response) throws Exception {
-      request.setCharacterEncoding("utf-8");
-      response.setContentType("html/text;charset=utf-8");
-       Map visitMap = new HashMap();
-         String viewName = (String) request.getAttribute("viewName");
-         List visitList = statsService.listStats();
-         Map countMap = statsService.getTotCnt(visitMap);
-         System.out.println("visitList : "+ visitList);
-         ModelAndView mav = new ModelAndView(viewName);
-         mav.addObject("visitList", visitList);
-         mav.addObject("countMap", countMap);
-         return mav;
+	@Autowired
+	private MemberVO memberVO;
 
-      }
-   
-    // 검색창
-      @Override
-      @RequestMapping(value = "/admin/stats/searchVisit.do", method = RequestMethod.GET)
-      public ModelAndView searchVisit(@RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date fromDate,
-            @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date toDate,
-            HttpServletRequest request,
-            HttpServletResponse response) throws Exception {
-         response.setContentType("text/html;charset=utf-8");
-         response.setCharacterEncoding("utf-8");
-         Map dateMap = new HashMap();
-         System.out.println("확인 1  : "+ fromDate);
-         System.out.println("확인 2  : "+ toDate);
-           Date fromDate1 = fromDate;
-           Date toDate1 = toDate;
-           DateFormat formatter = new SimpleDateFormat("YYYY-MM-dd");
-           DateFormat formatter2 = new SimpleDateFormat("YYYY-MM-dd");
-           String result1 = formatter.format(fromDate1);
-           String result2 = formatter2.format(toDate1);
-           
-           
-           System.out.println("result1   : "+ result1);
-            System.out.println("확인 4  : "+ result2);
-         dateMap.put("fromDate", result1);
-         dateMap.put("toDate", result2);
-         System.out.println("컨트롤러dateMap : "+ dateMap);
-         Map searchMap = statsService.searchVisit(dateMap);
-         searchMap.put("fromDate", result1);
-         searchMap.put("toDate", result2);
-         System.out.println("최종 searchMap : " + searchMap);
+	@Autowired
+	private AdminStatsService statsService;
+
+	@Override
+	@RequestMapping(value = { "/admin/stats/stats.do" }, method = { RequestMethod.GET, RequestMethod.POST })
+	public ModelAndView stats(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("html/text;charset=utf-8");
+		Map visitMap = new HashMap();
+		String viewName = (String) request.getAttribute("viewName");
+		List visitList = statsService.listStats();
+		Map countMap = statsService.getTotCnt(visitMap); //총 방문자수, 구별 인구 수 
+		System.out.println("visitList : " + visitList);
+		
+		ModelAndView mav = new ModelAndView(viewName);
+		mav.addObject("visitList", visitList);
+		mav.addObject("countMap", countMap);
+		return mav;
+
+	}
+
+	// 검색창
+	@Override
+	@RequestMapping(value = "/admin/stats/searchVisit.do", method = RequestMethod.GET)
+	public ModelAndView searchVisit(
+			@RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date fromDate,
+			@RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date toDate,
+			HttpServletRequest request, HttpServletResponse response) throws Exception {
+		response.setContentType("text/html;charset=utf-8");
+		response.setCharacterEncoding("utf-8");
+		Map dateMap = new HashMap();
+		System.out.println("확인 1  : " + fromDate);
+		System.out.println("확인 2  : " + toDate);
+//         date 타입 -> string 타입으로 변환
+		Date fromDate1 = fromDate;
+		Date toDate1 = toDate;
+		DateFormat formatter = new SimpleDateFormat("YYYY-MM-dd");
+		DateFormat formatter2 = new SimpleDateFormat("YYYY-MM-dd");
+		String result1 = formatter.format(fromDate1);
+		String result2 = formatter2.format(toDate1);
+
+		System.out.println("result1   : " + result1);
+		System.out.println("확인 4  : " + result2);
+		dateMap.put("fromDate", result1);
+		dateMap.put("toDate", result2);
+		System.out.println("컨트롤러dateMap : " + dateMap);
+		Map searchMap = statsService.searchVisit(dateMap);
+		searchMap.put("fromDate", result1);
+		searchMap.put("toDate", result2);
+		System.out.println("최종 searchMap : " + searchMap);
 
 //         searchMap.put("fromDate", fromDate);
 //         searchMap.put("toDate", toDate);
-         
-         String viewName = (String) request.getAttribute("viewName");
-         ModelAndView mav = new ModelAndView(viewName);
-         mav.addObject("searchMap", searchMap);
-         System.out.println("searchMap" + searchMap.size());
-         return mav;
-      }
+
+		String viewName = (String) request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView(viewName);
+		mav.addObject("searchMap", searchMap);
+		System.out.println("searchMap" + searchMap.size());
+		return mav;
+	}
 }

@@ -13,8 +13,9 @@ public interface AdminStatsController {
 
 	ModelAndView stats(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
-	ModelAndView searchVisit(Date fromDate,Date toDate, HttpServletRequest request,
-			HttpServletResponse response) throws Exception;
+	ModelAndView searchVisit(Date fromDate, Date toDate, HttpServletRequest request, HttpServletResponse response)
+			throws Exception;
+
 
 }
 

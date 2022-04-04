@@ -53,51 +53,52 @@ public class MemberControllerImpl implements MemberController {
 
 	// 로그인
 	@Override
-	@RequestMapping(value = "/member/login.do", method = RequestMethod.POST)
-	public ModelAndView login(@ModelAttribute("member") MemberVO member, RedirectAttributes rAttr,
-			HttpServletRequest request, HttpServletResponse response) throws Exception {
-		ModelAndView mav = new ModelAndView();
-		memberVO = memberService.login(member);
-		
-		if (memberVO != null) {
-			HttpSession session = request.getSession();
-			session.setAttribute("member", memberVO);
-			session.setAttribute("isLogOn", true);
-			
-			String member_id = memberVO.getMember_id();
-			String member_gender = memberVO.getMember_gender();
-			String member_roadAddress = memberVO.getMember_roadAddress();
-			String member_birth = memberVO.getMember_birth();
-			
-			memberService.last_log(member_id);
-			Date member_last_log = memberVO.getMember_last_log();
-			
-			Map visitMap = new HashMap();
-			System.out.println("hi");
-			visitMap.put("member_id", member_id);
-			visitMap.put("member_gender", member_gender);
-			visitMap.put("member_roadAddress", member_roadAddress);
-			visitMap.put("member_birth", member_birth);
-			visitMap.put("member_last_log", member_last_log);
-			
-			memberService.insertVisit(visitMap);
-			
-			Map countMap = memberService.getTotCnt(visitMap); 
-			
-			String action = (String) session.getAttribute("action");
-			session.removeAttribute("action");
-			if (action != null) {
-				mav.setViewName("redirect:" + action);
-			} else {
-				mav.setViewName("redirect:/main.do");
-			}
+	   @RequestMapping(value = "/member/login.do", method = RequestMethod.POST)
+	   public ModelAndView login(@ModelAttribute("member") MemberVO member, RedirectAttributes rAttr,
+	         HttpServletRequest request, HttpServletResponse response) throws Exception {
+	      ModelAndView mav = new ModelAndView();
+	      memberVO = memberService.login(member);
+	      
+	      if (memberVO != null) {
+	         HttpSession session = request.getSession();
+	         session.setAttribute("member", memberVO);
+	         session.setAttribute("isLogOn", true);
+	         
+	         String member_id = memberVO.getMember_id();
+	         String member_gender = memberVO.getMember_gender();
+	         String member_roadAddress = memberVO.getMember_roadAddress();
+	         String member_birth = memberVO.getMember_birth();
+	         String member_right = memberVO.getMember_right();
+	         memberService.last_log(member_id);
+	         Date member_last_log = memberVO.getMember_last_log();
+	         System.out.println("권한 확인 : "+ member_right);
+	         Map visitMap = new HashMap();
+	         if(member_right.equals("MEMBER")) {
+	            visitMap.put("member_id", member_id);
+	            visitMap.put("member_gender", member_gender);
+	            visitMap.put("member_roadAddress", member_roadAddress);
+	            visitMap.put("member_birth", member_birth);
+	            visitMap.put("member_last_log", member_last_log);
+	            
+	         System.out.println("멤컨 확인");
+	         memberService.insertVisit(visitMap);
+	         Map countMap = memberService.getTotCnt(visitMap); 
+	         }
+	         
+	         String action = (String) session.getAttribute("action");
+	         session.removeAttribute("action");
+	         if (action != null) {
+	            mav.setViewName("redirect:" + action);
+	         } else {
+	            mav.setViewName("redirect:/main.do");
+	         }
 
-		} else {
-			rAttr.addAttribute("result", "loginFailed");
-			mav.setViewName("redirect:/member/loginForm.do");
-		}
-		return mav;
-	}
+	      } else {
+	         rAttr.addAttribute("result", "loginFailed");
+	         mav.setViewName("redirect:/member/loginForm.do");
+	      }
+	      return mav;
+	   }
 
 	@Override // 로그아웃 창
 	@RequestMapping(value = "/member/logout.do", method = RequestMethod.GET)

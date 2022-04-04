@@ -4,31 +4,81 @@
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mapper.adminStats">
-   <resultMap id="visitResult" type="adminStatsVO">
-      <result property="v_date" column="v_date" />
-      <result property="member_id" column="member_id" />
-      <result property="v_gender" column="v_gender" />
-      <result property="v_roadAddress" column="v_roadAddress" />
-      <result property="v_birth" column="v_birth" />
+	<resultMap id="visitResult" type="adminStatsVO">
+		<result property="v_date" column="v_date" />
+		<result property="member_id" column="member_id" />
+		<result property="v_gender" column="v_gender" />
+		<result property="v_roadAddress" column="v_roadAddress" />
+		<result property="v_birth" column="v_birth" />
 
-   </resultMap>
+	</resultMap>
 
 
-   <select id="selectAllVisitList" resultMap="visitResult">
+	<select id="selectAllVisitList" resultMap="visitResult">
       <![CDATA[
-         select v_date,member_id,v_gender,v_roadAddress,v_birth from visit order by v_date desc       
+         select * from visit order by v_date desc       
       ]]>
-   </select>
+	</select>
 
-   <select id="getVisitTotCnt" resultType="int">
+	<!-- 방문자 수 -->
+	<select id="getVisitTotCnt" resultType="int">
     <![CDATA[
      select count(v_date) from visit
     ]]>
-   </select>
+	</select>
 
-   <!-- 검색 -->
-   <select id="selectVisitListBySearchVisit"
-      parameterType="java.util.Map" resultMap="visitResult">
+	<select id="getSuguTotCnt" resultType="int">
+    <![CDATA[
+     select count(v_roadAddress) from visit
+ where v_roadAddress like '%' || '서구' || '%'
+    ]]>
+	</select>
+	<select id="getJungguTotCnt" resultType="int">
+    <![CDATA[
+          select count(v_roadAddress) from visit
+ where v_roadAddress like '%' || '중구' || '%'
+    ]]>
+	</select>
+	<select id="getDongguTotCnt" resultType="int">
+    <![CDATA[
+        select count(v_roadAddress) from visit
+ where v_roadAddress like '%' || '동구' || '%'
+    ]]>
+	</select>
+	<select id="getNamguTotCnt" resultType="int">
+    <![CDATA[
+          select count(v_roadAddress) from visit
+ where v_roadAddress like '%' || '남구' || '%'
+    ]]>
+	</select>
+	<select id="getBukguTotCnt" resultType="int">
+    <![CDATA[
+          select count(v_roadAddress) from visit
+ where v_roadAddress like '%' || '북구' || '%'
+    ]]>
+	</select>
+	<select id="getDalsungTotCnt" resultType="int">
+    <![CDATA[
+          select count(v_roadAddress) from visit
+ where v_roadAddress like '%' || '달성구' || '%'
+    ]]>
+	</select>
+	<select id="getDalsunggunTotCnt" resultType="int">
+    <![CDATA[
+          select count(v_roadAddress) from visit
+ where v_roadAddress like '%' || '달성군' || '%'
+    ]]>
+	</select>
+	<select id="getSusungTotCnt" resultType="int">
+    <![CDATA[
+          select count(v_roadAddress) from visit
+ where v_roadAddress like '%' || '수성구' || '%'
+    ]]>
+	</select>
+
+	<!-- 검색 -->
+	<select id="selectVisitListBySearchVisit"
+		parameterType="java.util.Map" resultMap="visitResult">
      <![CDATA[
       SELECT * FROM visit
       WHERE v_date BETWEEN TO_DATE(#{fromDate}, 'yyyy-MM-dd') 
@@ -36,17 +86,90 @@
                    order by v_date desc 
                   
       ]]>
-   </select>
-   
-   <!-- 검색 수 -->
-   <select id="selectSearchTotVisit" resultType="int">
+	</select>
+
+	<!-- 검색 수 -->
+	<select id="selectSearchTotVisit" parameterType="java.util.Map"
+		resultType="int">
    <![CDATA[
    SELECT count(v_date) FROM visit
     WHERE v_date BETWEEN TO_DATE(#{fromDate}, 'yyyy-MM-dd') 
                    AND TO_DATE(#{toDate}, 'yyyy-MM-dd')+0.99999
       ]]>
-   </select>
+	</select>
 
+	<!--검색 방문 수 -->
+	<select id="searchTotSuguVisit" parameterType="java.util.Map"
+		resultType="int">
+   <![CDATA[
+      SELECT count(v_date) FROM visit
+    WHERE v_roadAddress like '%' || '서구' || '%' AND v_date BETWEEN TO_DATE(#{fromDate}, 'yyyy-MM-dd') 
+                   AND TO_DATE(#{toDate}, 'yyyy-MM-dd')+0.99999
+      ]]>
+	</select>
+
+	<select id="searchTotJungguVisit" parameterType="java.util.Map"
+		resultType="int">
+   <![CDATA[
+      SELECT count(v_date) FROM visit
+    WHERE v_roadAddress like '%' || '중구' || '%' AND v_date BETWEEN TO_DATE(#{fromDate}, 'yyyy-MM-dd') 
+                   AND TO_DATE(#{toDate}, 'yyyy-MM-dd')+0.99999
+      ]]>
+	</select>
+
+	<select id="searchTotDongguVisit" parameterType="java.util.Map"
+		resultType="int">
+   <![CDATA[
+      SELECT count(v_date) FROM visit
+    WHERE v_roadAddress like '%' || '동구' || '%' AND v_date BETWEEN TO_DATE(#{fromDate}, 'yyyy-MM-dd') 
+                   AND TO_DATE(#{toDate}, 'yyyy-MM-dd')+0.99999
+      ]]>
+	</select>
+
+	<select id="searchTotNamguVisit" parameterType="java.util.Map"
+		resultType="int">
+   <![CDATA[
+      SELECT count(v_date) FROM visit
+    WHERE v_roadAddress like '%' || '남구' || '%' AND v_date BETWEEN TO_DATE(#{fromDate}, 'yyyy-MM-dd') 
+                   AND TO_DATE(#{toDate}, 'yyyy-MM-dd')+0.99999
+      ]]>
+	</select>
+
+	<select id="searchTotBukguVisit" parameterType="java.util.Map"
+		resultType="int">
+   <![CDATA[
+      SELECT count(v_date) FROM visit
+    WHERE v_roadAddress like '%' || '북구' || '%' AND v_date BETWEEN TO_DATE(#{fromDate}, 'yyyy-MM-dd') 
+                   AND TO_DATE(#{toDate}, 'yyyy-MM-dd')+0.99999
+      ]]>
+	</select>
+
+	<select id="searchTotDalsungVisit" parameterType="java.util.Map"
+		resultType="int">
+   <![CDATA[
+      SELECT count(v_date) FROM visit
+    WHERE v_roadAddress like '%' || '달성구' || '%' AND v_date BETWEEN TO_DATE(#{fromDate}, 'yyyy-MM-dd') 
+                   AND TO_DATE(#{toDate}, 'yyyy-MM-dd')+0.99999
+      ]]>
+	</select>
+
+	<select id="searchTotDalsunggunVisit"
+		parameterType="java.util.Map" resultType="int">
+   <![CDATA[
+      SELECT count(v_date) FROM visit
+    WHERE v_roadAddress like '%' || '달성군' || '%' AND v_date BETWEEN TO_DATE(#{fromDate}, 'yyyy-MM-dd') 
+                   AND TO_DATE(#{toDate}, 'yyyy-MM-dd')+0.99999
+      ]]>
+	</select>
+
+	<select id="searchTotSusungVisit" parameterType="java.util.Map"
+		resultType="int">
+   <![CDATA[
+      SELECT count(v_date) FROM visit
+    WHERE v_roadAddress like '%' || '수성구' || '%' AND v_date BETWEEN TO_DATE(#{fromDate}, 'yyyy-MM-dd') 
+                   AND TO_DATE(#{toDate}, 'yyyy-MM-dd')+0.99999
+      ]]>
+	</select>
 
 </mapper>
    
