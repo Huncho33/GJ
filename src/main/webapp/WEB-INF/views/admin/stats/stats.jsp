@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <c:set var="getVisitTotCnt" value="${countMap.getVisitTotCnt}" />
-
+<c:set var="getAddrTotVisit" value="${countMap.getAddrTotVisit}" />
 
 <%
 	request.setCharacterEncoding("UTF-8");
@@ -24,11 +24,20 @@
 <script src="${contextPath}/resources/js/sidemenu.js"></script>
 <!--chart.js  -->
 <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.min.js"></script>
+<script type="text/javascript" charset="utf-8"
+	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.bundle.min.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.7.0"></script>
 
 
 <script type="text/javascript">
+/* 검색 오늘날짜 설정*/
    window.onload = function() {
       today = new Date();
       console.log("today.toISOString() >>>" + today.toISOString());
@@ -37,33 +46,128 @@
       bir = document.getElementById("toDate");
       bir.value = today;
       
-      var ctx = $('#chart').get(0).getContext("2d");
+      /* 구별 방문자수 막대 그래프 function*/
+      var ctx = $('#cityChart').get(0).getContext("2d");
       window.theChart = new Chart(ctx, {
          type : 'bar',
          data : barChartData,
-         options : {}
+         options : {
+        	 title: {
+ 	            display: true,
+ 	            text: '<구별 방문자 수>',
+ 	            fontSize:18
+ 	        },
+ 	     
+	            scales : { 
+	                xAxes : [{
+	                   barThickness : 50,
+	                
+	                gridLines : {
+	                   display : false
+	                },
+	                offset:true
+	             }],
+	             yAxes: [{
+	                ticks: {
+	                   min:0
+	                }
+	                
+	             }]
+	          }
+         }
+      });
+      
+      /* 남녀 비율 파이 차트 function*/
+      var ctx8 = $('#genderChart').get(0).getContext("2d"); 
+      window.theChart8 = new Chart(ctx8, { 
+    	  type: 'pie', 
+    	  data: data, 
+    	  options: { 
+    		  responsive: true, 
+    		  legend: {
+    			  position: 'top',
+    		  },
+    		  title: {
+    	            display: true,
+    	            text: '<방문 남/녀 비율>',
+    	            fontSize:18
+    	        },
+      } 
       });
    }
-   
+   /* 구별 방문자수 막대 그래프 데이터 셋 */
     var barChartData = {
-	         labels : [ "중구", "서구", "동구", "남구", "북구", "수성구", "달성구", "달성군" ],
-	         datasets : [
-	               {
-	                  label : '방문자 수',
-	                  backgroundColor : "#1E90FF",
-	                  data : [${countMap.getJungguTotCnt },
-	                	  ${countMap.getDongguTotCnt },
-	                	  ${countMap.getSuguTotCnt }, 
-	                	  ${countMap.getNamguTotCnt },
-	                	  ${countMap.getBukguTotCnt }, 
-	                	  ${countMap.getSusungTotCnt },
-	                	  ${countMap.getDalsungTotCnt },
-	                	  ${countMap.getDalsunggunTotCnt } ]
+    	     labels : [ "수성구", "북구", "달성군", "중구", "동구", "서구", "남구", "달성구" ],
+             datasets : [
+                   {
+                      label : '방문자 수',
+                      backgroundColor : "#1E90FF",
+                      data : [
+
+                         ${getAddrTotVisit[0]},
+                         ${getAddrTotVisit[1]},
+                         ${getAddrTotVisit[2]},
+                         ${getAddrTotVisit[3]},
+                         ${getAddrTotVisit[4]},
+                         ${getAddrTotVisit[5]},
+                         ${getAddrTotVisit[6]},
+                         ${getAddrTotVisit[7]}
+							],
+	               datalabels: { 
+	   	        	display: false
+	   	        	},
 	               }
 	             ]
 	      };
+    
+    /* 남녀 비율 파이 차트 데이터 셋 */
+    var data = { 
+    		labels: ["남"," 여"], 
+    		datasets: [ 
+    			{   
+    				label: 'Pie Chart Count',
+    				data: [ 
+    					${countMap.getGenderCnt[0] },
+    					${countMap.getGenderCnt[1] } 
+    					], 
+    				backgroundColor: [ 
+    					"steelblue", 
+    					"lightcoral", ],
+					 
+    				borderWidth: 0,
+    				datalabels: { 
+    					labels: { 
+    					value: { 
+    						borderWidth: 2, borderRadius: 4, font: {size: 15}, 
+    						formatter: function(value, ctx) { 
+    							var value = ctx.dataset.data[ctx.dataIndex]; 
+    							return value > 0 ? Math.round(value / (ctx.dataset.data[0] + ctx.dataset.data[1] ) * 100) + ' %' : null; 
+    							}, 
+    							color: function(ctx) { 
+    								var value = ctx.dataset.data[ctx.dataIndex]; return value > 0 ? 'white' : null; 
+    								}, 
+    								
+    									padding: 4
+    							}
+    						}
+    					}
+    			}] 
+    };
+
    
    </script>
+
+<style>
+#cityChart {
+	margin-top: 50;
+	margin-bottom: 20;
+}
+
+#genderChart {
+	margin-top: 50;
+	margin-bottom: 50;
+}
+</style>
 
 </head>
 <body>
@@ -145,35 +249,37 @@
 					</c:forEach>
 				</table>
 
+				<canvas id="cityChart"></canvas>
+
 				<table border="1" align="center" width="100%">
 					<tr align="center" bgcolor="lightgreen">
-						<td><b>구별</b></td>
-						<td><b>중구</b></td>
-						<td><b>동구</b></td>
-						<td><b>서구</b></td>
-						<td><b>남구</b></td>
-						<td><b>북구</b></td>
-						<td><b>수성구</b></td>
-						<td><b>달성구</b></td>
-						<td><b>달성군</b></td>
+						<td width="11$"><b>구별</b></td>
+						<td width="11$"><b>수성구</b></td>
+						<td width="11$"><b>북구</b></td>
+						<td width="11$"><b>달성군</b></td>
+						<td width="11$"><b>중구</b></td>
+						<td width="11$"><b>동구</b></td>
+						<td width="11$"><b>서구</b></td>
+						<td width="11$"><b>남구</b></td>
+						<td width="11$"><b>달성구</b></td>
 					</tr>
 
 
 					<tr align="center">
 						<td width="11%">인원</td>
-						<td width="11%">${countMap.getJungguTotCnt }</td>
-						<td width="11%">${countMap.getDongguTotCnt }</td>
-						<td width="11%">${countMap.getSuguTotCnt }</td>
-						<td width="11%">${countMap.getNamguTotCnt }</td>
-						<td width="11%">${countMap.getBukguTotCnt }</td>
-						<td width="11%">${countMap.getSusungTotCnt }</td>
-						<td width="11%">${countMap.getDalsungTotCnt }</td>
-						<td width="11%">${countMap.getDalsunggunTotCnt }</td>
-
+						<c:forEach var="addr" items="${getAddrTotVisit }"
+							varStatus="status">
+							<td>${addr}</td>
+						</c:forEach>
 					</tr>
 				</table>
 
-				<canvas id="chart"></canvas>
+
+
+				<div>
+					<canvas id="genderChart"></canvas>
+				</div>
+
 			</div>
 
 		</div>

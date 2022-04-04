@@ -37,7 +37,7 @@ public class AdminStatsControllerImpl implements AdminStatsController {
 		Map visitMap = new HashMap();
 		String viewName = (String) request.getAttribute("viewName");
 		List visitList = statsService.listStats();
-		Map countMap = statsService.getTotCnt(visitMap); //총 방문자수, 구별 인구 수 
+		Map countMap = statsService.getTotCnt(visitMap); //총 방문자수, 구별 인구 수, 남녀비율 
 		System.out.println("visitList : " + visitList);
 		
 		ModelAndView mav = new ModelAndView(viewName);

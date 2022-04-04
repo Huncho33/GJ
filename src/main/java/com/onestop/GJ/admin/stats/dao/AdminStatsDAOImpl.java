@@ -33,46 +33,21 @@ public class AdminStatsDAOImpl implements AdminStatsDAO {
 		int getVisitTotCnt = sqlSession.selectOne("mapper.adminStats.getVisitTotCnt", visitMap);
 		return getVisitTotCnt;
 	}
+	
+	// 구별 방문자수 
+	   @Override
+	   public List<AdminStatsVO> getAddrTotVisit(Map visitMap) {
+	      List<AdminStatsVO> getAddrTotVisit = sqlSession.selectList("mapper.adminStats.getAddrTotVisit", visitMap);
+	      System.out.println("다오 getAddrTotVisit : "+ getAddrTotVisit );
+	      return getAddrTotVisit;
+	   }
+
+//	방문자 성별 수
 	@Override
-	// 구별 방문자 수
-	public int getSuguTotCnt(Map visitMap) {
-		int getSuguTotCnt = sqlSession.selectOne("mapper.adminStats.getSuguTotCnt", visitMap);
-		return getSuguTotCnt;
-	}
-	@Override
-	public int getJungguTotCnt(Map visitMap) {
-		int getJungguTotCnt = sqlSession.selectOne("mapper.adminStats.getJungguTotCnt", visitMap);
-		return getJungguTotCnt;
-	}
-	@Override
-	public int getDongguTotCnt(Map visitMap) {
-		int getDongguTotCnt = sqlSession.selectOne("mapper.adminStats.getDongguTotCnt", visitMap);
-		return getDongguTotCnt;
-	}
-	@Override
-	public int getNamguTotCnt(Map visitMap) {
-		int getNamguTotCnt = sqlSession.selectOne("mapper.adminStats.getNamguTotCnt", visitMap);
-		return getNamguTotCnt;
-	}
-	@Override
-	public int getBukguTotCnt(Map visitMap) {
-		int getBukguTotCnt = sqlSession.selectOne("mapper.adminStats.getBukguTotCnt", visitMap);
-		return getBukguTotCnt;
-	}
-	@Override
-	public int getDalsungTotCnt(Map visitMap) {
-		int getDalsungTotCnt = sqlSession.selectOne("mapper.adminStats.getDalsungTotCnt", visitMap);
-		return getDalsungTotCnt;
-	}
-	@Override
-	public int getDalsunggunTotCnt(Map visitMap) {
-		int getDalsunggunTotCnt = sqlSession.selectOne("mapper.adminStats.getDalsunggunTotCnt", visitMap);
-		return getDalsunggunTotCnt;
-	}
-	@Override
-	public int getSusungTotCnt(Map visitMap) {
-		int getSusungTotCnt = sqlSession.selectOne("mapper.adminStats.getSusungTotCnt", visitMap);
-		return getSusungTotCnt;
+	public List<AdminStatsVO> getGenderCnt(Map visitMap) {
+		List<AdminStatsVO> getGenderCnt = sqlSession.selectList("mapper.adminStats.getGenderCnt", visitMap);
+		System.out.println("남녀 비율 검색" + getGenderCnt);
+		return getGenderCnt;
 	}
 
 //  방문자 정보
@@ -85,7 +60,7 @@ public class AdminStatsDAOImpl implements AdminStatsDAO {
 		return searchList;
 	}
 
-//   방문자 검색 수
+//   방문자 성별 검색 수
 	@Override
 	public int selectSearchTotVisit(Map dateMap) {
 		System.out.println("dateMap : " + dateMap);
@@ -93,48 +68,23 @@ public class AdminStatsDAOImpl implements AdminStatsDAO {
 		System.out.println("검색 방문자수" + searchTotVisit);
 		return searchTotVisit;
 	}
-//	방문자 구별 검색 수
+//  방문자 구별 검색 수
+  @Override
+  public List<AdminStatsVO> getSearchAddrTotList(Map dateMap) {
+     List<AdminStatsVO> getSearchAddrTotList = sqlSession.selectList("mapper.adminStats.getSearchAddrTotList", dateMap);
+     System.out.println("다오 getSearchAddrTotList : "+ getSearchAddrTotList );
+     return getSearchAddrTotList;
+  }
+	
+//	방문자 성별 수
 	@Override
-	public int searchTotSuguVisit(Map dateMap) {
-		System.out.println("dateMap sugu : " + dateMap);
-		int searchTotSuguVisit = sqlSession.selectOne("mapper.adminStats.searchTotSuguVisit", dateMap);
-		return searchTotSuguVisit;
+	public List searchGenderCnt(Map dateMap) {
+		List<AdminStatsVO> searchGenderCnt = sqlSession.selectList("mapper.adminStats.searchGenderCnt", dateMap);
+		System.out.println("검색 남녀 비율 검색" + searchGenderCnt);
+		return searchGenderCnt;
 	}
-	@Override
-	public int searchTotJungguVisit(Map dateMap) {
-		int searchTotJungguVisit = sqlSession.selectOne("mapper.adminStats.searchTotJungguVisit", dateMap);
-		return searchTotJungguVisit;
-	}
-	@Override
-	public int searchTotDongguVisit(Map dateMap) {
-		int searchTotDongguVisit = sqlSession.selectOne("mapper.adminStats.searchTotDongguVisit", dateMap);
-		return searchTotDongguVisit;
-	}
-	@Override
-	public int searchTotNamguVisit(Map dateMap) {
-		int searchTotNamguVisit = sqlSession.selectOne("mapper.adminStats.searchTotNamguVisit", dateMap);
-		return searchTotNamguVisit;
-	}
-	@Override
-	public int searchTotBukguVisit(Map dateMap) {
-		int searchTotBukguVisit = sqlSession.selectOne("mapper.adminStats.searchTotBukguVisit", dateMap);
-		return searchTotBukguVisit;
-	}
-	@Override
-	public int searchTotDalsungVisit(Map dateMap) {
-		int searchTotDalsungVisit = sqlSession.selectOne("mapper.adminStats.searchTotDalsungVisit", dateMap);
-		return searchTotDalsungVisit;
-	}
-	@Override
-	public int searchTotDalsunggunVisit(Map dateMap) {
-		int searchTotDalsunggunVisit = sqlSession.selectOne("mapper.adminStats.searchTotDalsunggunVisit", dateMap);
-		return searchTotDalsunggunVisit;
-	}
-	@Override
-	public int searchTotSusungVisit(Map dateMap) {
-		int searchTotSusungVisit = sqlSession.selectOne("mapper.adminStats.searchTotSusungVisit", dateMap);
-		return searchTotSusungVisit;
-	}
+
+	
 	
 
 }

@@ -29,22 +29,71 @@
 <script src="${contextPath}/resources/js/sidemenu.js"></script>
 <!--chart.js  -->
 <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.min.js"></script>
+<script type="text/javascript" charset="utf-8"
+	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.bundle.min.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
-	
-	
+<script
+	src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.7.0"></script>
+
+
 <script type="text/javascript">
 window.onload = function() {
-var ctx = $('#chart').get(0).getContext("2d");0
+	/*기간별 검색 후 막대 그래프 function  */
+var ctx = $('#cityChart').get(0).getContext("2d");
 window.theChart = new Chart(ctx, {
    type : 'bar',
    data : barChartData,
-   options : {}
+   options : {
+	   title: {
+            display: true,
+            text: '<구별 방문자 수>',
+            fontSize:18
+        },
+     /* x축 y축 설정 */
+           scales : { 
+               xAxes : [{
+                  barThickness : 50,
+               
+               gridLines : {
+                  display : false
+               },
+               offset:true
+            }],
+            yAxes: [{
+               ticks: {
+                  min:0
+               }
+            }]
+         }
+   }
+});
+
+/* 남녀 비율 파이 차트 function*/
+var ctx8 = $('#genderChart').get(0).getContext("2d"); 
+window.theChart8 = new Chart(ctx8, { 
+	  type: 'pie', 
+	  data: data, 
+	  options: { 
+		  responsive: true, 
+		  legend: {
+			  position: 'top',
+		  },
+		  title: {
+	            display: true,
+	            text: '<방문 남/녀 비율>',
+	            fontSize:18
+	        },
+} 
 });
 }
-
+/* 구별 방문자수 막대 그래프 데이터 셋 */
 var barChartData = {
-        labels : [ "중구", "서구", "동구", "남구", "북구", "수성구", "달성구", "달성군" ],
+        labels : [ "중구", "동구", "서구", "남구", "북구", "달성구", "달성군", "수성구" ],
         datasets : [
               {
                  label : '방문자 수',
@@ -56,10 +105,47 @@ var barChartData = {
                 	 ${searchMap.searchTotBukguVisit }, 
                 	 ${searchMap.searchTotDalsungVisit },
                 	 ${searchMap.searchTotDalsunggunVisit },
-                	 ${searchMap.searchTotSusungVisit } ]
+                	 ${searchMap.searchTotSusungVisit } ],
+              datalabels: { 
+	   	        	display: false
+	   	        	},
               }
             ]
      };
+     
+/* 남녀 비율 파이 차트 데이터 셋 */
+var data = { 
+		labels: ["남"," 여"], 
+		datasets: [ 
+			{   
+				label: 'Pie Chart Count',
+				data: [ 
+					${searchMap.searchGenderCnt[0] },
+					${searchMap.searchGenderCnt[1] } 
+					], 
+				backgroundColor: [ 
+					"steelblue", 
+					"lightcoral", ],
+				 
+				borderWidth: 0,
+				datalabels: { 
+					labels: { 
+					value: { 
+						borderWidth: 2, borderRadius: 4, font: {size: 15}, 
+						formatter: function(value, ctx) { 
+							var value = ctx.dataset.data[ctx.dataIndex]; 
+							return value > 0 ? Math.round(value / (ctx.dataset.data[0] + ctx.dataset.data[1] ) * 100) + ' %' : null; 
+							}, 
+							color: function(ctx) { 
+								var value = ctx.dataset.data[ctx.dataIndex]; return value > 0 ? 'white' : null; 
+								}, 
+								
+									padding: 4
+							}
+						}
+					}
+			}] 
+};
      
 
 </script>
@@ -173,8 +259,12 @@ var barChartData = {
 
 					</tr>
 				</table>
-				
-				<canvas id="chart"></canvas>
+
+				<canvas id="cityChart"></canvas>
+
+				<div>
+					<canvas id="genderChart"></canvas>
+				</div>
 			</div>
 
 		</div>

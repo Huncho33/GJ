@@ -36,25 +36,15 @@ public class AdminStatsServiceImpl implements AdminStatsService {
 	@Override
 	public Map getTotCnt(Map visitMap) {
 		int getVisitTotCnt = statsDAO.getVisitTotCnt(visitMap);
-		int getSuguTotCnt = statsDAO.getSuguTotCnt(visitMap);
-		int getJungguTotCnt = statsDAO.getJungguTotCnt(visitMap);
-		int getDongguTotCnt = statsDAO.getDongguTotCnt(visitMap);
-		int getNamguTotCnt = statsDAO.getNamguTotCnt(visitMap);
-		int getBukguTotCnt = statsDAO.getBukguTotCnt(visitMap);
-		int getDalsungTotCnt = statsDAO.getDalsungTotCnt(visitMap);
-		int getDalsunggunTotCnt = statsDAO.getDalsunggunTotCnt(visitMap);
-		int getSusungTotCnt = statsDAO.getSusungTotCnt(visitMap);
-		
+		List<AdminStatsVO> getAddrTotVisit = statsDAO.getAddrTotVisit(visitMap);
+
+		List getGenderCnt = statsDAO.getGenderCnt(visitMap);
+
 		visitMap.put("getVisitTotCnt", getVisitTotCnt);
-		visitMap.put("getSuguTotCnt", getSuguTotCnt);
-		visitMap.put("getJungguTotCnt", getJungguTotCnt);
-		visitMap.put("getDongguTotCnt", getDongguTotCnt);
-		visitMap.put("getNamguTotCnt", getNamguTotCnt);
-		visitMap.put("getBukguTotCnt", getBukguTotCnt);
-		visitMap.put("getDalsungTotCnt", getDalsungTotCnt);
-		visitMap.put("getDalsunggunTotCnt", getDalsunggunTotCnt);
-		visitMap.put("getSusungTotCnt", getSusungTotCnt);
-		
+		visitMap.put("getAddrTotVisit", getAddrTotVisit);
+
+		visitMap.put("getGenderCnt", getGenderCnt);//성별 수
+
 		return visitMap;
 	}
 
@@ -64,25 +54,15 @@ public class AdminStatsServiceImpl implements AdminStatsService {
 		Map searchMap = new HashMap();
 		System.out.println("서비스 dateMap : " + dateMap);
 		List<AdminStatsVO> searchList = statsDAO.selectVisitListBySearchVisit(dateMap);
-		int searchTotVisit = statsDAO.selectSearchTotVisit(dateMap);
-		int searchTotSuguVisit = statsDAO.searchTotSuguVisit(dateMap);
-		int searchTotJungguVisit = statsDAO.searchTotJungguVisit(dateMap);
-		int searchTotDongguVisit = statsDAO.searchTotDongguVisit(dateMap);
-		int searchTotNamguVisit = statsDAO.searchTotNamguVisit(dateMap);
-		int searchTotBukguVisit = statsDAO.searchTotBukguVisit(dateMap);
-		int searchTotDalsungVisit = statsDAO.searchTotDalsungVisit(dateMap);
-		int searchTotDalsunggunVisit = statsDAO.searchTotDalsunggunVisit(dateMap);
-		int searchTotSusungVisit = statsDAO.searchTotSusungVisit(dateMap);
+		List<AdminStatsVO> searchAddrList = statsDAO.getSearchAddrTotList(dateMap);
+		System.out.println("서비스 searchAddrList : " + searchAddrList);
+
+		List searchGenderCnt = statsDAO.searchGenderCnt(dateMap);
+
 		searchMap.put("searchList", searchList);
-		searchMap.put("searchTotVisit", searchTotVisit);
-		searchMap.put("searchTotSuguVisit", searchTotSuguVisit);
-		searchMap.put("searchTotJungguVisit", searchTotJungguVisit);
-		searchMap.put("searchTotDongguVisit", searchTotDongguVisit);
-		searchMap.put("searchTotNamguVisit", searchTotNamguVisit);
-		searchMap.put("searchTotBukguVisit", searchTotBukguVisit);
-		searchMap.put("searchTotDalsungVisit", searchTotDalsungVisit);
-		searchMap.put("searchTotDalsunggunVisit", searchTotDalsunggunVisit);
-		searchMap.put("searchTotSusungVisit", searchTotSusungVisit);
+		searchMap.put("searchAddrList", searchAddrList);
+
+		searchMap.put("searchGenderCnt", searchGenderCnt);//성별 검색수
 
 		return searchMap;
 	}
