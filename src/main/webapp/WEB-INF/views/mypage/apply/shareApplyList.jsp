@@ -10,41 +10,21 @@
 
 <!DOCTYPE html>
 <html>
-
 <head>
 <meta charset="UTF-8">
 <script src="https://kit.fontawesome.com/fc92373f81.js"
 	crossorigin="anonymous"></script>
-<link href="${contextPath}/resources/css/mypage/myBoardList.css"
+<link href="${contextPath}/resources/css/mypage/myApply.css"
 	rel="stylesheet" type="text/css">
 <link href="${contextPath}/resources/css/common.css" rel="stylesheet"
 	type="text/css">
 <script src="${contextPath}/resources/js/sidemenu.js"></script>
 <link rel="stylesheet" href="${contextPath}/resources/css/sidemenu.css">
 
-<script language="javascript">
-//글 삭제하기
-function fn_remove_board(url,fr_NO){
-	 var form = document.createElement("form");
-	 form.setAttribute("method", "post");
-	 form.setAttribute("action", url);
-    var FreeNOInput = document.createElement("input");
-    FreeNOInput.setAttribute("type","hidden");
-    FreeNOInput.setAttribute("name","fr_NO");
-    FreeNOInput.setAttribute("value", fr_NO);
-	 
-    form.appendChild(FreeNOInput);
-    document.body.appendChild(form);
-    form.submit();
-}
-
-</script>
-
 </head>
-
 <body>
-	<div id="myBoard_wrapper">
-		<div id="myBoard_total">
+	<div id="myApply_wrapper">
+		<div id="myApply_total">
 			<div id="khs_sideMenu_tot">
 				<div id="khs_leftTitle">
 					<p>마이페이지</p>
@@ -63,8 +43,10 @@ function fn_remove_board(url,fr_NO){
 							<ul class="khs_depth2">
 								<li><a href="${contextPath}/mypage/monthApplyList.do">-
 										월세지원 신청 현황</a></li>
-								<li><a href="${contextPath}/mypage/rentApplyList.do">- 전세지원 신청 현황</a></li>
-								<li><a href="${contextPath}/mypage/shareApplyList.do">- 행복주택지원 신청 현황</a></li>
+								<li><a href="${contextPath}/mypage/rentApplyList.do">-
+										전세지원 신청 현황</a></li>
+								<li><a href="${contextPath}/mypage/shareApplyList.do">-
+										행복주택지원 신청 현황</a></li>
 							</ul></li>
 						<li><a id="khs_left khs_left3" class="khs_lnb"><p>나의
 									게시글 및 상담</p></a>
@@ -76,44 +58,55 @@ function fn_remove_board(url,fr_NO){
 					</ul>
 				</div>
 			</div>
-			<div id="myBoard_tot">
-				<div id="myBoard_tit1">
-					<h3 class="myBoard_tit">나의 게시글 목록</h3>
+			<div id="myApply_tot">
+				<div id="myApply_tit1">
+					<h3 class="myApply_tit">공공임대주택지원 신청 현황</h3>
 				</div>
-				<div id="myBoard_tit2">
-					<p class="myBoard_subtit" style="font-weight: bold;">
-						<strong>｜</strong> 내가 작성한 글목록
+				<div id="myApply_tit2">
+					<p class="myApply_subtit" style="font-weight: bold;">
+						<strong>｜</strong> 청년희망주택이자지원 신청 현황
 					</p>
 				</div>
-				<div id="myBoard_cnt1">
-					<table id="myBoard_qnaList" align="center" width="100%" border=0>
-						<tr class="myBoard_qnaTitle" align="center">
-							<td width="10%">글번호</td>
-							<td width="40%">제목</td>
-							<td width="25%">작성일</td>
-							<td width="15%">삭제</td>
+				<div id="myApply_cnt1">
+					<table id="myApply_qnaList" align="center" width="100%" border=0>
+						<tr class="myApply_qnaTitle" align="center">
+							<td width="25%">정책명</td>
+							<td width="40%">지급기간</td>
+							<td width="10%">심사상태</td>
+							<td width="15%">신청일</td>
+							<td width="10%">상세</td>
 						</tr>
 						<c:choose>
-							<c:when test="${empty myBoardList }">
+							<c:when test="${empty shareApplyList }">
 								<tr height="35">
 									<td colspan="5">
 										<p align="center">
-											<b><span style="font-size: 9pt;">등록된 글이 없습니다.</span></b>
+											<b><span style="font-size: 9pt;">신청내역이 없습니다.</span></b>
 										</p>
 									</td>
 								</tr>
 							</c:when>
-							<c:when test="${not empty myBoardList }">
-								<c:forEach var="article" items="${myBoardList }"
-									varStatus="myBoardNum">
+							<c:when test="${not empty shareApplyList }">
+								<c:forEach var="share" items="${shareApplyList }">
 									<tr align="center" height="35">
-										<td width="10%">${myBoardNum.count}</td>
-										<td width="40%"><a class='cls1'
-											href="${contextPath}/boardFree/viewArticle.do?fr_NO=${article.fr_NO }">
-												${article.fr_title }</a></td>
-										<td width="25%">${article.fr_date}</td>
-										<td width="15%"><button type="button"
-												onClick="fn_remove_board('${contextPath}/mypage/removeArticle.do', ${article.fr_NO})">삭제</button></td>
+										<td width="25%">${share.sh_policy}</td>
+										<td width="40%">
+										<c:choose>
+											<c:when test="${not empty share.sh_startpay}">
+												${share.sh_startpay} ~ ${share.sh_endpay}
+											</c:when>
+											<c:otherwise>
+												-
+											</c:otherwise>
+										</c:choose>
+										</td>
+										<td width="10%"><span style="color: blue;">${share.sh_result}</span></td>
+										<td width="15%">${share.sh_date}</td>
+										<td width="10%"><input type="hidden" name="sh_no"
+											id="sh_no" value="${share.sh_no }">
+										<button type="button"
+												onclick="location.href='${contextPath}/mypage/viewShareApply.do?sh_no=${share.sh_no }'"
+												class='cls1' id="apply_sltBtn">조회</button></td>
 									</tr>
 								</c:forEach>
 							</c:when>
@@ -124,5 +117,4 @@ function fn_remove_board(url,fr_NO){
 		</div>
 	</div>
 </body>
-
 </html>

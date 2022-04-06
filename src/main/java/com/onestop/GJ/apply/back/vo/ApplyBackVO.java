@@ -17,6 +17,8 @@ public class ApplyBackVO {
 	private String ba_result;
 	private String ba_policy;
 	private String ba_reason;
+	private Date ba_startpay;
+	private Date ba_endpay;
 
 	public int getBa_no() {
 		return ba_no;
@@ -86,6 +88,22 @@ public class ApplyBackVO {
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public Date getBa_startpay() {
+		return ba_startpay;
+	}
+
+	public void setBa_startpay(Date ba_startpay) {
+		this.ba_startpay = ba_startpay;
+	}
+
+	public Date getBa_endpay() {
+		return ba_endpay;
+	}
+
+	public void setBa_endpay(Date ba_endpay) {
+		this.ba_endpay = ba_endpay;
 	}
 
 	@Override

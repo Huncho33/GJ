@@ -16,6 +16,8 @@ public class ApplyRentVO {
 	private String rent_result;
 	private String rent_policy;
 	private String rent_reason;
+	private Date rent_startpay;
+	private Date rent_endpay;
 	
 
 	public String getRent_policy() {
@@ -86,6 +88,22 @@ public class ApplyRentVO {
 
 	public void setRent_result(String rent_result) {
 		this.rent_result = rent_result;
+	}
+
+	public Date getRent_startpay() {
+		return rent_startpay;
+	}
+
+	public void setRent_startpay(Date rent_startpay) {
+		this.rent_startpay = rent_startpay;
+	}
+
+	public Date getRent_endpay() {
+		return rent_endpay;
+	}
+
+	public void setRent_endpay(Date rent_endpay) {
+		this.rent_endpay = rent_endpay;
 	}
 
 	@Override

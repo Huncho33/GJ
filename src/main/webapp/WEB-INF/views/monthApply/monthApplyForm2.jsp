@@ -31,18 +31,29 @@
 		var value;
 		var myInfo_frm = document.myInfo_frm;
 		if(attribute == 'member'){
-			/* var member_pw = document.getElementById("member_pw").value; */
-			var member_phoneno = document.getElementById("member_phoneno").value;
-			var member_email1 = document.getElementById("member_email1").value;
-			var member_email2 = document.getElementById("member_email2").value;
-			var member_zipcode = document.getElementById("member_zipcode").value;
-			var member_roadAddress = document.getElementById("member_roadAddress").value;
-			var member_jibunAddress = document.getElementById("member_jibunAddress").value;
-			var member_namujiAddress = document.getElementById("member_namujiAddress").value;
-			
-			value = member_phoneno +","+ member_email1 +","+ member_email2 +","+ member_zipcode +","+ member_roadAddress +","+ member_jibunAddress +","+ member_namujiAddress;
-		}
-		console.log(value);
+			var value;
+			var myInfo_frm = document.myInfo_frm;
+			if(attribute == 'member'){
+				var member_pw = document.getElementById("member_pw").value;
+				var member_phoneno = document.getElementById("member_phoneno").value;
+				var member_email1 = document.getElementById("member_email1").value;
+				var member_email2 = document.getElementById("member_email2").value;
+				var member_zipcode = document.getElementById("member_zipcode").value;
+				var member_roadAddress = document.getElementById("member_roadAddress").value;
+				if(document.getElementById("member_jibunAddress").value == ""){
+					var member_jibunAddress = " ";
+				} else{
+					var member_jibunAddress = document.getElementById("member_jibunAddress").value;
+				}
+				if(document.getElementById("member_namujiAddress").value == ""){
+					var member_namujiAddress = " ";
+				}else{
+					var member_namujiAddress = document.getElementById("member_namujiAddress").value;
+				}
+				
+				value = member_pw +","+ member_phoneno +","+ member_email1 +","+ member_email2 +","+ member_zipcode +","+ member_roadAddress +","+ member_jibunAddress +","+ member_namujiAddress;
+			}
+			console.log(value);
 		
 		$.ajax({
 			type : "post",
@@ -54,8 +65,7 @@
 			},
 			success : function(data, textStatus) {
 				if(data.trim()=='mod_success'){
-					 
-					 location.href = "../month/monthApplyForm3.do";
+					 location.href = "${contextPath}/month/monthApplyForm3.do";
 					 alert("다음단계로 이동합니다."); 
 					return 
 				}else if(data.trim()=='failed'){
@@ -130,7 +140,7 @@
 				</p>
 			</div>
 			<div id="monthApply_table">
-				<form>
+				<form id="myInfo_frm" name="myInfo_frm">
 					<div id="detail_table">
 						<table id="join_detail_table">
 							<tbody>

@@ -16,9 +16,9 @@ public class ApplyRentReturnVO {
 	private String ret_policy;
 	private String ret_reason;
 	private String member_id;
+	private Date ret_startpay;
+	private Date ret_endpay;
 	
-	
-
 
 	public int getRet_no() {
 		return ret_no;
@@ -82,6 +82,22 @@ public class ApplyRentReturnVO {
          }
       }
 
+
+	public Date getRet_startpay() {
+		return ret_startpay;
+	}
+
+	public void setRet_startpay(Date ret_startpay) {
+		this.ret_startpay = ret_startpay;
+	}
+
+	public Date getRet_endpay() {
+		return ret_endpay;
+	}
+
+	public void setRet_endpay(Date ret_endpay) {
+		this.ret_endpay = ret_endpay;
+	}
 
 	@Override
 	public String toString() {

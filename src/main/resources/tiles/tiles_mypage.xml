@@ -19,25 +19,112 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/mypage/myInfo.jsp" />
 	</definition>
-	
-	<definition name="/mypage/confirmPwdView" extends="baseLayout">
+
+	<definition name="/mypage/confirmPwdView"
+		extends="baseLayout">
 		<put-attribute name="title" value="마이페이지 ::비밀번호 재확인" />
 		<put-attribute name="body"
 			value="/WEB-INF/views/mypage/confirmPwdView.jsp" />
 	</definition>
-	
-	<definition name="/mypage/memDeleteForm" extends="baseLayout">
+
+	<definition name="/mypage/memDeleteForm"
+		extends="baseLayout">
 		<put-attribute name="title" value="마이페이지 ::회원 탈퇴" />
 		<put-attribute name="body"
 			value="/WEB-INF/views/mypage/memDeleteForm.jsp" />
 	</definition>
+
+	<definition name="/mypage/monthApplyList"
+		extends="baseLayout">
+		<put-attribute name="title" value="마이페이지 ::월세지원 신청 현황" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/mypage/apply/monthApplyList.jsp" />
+	</definition>
+	<definition name="/mypage/rentApplyList"
+		extends="baseLayout">
+		<put-attribute name="title" value="마이페이지 ::전세지원 신청 현황" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/mypage/apply/rentApplyList.jsp" />
+	</definition>
+
+	<definition name="/mypage/shareApplyList"
+		extends="baseLayout">
+		<put-attribute name="title" value="마이페이지 ::공공임대주택 신청 현황" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/mypage/apply/shareApplyList.jsp" />
+	</definition>
 	
+	<definition name="/mypage/viewMonthApply"
+		extends="baseLayout">
+		<put-attribute name="title" value="마이페이지 ::청년월세지원 신청 상세 페이지" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/mypage/apply/viewMonthApply.jsp" />
+	</definition>
+	
+	<definition name="/mypage/viewRentApply"
+		extends="baseLayout">
+		<put-attribute name="title" value="마이페이지 ::전월세보증금이자지원 신청 상세 페이지" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/mypage/apply/viewRentApply.jsp" />
+	</definition>
+	
+	<definition name="/mypage/viewRetApply"
+		extends="baseLayout">
+		<put-attribute name="title" value="마이페이지 ::전세반환보증금보증료지원 신청 상세 페이지" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/mypage/apply/viewRetApply.jsp" />
+	</definition>
+	
+	<definition name="/mypage/viewBackApply"
+		extends="baseLayout">
+		<put-attribute name="title" value="마이페이지 ::귀환신혼부부전세이자지원신청 상세 페이지" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/mypage/apply/viewBackApply.jsp" />
+	</definition>
+	
+	<definition name="/mypage/viewShareApply"
+		extends="baseLayout">
+		<put-attribute name="title" value="마이페이지 ::청년희망주택이자지원 신청 상세 페이지" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/mypage/apply/viewShareApply.jsp" />
+	</definition>
+	
+	<definition name="/mypage/modMonthApplyView" extends="baseLayout">
+		<put-attribute name="title" value="마이페이지 ::변경 신청" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/mypage/apply/modMonthApplyView.jsp" />
+	</definition>
+	
+	<definition name="/mypage/modRentApplyView" extends="baseLayout">
+		<put-attribute name="title" value="마이페이지 ::변경 신청" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/mypage/apply/modRentApplyView.jsp" />
+	</definition>
+	
+	<definition name="/mypage/modRetApplyView" extends="baseLayout">
+		<put-attribute name="title" value="마이페이지 ::변경 신청" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/mypage/apply/modRetApplyView.jsp" />
+	</definition>
+	
+	<definition name="/mypage/modBackApplyView" extends="baseLayout">
+		<put-attribute name="title" value="마이페이지 ::변경 신청" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/mypage/apply/modBackApplyView.jsp" />
+	</definition>
+	
+	<definition name="/mypage/modShareApplyView" extends="baseLayout">
+		<put-attribute name="title" value="마이페이지 ::변경 신청" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/mypage/apply/modShareApplyView.jsp" />
+	</definition>
+
 	<definition name="/mypage/myBoardList" extends="baseLayout">
 		<put-attribute name="title" value="마이페이지 ::나의 게시글" />
 		<put-attribute name="body"
 			value="/WEB-INF/views/mypage/myBoardList.jsp" />
 	</definition>
-	
+
 	<definition name="/mypage/myQna" extends="baseLayout">
 		<put-attribute name="title" value="마이페이지 ::나의 상담글" />
 		<put-attribute name="body"

@@ -15,7 +15,7 @@ public interface ApplyMonDAO {
 	void insertNewFile(Map applymonMap) throws DataAccessException;
 	int insertResult(Map mo_no) throws DataAccessException;
 	int insertResultNO();
-	List findAll(String member_id);
+	ApplyMonVO findAll(String member_id);
 	ApplyMonVO findNo(int mo_no);
 	
 	

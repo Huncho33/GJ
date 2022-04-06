@@ -12,7 +12,7 @@ public interface ApplyMonService {
 
 	int addResult(Map mo_no) throws Exception;
 
-	List findAll(String id);
+	ApplyMonVO findAll(String id);
 
 
 	ApplyMonVO findNo(int no);

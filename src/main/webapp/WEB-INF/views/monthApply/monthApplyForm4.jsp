@@ -98,23 +98,23 @@
 
 									<tr>
 										<td class="fixed_join2">:: 요청서류 1</td>
-										<td class="table_Input"><input type="file" name="up_fileName" value="첨부파일 추가" /></td>
+										<td class="table_Input"><input type="file" name="up_fileName1" value="첨부파일 추가" /></td>
 									</tr>
 									<tr>
 										<td class="fixed_join2">:: 요청서류 2</td>
-										<td class="table_Input"><input type="file" name="up_fileName" value="첨부파일 추가" /></td>
+										<td class="table_Input"><input type="file" name="up_fileName2" value="첨부파일 추가" /></td>
 									</tr>
 									<tr>
 										<td class="fixed_join2">:: 요청서류 3</td>
-										<td class="table_Input"><input type="file" name="up_fileName" value="첨부파일 추가" /></td>
+										<td class="table_Input"><input type="file" name="up_fileName3" value="첨부파일 추가" /></td>
 									</tr>
 									<tr>
 										<td class="fixed_join2">:: 요청서류 4</td>
-										<td class="table_Input"><input type="file" name="up_fileName" value="첨부파일 추가" /></td>
+										<td class="table_Input"><input type="file" name="up_fileName4" value="첨부파일 추가" /></td>
 									</tr>
 									<tr>
 										<td class="fixed_join2">:: 요청서류 5</td>
-										<td class="table_Input"><input type="file" name="up_fileName" value="첨부파일 추가" /></td>
+										<td class="table_Input"><input type="file" name="up_fileName5" value="첨부파일 추가" /></td>
 									</tr>
 								</tbody>
 							</table>
