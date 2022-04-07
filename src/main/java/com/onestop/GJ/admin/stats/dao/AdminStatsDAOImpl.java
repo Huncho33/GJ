@@ -98,10 +98,37 @@ public class AdminStatsDAOImpl implements AdminStatsDAO {
 	      System.out.println("검색 연령 비율 검색" + searchAgeTotVisit);
 	      return searchAgeTotVisit;
 	   }
+	   
+	   //기간별 방문자 수
+	   @Override
+	   public List<AdminStatsVO> totVisit(Map visitMap) {
+	      List<AdminStatsVO> totVisit = sqlSession.selectList("mapper.adminStats.totVisit", visitMap);
+	         System.out.println("검색 연령 비율 검색" + totVisit);
+	         return totVisit;
+	   }
 
-	 
+	   //기간별 날짜
+	   @Override
+	   public List<AdminStatsVO> totVisitDate(Map visitMap) {
+	      List<AdminStatsVO> totVisitDate = sqlSession.selectList("mapper.adminStats.totVisitDate", visitMap);
+	         System.out.println("검색 연령 비율 검색" + totVisitDate);
+	         return totVisitDate;
+	   }
 
-	
-	
+	   //기간별 검색 방문자 수
+	@Override
+	public List<AdminStatsVO> searchTotVisit(Map dateMap) {
+	    List<AdminStatsVO> searchTotVisit = sqlSession.selectList("mapper.adminStats.searchTotVisit", dateMap);
+        System.out.println("검색 방문자수 검색" + searchTotVisit);
+        return searchTotVisit;
+	}
+
+	//기간별 검색 날짜
+	@Override
+	public List<AdminStatsVO> searchTotVisitDate(Map dateMap) {
+	    List<AdminStatsVO> searchTotVisitDate = sqlSession.selectList("mapper.adminStats.searchTotVisitDate", dateMap);
+        System.out.println("검색 날짜 " + searchTotVisitDate);
+        return searchTotVisitDate;
+	}
 
 }

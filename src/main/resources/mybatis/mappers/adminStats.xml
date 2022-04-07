@@ -28,15 +28,15 @@
 	</select>
 
 	<!-- 구별 방문자수 -->
-   <select id="getAddrTotVisit" parameterType="java.util.Map"
-      resultType="int">
+	<select id="getAddrTotVisit" parameterType="java.util.Map"
+		resultType="int">
    <![CDATA[
       select count(v_date) , a  from 
       (select substr(v_roadAddress, 6, instr(v_roadAddress, ' ',1)-2) as a, v_date from visit)
       group by a
       ]]>
-   </select>
-	
+	</select>
+
 	<!-- 성별 수 -->
 	<select id="getGenderCnt" resultType="int">
     <![CDATA[
@@ -45,7 +45,7 @@
    group by v_gender
     ]]>
 	</select>
-	
+
 
 	<!-- 검색 -->
 	<select id="selectVisitListBySearchVisit"
@@ -70,8 +70,8 @@
 	</select>
 
 	<!--구별 검색 방문 수 -->
-   <select id="getSearchAddrTotList" parameterType="java.util.Map"
-      resultType="int">
+	<select id="getSearchAddrTotList" parameterType="java.util.Map"
+		resultType="int">
    <![CDATA[
    
    select count(v_date) , a  from 
@@ -79,7 +79,7 @@
       where  v_date BETWEEN TO_DATE(#{fromDate}, 'yyyy-MM-dd') AND TO_DATE(#{toDate}, 'yyyy-MM-dd')+0.99999
       group by a
       ]]>
-   </select>
+	</select>
 
 
 	<!--검색 방문 성별 수 -->
@@ -93,31 +93,74 @@
                       group by v_gender
       ]]>
 	</select>
-	
+
 	<!-- 연령 수 -->
-   <select id="getAgeTotVisit" resultType="int">
+	<select id="getAgeTotVisit" resultType="int">
     <![CDATA[
-         select y, count(*) as cnt from
-   (select floor((to_char(sysdate, 'YYYY') - substr(v_birth, 0, 4)) / 10) * 10 as y
+         select count(*) as cnt from
+   (select floor((to_char(sysdate, 'YYYY') - substr(v_birth, 0, 4) + 1) / 10) * 10 as y
    from visit) o
    group by y order by y
     ]]>
-   </select>
-   
-   <!--검색 방문 연령 수 -->
-   <select id="searchAgeTotVisit" parameterType="java.util.Map"
-      resultType="int">
+	</select>
+
+	<!--검색 방문 연령 수 -->
+	<select id="searchAgeTotVisit" parameterType="java.util.Map"
+		resultType="int">
    <![CDATA[
-   
-        select y, count(*) as cnt from
-   (select floor((to_char(sysdate, 'YYYY') - substr(v_birth, 0, 4)) / 10) * 10 as y, v_date
+        select count(*) as cnt from
+   (select floor((to_char(sysdate, 'YYYY') - substr(v_birth, 0, 4) + 1) / 10) * 10 as y, v_date
    from visit) o
     where  v_date BETWEEN TO_DATE(#{fromDate}, 'yyyy-MM-dd') 
                    AND TO_DATE(#{toDate}, 'yyyy-MM-dd')+0.99999
    group by y order by y
       ]]>
+	</select>
+	
+	<!-- 기간별 총 방문자 수 -->
+	   <select id="totVisit"  parameterType="java.util.Map"
+      resultType="int">
+    <![CDATA[
+         SELECT count(*)
+   from visit 
+   group by substr(v_date,0, 10) order by substr(v_date,0, 10) 
+    ]]>
    </select>
    
+   <!--기간별 날짜  -->
+   <select id="totVisitDate"  parameterType="java.util.Map"
+      resultType="String">
+    <![CDATA[
+       SELECT  vdate from visitView
+   order by vdate
+    ]]>
+   </select>
+   
+   <!-- 기간별 검색 총 방문자 수 -->
+	   <select id="searchTotVisit"  parameterType="java.util.Map"
+      resultType="int">
+    <![CDATA[
+          SELECT count(*)
+   from visit 
+    where v_date BETWEEN TO_DATE(#{fromDate}, 'yyyy-MM-dd') 
+                   AND TO_DATE(#{toDate}, 'yyyy-MM-dd')+0.99999
+   group by substr(v_date,0, 10) order by substr(v_date,0, 10)
+    ]]>
+   </select>
+   
+   <!--기간별 검색 날짜  -->
+   <select id="searchTotVisitDate"  parameterType="java.util.Map"
+      resultType="String">
+    <![CDATA[
+    SELECT  vdate from visitView
+    where vdate BETWEEN TO_DATE(#{fromDate}, 'yyyy-MM-dd') 
+                   AND TO_DATE(#{toDate}, 'yyyy-MM-dd')+0.99999
+   order by vdate
+    ]]>
+   </select>
+	
+	
+
 
 </mapper>
    

@@ -30,6 +30,14 @@ public interface AdminStatsDAO {
 
 	int searchVisitTotCnt(Map dateMap);
 
+	List<AdminStatsVO> totVisit(Map visitMap);
+
+	List<AdminStatsVO> totVisitDate(Map visitMap);
+
+	List<AdminStatsVO> searchTotVisit(Map dateMap);
+
+	List<AdminStatsVO> searchTotVisitDate(Map dateMap);
+
 	
 
 }
