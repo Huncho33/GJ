@@ -1,6 +1,5 @@
 package com.onestop.GJ.apply.mon23.service;
 
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,10 +32,10 @@ public class ApplyMonServiceImpl implements ApplyMonService{
 		}
 	
 	@Override
-	public List findAll(String id) {
-		List list = null;
-		list = applymonDAO.findAll(id);
-		return list;
+	public ApplyMonVO findAll(String id) {
+		ApplyMonVO applyMonVO = null;
+		applyMonVO = applymonDAO.findAll(id);
+		return applyMonVO;
 	}
 	
 	@Override

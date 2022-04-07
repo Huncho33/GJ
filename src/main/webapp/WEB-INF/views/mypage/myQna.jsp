@@ -75,9 +75,10 @@ function fn_modalClose() {
 						<li><a id="khs_left khs_left2" class="khs_lnb"><p>나의
 									신청 현황</p></a>
 							<ul class="khs_depth2">
-								<li><a href="">- 월세지원 신청 현황</a></li>
-								<li><a href="">- 전세지원 신청 현황</a></li>
-								<li><a href="">- 행복주택지원 신청 현황</a></li>
+								<li><a href="${contextPath}/mypage/monthApplyList.do">-
+										월세지원 신청 현황</a></li>
+								<li><a href="${contextPath}/mypage/rentApplyList.do">- 전세지원 신청 현황</a></li>
+								<li><a href="${contextPath}/mypage/shareApplyList.do">- 행복주택지원 신청 현황</a></li>
 							</ul></li>
 						<li><a id="khs_left khs_left3" class="khs_lnb"><p>나의
 									게시글 및 상담</p></a>

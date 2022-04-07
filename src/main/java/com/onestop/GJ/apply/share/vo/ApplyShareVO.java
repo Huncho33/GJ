@@ -16,6 +16,8 @@ public class ApplyShareVO {
 	private String sh_policy;
 	private String sh_reason;
 	private String member_id;
+	private Date sh_startpay;
+	private Date sh_endpay;
 
 	public int getSh_no() {
 		return sh_no;
@@ -63,6 +65,22 @@ public class ApplyShareVO {
 
 	public void setMember_id(String member_id) {
 		this.member_id = member_id;
+	}
+
+	public Date getSh_startpay() {
+		return sh_startpay;
+	}
+
+	public void setSh_startpay(Date sh_startpay) {
+		this.sh_startpay = sh_startpay;
+	}
+
+	public Date getSh_endpay() {
+		return sh_endpay;
+	}
+
+	public void setSh_endpay(Date sh_endpay) {
+		this.sh_endpay = sh_endpay;
 	}
 
 	public String getUp_filename() {

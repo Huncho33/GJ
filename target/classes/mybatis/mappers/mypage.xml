@@ -16,7 +16,7 @@
 		<result property="qna_policy" column="qna_policy" />
 		<result property="qna_reply" column="qna_reply" />
 	</resultMap>
-	
+
 	<resultMap id="articlesResult" type="boardFreeVO">
 		<result property="fr_NO" column="fr_NO" />
 		<result property="fr_title" column="fr_title" />
@@ -26,12 +26,125 @@
 		<result property="fr_hits" column="fr_hits" />
 
 	</resultMap>
-	
-	<resultMap id="imgResult" type="boardFreeImageVO">
-		<result property="up_fileNO" column="up_fileNO" />
-		<result property="fr_NO" column="fr_NO" />
-		<result property="up_fileName" column="up_fileName" />
+
+	<resultMap id="applyResult" type="ApplyMonVO">
+		<result property="mo_no" column="mo_no" />
+		<result property="up_filename" column="up_filename" />
+		<result property="member_id" column="member_id" />
+		<result property="mo_date" column="mo_date" />
+		<result property="mo_result" column="mo_result" />
+		<result property="mo_policy" column="mo_policy" />
+		<result property="mo_reason" column="mo_reason" />
+		<result property="mo_startpay" column="mo_startpay" />
+		<result property="mo_endpay" column="mo_endpay" />
+
 	</resultMap>
+
+	<resultMap id="monFileResult" type="ApplyMonFileVO">
+		<result property="up_fileno" column="up_fileno" />
+		<result property="up_filename" column="up_filename" />
+		<result property="up_date" column="up_date" />
+		<result property="mo_no" column="mo_no" />
+	</resultMap>
+
+	<resultMap id="rentApplyResult" type="ApplyRentVO">
+		<result property="rent_no" column="rent_no" />
+		<result property="up_filename" column="up_filename" />
+		<result property="member_id" column="member_id" />
+		<result property="rent_date" column="rent_date" />
+		<result property="rent_result" column="rent_result" />
+		<result property="rent_policy" column="rent_policy" />
+		<result property="rent_reason" column="rent_reason" />
+		<result property="rent_startpay" column="rent_startpay" />
+		<result property="rent_endpay" column="rent_endpay" />
+	</resultMap>
+
+	<resultMap id="rentFileResult" type="ApplyRentFileVO">
+		<result property="up_fileno" column="up_fileno" />
+		<result property="up_filename" column="up_filename" />
+		<result property="up_date" column="up_date" />
+		<result property="rent_no" column="rent_no" />
+	</resultMap>
+
+	<resultMap id="returnApplyResult" type="ApplyRentReturnVO">
+		<result property="ret_no" column="ret_no" />
+		<result property="up_filename" column="up_filename" />
+		<result property="member_id" column="member_id" />
+		<result property="ret_date" column="ret_date" />
+		<result property="ret_result" column="ret_result" />
+		<result property="ret_policy" column="ret_policy" />
+		<result property="ret_reason" column="ret_reason" />
+		<result property="ret_startpay" column="ret_startpay" />
+		<result property="ret_endpay" column="ret_endpay" />
+	</resultMap>
+
+	<resultMap id="rentReturnFileResult" type="ApplyRentReturnFileVO">
+		<result property="up_fileno" column="up_fileno" />
+		<result property="up_filename" column="up_filename" />
+		<result property="up_date" column="up_date" />
+		<result property="ret_no" column="ret_no" />
+	</resultMap>
+
+	<resultMap id="backApplyResult" type="ApplyBackVO">
+		<result property="ba_no" column="ba_no" />
+		<result property="up_filename" column="up_filename" />
+		<result property="member_id" column="member_id" />
+		<result property="ba_date" column="ba_date" />
+		<result property="ba_result" column="ba_result" />
+		<result property="ba_policy" column="ba_policy" />
+		<result property="ba_reason" column="ba_reason" />
+		<result property="ba_startpay" column="ba_startpay" />
+		<result property="ba_endpay" column="ba_endpay" />
+	</resultMap>
+
+	<resultMap id="backFileResult" type="ApplyBackFileVO">
+		<result property="up_fileno" column="up_fileno" />
+		<result property="up_filename" column="up_filename" />
+		<result property="up_date" column="up_date" />
+		<result property="ba_no" column="ba_no" />
+	</resultMap>
+
+	<resultMap id="shareApplyResult" type="ApplyShareVO">
+		<result property="sh_no" column="sh_no" />
+		<result property="up_filename" column="up_filename" />
+		<result property="member_id" column="member_id" />
+		<result property="sh_date" column="sh_date" />
+		<result property="sh_result" column="sh_result" />
+		<result property="sh_policy" column="sh_policy" />
+		<result property="sh_reason" column="sh_reason" />
+		<result property="sh_startpay" column="sh_startpay" />
+		<result property="sh_endpay" column="sh_endpay" />
+
+	</resultMap>
+
+	<resultMap id="shareFileResult" type="ApplyShareFileVO">
+		<result property="up_fileno" column="up_fileno" />
+		<result property="up_filename" column="up_filename" />
+		<result property="up_date" column="up_date" />
+		<result property="sh_no" column="sh_no" />
+	</resultMap>
+
+	<resultMap id="memResult" type="memberVO">
+		<result property="member_id" column="member_id" />
+		<result property="member_pw" column="member_pw" />
+		<result property="member_name" column="member_name" />
+		<result property="member_gender" column="member_gender" />
+
+		<result property="member_birth" column="member_birth" />
+		<result property="member_phoneno" column="member_phoneno" />
+		<result property="member_email1" column="member_email1" />
+		<result property="member_email2" column="member_email2" />
+
+		<result property="member_zipcode" column="member_zipcode" />
+		<result property="member_roadAddress"
+			column="member_roadAddress" />
+		<result property="member_jibunAddress"
+			column="member_jibunAddress" />
+		<result property="member_namujiAddress"
+			column="member_namujiAddress" />
+		<result property="member_last_log" column="member_last_log" />
+	</resultMap>
+
 
 
 	<!-- 수정/업데이트 할 아이디 조회 -->
@@ -45,34 +158,35 @@
 
 	<!-- 회원 정보 수정 -->
 	<update id="updateMember" parameterType="java.util.HashMap">
-			UPDATE member
-			<set>
-				<if test=" member_pw!='' and member_pw!=null">
-					member_pw=#{member_pw},
-				</if>
-				<if test=" member_phoneno!='' and member_phoneno!=null">
-					member_phoneno=#{member_phoneno},
-				</if>
-				<if test=" member_email1!='' and member_email1!=null">
-					member_email1=#{member_email1},
-				</if>
-				<if test=" member_email2!='' and member_email2!=null">
-					member_email2=#{member_email2},
-				</if>
-				<if test=" member_zipcode!='' and member_zipcode!=null">
-					member_zipcode=#{member_zipcode},
-				</if>
-				<if test=" member_roadAddress!='' and member_roadAddress!=null">
-					member_roadAddress=#{member_roadAddress},
-				</if>
-				<if test=" member_jibunAddress!='' and member_jibunAddress!=null">
-					member_jibunAddress=#{member_jibunAddress},
-				</if>
-				<if test=" member_namujiAddress!='' and member_namujiAddress!=null">
-					member_namujiAddress=#{member_namujiAddress}
-				</if>
-			</set> 
-			WHERE member_id=#{member_id}
+		UPDATE member
+		<set>
+			<if test=" member_pw!='' and member_pw!=null">
+				member_pw=#{member_pw},
+			</if>
+			<if test=" member_phoneno!='' and member_phoneno!=null">
+				member_phoneno=#{member_phoneno},
+			</if>
+			<if test=" member_email1!='' and member_email1!=null">
+				member_email1=#{member_email1},
+			</if>
+			<if test=" member_email2!='' and member_email2!=null">
+				member_email2=#{member_email2},
+			</if>
+			<if test=" member_zipcode!='' and member_zipcode!=null">
+				member_zipcode=#{member_zipcode},
+			</if>
+			<if test=" member_roadAddress!='' and member_roadAddress!=null">
+				member_roadAddress=#{member_roadAddress},
+			</if>
+			<if test=" member_jibunAddress!='' and member_jibunAddress!=null">
+				member_jibunAddress=#{member_jibunAddress},
+			</if>
+			<if
+				test=" member_namujiAddress!='' and member_namujiAddress!=null">
+				member_namujiAddress=#{member_namujiAddress}
+			</if>
+		</set>
+		WHERE member_id=#{member_id}
 	</update>
 
 
@@ -90,7 +204,54 @@
 		select COUNT(*) from member
 		where member_id=#{member_id} AND member_pw=#{member_pw}
 	</select>
+
+
+	<!-- 신청내역 삭제 기능 -->
+	<delete id="removeApply" parameterType="int">
+	<![CDATA[
+		DELETE FROM mon_apply
+      	WHERE mo_no in (
+         SELECT mo_no FROM  mon_apply
+         where mo_no = #{mo_no})
+	]]>
+	</delete>
 	
+	<delete id="removeRentApply" parameterType="int">
+	<![CDATA[
+		DELETE FROM rent_apply
+      	WHERE rent_no in (
+         SELECT rent_no FROM  rent_apply
+         where rent_no = #{rent_no})
+	]]>
+	</delete>
+	
+	<delete id="removeRetApply" parameterType="int">
+	<![CDATA[
+		DELETE FROM rent_return_apply
+      	WHERE ret_no in (
+         SELECT ret_no FROM  rent_return_apply
+         where ret_no = #{ret_no})
+	]]>
+	</delete>
+	
+	<delete id="removeBackApply" parameterType="int">
+	<![CDATA[
+		DELETE FROM back_apply
+      	WHERE ba_no in (
+         SELECT ba_no FROM  back_apply
+         where ba_no = #{ba_no})
+	]]>
+	</delete>
+	
+	<delete id="removeShareApply" parameterType="int">
+	<![CDATA[
+		DELETE FROM share_apply
+      	WHERE sh_no in (
+         SELECT sh_no FROM  share_apply
+         where sh_no = #{sh_no})
+	]]>
+	</delete>
+
 	<!-- 마이페이지 내가 쓴 글 불러오기 -->
 	<select id="selectMyBoardList" resultMap="articlesResult">
     <![CDATA[
@@ -100,6 +261,94 @@
     ]]>
 	</select>
 	
+	
+
+	<!-- 마이페이지 신청목록 불러오기 -->
+	<select id="selectMonthApplyList" resultMap="applyResult">
+    <![CDATA[
+      SELECT *
+      FROM mon_apply
+      WHERE member_id=#{member_id}
+    ]]>
+	</select>
+
+	<select id="selectRentApplyList" resultMap="rentApplyResult">
+    <![CDATA[
+      SELECT *
+      FROM rent_apply
+      WHERE member_id=#{member_id}
+    ]]>
+	</select>
+
+	<select id="selectRentReturnApplyList"
+		resultMap="returnApplyResult">
+    <![CDATA[
+      SELECT *
+      FROM rent_return_apply
+      WHERE member_id=#{member_id}
+    ]]>
+	</select>
+
+	<select id="selectBackApplyList" resultMap="backApplyResult">
+    <![CDATA[
+      SELECT *
+      FROM back_apply
+      WHERE member_id=#{member_id}
+    ]]>
+	</select>
+
+	<select id="selectShareApplyList" resultMap="shareApplyResult">
+    <![CDATA[
+      SELECT *
+      FROM share_apply
+      WHERE member_id=#{member_id}
+    ]]>
+	</select>
+
+
+
+	<!-- 마이페이지 첨부파일 불러오기 -->
+	<select id="selectMonthFileList" resultMap="monFileResult"
+		parameterType="int">
+    <![CDATA[
+      SELECT * from mon_file
+      where mo_no = #{mo_no}   
+    ]]>
+	</select>
+	
+	<select id="selectRentFileList" resultMap="rentFileResult"
+		parameterType="int">
+    <![CDATA[
+      SELECT * from rent_file
+      where rent_no = #{rent_no}   
+    ]]>
+	</select>
+	
+	<select id="selectRetFileList" resultMap="rentReturnFileResult"
+		parameterType="int">
+    <![CDATA[
+      SELECT * from return_file
+      where ret_no = #{ret_no}   
+    ]]>
+	</select>
+	
+	<select id="selectBackFileList" resultMap="backFileResult"
+		parameterType="int">
+    <![CDATA[
+      SELECT * from back_file
+      where ba_no = #{ba_no}   
+    ]]>
+	</select>
+	
+	<select id="selectShareFileList" resultMap="shareFileResult"
+		parameterType="int">
+    <![CDATA[
+      SELECT * from share_file
+      where sh_no = #{sh_no}   
+    ]]>
+	</select>
+
+
 	<!-- 마이페이지 월세지원 상담글 불러오기 -->
 	<select id="selectMonthQnasList" resultMap="qnasResult">
     <![CDATA[
@@ -108,8 +357,8 @@
       WHERE member_id=#{member_id} AND qna_policy= '청년월세지원'
     ]]>
 	</select>
-	
-	<!-- 마이페이지 월세지원 상담글 불러오기 -->
+
+	<!-- 마이페이지 전월세보증금이자지원 상담글 불러오기 -->
 	<select id="selectRentQnasList" resultMap="qnasResult">
     <![CDATA[
       SELECT qna_no, member_id, qna_title, qna_date, qna_pw, qna_policy, qna_reply
@@ -117,8 +366,8 @@
       WHERE member_id=#{member_id} AND qna_policy= '전월세보증금이자지원'
     ]]>
 	</select>
-	
-	<!-- 마이페이지 월세지원 상담글 불러오기 -->
+
+	<!-- 마이페이지 전세반환보증금보증료지원 상담글 불러오기 -->
 	<select id="selectReturnQnasList" resultMap="qnasResult">
     <![CDATA[
       SELECT qna_no, member_id, qna_title, qna_date, qna_pw, qna_policy, qna_reply
@@ -126,8 +375,8 @@
       WHERE member_id=#{member_id} AND qna_policy= '전세반환보증금보증료지원'
     ]]>
 	</select>
-	
-	<!-- 마이페이지 월세지원 상담글 불러오기 -->
+
+	<!-- 마이페이지 귀환신혼부부전세자금이자지원 상담글 불러오기 -->
 	<select id="selectWeddingQnasList" resultMap="qnasResult">
     <![CDATA[
       SELECT qna_no, member_id, qna_title, qna_date, qna_pw, qna_policy, qna_reply
@@ -135,8 +384,8 @@
       WHERE member_id=#{member_id} AND qna_policy= '귀환신혼부부전세이자지원'
     ]]>
 	</select>
-	
-	<!-- 마이페이지 월세지원 상담글 불러오기 -->
+
+	<!-- 마이페이지 청년희망주택이자지원 상담글 불러오기 -->
 	<select id="selectShareQnasList" resultMap="qnasResult">
     <![CDATA[
       SELECT qna_no, member_id, qna_title, qna_date, qna_pw, qna_policy, qna_reply
@@ -144,7 +393,254 @@
       WHERE member_id=#{member_id} AND qna_policy= '청년희망주택이자지원'
     ]]>
 	</select>
+
+	<!-- 다중 파일 수정하기 -->
+	<update id="updateApply" parameterType="java.util.Map">
+	<![CDATA[
+		update member
+		set
+		member_phoneno=#{member_phoneno},
+		member_roadAddress=#{member_roadAddress},
+		member_namujiAddress=#{member_namujiAddress},
+		where
+		member_id = #{member_id}
+	]]>
+	</update>
+
+	<delete id="removeModFile" parameterType="ApplyMonFileVO">
+	    <![CDATA[
+	      delete from mon_file
+	      where mo_no = #{mo_no}
+	      and up_fileno = #{up_fileno}
+	    ]]>
+	</delete>
+
+	<update id="updateImageFile" parameterType="java.util.List">
+		<foreach collection="list" item="item" separator=";"
+			open="DECLARE BEGIN" close="; END;">
+			<choose>
+				<when test="item.up_filename != null ">
+					update mon_file
+					set up_filename = #{item.up_filename}
+					where
+					mo_no=#{item.mo_no}
+					and up_fileno = #{item.up_fileno}
+				</when>
+				<otherwise>
+
+				</otherwise>
+			</choose>
+		</foreach>
+	</update>
+
+	<insert id="insertModNewImage" parameterType="java.util.Map">
+		<foreach item="item" collection="list" open="INSERT ALL"
+			separator=" " close="SELECT * FROM DUAL">
+			INTO mon_file(up_fileno, up_filename, mo_no,
+			up_date)
+			VALUES (#{item.up_fileno},
+			#{item.up_filename},
+			#{item.mo_no},
+			sysdate)
+		</foreach>
+	</insert>
+
+	<select id="selectNewImageFileNO" resultType="int">
+	<![CDATA[
+	select nvl(max(up_fileno),0) +1 from mon_file
+	]]>
+	</select>
 	
 	
+
+	<delete id="removeModRentFile" parameterType="ApplyRentFileVO">
+	    <![CDATA[
+	      delete from rent_file
+	      where rent_no = #{rent_no}
+	      and up_fileno = #{up_fileno}
+	    ]]>
+	</delete>
+
+	<update id="updateRentFile" parameterType="java.util.List">
+		<foreach collection="list" item="item" separator=";"
+			open="DECLARE BEGIN" close="; END;">
+			<choose>
+				<when test="item.up_filename != null ">
+					update rent_file
+					set up_filename = #{item.up_filename}
+					where
+					rent_no=#{item.rent_no}
+					and up_fileno = #{item.up_fileno}
+				</when>
+				<otherwise>
+
+				</otherwise>
+			</choose>
+		</foreach>
+	</update>
+
+	<insert id="insertModNewRentFile" parameterType="java.util.Map">
+		<foreach item="item" collection="list" open="INSERT ALL"
+			separator=" " close="SELECT * FROM DUAL">
+			INTO rent_file(up_fileno, up_filename, rent_no,
+			up_date)
+			VALUES (#{item.up_fileno},
+			#{item.up_filename},
+			#{item.rent_no},
+			sysdate)
+		</foreach>
+	</insert>
+
+	<select id="selectNewRentFileNO" resultType="int">
+	<![CDATA[
+	select nvl(max(up_fileno),0) +1 from rent_file
+	]]>
+	</select>
+	
+	
+	
+	<delete id="removeModRetFile" parameterType="ApplyRentReturnFileVO">
+	    <![CDATA[
+	      delete from return_file
+	      where ret_no = #{ret_no}
+	      and up_fileno = #{up_fileno}
+	    ]]>
+	</delete>
+
+	<update id="updateRetFile" parameterType="java.util.List">
+		<foreach collection="list" item="item" separator=";"
+			open="DECLARE BEGIN" close="; END;">
+			<choose>
+				<when test="item.up_filename != null ">
+					update return_file
+					set up_filename = #{item.up_filename}
+					where
+					ret_no=#{item.ret_no}
+					and up_fileno = #{item.up_fileno}
+				</when>
+				<otherwise>
+
+				</otherwise>
+			</choose>
+		</foreach>
+	</update>
+
+	<insert id="insertModNewRetFile" parameterType="java.util.Map">
+		<foreach item="item" collection="list" open="INSERT ALL"
+			separator=" " close="SELECT * FROM DUAL">
+			INTO return_file(up_fileno, up_filename, ret_no,
+			up_date)
+			VALUES (#{item.up_fileno},
+			#{item.up_filename},
+			#{item.ret_no},
+			sysdate)
+		</foreach>
+	</insert>
+
+	<select id="selectNewRetFileNO" resultType="int">
+	<![CDATA[
+	select nvl(max(up_fileno),0) +1 from return_file
+	]]>
+	</select>
+	
+	
+	<delete id="removeModBackFile" parameterType="ApplyBackFileVO">
+	    <![CDATA[
+	      delete from back_file
+	      where ba_no = #{ba_no}
+	      and up_fileno = #{up_fileno}
+	    ]]>
+	</delete>
+
+	<update id="updateBackFile" parameterType="java.util.List">
+		<foreach collection="list" item="item" separator=";"
+			open="DECLARE BEGIN" close="; END;">
+			<choose>
+				<when test="item.up_filename != null ">
+					update back_file
+					set up_filename = #{item.up_filename}
+					where
+					ba_no=#{item.ba_no}
+					and up_fileno = #{item.up_fileno}
+				</when>
+				<otherwise>
+
+				</otherwise>
+			</choose>
+		</foreach>
+	</update>
+
+	<insert id="insertModNewBackFile" parameterType="java.util.Map">
+		<foreach item="item" collection="list" open="INSERT ALL"
+			separator=" " close="SELECT * FROM DUAL">
+			INTO back_file(up_fileno, up_filename, ba_no,
+			up_date)
+			VALUES (#{item.up_fileno},
+			#{item.up_filename},
+			#{item.ba_no},
+			sysdate)
+		</foreach>
+	</insert>
+
+	<select id="selectNewBackFileNO" resultType="int">
+	<![CDATA[
+	select nvl(max(up_fileno),0) +1 from back_file
+	]]>
+	</select>
+	
+	
+
+	<delete id="removeModShareFile" parameterType="ApplyShareFileVO">
+	    <![CDATA[
+	      delete from share_file
+	      where sh_no = #{sh_no}
+	      and up_fileno = #{up_fileno}
+	    ]]>
+	</delete>
+
+	<update id="updateShareFile" parameterType="java.util.List">
+		<foreach collection="list" item="item" separator=";"
+			open="DECLARE BEGIN" close="; END;">
+			<choose>
+				<when test="item.up_filename != null ">
+					update share_file
+					set up_filename = #{item.up_filename}
+					where
+					sh_no=#{item.sh_no}
+					and up_fileno = #{item.up_fileno}
+				</when>
+				<otherwise>
+
+				</otherwise>
+			</choose>
+		</foreach>
+	</update>
+
+	<insert id="insertModNewShareFile" parameterType="java.util.Map">
+		<foreach item="item" collection="list" open="INSERT ALL"
+			separator=" " close="SELECT * FROM DUAL">
+			INTO share_file(up_fileno, up_filename, sh_no,
+			up_date)
+			VALUES (#{item.up_fileno},
+			#{item.up_filename},
+			#{item.sh_no},
+			sysdate)
+		</foreach>
+	</insert>
+
+	<select id="selectNewAlaramNO" resultType="int">
+	<![CDATA[
+	select nvl(max(alarm_no),0) +1 from board_alarm
+	]]>
+	</select>
+	
+	<insert id="modifyAlarm" parameterType="java.util.Map">
+		<![CDATA[
+		INSERT INTO board_alarm(alarm_no, member_id)
+			VALUES (#{alarm_no}, #{member_id})
+		]]>
+	</insert>
+
+
 
 </mapper>

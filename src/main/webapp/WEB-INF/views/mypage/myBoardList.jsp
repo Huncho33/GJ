@@ -15,7 +15,7 @@
 <meta charset="UTF-8">
 <script src="https://kit.fontawesome.com/fc92373f81.js"
 	crossorigin="anonymous"></script>
-<link href="${contextPath}/resources/css/mypage/myQna.css"
+<link href="${contextPath}/resources/css/mypage/myBoardList.css"
 	rel="stylesheet" type="text/css">
 <link href="${contextPath}/resources/css/common.css" rel="stylesheet"
 	type="text/css">
@@ -43,8 +43,8 @@ function fn_remove_board(url,fr_NO){
 </head>
 
 <body>
-	<div id="myQna_wrapper">
-		<div id="myQna_total">
+	<div id="myBoard_wrapper">
+		<div id="myBoard_total">
 			<div id="khs_sideMenu_tot">
 				<div id="khs_leftTitle">
 					<p>마이페이지</p>
@@ -61,9 +61,10 @@ function fn_remove_board(url,fr_NO){
 						<li><a id="khs_left khs_left2" class="khs_lnb"><p>나의
 									신청 현황</p></a>
 							<ul class="khs_depth2">
-								<li><a href="">- 월세지원 신청 현황</a></li>
-								<li><a href="">- 전세지원 신청 현황</a></li>
-								<li><a href="">- 행복주택지원 신청 현황</a></li>
+								<li><a href="${contextPath}/mypage/monthApplyList.do">-
+										월세지원 신청 현황</a></li>
+								<li><a href="${contextPath}/mypage/rentApplyList.do">- 전세지원 신청 현황</a></li>
+								<li><a href="${contextPath}/mypage/shareApplyList.do">- 행복주택지원 신청 현황</a></li>
 							</ul></li>
 						<li><a id="khs_left khs_left3" class="khs_lnb"><p>나의
 									게시글 및 상담</p></a>
@@ -75,18 +76,18 @@ function fn_remove_board(url,fr_NO){
 					</ul>
 				</div>
 			</div>
-			<div id="myQna_tot">
-				<div id="myQna_tit1">
-					<h3 class="myQna_tit">나의 게시글 목록</h3>
+			<div id="myBoard_tot">
+				<div id="myBoard_tit1">
+					<h3 class="myBoard_tit">나의 게시글 목록</h3>
 				</div>
-				<div id="myQna_tit2">
-					<p class="myQna_subtit" style="font-weight: bold;">
+				<div id="myBoard_tit2">
+					<p class="myBoard_subtit" style="font-weight: bold;">
 						<strong>｜</strong> 내가 작성한 글목록
 					</p>
 				</div>
-				<div id="myQna_cnt1">
-					<table id="myQna_qnaList" align="center" width="100%" border=0>
-						<tr class="myQna_qnaTitle" align="center">
+				<div id="myBoard_cnt1">
+					<table id="myBoard_qnaList" align="center" width="100%" border=0>
+						<tr class="myBoard_qnaTitle" align="center">
 							<td width="10%">글번호</td>
 							<td width="40%">제목</td>
 							<td width="25%">작성일</td>

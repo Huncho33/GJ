@@ -86,8 +86,8 @@
 		 					member_jibunAddress,
 		 					member_namujiAddress) 			
 		 values(#{member_id}, 
-		 		#{member_pw},
 		 		#{member_name},
+		 		#{member_pw},
 		 		#{member_gender},
 		 		#{member_birth},
 		 		#{member_phoneno},

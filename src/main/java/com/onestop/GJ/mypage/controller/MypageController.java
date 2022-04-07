@@ -35,4 +35,58 @@ public interface MypageController {
 
 	ResponseEntity removeArticle(int fr_NO, HttpServletRequest request, HttpServletResponse response) throws Exception;
 
+	ModelAndView monthApplyList(HttpServletRequest request, HttpServletResponse response) throws Exception;
+
+	ModelAndView rentApplyList(HttpServletRequest request, HttpServletResponse response) throws Exception;
+
+	ModelAndView shareApplyList(HttpServletRequest request, HttpServletResponse response) throws Exception;
+
+//	ResponseEntity removeApply(int mo_no, HttpServletRequest request, HttpServletResponse response) throws Exception;
+
+	ModelAndView viewMonthApply(int mo_no, String removeCompleted, HttpServletRequest request,
+			HttpServletResponse response) throws Exception;
+
+	ModelAndView modMonthApplyView(String removeCompleted, HttpServletRequest request, HttpServletResponse response)
+			throws Exception;
+
+	ModelAndView viewShareApply(int sh_no, String removeCompleted, HttpServletRequest request,
+			HttpServletResponse response) throws Exception;
+
+
+	ModelAndView viewRentApply(int rent_no, String removeCompleted, HttpServletRequest request,
+			HttpServletResponse response) throws Exception;
+
+	ModelAndView viewRetApply(int ret_no, String removeCompleted, HttpServletRequest request,
+			HttpServletResponse response) throws Exception;
+
+	ModelAndView viewBackApply(int ba_no, String removeCompleted, HttpServletRequest request,
+			HttpServletResponse response) throws Exception;
+
+	ResponseEntity removeMonthApply(int mo_no, HttpServletRequest request, HttpServletResponse response)
+			throws Exception;
+
+	ResponseEntity removeShareApply(int sh_no, HttpServletRequest request, HttpServletResponse response)
+			throws Exception;
+
+	ResponseEntity removeBackApply(int ba_no, HttpServletRequest request, HttpServletResponse response)
+			throws Exception;
+
+	ResponseEntity removeRetApply(int ret_no, HttpServletRequest request, HttpServletResponse response)
+			throws Exception;
+
+	ResponseEntity removeRentApply(int rent_no, HttpServletRequest request, HttpServletResponse response)
+			throws Exception;
+
+	ModelAndView modRentApplyView(String removeCompleted, HttpServletRequest request, HttpServletResponse response)
+			throws Exception;
+
+	ModelAndView modRetApplyView(String removeCompleted, HttpServletRequest request, HttpServletResponse response)
+			throws Exception;
+
+	ModelAndView modBackApplyView(String removeCompleted, HttpServletRequest request, HttpServletResponse response)
+			throws Exception;
+
+	ModelAndView modShareApplyView(String removeCompleted, HttpServletRequest request, HttpServletResponse response)
+			throws Exception;
+
 }

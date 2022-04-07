@@ -1,0 +1,93 @@
+@charset "UTF-8"; 
+
+ @charset "UTF-8";
+
+#myApply_wrapper {
+	position: relative;
+	width: 100%;
+}
+
+#myApply_total {
+	position: relative;
+	margin: 0 auto;
+	width: 1300px;
+}
+
+#myApply_tot {
+	width: 900px;
+	margin-left: 300px;
+}
+
+#myApply_container {
+	width: 100%;
+}
+
+#myApply_tit2 {
+	margin-bottom: 20px;
+}
+
+h3.myApply_tit {
+	font-size: 24px;
+	font-weight: bold;
+	letter-spacing: -2.7px;
+	color: #272727;
+	text-align: center;
+	padding: 50px 0px 30px 0px;
+	border-bottom: 1px solid #cfcfcf;
+	margin-bottom: 60px;
+}
+
+.myApply_cnt1 {
+	padding: 20px 40px 20px 40px;
+	margin-bottom: 30px;
+}
+
+.myApply_info {
+	text-align: center;
+	font-size: 11pt;
+}
+
+.myApply_cnt2 {
+	width: 100%;
+}
+
+tr.myApply_qnaTitle {
+	background-color: #E6E6E6;
+	font-size: 10pt;
+}
+
+#myApply_qnaList {
+	border-top: 2px solid #a6a6a6;
+	border-bottom: 2px solid #a6a6a6;
+	margin-bottom: 30px;
+}
+
+#myApply_qnaList a {
+	text-decoration: none;
+}
+
+#myApply_qnaList tr {
+	height: 30px;
+}
+
+#myApply_qnaList td {
+	font-size: 10pt;
+}
+
+.modi_btn {
+	text-decoration: none;
+	color: black;
+}
+
+#apply_sltBtn {
+	border: 0px;
+	background-color: #045FB4;
+	color: white;
+	width:40px;
+	height: 25px;
+	border-radius: 0.3em;
+}
+
+#apply_sltBtn:hover{
+	cursor: pointer;
+}
