@@ -34,6 +34,13 @@ public class AdminStatsDAOImpl implements AdminStatsDAO {
 		return getVisitTotCnt;
 	}
 	
+	  //검색 총 방문자 수
+		@Override
+		public int searchVisitTotCnt(Map dateMap) {
+			int searchVisitTotCnt = sqlSession.selectOne("mapper.adminStats.searchVisitTotCnt", dateMap);
+			return searchVisitTotCnt;
+		}
+	
 	// 구별 방문자수 
 	   @Override
 	   public List<AdminStatsVO> getAddrTotVisit(Map visitMap) {
@@ -60,14 +67,6 @@ public class AdminStatsDAOImpl implements AdminStatsDAO {
 		return searchList;
 	}
 
-//   방문자 성별 검색 수
-	@Override
-	public int selectSearchTotVisit(Map dateMap) {
-		System.out.println("dateMap : " + dateMap);
-		int searchTotVisit = sqlSession.selectOne("mapper.adminStats.selectSearchTotVisit", dateMap);
-		System.out.println("검색 방문자수" + searchTotVisit);
-		return searchTotVisit;
-	}
 //  방문자 구별 검색 수
   @Override
   public List<AdminStatsVO> getSearchAddrTotList(Map dateMap) {
@@ -83,6 +82,24 @@ public class AdminStatsDAOImpl implements AdminStatsDAO {
 		System.out.println("검색 남녀 비율 검색" + searchGenderCnt);
 		return searchGenderCnt;
 	}
+	
+	//방문자 연령별 수
+	   @Override
+	   public List<AdminStatsVO> getAgeTotVisit(Map visitMap) {
+	      List<AdminStatsVO> getAgeTotVisit = sqlSession.selectList("mapper.adminStats.getAgeTotVisit", visitMap);
+	      System.out.println("검색 연령 비율 검색" + getAgeTotVisit);
+	      return getAgeTotVisit;
+	   }
+
+	// 방문자 연령 검색수
+	   @Override
+	   public List<AdminStatsVO> searchAgeTotVisit(Map dateMap) {
+	      List<AdminStatsVO> searchAgeTotVisit = sqlSession.selectList("mapper.adminStats.searchAgeTotVisit", dateMap);
+	      System.out.println("검색 연령 비율 검색" + searchAgeTotVisit);
+	      return searchAgeTotVisit;
+	   }
+
+	 
 
 	
 	

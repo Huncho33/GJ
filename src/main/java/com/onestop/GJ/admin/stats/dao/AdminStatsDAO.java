@@ -16,8 +16,6 @@ public interface AdminStatsDAO {
 
 	List<AdminStatsVO> selectVisitListBySearchVisit(Map dateMap);
 
-	int selectSearchTotVisit(Map dateMap);
-
 	List<AdminStatsVO> getGenderCnt(Map visitMap);
 
 	List searchGenderCnt(Map dateMap);
@@ -25,6 +23,12 @@ public interface AdminStatsDAO {
 	List<AdminStatsVO> getAddrTotVisit(Map visitMap);
 
 	List<AdminStatsVO> getSearchAddrTotList(Map dateMap);
+
+	List<AdminStatsVO> getAgeTotVisit(Map visitMap);
+
+	List<AdminStatsVO> searchAgeTotVisit(Map dateMap);
+
+	int searchVisitTotCnt(Map dateMap);
 
 	
 

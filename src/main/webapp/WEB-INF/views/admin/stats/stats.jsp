@@ -5,6 +5,8 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <c:set var="getVisitTotCnt" value="${countMap.getVisitTotCnt}" />
 <c:set var="getAddrTotVisit" value="${countMap.getAddrTotVisit}" />
+<c:set var="getAgeTotVisit" value="${countMap.getAgeTotVisit}" />
+
 
 <%
 	request.setCharacterEncoding("UTF-8");
@@ -22,6 +24,7 @@
 <link rel="stylesheet" href="${contextPath}/resources/css/sidemenu.css"
 	type="text/css">
 <script src="${contextPath}/resources/js/sidemenu.js"></script>
+
 <!--chart.js  -->
 <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.min.js"></script>
 <script type="text/javascript" charset="utf-8"
@@ -30,10 +33,17 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.bundle.min.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+<!-- <script
+	src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script> -->
 <script
 	src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.7.0"></script>
+<!-- time x축 -->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"
+	integrity="sha512-rmZcZsyhe0/MAjquhTgiUcb4d9knaFc7b5xAfju483gbEXTkeJRUMIPk6s3ySZMYUHEcjKbjLjyddGWMrNEvZg=="
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/Chart.min.js"></script>
 
 
 <script type="text/javascript">
@@ -46,7 +56,7 @@
       bir = document.getElementById("toDate");
       bir.value = today;
       
-      /* 구별 방문자수 막대 그래프 function*/
+  	/*기간별 검색 후 막대 그래프 function  */
       var ctx = $('#cityChart').get(0).getContext("2d");
       window.theChart = new Chart(ctx, {
          type : 'bar',
@@ -57,7 +67,7 @@
  	            text: '<구별 방문자 수>',
  	            fontSize:18
  	        },
- 	     
+ 	       /* x축 y축 설정 */
 	            scales : { 
 	                xAxes : [{
 	                   barThickness : 50,
@@ -94,7 +104,88 @@
     	        },
       } 
       });
-   }
+      
+      
+      
+      /* 총 방문자 수 line 그래프 */
+      
+      var ctx = $('#visitTotChart').get(0).getContext("2d");
+      window.myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          datasets: [{
+            label: '방문자 수',
+            data: [{
+              x: new Date(2022, 3, 1),
+              y: 1
+            }, {
+              t: new Date(),
+              y: 10
+          
+            }]
+          }],
+        },
+        options: {
+            scales: {
+            x: [{
+            	  type: 'time',
+                  time: {
+                      unit: 'day'
+              }
+            }]
+          }  
+        }
+      });
+      
+      /* 연령 비율 파이 차트 function*/
+      var ctx8 = $('#ageChart').get(0).getContext("2d"); 
+      window.theChart8 = new Chart(ctx8, { 
+         type: 'pie', 
+         data: ageData, 
+         options: { 
+            responsive: true, 
+            legend: {
+               position: 'top',
+            },
+            title: {
+                   display: true,
+                   text: '<방문 연령 비율>',
+                   fontSize:18
+               },
+      } 
+      });
+      
+   }//window.onload 끝
+   
+   /* 총 방문자수 line 그래프 데이터 셋
+   var lineChartData = {
+    	     labels : [ 'new date()', "북구", "달성군", "중구", "동구", "서구", "남구", "달성구" ],
+             datasets : [
+                   {
+                	  fill: false,
+                      label : '방문자 수',
+                      borderColor: "rgba(255, 201, 14, 1)",
+                      backgroundColor : "rgba(255, 201, 14, 0.5)",
+                      lineTension: 0,
+                      data : [
+                         ${getAddrTotVisit[0]},
+                         ${getAddrTotVisit[1]},
+                         ${getAddrTotVisit[2]},
+                         ${getAddrTotVisit[3]},
+                         ${getAddrTotVisit[4]},
+                         ${getAddrTotVisit[5]},
+                         ${getAddrTotVisit[6]},
+                         ${getAddrTotVisit[7]}
+							],
+	               datalabels: { 
+	   	        	display: false
+	   	        	},
+	               }
+	             ]
+	      };*/
+   
+   
+      
    /* 구별 방문자수 막대 그래프 데이터 셋 */
     var barChartData = {
     	     labels : [ "수성구", "북구", "달성군", "중구", "동구", "서구", "남구", "달성구" ],
@@ -103,7 +194,6 @@
                       label : '방문자 수',
                       backgroundColor : "#1E90FF",
                       data : [
-
                          ${getAddrTotVisit[0]},
                          ${getAddrTotVisit[1]},
                          ${getAddrTotVisit[2]},
@@ -135,7 +225,8 @@
     					"lightcoral", ],
 					 
     				borderWidth: 0,
-    				datalabels: { 
+    				datalabels: {
+    					display: true,
     					labels: { 
     					value: { 
     						borderWidth: 2, borderRadius: 4, font: {size: 15}, 
@@ -153,6 +244,44 @@
     					}
     			}] 
     };
+    
+    /* 연령별 비율 파이 차트 데이터 셋 */
+    var ageData = { 
+            labels: ["20"," 30", "40"], 
+            datasets: [ 
+               {   
+                  label: 'Pie Chart Age Count',
+                  data: [ 
+                      ${getAgeTotVisit[0]},
+                      ${getAgeTotVisit[1]},
+                      ${getAgeTotVisit[2]}
+                     ], 
+                  backgroundColor: [ 
+                     "Mediumpurple", 
+                     "orangered",
+                     "green"],
+                  
+                  borderWidth: 0,
+                  datalabels: { 
+                     labels: { 
+                     value: { 
+                        borderWidth: 2, borderRadius: 4, font: {size: 15}, 
+                        formatter: function(value, ctx) { 
+                           var value = ctx.dataset.data[ctx.dataIndex]; 
+                           return value > 0 ? Math.round(value / (ctx.dataset.data[0] + ctx.dataset.data[1]+ctx.dataset.data[2] ) * 100) + ' %' : null; 
+                           }, 
+                           color: function(ctx) { 
+                              var value = ctx.dataset.data[ctx.dataIndex]; return value > 0 ? 'white' : null; 
+                              }, 
+                              
+                                 padding: 4
+                           }
+                        }
+                     }
+               }] 
+      };
+    
+    
 
    
    </script>
@@ -249,6 +378,10 @@
 					</c:forEach>
 				</table>
 
+				<div style="width: 100%;">
+					<canvas id="visitTotChart"></canvas>
+				</div>
+
 				<canvas id="cityChart"></canvas>
 
 				<table border="1" align="center" width="100%">
@@ -278,6 +411,9 @@
 
 				<div>
 					<canvas id="genderChart"></canvas>
+				</div>
+				<div>
+					<canvas id="ageChart"></canvas>
 				</div>
 
 			</div>

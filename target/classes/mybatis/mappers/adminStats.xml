@@ -60,7 +60,7 @@
 	</select>
 
 	<!-- 검색 총 방문수 -->
-	<select id="selectSearchTotVisit" parameterType="java.util.Map"
+	<select id="searchVisitTotCnt" parameterType="java.util.Map"
 		resultType="int">
    <![CDATA[
    SELECT count(v_date) FROM visit
@@ -69,7 +69,7 @@
       ]]>
 	</select>
 
-	<!--검색 방문 수 -->
+	<!--구별 검색 방문 수 -->
    <select id="getSearchAddrTotList" parameterType="java.util.Map"
       resultType="int">
    <![CDATA[
@@ -93,6 +93,31 @@
                       group by v_gender
       ]]>
 	</select>
+	
+	<!-- 연령 수 -->
+   <select id="getAgeTotVisit" resultType="int">
+    <![CDATA[
+         select y, count(*) as cnt from
+   (select floor((to_char(sysdate, 'YYYY') - substr(v_birth, 0, 4)) / 10) * 10 as y
+   from visit) o
+   group by y order by y
+    ]]>
+   </select>
+   
+   <!--검색 방문 연령 수 -->
+   <select id="searchAgeTotVisit" parameterType="java.util.Map"
+      resultType="int">
+   <![CDATA[
+   
+        select y, count(*) as cnt from
+   (select floor((to_char(sysdate, 'YYYY') - substr(v_birth, 0, 4)) / 10) * 10 as y, v_date
+   from visit) o
+    where  v_date BETWEEN TO_DATE(#{fromDate}, 'yyyy-MM-dd') 
+                   AND TO_DATE(#{toDate}, 'yyyy-MM-dd')+0.99999
+   group by y order by y
+      ]]>
+   </select>
+   
 
 </mapper>
    
