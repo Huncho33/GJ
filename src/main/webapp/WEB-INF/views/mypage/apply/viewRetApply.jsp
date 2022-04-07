@@ -259,7 +259,7 @@
 														value="${retFile.up_fileno }" />
 														<div id="filedown">
 															<a
-																href="${contextPath}/noticeDownload.do?ret_no=${ret.ret_no}&up_filename=${retFile.up_filename}">${retFile.up_filename}</a>
+																href="${contextPath}/retApplyDownload.do?ret_no=${ret.ret_no}&up_filename=${retFile.up_filename}">${retFile.up_filename}</a>
 														</div></td>
 												</tr>
 												<tr class="tr_modEnable" id="tr_sub${status.count }"

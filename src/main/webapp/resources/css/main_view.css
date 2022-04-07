@@ -1,6 +1,5 @@
-
 #main_bground {
-	width:100%;
+	width: 100%;
 	height: 950px;
 	position: relative;
 }
@@ -27,29 +26,28 @@
 }
 
 .find_bar {
-    width: 100%;
-    height: 80px;
-    border: 2px solid rgb(71, 142, 223);
-    border-radius: 1rem;
+	width: 100%;
+	height: 80px;
+	border: 2px solid rgb(71, 142, 223);
+	border-radius: 1rem;
 }
 
 .main_cnt1 {
-    float: left;
-    height: 350px;
-    padding: 20px;
+	float: left;
+	height: 350px;
+	padding: 20px;
 }
 
-
 .main_cnt2 {
-    float: right;
-    height: 350px;
-    padding: 20px 10px 20px 10px;
-    margin-right: 30px;
+	float: right;
+	height: 350px;
+	padding: 20px 10px 20px 10px;
+	margin-right: 30px;
 }
 
 .main_tabs p {
-    float: left;
-    cursor: pointer;
+	float: left;
+	cursor: pointer;
 }
 
 .main_tabs a {
@@ -57,13 +55,13 @@
 }
 
 .nav-item3 {
-    margin-left: 300px;
-    margin-top: 5px;
+	margin-left: 300px;
+	margin-top: 5px;
 }
 
 .find_bar_ele {
-    text-align: center;
-    line-height: 80px;
+	text-align: center;
+	line-height: 80px;
 }
 
 .find_bar_ele select {
@@ -71,65 +69,63 @@
 	height: 30px;
 }
 
-
 .main_tablist1 {
-    width: 470px;
-    height: 200px;
-    line-height: 200px;
-    text-align: center;
-    padding-left: 50px;
-    padding-top: 15px;
-    
+	width: 470px;
+	height: 200px;
+	line-height: 200px;
+	text-align: center;
+	padding-left: 50px;
+	padding-top: 15px;
 }
 
 .main_tablist2 {
-    width: 470px;
-    height: 200px;
-    line-height: 200px;
-    text-align: center;
-    padding-left: 50px;
-    padding-top: 15px;
+	width: 470px;
+	height: 200px;
+	line-height: 200px;
+	text-align: center;
+	padding-left: 50px;
+	padding-top: 15px;
 }
 
-#main_notiList{
+#main_notiList {
 	width: 430px;
 	margin: 0 auto;
 }
 
-#main_notiList a{
+#main_notiList a {
 	color: black;
 	text-decoration: none;
 	font-size: 11pt;
 }
 
-#main_notiList a:hover{
+#main_notiList a:hover {
 	text-decoration: underline;
 }
 
-#main_dataList a{
+#main_dataList a {
 	color: black;
 	text-decoration: none;
 	font-size: 11pt;
 }
 
-#main_dataList a:hover{
+#main_dataList a:hover {
 	text-decoration: underline;
 }
 
-#main_notiList tr{
+#main_notiList tr {
 	height: 40px;
 }
 
-#main_dataList{
+#main_dataList {
 	width: 430px;
 	margin: 0 auto;
 }
 
-#main_dataList tr{
+#main_dataList tr {
 	height: 40px;
 }
 
-#main_notiNon{
+#main_notiNon {
 	width: 430px;
 	margin: 0 auto;
 }
@@ -139,7 +135,7 @@
 	font-size: 10pt;
 }
 
-#main_dataNon{
+#main_dataNon {
 	width: 430px;
 	margin: 0 auto;
 }
@@ -149,11 +145,7 @@
 	font-size: 10pt;
 }
 
-
-
 .main_shortcut {
-	margin-left: 80px;
-	
 }
 
 .main_shortcut_tab {
@@ -161,52 +153,107 @@
 }
 
 .main_shortcuts {
-    width: 100%;
-    height: 250px;
-    margin-top: 35px;
-    margin-left: 30px;
+	width: 100%;
+	height: 250px;
+	margin-top: 35px;
 }
 
-.mn_shortcut {
-    width: 140px;
-    height: 200px;
-    margin: 5px 25px 5px 5px;
-    border-radius: 1rem;
-    float: left;
-    line-height: 200px;
-    text-align: center;
+.main_shortcuts a {
+	text-decoration: none;
 }
 
-.mn_shortcut p {
-    color: white;
+figure {
+	position: relative;
+	width: 140px;
+	height: 200px;
+	left: 5%;
+	margin: 5px 25px 5px 5px;
+	border-radius: 1rem;
+	float: left;
 }
 
-.mn_shortcut1 {
-    background: dodgerblue;
-    transition: all 0.2s linear;
-    
+.main_long1 {
+	background-image: url("../image/month_img.jpg")
 }
 
-.mn_shortcut1:hover {
-    transform: scale(1.1);
+.main_long2 {
+	background-image: url("../image/rent_img.jpg")
 }
 
-.mn_shortcut2 {
-    background: dodgerblue;
-    transition: all 0.2s linear;
+.main_long3 {
+	background-image: url("../image/share_img.jpg")
 }
 
-.mn_shortcut2:hover {
-    transform: scale(1.1);
+figure:hover figcaption{ opacity: 1; }
+figure:hover .main_line::before { width: 80%; }
+figure:hover .main_line::after { width: 80%; }
+figure:hover .main_line span::before { height: 80%; }
+figure:hover .main_line span::after { height: 80.5%; }
+
+
+figcaption{
+  position:relative;
+  width:140px;
+  height:200px;
+  border-radius: 1rem;
+  margin-top: -16.5px;
+  background:rgba(0,0,0,0.4);
+  opacity:0;
+  transition: all 0.5s;
 }
 
-.mn_shortcut3 {
-    background: dodgerblue;
-    transition: all 0.2s linear;
-}       
-
-.mn_shortcut3:hover {
-    transform: scale(1.1);
+.main_long a figcaption p{
+  color:#fff;
+  font-weight:bold;
+  font-size:15px; 
+  text-align:center;
+  line-height:200px;
 }
 
+.main_line:before {
+	content: "";
+	position: absolute;
+	background: rgba(255, 255, 255, 0.7);
+	display: inline-block;
+	transition: all 0.5s;
+	left: 10%;
+	top: 10%;
+	width: 0%;
+	height: 2px;
+}
 
+.main_line:after {
+	content: "";
+	position: absolute;
+	background: rgba(230, 230, 230, 0.7);
+	display: inline-block;
+	transition: all 0.5s;
+	left: 10%;
+	top: 90%;
+	width: 0%;
+	height: 2px;
+}
+
+.main_line span:before {
+	content: "";
+	position: absolute;
+	background: rgba(230, 230, 230, 0.7);
+	display: inline-block;
+	transition: all 0.5s;
+	left: 10%;
+	top: 10%;
+	width: 2px;
+	height: 0%;
+}
+
+.main_line span:after {
+	content: "";
+	position: absolute;
+	background: rgba(230, 230, 230, 0.7);
+	display: inline-block;
+	transition: all 0.5s;
+	left: 90%;
+	top: 10%;
+	width: 2px;
+	height: 0%;
+}

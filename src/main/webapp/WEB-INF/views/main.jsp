@@ -27,7 +27,7 @@
 	type="text/css">
 <script src="${contextPath}/resources/js/main_tap.js"></script>
 
-</head>
+</head> 
 
 <body>
 	<div id="main_bground">
@@ -153,28 +153,51 @@
 							</p>
 						</div>
 						<div class="main_shortcuts">
-							<a href="#">
-								<div class="mn_shortcut mn_shortcut1">
-									<p>월세지원</p>
-								</div>
-							</a> <a href="#"><div class="mn_shortcut mn_shortcut2">
-									<p>전세지원</p>
-								</div></a> <a href="#"></a>
-							<div class="mn_shortcut mn_shortcut3">
-								<p>공공임대주택지원</p>
-							</div>
-							</a>
+							<figure class="main_long main_long1">
+								<a href="${contextPath}/month/monthApplyInfo.do">
+									<p></p>
+									<figcaption>
+										<div class="main_line mn_shortcut1">
+											<span>
+												<p>월세지원</p>
+											</span>
+										</div>
+									</figcaption>
+								</a>
+							</figure>
+							<figure class="main_long main_long2">
+								<a href="${contextPath}/rent/rentApplyInfo.do">
+									<p></p>
+									<figcaption>
+										<div class="main_line mn_shortcut2">
+											<span>
+												<p>전세지원</p>
+											</span>
+										</div>
+									</figcaption>
+								</a>
+							</figure>
+							<figure class="main_long main_long3">
+								<a href="${contextPath}/share/shareApplyInfo.do">
+									<p></p>
+									<figcaption>
+										<div class="main_line mn_shortcut3">
+											<span>
+												<p>공공주택지원</p>
+											</span>
+										</div>
+									</figcaption>
+								</a>
+							</figure>
 						</div>
 					</div>
 				</div>
 			</div>
+			<script
+				src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+				integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+				crossorigin="anonymous"></script>
 		</div>
-		<script
-			src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-			integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-			crossorigin="anonymous"></script>
-	</div>
-
 </body>
 
 </html>

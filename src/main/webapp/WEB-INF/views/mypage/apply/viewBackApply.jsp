@@ -259,7 +259,7 @@
 														value="${backFile.up_fileno }" />
 														<div id="filedown">
 															<a
-																href="${contextPath}/noticeDownload.do?ba_no=${back.ba_no}&up_filename=${backFile.up_filename}">${backFile.up_filename}</a>
+																href="${contextPath}/backApplyDownload.do?ba_no=${back.ba_no}&up_filename=${backFile.up_filename}">${backFile.up_filename}</a>
 														</div></td>
 												</tr>
 												<tr class="tr_modEnable" id="tr_sub${status.count }"

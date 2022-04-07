@@ -455,7 +455,15 @@ public class MypageDAOImpl implements MypageDAO {
 	// 알람게시판으로 이동
 	@Override
 	public void modifyAlarm(Map ViewMap) throws DataAccessException {
+		int alarm_no = selectNewAlaramNO();
+		ViewMap.put("alarm_no", alarm_no);
 		sqlSession.insert("mapper.mypage.modifyAlarm", ViewMap);
+	}
+	
+	
+	
+	private int selectNewAlaramNO() throws DataAccessException {
+		return sqlSession.selectOne("mapper.mypage.selectNewAlaramNO");
 	}
 
 }

@@ -259,7 +259,7 @@
 														value="${shareFile.up_fileno }" />
 														<div id="filedown">
 															<a
-																href="${contextPath}/noticeDownload.do?sh_no=${share.sh_no}&up_filename=${shareFile.up_filename}">${shareFile.up_filename}</a>
+																href="${contextPath}/shareApplyDownload.do?sh_no=${share.sh_no}&up_filename=${shareFile.up_filename}">${shareFile.up_filename}</a>
 														</div></td>
 												</tr>
 												<tr class="tr_modEnable" id="tr_sub${status.count }"

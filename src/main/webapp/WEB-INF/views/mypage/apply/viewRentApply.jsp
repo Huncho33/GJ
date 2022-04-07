@@ -259,7 +259,7 @@
 														value="${rentFile.up_fileno }" />
 														<div id="filedown">
 															<a
-																href="${contextPath}/noticeDownload.do?rent_no=${rent.rent_no}&up_filename=${rentFile.up_filename}">${rentFile.up_filename}</a>
+																href="${contextPath}/rentApplyDownload.do?rent_no=${rent.rent_no}&up_filename=${rentFile.up_filename}">${rentFile.up_filename}</a>
 														</div></td>
 												</tr>
 												<tr class="tr_modEnable" id="tr_sub${status.count }"

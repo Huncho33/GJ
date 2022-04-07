@@ -258,8 +258,7 @@
 														type="hidden" name="up_fileno"
 														value="${monthFile.up_fileno }" />
 														<div id="filedown">
-															<a
-																href="${contextPath}/noticeDownload.do?mo_no=${month.mo_no}&up_filename=${monthFile.up_filename}">${monthFile.up_filename}</a>
+															<a href="${contextPath}/monApplyDownload.do?mo_no=${month.mo_no}&up_filename=${monthFile.up_filename}">${monthFile.up_filename}</a>
 														</div></td>
 												</tr>
 												<tr class="tr_modEnable" id="tr_sub${status.count }"

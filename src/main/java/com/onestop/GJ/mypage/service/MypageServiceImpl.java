@@ -355,6 +355,7 @@ public class MypageServiceImpl implements MypageService {
 	// 알람게시판으로 이동
 	@Override
 	public void modifyAlarm(Map ViewMap) throws Exception {
+//		mypageDAO.selectNewAlaramNO();
 		mypageDAO.modifyAlarm(ViewMap);
 	}
 	

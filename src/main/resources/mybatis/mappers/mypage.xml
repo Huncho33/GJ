@@ -628,11 +628,18 @@
 		</foreach>
 	</insert>
 
-	<select id="selectNewShareFileNO" resultType="int">
+	<select id="selectNewAlaramNO" resultType="int">
 	<![CDATA[
-	select nvl(max(up_fileno),0) +1 from share_file
+	select nvl(max(alarm_no),0) +1 from board_alarm
 	]]>
 	</select>
+	
+	<insert id="modifyAlarm" parameterType="java.util.Map">
+		<![CDATA[
+		INSERT INTO board_alarm(alarm_no, member_id)
+			VALUES (#{alarm_no}, #{member_id})
+		]]>
+	</insert>
 
 
 
