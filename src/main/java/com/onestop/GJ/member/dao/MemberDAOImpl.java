@@ -91,5 +91,21 @@ public class MemberDAOImpl implements MemberDAO {
 		List<BoardDataVO> dataList = sqlSession.selectList("mapper.member.selectDataList");
 		return dataList;
 	}
+	
+	//방문자 정보 저장
+	@Override
+	public void insertVisit(Map visitMap) {
+		System.out.println("확인 : "+visitMap);
+		sqlSession.insert("mapper.member.insertVisit", visitMap);
+		
+	}
+	
+	//방문자 수
+	@Override
+	public int getVisitTotCnt(Map visitMap) {
+		int getVisitTotCnt = sqlSession.selectOne("mapper.member.selectVisitList");
+		return getVisitTotCnt;
+		
+	}
 
 }

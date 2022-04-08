@@ -79,6 +79,7 @@ public class AdminMemberControllerImpl implements AdminMemberController {
 	      pagingMap.put("pageNum", pageNum);
 	      pagingMap.put("searchMember", searchMember);
 	      pagingMap.put("searchType", searchType);
+	      
 	      Map membersMap = adminMemberService.searchMemberList(pagingMap);
 
 	      membersMap.put("section", section);

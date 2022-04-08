@@ -44,25 +44,17 @@
 		<result property="etc_hits" column="etc_hits" />
 	</resultMap>
 
-
-
-
-
-
 	<select id="selectOverlappedID" parameterType="String"
 		resultType="String">
 		select decode(count(*),1, 'true', 0, 'false')
 		from member
 		where member_id = #{id}
 	</select>
-	
-	
+
+
 	<!-- <select id="login" resultType="memberVO" parameterType="java.util.Map"> 
-		<![CDATA[ select * from member 
-		where member_id=#{member_id} and member_pw=#{member_pw} 
-		
-		]]> 
-		</select>  -->
+		<![CDATA[ select * from member where member_id=#{member_id} and member_pw=#{member_pw} 
+		]]> </select> -->
 
 	<select id="selectAllMemberList" resultMap="memResult">
       <![CDATA[
@@ -99,12 +91,14 @@
 		 		#{member_namujiAddress}) 
 		]]>
 	</insert>
-	
+
 	<update id="last_logOn" parameterType="String">
-	UPDATE member
-		SET member_last_log
+		UPDATE member
+		SET
+		member_last_log
 		= to_date(sysdate)
-		WHERE member_id = #{member_id}
+		WHERE member_id =
+		#{member_id}
 	</update>
 
 	<update id="updateMember" parameterType="memberVO">
@@ -169,10 +163,12 @@
 
 	<!-- 공지사항 최근 5개 글 호출 -->
 	<select id="selectNotiList" resultType="boardNoticeVO">
-		SELECT noti_no, noti_title 
+		SELECT noti_no,
+		noti_title
 		FROM (SELECT noti_no, noti_title
-				FROM board_notice
-				ORDER BY noti_date desc)
+		FROM board_notice
+		ORDER BY
+		noti_date desc)
 		WHERE rowNum &lt; 6
 	</select>
 
@@ -180,9 +176,33 @@
 	<select id="selectDataList" resultType="boardDataVO">
 		SELECT etc_no, etc_title
 		FROM (SELECT etc_no, etc_title
-				FROM board_data
-				ORDER BY etc_date desc)
+		FROM board_data
+		ORDER BY etc_date desc)
 		where rowNum &lt; 6
+	</select>
+
+	<!-- 방문자 정보 -->
+	<insert id="insertVisit" parameterType="java.util.Map">
+		<![CDATA[
+
+		 insert into visit (member_id,
+		 					v_gender,
+		 					v_roadAddress,
+		 					v_birth) 			
+		 					
+		 values(#{member_id},
+		 		#{member_gender},
+		 		#{member_roadAddress},
+		 		#{member_birth}) 
+		 		
+		]]>
+	</insert>
+
+	<!-- 방문자 수 -->
+	<select id="selectVisitList" resultType="int">
+    <![CDATA[
+     select count(v_date) from visit
+    ]]>
 	</select>
 
 </mapper>

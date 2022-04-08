@@ -34,6 +34,10 @@ public interface MemberDAO {
 
 	List selectDataList() throws Exception;
 
+	void insertVisit(Map visitMap);
+
+	int getVisitTotCnt(Map visitMap);
+
 	
 
 

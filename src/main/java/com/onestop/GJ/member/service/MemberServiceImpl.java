@@ -2,6 +2,7 @@ package com.onestop.GJ.member.service;
 
 import java.io.PrintWriter;
 import java.util.List;
+import java.util.Map;
 
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletResponse;
@@ -172,5 +173,22 @@ public class MemberServiceImpl implements MemberService {
 		List<BoardDataVO> dataList = memberDAO.selectDataList();
 		return dataList;
 	}
+	
+	//방문자 정보 저장
+	@Override
+	public void insertVisit(Map visitMap) {
+		memberDAO.insertVisit(visitMap);
+		
+	}
+	
+	//방문자 수
+	@Override
+	public Map getTotCnt(Map visitMap) {
+		int getVisitTotCnt = memberDAO.getVisitTotCnt(visitMap);
+		visitMap.put("getVisitTotCnt", getVisitTotCnt);
+		
+		return visitMap;
+	}
+
 
 }
