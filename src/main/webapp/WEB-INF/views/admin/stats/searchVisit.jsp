@@ -337,7 +337,7 @@ var ageData = {
 				<div id="adm_visit_search">
 					<form name="v_search"
 						action="${contextPath}/admin/stats/searchVisit.do">
-						<span>[총 방문: ${searchVisitTotCnt}명]</span> <input type="submit"
+						<span>[검색 방문 수: ${searchVisitTotCnt}명]</span> <input type="submit"
 							name="search" value="검 색"> <input type="date" id="toDate"
 							name="toDate" value="${toDate}"> <input type="date"
 							id="fromDate" name="fromDate" value="${fromDate}">
