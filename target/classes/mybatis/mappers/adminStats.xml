@@ -18,7 +18,7 @@
 		resultMap="visitResult">
       <![CDATA[
          select a.* from(
-      select ROW_NUMBER() over(order by 'v_date' desc) as recNUM,
+      select ROW_NUMBER() over(order by v_date desc) as recNUM,
       v_date,
       member_id,
       v_gender,
