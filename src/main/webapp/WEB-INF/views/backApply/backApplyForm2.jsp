@@ -123,7 +123,7 @@
 					<tr class="dot_line">
 						<td class="fixed_join">:: 신청 분야</td>
 						<td><input type="text" name="Apply_PolicyName"
-							id="Apply_PolicyName" value="월세지원"
+							id="Apply_PolicyName" value="귀환신혼부부전세지원"
 							style="border: 0; background: #fff;" disabled></td>
 					</tr>
 				</table>

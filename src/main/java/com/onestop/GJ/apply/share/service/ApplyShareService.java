@@ -11,7 +11,7 @@ public interface ApplyShareService {
 
 	int addResult(Map articleMap) throws Exception;
 
-	List findAll(String id);
+	ApplyShareVO findAll(String id);
 
 	ApplyShareVO findNo(int no);
 

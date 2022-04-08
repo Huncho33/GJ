@@ -16,7 +16,7 @@ public interface ApplyBackDAO {
 
 	void insertNewFile(Map articleMap) throws DataAccessException;
 
-	List findAll(String member_id);
+	ApplyBackVO findAll(String member_id);
 
 	ApplyBackVO findNo(int ba_no);
 

@@ -18,7 +18,7 @@ public interface ApplyShareDAO {
 	void insertNewFile(Map articleMap) throws DataAccessException;
 
 	// 결과페이지
-	List findAll(String member_id);
+	ApplyShareVO findAll(String member_id);
 
 	ApplyShareVO findNo(int sh_no);
 

@@ -18,8 +18,27 @@ public class ApplyMonVO {
 	private String mo_policy;
 	private String mo_reason;
 	private String member_id;
+	private MemberVO membervo;
+	private ApplyMonFileVO applymonfileVO;
+	private Date mo_startpay;
+	private Date mo_endpay;
 	
-	
+
+	public ApplyMonFileVO getApplymonfileVO() {
+		return applymonfileVO;
+	}
+
+	public void setApplymonfileVO(ApplyMonFileVO applymonfileVO) {
+		this.applymonfileVO = applymonfileVO;
+	}
+
+	public MemberVO getMembervo() {
+		return membervo;
+	}
+
+	public void setMembervo(MemberVO membervo) {
+		this.membervo = membervo;
+	}
 
 	public String getMo_policy() {
 		return mo_policy;
@@ -84,10 +103,26 @@ public class ApplyMonVO {
 		this.mo_result = mo_result;
 	}
 
+	public Date getMo_startpay() {
+		return mo_startpay;
+	}
+
+	public void setMo_startpay(Date mo_startpay) {
+		this.mo_startpay = mo_startpay;
+	}
+
+	public Date getMo_endpay() {
+		return mo_endpay;
+	}
+
+	public void setMo_endpay(Date mo_endpay) {
+		this.mo_endpay = mo_endpay;
+	}
+
 	@Override
 	public String toString() {
 		return "ApplyMonVO [mo_no=" + mo_no + ", up_filename=" + up_filename + ", mo_date="
-				+ mo_date + ", mo_result=" + mo_result + "]";
+				+ mo_date + ", mo_result=" + mo_result + ", mo_startpay=" + mo_startpay + ", mo_endpay=" + mo_endpay + "]";
 	}
 	public String getMember_id() {
 		return member_id;

@@ -134,7 +134,7 @@
 								</a>
 							</div>
 							<div class="intro_Button intro_Button2">
-								<a href="javascript:apply_form('${isLogOn}','${contextPath}/month/monthApplyForm1.do',
+								<a href="javascript:apply_form('${isLogOn}','${contextPath}/month/monthApplyForm0.do',
 								'${contextPath}/member/loginForm.do')">
 									<div class="intro_apply_btn2">
 										<p>2023청년월세지원 신청</p>

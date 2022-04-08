@@ -76,7 +76,7 @@
 					</div>
 					<div class="intro_cnt3">
 						<h3>○ 신규신청</h3>
-						<p class="intro_cnt1_tg">청년월세신청은 신청기간동안 청년이 거주하는 주민등록상 주소지 관할
+						<p class="intro_cnt1_tg">귀환신혼부부전세지원신청은 신청기간동안 청년이 거주하는 주민등록상 주소지 관할
 							읍면동에 신청</p>
 						<h3>○ 변경신청</h3>
 						<div class="intro_cnt1_tg">
@@ -128,10 +128,10 @@
 						<div class="intro_applys">
 							<div class="intro_Button intro_Button2">
 								<a
-									href="javascript:apply_form('${isLogOn}','${contextPath}/back/backApplyForm1.do',
+									href="javascript:apply_form('${isLogOn}','${contextPath}/back/backApplyForm0.do',
 								'${contextPath}/member/loginForm.do')">
 									<div class="intro_apply_btn2">
-										<p>2023귀환신혼부부전세지원 신청</p>
+										<p>귀환신혼부부전세지원 신청</p>
 									</div>
 								</a>
 							</div>

@@ -51,6 +51,12 @@
 			value="/WEB-INF/views/shareApply/shareApplyResult.jsp" />
 	</definition>
 	
+	<definition name="/share/shareSelectedResult" extends="baseLayout">
+		<put-attribute name="title" value="선정결과확인" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/shareApply/shareSelectedResult.jsp" />
+	</definition>
+	
 	
 
 </tiles-definitions>

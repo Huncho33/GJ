@@ -15,6 +15,6 @@ public interface ApplyRentReturnDAO {
 	void insertNewFile(Map applyrentReturnMap) throws DataAccessException;
 	int insertResult(Map return_no) throws DataAccessException;
 	int insertResultNO();
-	List findAll(String member_id);
+	ApplyRentReturnVO findAll(String member_id);
 	ApplyRentReturnVO findNo(int return_no);
 }

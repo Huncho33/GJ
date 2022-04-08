@@ -51,6 +51,11 @@
 			value="/WEB-INF/views/rentApply/rentApplyResult.jsp" />
 	</definition>
 	
+	<definition name="/rent/rentSelectedResult" extends="baseLayout">
+		<put-attribute name="title" value="선정결과확인" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/rentApply/rentSelectedResult.jsp" />
+	</definition>
 	
 
 </tiles-definitions>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+	<definition name="baseLayout"
+		template="/WEB-INF/views/common/layout.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="header"
+			value="/WEB-INF/views/common/header.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer"
+			value="/WEB-INF/views/common/footer.jsp" />
+	</definition>
+	
+	<!--월세지원  -->
+	<definition name="/admin/adminApply/adminMonthApply"
+		extends="baseLayout">
+		<put-attribute name="title" value="월세신청관리페이지" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/adminApply/adminMonthApply/adminMonthApply.jsp" />
+	</definition>
+	
+	<definition name="/admin/adminApply/adminSearchMonthApply"
+		extends="baseLayout">
+		<put-attribute name="title" value="월세신청검색페이지" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/adminApply/adminMonthApply/adminSearchMonthApply.jsp" />
+	</definition>
+	
+	<definition name="/admin/adminApply/adminViewApply"
+		extends="baseLayout">
+		<put-attribute name="title" value="월세신청상세페이지" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/adminApply/adminMonthApply/adminViewApply.jsp" />
+	</definition>
+	
+	
+	<!-- <definition name="/adminApply/adminRentApply"
+		extends="baseLayout">
+		<put-attribute name="title" value="전세신청관리페이지" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/adminApply/adminMonApply/adminMonthApply.jsp" />
+	</definition>
+	 -->
+	<!-- <definition name="/adminApply/adminShareApply"
+		extends="baseLayout">
+		<put-attribute name="title" value="공공임대신청관리페이지" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/adminApply/adminMonApply/adminMonthApply.jsp" />
+	</definition>
+ -->
+	
+
+
+
+
+</tiles-definitions>

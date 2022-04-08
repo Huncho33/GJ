@@ -66,9 +66,9 @@ public class ApplyShareDAOImpl implements ApplyShareDAO {
 
 	// 결과페이지
 	@Override
-	public List findAll(String member_id) {
-		List<ApplyShareVO> list = null;
-		list = sqlSession.selectList("mapper.share.all", member_id);
+	public ApplyShareVO findAll(String member_id) {
+		ApplyShareVO list = null;
+		list = sqlSession.selectOne("mapper.share.all", member_id);
 		return list;
 	}
 

@@ -33,8 +33,8 @@ public class ApplyMonServiceImpl implements ApplyMonService{
 		}
 	
 	@Override
-	public List findAll(String id) {
-		List list = null;
+	public ApplyMonVO findAll(String id) {
+		ApplyMonVO list = null;
 		list = applymonDAO.findAll(id);
 		return list;
 	}

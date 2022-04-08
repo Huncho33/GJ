@@ -33,8 +33,8 @@ public class ApplyShareServiceImpl implements ApplyShareService{
 		}
 	
 	@Override
-	public List findAll(String id) {
-		List list = null;
+	public ApplyShareVO findAll(String id) {
+		ApplyShareVO list = null;
 		list = applyShareDAO.findAll(id);
 		return list;
 	}

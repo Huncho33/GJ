@@ -68,9 +68,9 @@ public class ApplyRentReturnDAOImpl implements ApplyRentReturnDAO {
 
 	// 결과페이지
 	@Override
-	public List findAll(String member_id) {
-		List<ApplyMonVO> list = null;
-		list = sqlSession.selectList("mapper.rentReturn.all", member_id);
+	public ApplyRentReturnVO findAll(String member_id) {
+		ApplyRentReturnVO list = null;
+		list = sqlSession.selectOne("mapper.rentReturn.all", member_id);
 		return list;
 	}
 

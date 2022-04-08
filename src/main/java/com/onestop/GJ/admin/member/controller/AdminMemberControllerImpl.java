@@ -45,7 +45,6 @@ public class AdminMemberControllerImpl implements AdminMemberController {
 		
 		int section = Integer.parseInt(((_section==null)? "1":_section));
 		int pageNum = Integer.parseInt(((_pageNum==null)? "1":_pageNum));
-		
 		Map pagingMap = new HashMap();
 		pagingMap.put("section", section);
 		pagingMap.put("pageNum", pageNum);
