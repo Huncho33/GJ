@@ -207,7 +207,20 @@ var applyBarChartData = {
          datasets : [
                {
                   label : '신청자수',
-                  backgroundColor : "#1E90FF",
+                  backgroundColor: [ 
+                 	 'rgba(255, 99, 132, 0.5)', 
+                 	 'rgba(255, 206, 86, 0.5)', 
+                 	 'rgba(75, 192, 192, 0.5)', 
+                 	 'rgba(153, 102, 255, 0.5)', 
+                 	 'rgba(255, 159, 64, 0.5)'
+                 	 ], 
+                 	 borderColor: [
+                 		 'rgb(255, 99, 132,1.5)', 
+                 		 'rgba(255, 206, 86, 1.5)', 
+                 		 'rgba(75, 192, 192, 1.5)', 
+                 		 'rgba(153, 102, 255, 1.5)',
+                 		 'rgba(255, 159, 64, 1.5)'
+                 		 ],
                   data : [
                      ${searchMap.searchMonApply},
                      ${searchMap.searchRentApply},
@@ -228,7 +241,12 @@ var barChartData = {
         datasets : [
               {
                  label : '방문자 수',
-                 backgroundColor : "#1E90FF",
+                 backgroundColor:  
+                 	 'rgba(54, 162, 235, 0.5)'
+                 	 , 
+                 	 borderColor: 
+                 		 'rgba(54, 162, 235, 1.5)'
+                 		 ,
                  data : 
                     ${searchAddrList},
                    
@@ -497,8 +515,8 @@ var ageData = {
 
 				<canvas id="cityChart"></canvas>
 
-				<table border="1" align="center" width="100%">
-					<tr align="center" bgcolor="lightgreen">
+				<table id="adm_visitList_tab" border="1" align="center" width="100%">
+					<tr height="40" align="center" bgcolor="#abd1f6">
 						<td width="11$"><b>구별</b></td>
 						<td width="11$"><b>수성구</b></td>
 						<td width="11$"><b>북구</b></td>

@@ -221,7 +221,21 @@
             datasets : [
                   {
                      label : '신청자수',
-                     backgroundColor : "#1E90FF",
+                     backgroundColor: [ 
+                    	 'rgba(255, 99, 132, 0.5)', 
+                    	 'rgba(255, 206, 86, 0.5)', 
+                    	 'rgba(75, 192, 192, 0.5)', 
+                    	 'rgba(153, 102, 255, 0.5)', 
+                    	 'rgba(255, 159, 64, 0.5)'
+                    	 ], 
+                    	 borderColor: [
+                    		 'rgb(255, 99, 132,1.5)', 
+                    		 'rgba(255, 206, 86, 1.5)', 
+                    		 'rgba(75, 192, 192, 1.5)', 
+                    		 'rgba(153, 102, 255, 1.5)',
+                    		 'rgba(255, 159, 64, 1.5)'
+                    		 ],
+
                      data : [
                         ${totApply},
                         ${totApply},
@@ -243,7 +257,12 @@
              datasets : [
                    {
                       label : '방문자 수',
-                      backgroundColor : "#1E90FF",
+                      backgroundColor:  
+                     	 'rgba(54, 162, 235, 0.5)'
+                     	 , 
+                     	 borderColor: 
+                     		 'rgba(54, 162, 235, 1.5)'
+                     		 ,
                       data : 
                          ${getAddrTotVisit},
 	               datalabels: { 
@@ -334,6 +353,7 @@
 	margin-top: 50;
 	margin-bottom: 20;
 }
+
 #cityChart {
 	margin-top: 50;
 	margin-bottom: 20;
@@ -408,17 +428,14 @@
 				<div id="adm_visit_search">
 					<form name="v_search"
 						action="${contextPath}/admin/stats/searchVisit.do">
-						<span>[총 방문: ${getVisitTotCnt}명]</span> 
-						<span>[총 신청: ${totApply}명]</span> 
-						
-						<input type="submit"
-							name="search" value="검 색"> <input type="date" id="toDate"
-							name="toDate"> <input type="date" id="fromDate"
-							name="fromDate">
+						<span>[총 방문: ${getVisitTotCnt}명]</span> <span>[총 신청:
+							${totApply}명]</span> <input type="submit" name="search" value="검 색">
+						<input type="date" id="toDate" name="toDate"> <input
+							type="date" id="fromDate" name="fromDate">
 					</form>
 				</div>
 
-				<table id=adm_visitList_tab align="center" width="100%">
+				<table id="adm_visitList_tab" align="center" width="100%">
 					<tr height="40" align="center" bgcolor="#abd1f6">
 						<td><b>접속일자</b></td>
 						<td><b>아이디</b></td>
@@ -503,21 +520,21 @@
 						</c:choose>
 					</c:if>
 				</div>
-	
-				
-				
+
+
+
 				<div>
 					<canvas id="visitTotChart"></canvas>
 				</div>
-				
+
 				<div>
 					<canvas id="applyChart"></canvas>
 				</div>
-				
+
 				<canvas id="cityChart"></canvas>
 
-				<table border="1" align="center" width="100%">
-					<tr align="center" bgcolor="lightgreen">
+				<table id="adm_visitList_tab" border="1" align="center" width="100%">
+					<tr height="40" align="center" bgcolor="#abd1f6">
 						<td width="11$"><b>구별</b></td>
 						<td width="11$"><b>수성구</b></td>
 						<td width="11$"><b>북구</b></td>
