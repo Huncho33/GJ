@@ -143,7 +143,7 @@
 				onsubmit="return formCheck(this)">
 				<div id="monthApply_title">
 					<p class="monthApply_tit" style="font-weight: bold;">
-						<i class="fa-solid fa-pen"></i>&nbsp;월세지원 신청 자격 확인
+						<i class="fa-solid fa-pen"></i>&nbsp;전세반환보증금이자지원 신청 자격 확인
 					</p>
 				</div>
 
@@ -151,7 +151,7 @@
 				<div id="applyCond_cnt1">
 					<div id="applyCond_tit1">
 						<p>
-							<i class="fa-solid fa-circle-dot"></i>&nbsp;&nbsp;대구광역시 청년 월세 지원은
+							<i class="fa-solid fa-circle-dot"></i>&nbsp;&nbsp;대구광역시 전세반환보증금이자 지원은
 							만 19~34세 이하 부모님과 별도 거주 중인 무주택 청년인 지원자만 신청가능합니다. 본인은 해당 조건에 포함되나요?
 							<span style="font-size: 10pt; color: gray;">(공고월 기준 만 나이)</span>
 						</p>

@@ -15,6 +15,6 @@ public interface ApplyRentDAO {
 	void insertNewFile(Map applyrentMap) throws DataAccessException;
 	int insertResult(Map rent_no) throws DataAccessException;
 	int insertResultNO();
-	List findAll(String member_id);
+	ApplyRentVO findAll(String member_id);
 	ApplyRentVO findNo(int rent_no);
 }

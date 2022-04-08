@@ -84,6 +84,7 @@
          where member_id=#{member_id}
       ]]>
 	</select>
+	
 	<select id="findNo" resultMap="applyResult">
 		<![CDATA[
          select * 
@@ -91,6 +92,6 @@
          where mo_no=#{mo_no}
       ]]>
 	</select>	
-		
+	
 
 </mapper>

@@ -2,6 +2,7 @@ package com.onestop.GJ.apply.rent_return.controller;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -26,9 +27,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.onestop.GJ.apply.mon23.controller.ApplyMonController;
-import com.onestop.GJ.apply.mon23.vo.ApplyMonFileVO;
-import com.onestop.GJ.apply.mon23.vo.ApplyMonVO;
 import com.onestop.GJ.apply.rent_return.service.ApplyRentReturnService;
 import com.onestop.GJ.apply.rent_return.vo.ApplyRentReturnFileVO;
 import com.onestop.GJ.apply.rent_return.vo.ApplyRentReturnVO;
@@ -36,7 +34,7 @@ import com.onestop.GJ.member.vo.MemberVO;
 import com.onestop.GJ.mypage.service.MypageService;
 
 @Controller("ApplyRentReturnControllerImpl")
-public class ApplyRentReturnControllerImpl implements ApplyMonController {
+public class ApplyRentReturnControllerImpl implements ApplyRentReturnController {
 
 	private static String rentReturnApply_REPO = "C:\\GJ\\file_repo\\apply\\rentReturn";
 	@Autowired
@@ -47,7 +45,39 @@ public class ApplyRentReturnControllerImpl implements ApplyMonController {
 	private MemberVO memberVO;
 	@Autowired
 	private ApplyRentReturnVO applyrentReturnVO;
-
+	
+	// 신청한 아이디 있는지 체크
+		@RequestMapping(value = "/ret/rentReturnApplyForm0.do", method = { RequestMethod.GET, RequestMethod.POST })
+		private ResponseEntity applyCheck(HttpServletRequest request, HttpServletResponse response) throws Exception {
+			response.setContentType("text/html; charset=utf-8");
+			request.setCharacterEncoding("utf-8");
+			String message = null;
+			ResponseEntity resEnt = null;
+			HttpHeaders responseHeaders = new HttpHeaders();
+			responseHeaders.add("content-Type", "text/html; charset=utf-8");
+			String viewName = (String) request.getAttribute("viewName");
+			System.out.println("viewName" + viewName);
+			HttpSession session = request.getSession();
+			memberVO = (MemberVO) session.getAttribute("member");
+			System.out.println("memberVO 값 불러오기" + memberVO);
+			String id = memberVO.getMember_id();
+			ApplyRentReturnVO list = applyrentReturnService.findAll(id);
+			System.out.println("apply 테이블 값 : " + list);
+			if (list != null && list.getMember_id().equals(id)) {
+				System.out.println("아이디값 가져옴: " + list.getMember_id());
+				message = "<script>";
+				message += " alert('이미 신청한 아이디입니다.');";
+				message += " location.href='" + request.getContextPath() + "/main.do'";
+				message += " </script>";
+			} else {
+				message = "<script>";
+				message += " location.href='" + request.getContextPath() + "/ret/rentReturnApplyForm1.do'";
+				message += " </script>";
+			}
+			return resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+		}
+	
+	
 	// 신청페이지 호출(신청자격조건화면)
 	@RequestMapping(value = "/ret/rentReturnApplyForm1.do", method = {RequestMethod.GET,RequestMethod.POST})
 	private ModelAndView applyForm(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -101,7 +131,7 @@ public class ApplyRentReturnControllerImpl implements ApplyMonController {
 		return resEntity;
 	}
 
-	// 신청페이지 화면 호출(monthApplyForm3)
+	// 신청페이지 화면 호출(rentReturnApplyForm3)
 	@RequestMapping(value = "/ret/rentReturnApplyForm3.do", method = RequestMethod.POST)
 	private ModelAndView applyForms(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = (String) request.getAttribute("viewName");
@@ -136,6 +166,7 @@ public class ApplyRentReturnControllerImpl implements ApplyMonController {
 
 	      List<String> fileList = upload(multipartRequest, RequestMethod.POST);
 	      List<ApplyRentReturnFileVO> imageFileList = new ArrayList<ApplyRentReturnFileVO>();
+	      fileList.removeAll(Arrays.asList("", null));
 	      if (fileList != null && fileList.size() != 0) {
 	         for (String fileName : fileList) {
 	        	 ApplyRentReturnFileVO applyrentReturnFileVO = new ApplyRentReturnFileVO();
@@ -234,8 +265,31 @@ public class ApplyRentReturnControllerImpl implements ApplyMonController {
 			return mav;
 		}
 		
-		
+		// 선정결과페이지확인
+		@RequestMapping(value = "/ret/rentReturnSelectedResult.do")
+		private ModelAndView retSelectedPage(HttpServletRequest request) throws Exception {
+			String viewName = (String) request.getAttribute("viewName");
+			System.out.println("viewName" + viewName);
+			ModelAndView mav = new ModelAndView();
+			HttpSession session = request.getSession();
+			memberVO = (MemberVO) session.getAttribute("member");
+			System.out.println(memberVO.getMember_id());
+			String id = memberVO.getMember_id();
+			ApplyRentReturnVO list = applyrentReturnService.findAll(id);
+			System.out.println(list);
+			mav.addObject("apply", list);
+			mav.setViewName(viewName);
+//			if (list != null && list.getMember_id().equals(id)) {
+	//
+//			}
+			if(list==null ) {
+				mav.addObject("message", "신청내역이 없는 아이디 입니다.");
+			}
+			else {
+			}
 
+			return mav;
+		}
 		
 
 }

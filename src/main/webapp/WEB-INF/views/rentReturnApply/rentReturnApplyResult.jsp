@@ -5,8 +5,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <c:set var="result" value="${param.result }" />
-<%-- <c:set var="apply" value="${articleMap.article}" />
-<c:set var="imageFileList" value="${articleMap.imageFileList}" /> --%>
 <%
 	request.setCharacterEncoding("UTF-8");
 %>
@@ -38,7 +36,7 @@
 				<div id="result_tit">
 					<p>
 						<input id="member_name" type="text" name="member_name"
-							value="${member.member_name}" disabled>님의 2023청년월세지원 신청
+							value="${member.member_name}" disabled>님의 전세반환보증금이자 신청
 						결과는<span><input id="result_title" type="text"
 							name="member_id" value="${no.ret_result}" disabled></span>입니다.
 					</p>
@@ -77,7 +75,7 @@
 						<tr class="dot_line">
 							<td class="fixed_join">:: 상세 사유</td>
 							<td><input type="text" name="Apply_PolicyName"
-								id="Apply_PolicyName" value="null"
+								id="Apply_PolicyName" value=""
 								style="border: 0; background: #fff;" disabled></td>
 						</tr>
 					</tbody>

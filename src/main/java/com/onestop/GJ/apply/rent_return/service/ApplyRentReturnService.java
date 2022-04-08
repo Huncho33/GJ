@@ -11,7 +11,7 @@ public interface ApplyRentReturnService {
 
 	int addResult(Map articleMap) throws Exception;
 
-	List findAll(String id);
+	ApplyRentReturnVO findAll(String id);
 
 	ApplyRentReturnVO findNo(int no);
 

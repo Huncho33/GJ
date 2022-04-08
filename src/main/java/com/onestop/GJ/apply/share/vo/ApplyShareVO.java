@@ -107,7 +107,7 @@ public class ApplyShareVO {
 
 	@Override
 	public String toString() {
-		return "ApplyMonVO [sh_no=" + sh_no + ", up_filename=" + up_filename + ", sh_date=" + sh_date + ", sh_result="
+		return "ApplyShareVO [sh_no=" + sh_no + ", up_filename=" + up_filename + ", sh_date=" + sh_date + ", sh_result="
 				+ sh_result + "]";
 	}
 

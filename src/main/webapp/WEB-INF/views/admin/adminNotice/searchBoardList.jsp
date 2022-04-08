@@ -56,7 +56,7 @@
 						<li><a id="khs_left khs_left2" class="khs_lnb"><p>신청
 									관리</p></a>
 							<ul class="khs_depth2">
-								<li><a href="">- 신청자 관리</a></li>
+								<li><a href="${contextPath}/admin/adminApply/adminMonthApply.do">- 신청자 관리</a></li>
 								<li><a href="">- 신청 통계</a></li>
 							</ul></li>
 						<li><a id="khs_left khs_left3" class="khs_lnb"><p>게시판

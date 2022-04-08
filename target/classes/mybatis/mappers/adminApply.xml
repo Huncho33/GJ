@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.adminApply">
+	<resultMap id="adminApplyResult" type="MemberVO">
+		<result property="member_id" column="member_id" />
+		<result property="member_pw" column="member_pw" />
+		<result property="member_name" column="member_name" />
+		<result property="member_gender" column="member_gender" />
+		<result property="member_birth" column="member_birth" />
+		<result property="member_phoneno" column="member_phoneno" />
+		<result property="member_email1" column="member_email1" />
+		<result property="member_email2" column="member_email2" />
+		<result property="member_zipcode" column="member_zipcode" />
+		<result property="member_roadAddress"
+			column="member_roadAddress" />
+		<result property="member_jibunAddress"
+			column="member_jibunAddress" />
+		<result property="member_namujiAddress"
+			column="member_namujiAddress" />
+		<result property="member_last_log" column="member_last_log" />
+		<result property="member_joinDate" column="member_joinDate" />
+		<result property="member_right" column="member_right" />
+	</resultMap>
+
+	<resultMap id="applyResult" type="ApplyMonVO">
+		<result property="mo_no" column="mo_no" />
+		<result property="up_filename" column="up_filename" />
+		<result property="member_id" column="member_id" />
+		<result property="mo_date" column="mo_date" />
+		<result property="mo_result" column="mo_result" />
+		<result property="mo_policy" column="mo_policy" />
+		<result property="mo_reason" column="mo_reason" />
+		<result property="mo_startpay" column="mo_startpay" />
+		<result property="mo_endpay" column="mo_endpay" />
+
+		<!-- -->
+		<association javaType="membervo" property="membervo">
+			<id column="member_id" property="member_id" />
+			<result column="member_name" property="member_name" />
+			<result property="member_phoneno" column="member_phoneno" />
+			<result property="member_email1" column="member_email1" />
+			<result property="member_email2" column="member_email2" />
+			<result property="member_zipcode" column="member_zipcode" />
+			<result property="member_roadAddress"
+				column="member_roadAddress" />
+			<result property="member_jibunAddress"
+				column="member_jibunAddress" />
+			<result property="member_namujiAddress"
+				column="member_namujiAddress" />
+		</association>
+	</resultMap>
+
+	<resultMap id="monFileResult" type="ApplyMonFileVO">
+		<result property="up_fileno" column="up_fileno" />
+		<result property="up_filename" column="up_filename" />
+		<result property="up_date" column="up_date" />
+		<result property="mo_no" column="mo_no" />
+	</resultMap>
+
+	<resultMap id="monApplyDetail" type="applyMonVO">
+		<result property="mo_policy" column="mo_policy" />
+		<result property="mo_result" column="mo_result" />
+		<result property="mo_no" column="mo_no" />
+
+		<association javaType="applymonfilevo"
+			property="applymonfilevo">
+			<id column="mo_no" property="mo_no" />
+			<result property="up_fileno" column="up_fileno" />
+			<result property="up_filename" column="up_filename" />
+			<result property="up_date" column="up_date" />
+		</association>
+	</resultMap>
+
+
+
+	<!-- 조인 테스트지우셈 -->
+	<!-- <select id="joinTable" resultMap="applyResult"> <![CDATA[ SELECT * 
+		FROM mon_apply A, MEMBER M WHERE A.MEMBER_ID = M.MEMBER_ID ]]> </select> -->
+	<!-- 조인 -->
+	<!-- <select id="joinTable" resultMap="applyResult"> <![CDATA[ SELECT ROW_NUMBER() 
+		OVER(ORDER BY A.mo_no) row_num , A.*, M.* FROM mon_apply A, MEMBER M WHERE 
+		A.MEMBER_ID = M.MEMBER_ID ORDER BY A.mo_no ]]> </select> -->
+
+	<select id="joinTable" resultMap="applyResult">
+		<![CDATA[
+		
+		select mo_no, member_id, Member_name, mo_date,  mo_result, MO_POLICY  from
+(SELECT	ROW_NUMBER() OVER(ORDER BY A.mo_no desc) as  row_num	,  mo_no  , A.member_id , Member_name, mo_date, mo_result, mo_policy
+		FROM	mon_apply A, MEMBER M
+		WHERE	A.MEMBER_ID = M.MEMBER_ID 
+		ORDER BY mo_no) 
+         where row_num between(#{section}-1)*100+(#{pageNum}-1)*10+1 and (#{section}-1)*100+#{pageNum}*10
+         ORDER BY mo_no desc
+      ]]>
+	</select>
+
+	<select id="selectMonApplyView" resultMap="applyResult">
+	<![CDATA[
+		select b.* from (select mo_no, a.member_id, m.member_name, member_phoneno, member_email1, member_roadaddress, member_jibunaddress, m.member_zipcode, m.member_namujiaddress, mo_policy, a.up_filename
+		FROM	mon_apply A, MEMBER M
+		WHERE	A.MEMBER_ID = M.MEMBER_ID ORDER BY mo_no) b
+		WHERE b.mo_no = #{mo_no}
+    ]]>
+	</select>
+
+	<!-- 검색창(신청) -->
+	<select id="selectApplyBySearchMember"
+		parameterType="java.util.Map" resultMap="applyResult">
+     <![CDATA[
+     
+      select a.* from(
+      select row_num, mo_no, member_id, member_name, mo_date,  mo_result, MO_POLICY  from
+(SELECT	ROW_NUMBER() OVER(ORDER BY A.mo_no desc) as  row_num,  mo_no  , A.member_id , Member_name, mo_date, mo_result, mo_policy
+		FROM	mon_apply A, MEMBER M
+		WHERE	A.MEMBER_ID = M.MEMBER_ID 
+		ORDER BY mo_no)  ]]>
+
+		<if test='searchType.equals("member_id")'>
+			where lower(member_id) like lower('%' || #{searchApply}
+			||
+			'%')) a
+		</if>
+		<if test='searchType.equals("member_name")'>
+			where lower(member_name) like lower('%' || #{searchApply}
+			|| '%')) a
+		</if>
+		<if test='searchType.equals("mo_result")'>
+			where lower(mo_result) like lower('%' ||
+			#{searchApply} ||
+			'%')) a
+		</if>
+      
+       <![CDATA[
+      where row_num between(#{section}-1)*100+(#{pageNum}-1)*10+1 and (#{section}-1)*100+#{pageNum}*10
+      order by member_id desc	
+		]]>
+
+	</select>
+
+	<!-- 총 회원수/ 검색 회원수 -->
+	<select id="selectTotMembers" resultType="int">
+	<![CDATA[
+		SELECT count(member_id) FROM member
+	]]>
+
+	</select>
+
+	<!-- <select id="selectSearchTotMembers" -->
+	<select id="selectSearchTotMembers"
+		parameterType="java.util.Map" resultType="int">
+    <![CDATA[
+     select count(member_id) from member
+    ]]>
+		<if test='searchType.equals("member_id")'>
+			where lower(member_id) like lower('%' || #{searchMember}
+			|| '%')
+		</if>
+		<if test='searchType.equals("member_name")'>
+			where lower(member_name) like lower('%' || #{searchMember}
+			|| '%')
+		</if>
+		<if test='searchType.equals("member_right")'>
+			where lower(member_right) like lower('%' ||
+			#{searchApply}
+			|| '%')
+		</if>
+	</select>
+
+	<!--검색창(신청) 총 검색 -->
+	<select id="selectSearchTotApply" parameterType="java.util.Map"
+		resultType="int">
+    <![CDATA[
+     select count(mo_no) from mon_apply
+    ]]>
+		<if test='searchType.equals("member_id")'>
+			where lower(member_id) like lower('%' || #{searchApply}
+			||
+			'%')
+		</if>
+		<if test='searchType.equals("member_name")'>
+			where lower(member_name) like lower('%' || #{searchApply}
+			|| '%')
+		</if>
+		<if test='searchType.equals("mo_result")'>
+			where lower(mo_result) like lower('%' || #{searchApply} ||
+			'%')
+		</if>
+	</select>
+
+	<!--회원 상세 조회하기 -->
+
+	<select id="selectMember" resultType="ApplyMonVO"
+		parameterType="int">
+    <![CDATA[
+      SELECT * from mon_apply
+      where mo_no = #{mo_no}  
+    ]]>
+	</select>
+
+	<select id="selectIdMember" resultType="MemberVO"
+		parameterType="String">
+    <![CDATA[
+      SELECT * from member
+      where member_id = #{member_id}  
+    ]]>
+	</select>
+
+	<select id="selectApplyMon" resultType="ApplyMonVO"
+		parameterType="int">
+    <![CDATA[
+      SELECT * from mon_apply
+      where mo_no = #{mo_no}  
+    ]]>
+	</select>
+
+	<select id="selectApplyMonFile" resultType="ApplyMonFileVO"
+		parameterType="int">
+    <![CDATA[
+      SELECT * from mon_file
+      where mo_no = #{mo_no}  
+    ]]>
+	</select>
+
+	<!--신청 상세 조회 테이블 -->
+	<select id="selectApplyDetail" parameterType="java.util.Map"
+		resultMap="monApplyDetail">
+		 
+		  <![CDATA[
+		select b.* from(
+      select mo_policy, mo_result, f.up_filename, member_id
+      from mon_apply A, Mon_file F
+      where A.mo_no = F.mo_no) b 
+      where b.mo_no =  #{mo_no}  
+ ]]>
+
+
+	</select>
+
+
+	<!-- 회원 정보 수정 -->
+	<update id="updateMember_adm" parameterType="java.util.HashMap">
+		UPDATE member
+		<set>
+			<if test=" member_pw!='' and member_pw!=null">
+				member_pw=#{member_pw},
+			</if>
+			<if test=" member_phoneno!='' and member_phoneno!=null">
+				member_phoneno=#{member_phoneno},
+			</if>
+			<if test=" member_email1!='' and member_email1!=null">
+				member_email1=#{member_email1},
+			</if>
+			<if test=" member_email2!='' and member_email2!=null">
+				member_email2=#{member_email2},
+			</if>
+			<if test=" member_zipcode!='' and member_zipcode!=null">
+				member_zipcode=#{member_zipcode},
+			</if>
+			<if test=" member_roadAddress!='' and member_roadAddress!=null">
+				member_roadAddress=#{member_roadAddress},
+			</if>
+			<if test=" member_jibunAddress!='' and member_jibunAddress!=null">
+				member_jibunAddress=#{member_jibunAddress},
+			</if>
+			<if
+				test=" member_namujiAddress!='' and member_namujiAddress!=null">
+				member_namujiAddress=#{member_namujiAddress},
+			</if>
+			<if test=" member_right!='' and member_right!=null">
+				member_right=#{member_right}
+			</if>
+		</set>
+		WHERE member_id=#{member_id}
+	</update>
+
+	<!-- 회원 삭제 -->
+	<delete id="deleteMember" parameterType="String">
+	<![CDATA[
+	   delete from member
+	   where
+	   member_id=#{member_id}
+	]]>
+	</delete>
+
+	<select id="all" resultMap="applyResult">
+		<![CDATA[
+         select * 
+         from mon_apply
+      ]]>
+	</select>
+
+	<select id="selectTotApply" resultType="int">
+	<![CDATA[
+		SELECT count(mo_no) FROM mon_apply
+	]]>
+
+	</select>
+
+
+	<!--신청 상태변경 -->
+	<update id="modifyAdminMon" parameterType="java.util.Map">
+		update mon_apply
+		set mo_result=#{_mo_result},
+		mo_reason=#{_mo_reason}
+		where mo_no=#{mo_no}
+	</update>
+
+	<!--신청 지급 날짜 -->
+	<update id="modifyAdminMonPay" parameterType="java.util.Map">
+		update mon_apply
+		set mo_startpay=#{_mo_startpay},
+		mo_endpay=#{_mo_endpay}
+		where mo_no=#{mo_no}
+	</update>
+
+</mapper>

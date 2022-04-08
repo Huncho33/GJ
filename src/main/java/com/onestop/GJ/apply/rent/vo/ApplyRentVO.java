@@ -108,7 +108,7 @@ public class ApplyRentVO {
 
 	@Override
 	public String toString() {
-		return "ApplyMonVO [rent_no=" + rent_no + ", up_filename=" + up_filename + ", member_id=" + member_id + ", rent_date="
+		return "ApplyRentVO [rent_no=" + rent_no + ", up_filename=" + up_filename + ", member_id=" + member_id + ", rent_date="
 				+ rent_date + ", mo_result=" + rent_result + "]";
 	}
 

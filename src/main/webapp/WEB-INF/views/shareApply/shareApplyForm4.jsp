@@ -25,7 +25,6 @@
 
 
 <script>
-
 	function cancel() {
 
 		if (confirm("정말 취소하시겠습니까?") == true) { //확인
@@ -39,7 +38,34 @@
 		}
 
 	}
-</script>
+
+	function attach(form){
+		if($("#attach1").val() ==""){
+			alert("필수 서류를 등록해주세요.");
+			return false;
+		}
+		if($("#attach2").val() ==""){
+			alert("필수 서류를 등록해주세요.");
+			return false;
+		}
+		if($("#attach3").val() ==""){
+			alert("필수 서류를 등록해주세요.");
+			return false;
+		}
+		if($("#attach4").val() ==""){
+			alert("필수 서류를 등록해주세요.");
+			return false;
+		}
+		if($("#attach5").val() ==""){
+			alert("필수 서류를 등록해주세요.");
+			return false;
+		}
+		else{
+			form.submit();
+		}
+	}
+	
+ </script>
 </head>
 <body>
 	<div id="monthApply_bground">
@@ -73,7 +99,7 @@
 						<tr class="dot_line">
 							<td class="fixed_join">:: 신청 분야</td>
 							<td><input type="text" name="Apply_PolicyName"
-								id="Apply_PolicyName" value="2023청년월세지원"
+								id="Apply_PolicyName" value="청년희망주택이자지원"
 								style="border: 0; background: #fff;" disabled></td>
 						</tr>
 					</table>
@@ -90,24 +116,30 @@
 
 									<tr>
 										<td class="fixed_join2">:: 요청서류 1</td>
-										<td class="table_Input"><input type="file" name="up_fileName" value="첨부파일 추가" /></td>
+										<td class="table_Input">
+										<input type="file" name="up_fileName1" id="attach1" value="첨부파일 추가" /></td>
 									</tr>
-									<tr>
+									 <tr>
 										<td class="fixed_join2">:: 요청서류 2</td>
-										<td class="table_Input"><input type="file" name="up_fileName" value="첨부파일 추가" /></td>
+										<td class="table_Input">
+										<input type="file" name="up_fileName2" id="attach2" value="첨부파일 추가" /></td>
 									</tr>
 									<tr>
 										<td class="fixed_join2">:: 요청서류 3</td>
-										<td class="table_Input"><input type="file" name="up_fileName" value="첨부파일 추가" /></td>
+										<td class="table_Input"><input type="file"
+											name="up_fileName3" id="attach3" value="첨부파일 추가" /></td>
 									</tr>
 									<tr>
 										<td class="fixed_join2">:: 요청서류 4</td>
-										<td class="table_Input"><input type="file" name="up_fileName" value="첨부파일 추가" /></td>
+										<td class="table_Input"><input type="file"
+											name="up_fileName4" id="attach4" value="첨부파일 추가" /></td>
 									</tr>
 									<tr>
 										<td class="fixed_join2">:: 요청서류 5</td>
-										<td class="table_Input"><input type="file" name="up_fileName" value="첨부파일 추가" /></td>
-									</tr>
+										<td class="table_Input"><input type="file"
+											name="up_fileName5" id="attach5" value="첨부파일 추가" /></td>
+									</tr>  
+									
 								</tbody>
 							</table>
 						</div>
@@ -116,10 +148,11 @@
 								<input type="reset" value="취소" onclick="cancel()">
 							</div>
 							<div class="join_btn join_btn2">
-								<input type="submit" id="nextBtn" value="다음단계" onclick="next()" />
+								<input type="button" id="nextBtn" value="다음단계"
+									onclick="attach(form)" />
 							</div>
 						</div>
-						
+
 						<div id="d_file">
 							<input type="hidden" name="sh_reason" value="null" /> <input
 								type="hidden" name="sh_policy" value="null" /> <input

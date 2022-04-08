@@ -50,6 +50,9 @@ $(document).ready(function(){
         }else if($("#check_2").is(":checked") == false){
             alert("필수 약관에 동의 하셔야 다음 단계로 진행 가능합니다.");
             return false;
+        }else if($("#check_3").is(":checked") == false){
+            alert("필수 약관에 동의 하셔야 다음 단계로 진행 가능합니다.");
+            return false;
         }else{
             $("#kkhs_frm").submit();
         }
@@ -79,11 +82,11 @@ $(document).ready(function(){
             <form id="kkhs_frm" name="kkhs_frm" method="post"  enctype="multipart/form-data" 
                action="${contextPath}/rent/rentApplyForm3.do" >
                <div id="kkhs_agreeBox" class="kkhs_inner">
-                  <h2 class="kkhs_joinTit">(필수)홈페이지이용약관</h2>
+                  <h2 class="kkhs_joinTit">(필수)신청 유의사항</h2>
                   <div class="kkhs_box">
                      <textarea class="kkhs_cont" id="kkhs_scroll" readonly>
                      
-원스톱청년주거 홈페이지 이용약관
+원스톱청년주거 신청 시 유의사항
 
 제1장 총칙 
 
@@ -113,7 +116,7 @@ $(document).ready(function(){
   1. 이용자 : 서비스에 접속하여 원스톱청년주거가 제공하는 서비스를 받는 회원 및 비회원
   2. 회원 : 서비스에 접속하여 이 약관에 동의하고, ID(고유번호)와 PASSWORD(비밀번호)를 
       발급 받아 실명확인 절차를 거친 자
-  3. 비회원 : 회원가입을 하지 않고 원스톱청년주거가 제공하는 서비스를 이용하는 자
+  3. 비회원 : 정부지원신청을 하지 않고 원스톱청년주거가 제공하는 서비스를 이용하는 자
   4. ID(고유번호) : 회원 식별과 회원의 서비스 이용을 위하여 이용자가 선정하고 원스톱청년주거가  
       승인하는 영문자와 숫자의 조합 (하나의 주민등록번호에 하나의 ID만 발급, 
       이용 가능합니다)
@@ -376,25 +379,25 @@ $(document).ready(function(){
                </textarea>
                      <div class="kkhs_checkBox kkhs_fl-r ">
                         <input type="checkbox" class="kkhs_agreeChk" name="check" id="check_1"
-                           style="float: right;"> 회원가입 약관에 동의합니다.
+                           style="float: right;"> 정부지원신청 약관에 동의합니다.
                      </div>
                   </div>
                   <div class="kkhs_box">
                      <h2 class="kkhs_joinTit">(필수)개인정보처리약관</h2>
                      <textarea class="kkhs_cont" id="kkhs_scroll">
-원스톱청년주거 서비스 개인정보 수집 및 이용에 대한 안내
+원스톱청년주거 신청자 개인정보 수집 및 이용에 대한 안내
       
 원스톱청년주거는 정보주체의 동의에 의해 개인정보를 수집·이용합니다.
       
 정보주체는 개인정보의 수집·이용목적에 대한 동의를 거부할 수 있으며,   
-동의 거부 시 원스톱청년주거에 회원가입이 되지 않으며,
+동의 거부 시 원스톱청년주거에 정부지원신청이 되지 않으며,
 원스톱청년주거 홈페이지에서 제공하는 서비스를 이용할 수 없습니다.
       
 홈페이지 회원관리를 위해 수집·보유하고 있는 주요 개인정보 파일은 다음과 같습니다.
 
 - 수집 및 이용목적 : 원스톱청년주거 홈페이지의 원활한 서비스 이용
 - 개인정보 항목 : 이름, 생년월일, 성별, 전화번호, 휴대전화번호, 이메일, 주소, 혼인신고일자
-- 보유 및 이용기간 : 회원가입 ~ 회원탈퇴(탈퇴 시 삭제)
+- 보유 및 이용기간 : 정부지원신청 ~ 신청취소(취소 시 삭제)
 - 정보주체의 권리 : 본인에 관한 개인정보 열람, 정정.삭제 청구권
                </textarea>
                      <div class="kkhs_checkBox kkhs_fl-r">
@@ -403,9 +406,9 @@ $(document).ready(function(){
                      </div>
                   </div>
                   <div class="kkhs_box">
-                     <h2 class="kkhs_joinTit">(선택)소식지수신여부동의</h2>
+                     <h2 class="kkhs_joinTit">(필수)지원자격 및 조건</h2>
                      <textarea class="kkhs_cont" id="kkhs_scroll" readonly>
-원스톱청년주거는 신혼부부 전세자금  융자이자 지원을 위해  개인정보보호법   제15조, 제 18조, 제22조 및 신용정보의 이용 및 보호에 관한 법률 제 15조2항, 32조 1항, 33조, 24조에  의거  동의가 필요합니다
+원스톱청년주거는 전월세자금  융자이자 지원을 위해  개인정보보호법   제15조, 제 18조, 제22조 및 신용정보의 이용 및 보호에 관한 법률 제 15조2항, 32조 1항, 33조, 24조에  의거  동의가 필요합니다
                
 ■ 정보 수집·이용 출처  및  목적
        수집출처 : 대구광역시
@@ -428,8 +431,8 @@ $(document).ready(function(){
                    </textarea>
                      <div style="float: center">
                         <div class="kkhs_checkBox kkhs_fl-r">
-                           <input type="checkbox" class="kkhs_agreeChk" name="check"
-                              style="float: right;"> 소식지 수신 여부에 동의합니다.
+                           <input type="checkbox" class="kkhs_agreeChk" name="check" id="check_3"
+                              style="float: right;"> 지원자격 및 조건 약관 여부에 동의합니다.
                         </div>
                      </div>
                   </div>

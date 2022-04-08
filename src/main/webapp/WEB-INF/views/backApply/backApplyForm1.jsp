@@ -151,7 +151,7 @@
 				<div id="applyCond_cnt1">
 					<div id="applyCond_tit1">
 						<p>
-							<i class="fa-solid fa-circle-dot"></i>&nbsp;&nbsp;대구광역시 청년 월세 지원은
+							<i class="fa-solid fa-circle-dot"></i>&nbsp;&nbsp;대구광역시 귀환신혼부부전세지원은
 							만 19~34세 이하 부모님과 별도 거주 중인 무주택 청년인 지원자만 신청가능합니다. 본인은 해당 조건에 포함되나요?
 							<span style="font-size: 10pt; color: gray;">(공고월 기준 만 나이)</span>
 						</p>

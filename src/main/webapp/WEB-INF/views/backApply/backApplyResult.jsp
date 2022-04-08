@@ -5,8 +5,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <c:set var="result" value="${param.result }" />
-<%-- <c:set var="apply" value="${articleMap.article}" />
-<c:set var="imageFileList" value="${articleMap.imageFileList}" /> --%>
 <%
 	request.setCharacterEncoding("UTF-8");
 %>
@@ -77,7 +75,7 @@
 						<tr class="dot_line">
 							<td class="fixed_join">:: 상세 사유</td>
 							<td><input type="text" name="Apply_PolicyName"
-								id="Apply_PolicyName" value="null"
+								id="Apply_PolicyName" value=""
 								style="border: 0; background: #fff;" disabled></td>
 						</tr>
 					</tbody>

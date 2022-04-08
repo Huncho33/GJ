@@ -2,6 +2,8 @@ package com.onestop.GJ.apply.back.controller;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -29,6 +31,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.onestop.GJ.apply.back.service.ApplyBackService;
 import com.onestop.GJ.apply.back.vo.ApplyBackFileVO;
 import com.onestop.GJ.apply.back.vo.ApplyBackVO;
+import com.onestop.GJ.apply.mon23.vo.ApplyMonVO;
 import com.onestop.GJ.member.vo.MemberVO;
 import com.onestop.GJ.mypage.service.MypageService;
 
@@ -45,8 +48,39 @@ public class ApplyBackControllerImpl implements ApplyBackController {
 	@Autowired
 	private ApplyBackVO applyBackVO;
 
+	// 신청한 아이디 있는지 체크
+		@RequestMapping(value = "/back/backApplyForm0.do", method = { RequestMethod.GET, RequestMethod.POST })
+		private ResponseEntity applyCheck(HttpServletRequest request, HttpServletResponse response) throws Exception {
+			response.setContentType("text/html; charset=utf-8");
+			request.setCharacterEncoding("utf-8");
+			String message = null;
+			ResponseEntity resEnt = null;
+			HttpHeaders responseHeaders = new HttpHeaders();
+			responseHeaders.add("content-Type", "text/html; charset=utf-8");
+			String viewName = (String) request.getAttribute("viewName");
+			System.out.println("viewName" + viewName);
+			HttpSession session = request.getSession();
+			memberVO = (MemberVO) session.getAttribute("member");
+			System.out.println("memberVO 값 불러오기" + memberVO);
+			String id = memberVO.getMember_id();
+			ApplyBackVO list = applyBackService.findAll(id);
+			System.out.println("apply 테이블 값 : " + list);
+			if (list != null && list.getMember_id().equals(id)) {
+				System.out.println("아이디값 가져옴: " + list.getMember_id());
+				message = "<script>";
+				message += " alert('이미 신청한 아이디입니다.');";
+				message += " location.href='" + request.getContextPath() + "/main.do'";
+				message += " </script>";
+			} else {
+				message = "<script>";
+				message += " location.href='" + request.getContextPath() + "/back/backApplyForm1.do'";
+				message += " </script>";
+			}
+			return resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+		}
+
 	// 신청페이지 호출(신청자격조건화면)
-	@RequestMapping(value = "/back/backApplyForm1.do", method = {RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "/back/backApplyForm1.do", method = { RequestMethod.GET, RequestMethod.POST })
 	private ModelAndView applyForm(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = (String) request.getAttribute("viewName");
 		System.out.println("viewName" + viewName);
@@ -98,7 +132,7 @@ public class ApplyBackControllerImpl implements ApplyBackController {
 		return resEntity;
 	}
 
-	// 신청페이지 화면 호출(monthApplyForm3)
+	// 신청페이지 화면 호출(backApplyForm3)
 	@RequestMapping(value = "/back/backApplyForm3.do", method = RequestMethod.POST)
 	private ModelAndView applyForms(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = (String) request.getAttribute("viewName");
@@ -109,131 +143,154 @@ public class ApplyBackControllerImpl implements ApplyBackController {
 		return mav;
 	}
 
-	
 	// 신청등록
 	@Override
 	@RequestMapping(value = "/back/backApplyForm4.do", method = RequestMethod.POST)
 	@ResponseBody
-	public ResponseEntity insertResult(MultipartHttpServletRequest multipartRequest, HttpServletResponse response) throws Exception {
+	public ResponseEntity insertResult(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)
+			throws Exception {
 		multipartRequest.setCharacterEncoding("utf-8");
-	    String up_fileName = null;
-	    Map articleMap = new HashMap();
-	      Enumeration enu = multipartRequest.getParameterNames();
-	      while (enu.hasMoreElements()) {
-	         String name = (String) enu.nextElement();
-	         String value = multipartRequest.getParameter(name);
-	         articleMap.put(name, value);
-	      }
-	      
-	      HttpSession session = multipartRequest.getSession();
-	      MemberVO memberVO = (MemberVO) session.getAttribute("member");
-	      String member_id = memberVO.getMember_id();
-	      articleMap.put("member_id", member_id);
-	      System.out.println("아티클맵 : "+ articleMap);
+		String up_fileName = null;
+		Map articleMap = new HashMap();
+		Enumeration enu = multipartRequest.getParameterNames();
+		while (enu.hasMoreElements()) {
+			String name = (String) enu.nextElement();
+			System.out.println("컨트롤러 이름:" + name);
+			String value = multipartRequest.getParameter(name);
+			System.out.println("컨트롤러 값 :" + value);
+			articleMap.put(name, value);
+		}
 
-	      List<String> fileList = upload(multipartRequest, RequestMethod.POST);
-	      List<ApplyBackFileVO> imageFileList = new ArrayList<ApplyBackFileVO>();
-	      if (fileList != null && fileList.size() != 0) {
-	         for (String fileName : fileList) {
-	        	 ApplyBackFileVO applyBackFileVO = new ApplyBackFileVO();
-	        	 applyBackFileVO.setUp_filename(fileName);
-	            imageFileList.add(applyBackFileVO);
-	         }
-	         articleMap.put("imageFileList", imageFileList);
-	      }
+		HttpSession session = multipartRequest.getSession();
+		MemberVO memberVO = (MemberVO) session.getAttribute("member");
+		String member_id = memberVO.getMember_id();
+		articleMap.put("member_id", member_id);
+		System.out.println("아티클맵 : " + articleMap);
+		List<String> fileList = upload(multipartRequest, RequestMethod.POST);
+		List<ApplyBackFileVO> imageFileList = new ArrayList<ApplyBackFileVO>();
+		System.out.println("fileList : " + fileList);
+		System.out.println("imageFileList : " + imageFileList);
+		fileList.removeAll(Arrays.asList("", null));
+		System.out.println("fileList 삭제후 : " + fileList);
+		System.out.println("imageFileList : " + imageFileList);
+		if (fileList != null && fileList.size() != 0) {
+			for (String fileName : fileList) {
+				ApplyBackFileVO applyBackFileVO = new ApplyBackFileVO();
+				applyBackFileVO.setUp_filename(fileName);
+				imageFileList.add(applyBackFileVO);
+			}
+			articleMap.put("imageFileList", imageFileList);
+		}
 		String message;
 		ResponseEntity resEnt = null;
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 
 		try {
-			 int ba_no = applyBackService.addResult(articleMap);
-			 if (imageFileList != null && imageFileList.size() != 0) {
-		            for (ApplyBackFileVO applyBackFileVO : imageFileList) {
-		               up_fileName = applyBackFileVO.getUp_filename();
-		               System.out.println("apply : " + applyBackFileVO.toString());
-		               File srcFile = new File(backApply_REPO + "\\" + "temp" + "\\" + up_fileName);
-		               File destDir = new File(backApply_REPO + "\\" + ba_no);
-		               // destDir.mkdirs();
-		               FileUtils.moveFileToDirectory(srcFile, destDir, true);
-		            }
-		         }
+			int ba_no = applyBackService.addResult(articleMap);
+			if (imageFileList != null && imageFileList.size() != 0) {
+				for (ApplyBackFileVO applyBackFileVO : imageFileList) {
+					up_fileName = applyBackFileVO.getUp_filename();
+					System.out.println("apply : " + applyBackFileVO.toString());
+					File srcFile = new File(backApply_REPO + "\\" + "temp" + "\\" + up_fileName);
+					File destDir = new File(backApply_REPO + "\\" + ba_no);
+					// destDir.mkdirs();
+					FileUtils.moveFileToDirectory(srcFile, destDir, true);
+				}
+			}
 
-		         message = "<script>";
-		         message += " alert('신청이 완료되었습니다..');";
-		         message += " location.href='" + multipartRequest.getContextPath() + "/back/backApplyResult.do?ba_no="+ba_no+"';";
-		         message += " </script>";
-		         resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
-		         System.out.println("신청번호:"+ba_no);
+			message = "<script>";
+			message += " alert('신청이 완료되었습니다.');";
+			message += " location.href='" + multipartRequest.getContextPath() + "/back/backApplyResult.do?ba_no="
+					+ ba_no + "';";
+			message += " </script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+			System.out.println("신청번호:" + ba_no);
 
-		      } catch (Exception e) {
-		         if (imageFileList != null && imageFileList.size() != 0) {
-		            for (ApplyBackFileVO applyBackFileVO : imageFileList) {
-		               up_fileName = applyBackFileVO.getUp_filename();
-		               File srcFile = new File(backApply_REPO + "\\" + "temp" + "\\" + up_fileName);
-		               srcFile.delete();
-		            }
-		         }
+		} catch (Exception e) {
+			if (imageFileList != null && imageFileList.size() != 0) {
+				for (ApplyBackFileVO applyBackFileVO : imageFileList) {
+					up_fileName = applyBackFileVO.getUp_filename();
+					File srcFile = new File(backApply_REPO + "\\" + "temp" + "\\" + up_fileName);
+					srcFile.delete();
+				}
+			}
 
-		         message = " <script>";
-		         message += " alert('오류가 발생했습니다. 다시 시도해 주세요');');";
-		         message += " location.href='" + multipartRequest.getContextPath() + "/back/backApplyForm3.do'; ";
-		         message += " </script>";
-		         resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
-		         e.printStackTrace();
-		      }
-		      return resEnt;
-		      //
-		   }
-	 // 다중 파일 업로드하기
-	 private List<String> upload(MultipartHttpServletRequest multipartRequest, RequestMethod post) throws Exception {
-	      List<String> fileList = new ArrayList<String>();
-	      Iterator<String> fileNames = multipartRequest.getFileNames();
-	      while (fileNames.hasNext()) {
-	         String fileName = fileNames.next();
-	         MultipartFile mFile = multipartRequest.getFile(fileName);
-	         String originalFileName = mFile.getOriginalFilename();
-	         fileList.add(originalFileName);
-	         File file = new File(backApply_REPO + "\\" + "temp" + "\\" + fileName);
-	         if (mFile.getSize() != 0) { // File Null Check
-	            if (!file.exists()) { // 경로상에 파일이 존재하지 않을 경우
-	               file.getParentFile().mkdirs(); // 경로에 해당하는 디렉토리들을 생성
-	               mFile.transferTo(new File(backApply_REPO + "\\" + "temp" + "\\" + originalFileName));
-	            }
-	         }
-	      }
-	      return fileList;
-	   }
-	
-	
-	
-	// 결과페이지
-		@RequestMapping(value = "/back/backApplyResult.do")
-		public ModelAndView findAll(HttpServletRequest request, @RequestParam("ba_no") int ba_no ) {
-			String viewName = (String) request.getAttribute("viewName");
-			System.out.println("ba_no : "+ba_no);
-			System.out.println("viewName" + viewName);
-			ModelAndView mav = new ModelAndView();
-			System.out.println("1");
-			HttpSession session = request.getSession();
-			memberVO = (MemberVO) session.getAttribute("member");
-			System.out.println(memberVO.getMember_id());
-			String id = memberVO.getMember_id();
-			int no = applyBackVO.getBa_no();
-			
-//			List list = applymonService.findAll(id);
-			
-			ApplyBackVO applyno = applyBackService.findNo(ba_no);
-//			System.out.println(list);
-
-//			mav.addObject("apply", list);
-			mav.addObject("no", applyno);
-			mav.setViewName(viewName);
-			return mav;
+			message = " <script>";
+			message += " alert('오류가 발생했습니다. 다시 시도해 주세요');');";
+			message += " location.href='" + multipartRequest.getContextPath() + "/back/backApplyForm3.do'; ";
+			message += " </script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+			e.printStackTrace();
 		}
-		
-		
+		return resEnt;
+		//
+	}
 
-		
+	// 다중 파일 업로드하기
+	private List<String> upload(MultipartHttpServletRequest multipartRequest, RequestMethod post) throws Exception {
+		List<String> fileList = new ArrayList<String>();
+		Iterator<String> fileNames = multipartRequest.getFileNames();
+		while (fileNames.hasNext()) {
+			String fileName = fileNames.next();
+			MultipartFile mFile = multipartRequest.getFile(fileName);
+			String originalFileName = mFile.getOriginalFilename();
+			fileList.add(originalFileName);
+			File file = new File(backApply_REPO + "\\" + "temp" + "\\" + fileName);
+			if (mFile.getSize() != 0) { // File Null Check
+				if (!file.exists()) { // 경로상에 파일이 존재하지 않을 경우
+					file.getParentFile().mkdirs(); // 경로에 해당하는 디렉토리들을 생성
+					mFile.transferTo(new File(backApply_REPO + "\\" + "temp" + "\\" + originalFileName));
+				}
+			}
+		}
+		return fileList;
+	}
+
+	// 결과페이지
+	@RequestMapping(value = "/back/backApplyResult.do")
+	public ModelAndView findAll(HttpServletRequest request, @RequestParam("ba_no") int ba_no) {
+		String viewName = (String) request.getAttribute("viewName");
+		System.out.println("ba_no : " + ba_no);
+		System.out.println("viewName" + viewName);
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		memberVO = (MemberVO) session.getAttribute("member");
+		System.out.println(memberVO.getMember_id());
+		String id = memberVO.getMember_id();
+		int no = applyBackVO.getBa_no();
+
+		ApplyBackVO applyno = applyBackService.findNo(ba_no);
+
+		mav.addObject("no", applyno);
+		mav.setViewName(viewName);
+		return mav;
+	}
+
+	// 선정결과페이지확인
+	@RequestMapping(value = "/back/backSelectedResult.do")
+	private ModelAndView backSelectedPage(HttpServletRequest request) throws Exception {
+		String viewName = (String) request.getAttribute("viewName");
+		System.out.println("viewName" + viewName);
+		ModelAndView mav = new ModelAndView();
+
+		HttpSession session = request.getSession();
+		memberVO = (MemberVO) session.getAttribute("member");
+//		System.out.println(memberVO.getMember_id());
+		String id = memberVO.getMember_id();
+		ApplyBackVO list = applyBackService.findAll(id);
+		System.out.println(list);
+
+		mav.addObject("apply", list);
+		mav.setViewName(viewName);
+		System.out.println("list값 : "+list);
+		if (list == null) {
+			System.out.println("result controller if문");
+			mav.addObject("message", "신청내역이 없는 아이디 입니다.");
+		} else {
+			System.out.println("else문");
+		}
+		return mav;
+	}
 
 }

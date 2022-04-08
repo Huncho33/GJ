@@ -29,7 +29,7 @@
 			<div id="month_intro_info">
 				<div class="month_intro_title">
 					<h2>
-						<i class="fa-solid fa-caret-right"></i> &nbsp;&nbsp;귀환신혼부부전세지원 소개
+						<i class="fa-solid fa-caret-right"></i> &nbsp;&nbsp;청년희망주택이자지원 소개
 					</h2>
 				</div>
 				<div class="month_intro_cnt">
@@ -128,10 +128,10 @@
 						<div class="intro_applys">
 							<div class="intro_Button intro_Button2">
 								<a
-									href="javascript:apply_form('${isLogOn}','${contextPath}/back/backApplyForm1.do',
+									href="javascript:apply_form('${isLogOn}','${contextPath}/share/shareApplyForm0.do',
 								'${contextPath}/member/loginForm.do')">
 									<div class="intro_apply_btn2">
-										<p>2023귀환신혼부부전세지원 신청</p>
+										<p>청년희망주택이자지원</p>
 									</div>
 								</a>
 							</div>

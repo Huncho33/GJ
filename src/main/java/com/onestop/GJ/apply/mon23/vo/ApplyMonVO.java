@@ -18,8 +18,27 @@ public class ApplyMonVO {
 	private String mo_policy;
 	private String mo_reason;
 	private String member_id;
+	private MemberVO membervo;
+	private ApplyMonFileVO applymonfileVO;
 	private Date mo_startpay;
 	private Date mo_endpay;
+	
+
+	public ApplyMonFileVO getApplymonfileVO() {
+		return applymonfileVO;
+	}
+
+	public void setApplymonfileVO(ApplyMonFileVO applymonfileVO) {
+		this.applymonfileVO = applymonfileVO;
+	}
+
+	public MemberVO getMembervo() {
+		return membervo;
+	}
+
+	public void setMembervo(MemberVO membervo) {
+		this.membervo = membervo;
+	}
 
 	public String getMo_policy() {
 		return mo_policy;
@@ -46,26 +65,27 @@ public class ApplyMonVO {
 	}
 
 	public String getUp_filename() {
-		try {
-			if (up_filename != null && up_filename.length() != 0) {
-				up_filename = URLDecoder.decode(up_filename, "UTF-8");
-			} // 파일의 null과 blank 처리하면서 디코딩합니다.
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
-		return up_filename;
+		 try {
+             if (up_filename != null && up_filename.length() != 0) {
+            	 up_filename = URLDecoder.decode(up_filename, "UTF-8");
+             }   // 파일의 null과 blank 처리하면서 디코딩합니다.
+          } catch (UnsupportedEncodingException e) {
+             e.printStackTrace();
+          }
+          return up_filename;
 	}
 
 	public void setUp_filename(String up_filename) {
 		try {
-			if (up_filename != null && up_filename.length() != 0) {
-				this.up_filename = URLEncoder.encode(up_filename, "UTF-8");
-				// 파일이름에 특수문자가 있을 경우 인코딩합니다.
-			}
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
-	}
+            if(up_filename!=null && up_filename.length()!=0) {
+               this.up_filename = URLEncoder.encode(up_filename, "UTF-8"); 
+                  //파일이름에 특수문자가 있을 경우 인코딩합니다.
+            }
+         } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+         }
+      }
+
 
 	public Date getMo_date() {
 		return mo_date;
@@ -83,20 +103,6 @@ public class ApplyMonVO {
 		this.mo_result = mo_result;
 	}
 
-	@Override
-	public String toString() {
-		return "ApplyMonVO [mo_no=" + mo_no + ", up_filename=" + up_filename + ", mo_date=" + mo_date + ", mo_result="
-				+ mo_result + "]";
-	}
-
-	public String getMember_id() {
-		return member_id;
-	}
-
-	public void setMember_id(String member_id) {
-		this.member_id = member_id;
-	}
-
 	public Date getMo_startpay() {
 		return mo_startpay;
 	}
@@ -112,5 +118,19 @@ public class ApplyMonVO {
 	public void setMo_endpay(Date mo_endpay) {
 		this.mo_endpay = mo_endpay;
 	}
+
+	@Override
+	public String toString() {
+		return "ApplyMonVO [mo_no=" + mo_no + ", up_filename=" + up_filename + ", mo_date="
+				+ mo_date + ", mo_result=" + mo_result + ", mo_startpay=" + mo_startpay + ", mo_endpay=" + mo_endpay + "]";
+	}
+	public String getMember_id() {
+		return member_id;
+	}
+	public void setMember_id(String member_id) {
+		this.member_id = member_id;
+	}
+
+
 
 }

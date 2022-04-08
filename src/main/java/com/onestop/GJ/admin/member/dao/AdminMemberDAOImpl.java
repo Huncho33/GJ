@@ -20,7 +20,9 @@ public class AdminMemberDAOImpl implements AdminMemberDAO {
 	@Override
 	public List selectAllMemberList(Map pagingMap) throws DataAccessException {
 		List<MemberVO> membersList = null;
+		System.out.println("다오11 pagingMap : " + pagingMap);
 		membersList = sqlSession.selectList("mapper.adminMember.selectAllMemberList_adm", pagingMap);
+		System.out.println("다오 memberList : " + membersList);
 		return membersList;
 	}
 	

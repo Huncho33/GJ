@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
-	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	request.setCharacterEncoding("UTF-8");
@@ -29,7 +29,7 @@
 			<div id="month_intro_info">
 				<div class="month_intro_title">
 					<h2>
-						<i class="fa-solid fa-caret-right"></i> &nbsp;&nbsp;청년월세지원 소개
+						<i class="fa-solid fa-caret-right"></i> &nbsp;&nbsp;전월세보증금이자지원  소개
 					</h2>
 				</div>
 				<div class="month_intro_cnt">
@@ -55,10 +55,10 @@
 								<li>공공주택특별법에 따른 공공임대주택 거주자</li>
 								<li>보증금 5천만원 초과 주택 거주자</li>
 								<li>방 1개에 다수가 거주하는 방식의 전대차인 경우</li>
-								<li>지자체 자체 청년월세지원사업 12개월 이상 참여자(지원받은 기간이 12개월에 미치지 못한 경우
-									미달된 기간만큼 추가지원 가능)</li>
-								<li>대구 청년주거관련 정책(청년 주거안정 패키지) 중 청년월세지원사업과 중복참여를 제한하는 정책의
-									참여자</li>
+								<li>지자체 자체 전월세보증금이자지원사업 12개월 이상 참여자(지원받은 기간이 12개월에 미치지 못한
+									경우 미달된 기간만큼 추가지원 가능)</li>
+								<li>대구 청년주거관련 정책(청년 주거안정 패키지) 중 전월세보증금이자지원사업과 중복참여를 제한하는
+									정책의 참여자</li>
 								<li>공공임대주택(대구형 청년희망주택 포함) 등</li>
 							</ul>
 							<p>※주거급여 수급자의 경우 월세지원액에서 주거급여액(청년 주거급여 분리지급액 포함)을 차감한 금액만 지원</p>
@@ -76,7 +76,7 @@
 					</div>
 					<div class="intro_cnt3">
 						<h3>○ 신규신청</h3>
-						<p class="intro_cnt1_tg">청년월세신청은 신청기간동안 청년이 거주하는 주민등록상 주소지 관할
+						<p class="intro_cnt1_tg">전월세보증금이자지원신청은 신청기간동안 청년이 거주하는 주민등록상 주소지 관할
 							읍면동에 신청</p>
 						<h3>○ 변경신청</h3>
 						<div class="intro_cnt1_tg">
@@ -126,18 +126,12 @@
 					<div class="intro_cnt5">
 						<h3>○ 신청 바로가기</h3>
 						<div class="intro_applys">
-							<div class="intro_Button intro_Button1">
-								<a href="https://www.bokjiro.go.kr/ssis-teu/index.do">
-									<div class="intro_apply_btn1">
-										<p>2022청년월세지원 신청</p>
-									</div>
-								</a>
-							</div>
 							<div class="intro_Button intro_Button2">
-								<a href="javascript:apply_form('${isLogOn}','${contextPath}/rent/rentApplyForm1.do',
+								<a
+									href="javascript:apply_form('${isLogOn}','${contextPath}/rent/rentApplyForm0.do',
 								'${contextPath}/member/loginForm.do')">
 									<div class="intro_apply_btn2">
-										<p>2023청년월세지원 신청</p>
+										<p>전월세보증금이자지원 </p>
 									</div>
 								</a>
 							</div>
@@ -148,16 +142,15 @@
 		</div>
 	</div>
 </body>
-						<script>
-						  function apply_form(isLogOn,applyForm,loginForm){
-				                  if(isLogOn != '' && isLogOn != 'false'){
-				                	  location.href = applyForm;
-				                 } else{
-				                    alert("로그인 후 이용해주세요.");
-				                    location.href = loginForm + '?action=/rent/rentApplyForm1.do';
-				                 }
-				              }
-
-						</script>
+<script>
+	function apply_form(isLogOn, applyForm, loginForm) {
+		if (isLogOn != '' && isLogOn != 'false') {
+			location.href = applyForm;
+		} else {
+			alert("로그인 후 이용해주세요.");
+			location.href = loginForm + '?action=/rent/rentApplyForm1.do';
+		}
+	}
+</script>
 </html>
 

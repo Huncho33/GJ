@@ -34,8 +34,8 @@ public class ApplyRentServiceImpl implements ApplyRentService{
 		}
 	
 	@Override
-	public List findAll(String id) {
-		List list = null;
+	public ApplyRentVO findAll(String id) {
+		ApplyRentVO list = null;
 		list = applyrentDAO.findAll(id);
 		return list;
 	}

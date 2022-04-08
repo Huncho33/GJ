@@ -33,8 +33,8 @@ public class ApplyBackServiceImpl implements ApplyBackService{
 		}
 	
 	@Override
-	public List findAll(String id) {
-		List list = null;
+	public ApplyBackVO findAll(String id) {
+		ApplyBackVO list = null;
 		list = applybackDAO.findAll(id);
 		return list;
 	}

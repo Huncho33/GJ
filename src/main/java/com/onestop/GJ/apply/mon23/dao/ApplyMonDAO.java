@@ -1,12 +1,10 @@
 package com.onestop.GJ.apply.mon23.dao;
 
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.dao.DataAccessException;
 
 import com.onestop.GJ.apply.mon23.vo.ApplyMonVO;
-import com.onestop.GJ.member.vo.MemberVO;
 
 public interface ApplyMonDAO {
 

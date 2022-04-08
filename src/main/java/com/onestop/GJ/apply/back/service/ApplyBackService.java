@@ -11,7 +11,7 @@ public interface ApplyBackService {
 
 	int addResult(Map articleMap) throws Exception;
 
-	List findAll(String id);
+	ApplyBackVO findAll(String id);
 
 	ApplyBackVO findNo(int no);
 
