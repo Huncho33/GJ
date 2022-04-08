@@ -10,6 +10,7 @@
 <c:set var="totVisitDate" value="${countMap.totVisitDate}" />
 <c:set var="section" value="${visitMap.section}" />
 <c:set var="pageNum" value="${visitMap.pageNum}" />
+<c:set var="totApply" value="${visitMap.applyMap.totApply}" />
 
 <%
 	request.setCharacterEncoding("UTF-8");
@@ -66,7 +67,6 @@
      type : 'line',
      data : lineChartData,
      options : {
-    	 options,
         title: {
             display: true,
             text: '<기간별 방문자 수>',
@@ -93,24 +93,37 @@
      }
   });
   
-  /* x축 데이터 제한  */
-  var options =  {  
-	         scales: {
-	            xAxes: [{
-	                afterTickToLabelConversion: function(data){
-
-	                    var xLabels = data.ticks;
-
-	                    xLabels.forEach(function (labels, i) {
-	                        if (i % 2 == 1){
-	                            xLabels[i] = '';
-	                        }
-	                    });
-	                } 
-	            }]   
-	        }
-	}
-
+	/*신청 통계 막대 그래프 function  */
+  var ctx = $('#applyChart').get(0).getContext("2d");
+  window.theChart = new Chart(ctx, {
+     type : 'bar',
+     data : applyBarChartData,
+     options : {
+    	 title: {
+	            display: true,
+	            text: '< 신청자 수>',
+	            fontSize:18
+	        },
+	       /* x축 y축 설정 */
+            scales : { 
+                xAxes : [{
+                   barThickness : 50,
+                
+                gridLines : {
+                   display : false
+                },
+                offset:true
+             }],
+             yAxes: [{
+                ticks: {
+                   min:0
+                }
+                
+             }]
+          }
+     }
+  });
+  
       
   	/*기간별 검색 후 막대 그래프 function  */
       var ctx = $('#cityChart').get(0).getContext("2d");
@@ -202,6 +215,27 @@
      };
    
    
+   /* 신청 통계 막대 그래프 데이터 셋 */
+   var applyBarChartData = {
+   	     labels : [ "월세지원","전월세보증금","전세반환", "신혼부부", "공공임대" ],
+            datasets : [
+                  {
+                     label : '신청자수',
+                     backgroundColor : "#1E90FF",
+                     data : [
+                        ${totApply},
+                        ${totApply},
+                        ${totApply},
+                        ${totApply},
+                        ${totApply},
+                        ],
+	               datalabels: { 
+	   	        	display: false
+	   	        	},
+	               }
+	             ]
+	      };
+   
       
    /* 구별 방문자수 막대 그래프 데이터 셋 */
     var barChartData = {
@@ -219,6 +253,7 @@
 	             ]
 	      };
     
+   
     /* 남녀 비율 파이 차트 데이터 셋 */
     var data = { 
     		labels: ["남"," 여"], 
@@ -295,6 +330,10 @@
    </script>
 
 <style>
+#applyChart {
+	margin-top: 50;
+	margin-bottom: 20;
+}
 #cityChart {
 	margin-top: 50;
 	margin-bottom: 20;
@@ -369,7 +408,10 @@
 				<div id="adm_visit_search">
 					<form name="v_search"
 						action="${contextPath}/admin/stats/searchVisit.do">
-						<span>[총 방문: ${getVisitTotCnt}명]</span> <input type="submit"
+						<span>[총 방문: ${getVisitTotCnt}명]</span> 
+						<span>[총 신청: ${totApply}명]</span> 
+						
+						<input type="submit"
 							name="search" value="검 색"> <input type="date" id="toDate"
 							name="toDate"> <input type="date" id="fromDate"
 							name="fromDate">
@@ -461,11 +503,17 @@
 						</c:choose>
 					</c:if>
 				</div>
-
+	
+				
+				
 				<div>
 					<canvas id="visitTotChart"></canvas>
 				</div>
-
+				
+				<div>
+					<canvas id="applyChart"></canvas>
+				</div>
+				
 				<canvas id="cityChart"></canvas>
 
 				<table border="1" align="center" width="100%">

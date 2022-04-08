@@ -82,6 +82,37 @@ window.theChart = new Chart(ctx, {
        }
    }
 });
+
+/*기간 검색 후 신청 통계 막대 그래프 function  */
+var ctx = $('#applyChart').get(0).getContext("2d");
+window.theChart = new Chart(ctx, {
+   type : 'bar',
+   data : applyBarChartData,
+   options : {
+  	 title: {
+	            display: true,
+	            text: '< 신청자 수>',
+	            fontSize:18
+	        },
+	       /* x축 y축 설정 */
+          scales : { 
+              xAxes : [{
+                 barThickness : 50,
+              
+              gridLines : {
+                 display : false
+              },
+              offset:true
+           }],
+           yAxes: [{
+              ticks: {
+                 min:0
+              }
+              
+           }]
+        }
+   }
+});
 	
    /*기간별 검색 후 막대 그래프 function  */
 var ctx = $('#cityChart').get(0).getContext("2d");
@@ -168,6 +199,28 @@ var lineChartData = {
            }
          ]
   };
+  
+  
+/* 기간 검색 후 신청 통계 막대 그래프 데이터 셋 */
+var applyBarChartData = {
+	     labels : [ "월세지원","전월세보증금","전세반환", "신혼부부", "공공임대" ],
+         datasets : [
+               {
+                  label : '신청자수',
+                  backgroundColor : "#1E90FF",
+                  data : [
+                     ${searchMap.searchMonApply},
+                     ${searchMap.searchRentApply},
+                     ${searchMap.searchReturnApply},
+                     ${searchMap.searchBackApply},
+                     ${searchMap.searchShareApply},
+                     ],
+	               datalabels: { 
+	   	        	display: false
+	   	        	},
+	               }
+	             ]
+	      };
 
 /* 구별 방문자수 막대 그래프 데이터 셋 */
 var barChartData = {
@@ -337,7 +390,10 @@ var ageData = {
 				<div id="adm_visit_search">
 					<form name="v_search"
 						action="${contextPath}/admin/stats/searchVisit.do">
-						<span>[검색 방문 수: ${searchVisitTotCnt}명]</span> <input type="submit"
+						<span>[검색 방문 수: ${searchVisitTotCnt}명]</span>
+
+						
+						 <input type="submit"
 							name="search" value="검 색"> <input type="date" id="toDate"
 							name="toDate" value="${toDate}"> <input type="date"
 							id="fromDate" name="fromDate" value="${fromDate}">
@@ -435,6 +491,9 @@ var ageData = {
 					<canvas id="visitTotChart"></canvas>
 				</div>
 
+	<div>
+					<canvas id="applyChart"></canvas>
+				</div>
 
 				<canvas id="cityChart"></canvas>
 
