@@ -20,10 +20,11 @@ public class AdminStatsServiceImpl implements AdminStatsService {
 	private AdminStatsDAO statsDAO;
 
 	@Override
-	public List listStats() {
-		List visitList = null;
-		visitList = statsDAO.selectAllVisitList();
-		return visitList;
+	public Map listStats(Map pagingMap) {
+		Map visitMap = new HashMap();
+		List<AdminStatsVO> visitList = statsDAO.selectAllVisitList(pagingMap);
+		visitMap.put("visitList", visitList);
+		return visitMap;
 	}
 
 	@Override

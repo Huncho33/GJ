@@ -8,6 +8,8 @@
 <c:set var="getAgeTotVisit" value="${countMap.getAgeTotVisit}" />
 <c:set var="totVisit" value="${countMap.totVisit}" />
 <c:set var="totVisitDate" value="${countMap.totVisitDate}" />
+<c:set var="section" value="${visitMap.section}" />
+<c:set var="pageNum" value="${visitMap.pageNum}" />
 
 <%
 	request.setCharacterEncoding("UTF-8");
@@ -361,38 +363,104 @@
 				<div id="adm_stats_tit1">
 					<h3 class="adm_stats_tit">통계</h3>
 				</div>
-				<span>[총 방문: ${getVisitTotCnt}명]</span>
+
 
 				<!-- 기간별 검색 -->
-				<form name="v_search"
-					action="${contextPath}/admin/stats/searchVisit.do">
-					<p>
-						조회기간 <input type="date" id="fromDate" name="fromDate"> <input
-							type="date" id="toDate" name="toDate"> <input
-							type="submit" name="search" value="검 색">
-					</p>
-				</form>
+				<div id="adm_visit_search">
+					<form name="v_search"
+						action="${contextPath}/admin/stats/searchVisit.do">
+						<span>[총 방문: ${getVisitTotCnt}명]</span> <input type="submit"
+							name="search" value="검 색"> <input type="date" id="toDate"
+							name="toDate"> <input type="date" id="fromDate"
+							name="fromDate">
+					</form>
+				</div>
 
-				<table border="1" align="center" width="100%">
-					<tr align="center" bgcolor="lightgreen">
+				<table id=adm_visitList_tab align="center" width="100%">
+					<tr height="40" align="center" bgcolor="#abd1f6">
 						<td><b>접속일자</b></td>
 						<td><b>아이디</b></td>
 						<td><b>성별</b></td>
 						<td><b>주소</b></td>
 						<td><b>생년월일</b></td>
 					</tr>
+					<c:choose>
+						<c:when test="${empty visitMap.visitList }">
+							<tr>
+								<td colspan="5">
+									<p align="center">
+										<b><span style="font-size: 12pt;">방문한 회원이 없습니다.</span></b>
+									</p>
+								</td>
+							</tr>
+						</c:when>
 
-					<c:forEach var="visit" items="${visitList}">
-						<tr align="center">
-							<td width="30%">${visit.v_date}</td>
-							<td width="10%">${visit.member_id}</td>
-							<td width="10%">${visit.v_gender}</td>
-							<td width="35%">${visit.v_roadAddress}</td>
-							<td width="15%">${visit.v_birth}</td>
+						<c:when test="${not empty visitMap.visitList }">
+							<c:forEach var="visit" items="${visitMap.visitList }">
+								<tr align="center">
+									<td width="30%">${visit.v_date}</td>
+									<td width="10%">${visit.member_id}</td>
+									<td width="10%">${visit.v_gender}</td>
+									<td width="35%">${visit.v_roadAddress}</td>
+									<td width="15%">${visit.v_birth}</td>
 
-						</tr>
-					</c:forEach>
+								</tr>
+							</c:forEach>
+						</c:when>
+					</c:choose>
 				</table>
+
+				<div class="cls2">
+					<c:if test="${getVisitTotCnt != null }">
+
+						<c:choose>
+
+							<c:when test="${getVisitTotCnt >100 }">
+								<!-- 글 개수가 100 초과인경우 -->
+								<c:forEach var="page" begin="1" end="10" step="1">
+									<c:if test="${section >1 && page==1 }">
+										<a class="no-uline"
+											href="${contextPath }/admin/stats/stats.do?section=${section-1}&pageNum=${(section-1)*10 +1 }">&nbsp;
+											< </a>
+									</c:if>
+									<a class="no-uline"
+										href="${contextPath }/admin/stats/stats.do?section=${section}&pageNum=${page}">${(section-1)*10 +page }
+									</a>
+									<c:if test="${page ==10 }">
+										<a class="no-uline"
+											href="${contextPath }/admin/stats/stats.do?section=${section+1}&pageNum=${section*10+1}">&nbsp;
+											></a>
+									</c:if>
+								</c:forEach>
+							</c:when>
+							<c:when test="${getVisitTotCnt ==100 }">
+								<!--등록된 글 개수가 100개인경우  -->
+								<c:forEach var="page" begin="1" end="10" step="1">
+									<a class="no-uline" href="#">${page } </a>
+								</c:forEach>
+							</c:when>
+
+							<c:when test="${getVisitTotCnt< 100 }">
+								<!--등록된 글 개수가 100개 미만인 경우  -->
+								<c:forEach var="page" begin="1" end="${getVisitTotCnt/10 +1}"
+									step="1">
+									<c:choose>
+										<c:when test="${page==pageNum }">
+											<a class="sel-page"
+												href="${contextPath }/admin/stats/stats.do?section=${section}&pageNum=${page}">${page }
+											</a>
+										</c:when>
+										<c:otherwise>
+											<a class="no-uline"
+												href="${contextPath }/admin/stats/stats.do?section=${section}&pageNum=${page}">${page }
+											</a>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
+							</c:when>
+						</c:choose>
+					</c:if>
+				</div>
 
 				<div>
 					<canvas id="visitTotChart"></canvas>

@@ -29,19 +29,33 @@ public class AdminStatsControllerImpl implements AdminStatsController {
 	@Autowired
 	private AdminStatsService statsService;
 
+	//통계 방문자 리스트
 	@Override
 	@RequestMapping(value = { "/admin/stats/stats.do" }, method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView stats(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("html/text;charset=utf-8");
-		Map visitMap = new HashMap();
-		String viewName = (String) request.getAttribute("viewName");
-		List visitList = statsService.listStats();
-		Map countMap = statsService.getTotCnt(visitMap); //총 방문자수, 구별 인구 수, 남녀비율 
-		System.out.println("visitList : " + visitList);
 		
+		String _section = request.getParameter("section");
+		String _pageNum = request.getParameter("pageNum");
+		
+		int section = Integer.parseInt(((_section==null)? "1":_section));
+		int pageNum = Integer.parseInt(((_pageNum==null)? "1":_pageNum));
+		Map pagingMap = new HashMap();
+		pagingMap.put("section", section);
+		pagingMap.put("pageNum", pageNum);
+		
+		Map visitMap = statsService.listStats(pagingMap);
+		
+		visitMap.put("section", section);
+		visitMap.put("pageNum", pageNum);
+		
+		Map countMap = statsService.getTotCnt(visitMap); //총 방문자수, 구별 인구 수, 남녀비율 
+		System.out.println("visitList : " + visitMap);
+		
+		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
-		mav.addObject("visitList", visitList);
+		mav.addObject("visitMap", visitMap);
 		mav.addObject("countMap", countMap);
 		return mav;
 
@@ -56,6 +70,13 @@ public class AdminStatsControllerImpl implements AdminStatsController {
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
 		response.setContentType("text/html;charset=utf-8");
 		response.setCharacterEncoding("utf-8");
+		
+		  String _section = request.getParameter("section");
+	      String _pageNum = request.getParameter("pageNum");
+	      int section = Integer.parseInt(((_section == null) ? "1" : _section));
+	      int pageNum = Integer.parseInt(((_pageNum == null) ? "1" : _pageNum));
+	      
+	      
 		Map dateMap = new HashMap();
 		System.out.println("확인 1  : " + fromDate);
 		System.out.println("확인 2  : " + toDate);
@@ -71,10 +92,16 @@ public class AdminStatsControllerImpl implements AdminStatsController {
 		System.out.println("확인 4  : " + result2);
 		dateMap.put("fromDate", result1);
 		dateMap.put("toDate", result2);
+		dateMap.put("section", section);
+		dateMap.put("pageNum", pageNum);
 		System.out.println("컨트롤러dateMap : " + dateMap);
+		
 		Map searchMap = statsService.searchVisit(dateMap);
 		searchMap.put("fromDate", result1);
 		searchMap.put("toDate", result2);
+		searchMap.put("section", section);
+		searchMap.put("pageNum", pageNum);
+		
 		System.out.println("최종 searchMap : " + searchMap);
 
 //         searchMap.put("fromDate", fromDate);

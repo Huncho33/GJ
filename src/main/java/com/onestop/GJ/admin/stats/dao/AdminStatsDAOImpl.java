@@ -15,9 +15,10 @@ public class AdminStatsDAOImpl implements AdminStatsDAO {
 	private SqlSession sqlSession;
 
 	@Override
-	public List selectAllVisitList() {
+	public List selectAllVisitList(Map pagingMap) {
 		List<AdminStatsVO> visitList = null;
-		visitList = sqlSession.selectList("mapper.adminStats.selectAllVisitList");
+		System.out.println("statsPagingMap" + pagingMap);
+		visitList = sqlSession.selectList("mapper.adminStats.selectAllVisitList", pagingMap);
 		return visitList;
 	}
 

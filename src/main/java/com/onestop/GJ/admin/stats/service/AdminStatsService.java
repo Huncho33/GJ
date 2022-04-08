@@ -6,11 +6,11 @@ import java.util.Map;
 
 public interface AdminStatsService {
 
-	List listStats();
-
 	void insertVisit(Map visitMap);
 
 	Map getTotCnt(Map visitMap);
 
 	Map searchVisit(Map dateMap);
+
+	Map listStats(Map pagingMap);
 }

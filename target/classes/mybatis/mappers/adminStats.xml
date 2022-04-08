@@ -14,9 +14,19 @@
 	</resultMap>
 
 
-	<select id="selectAllVisitList" resultMap="visitResult">
+	<select id="selectAllVisitList" parameterType="java.util.Map"
+		resultMap="visitResult">
       <![CDATA[
-         select * from visit order by v_date desc       
+         select a.* from(
+      select ROW_NUMBER() over(order by 'v_date' desc) as recNUM,
+      v_date,
+      member_id,
+      v_gender,
+      v_roadAddress,
+      v_birth
+         from visit) a
+         where Recnum between(#{section}-1)*100+(#{pageNum}-1)*10+1 and (#{section}-1)*100+#{pageNum}*10
+          order by v_date desc       
       ]]>
 	</select>
 
@@ -51,10 +61,19 @@
 	<select id="selectVisitListBySearchVisit"
 		parameterType="java.util.Map" resultMap="visitResult">
      <![CDATA[
-      SELECT * FROM visit
-      WHERE v_date BETWEEN TO_DATE(#{fromDate}, 'yyyy-MM-dd') 
+      SELECT a.* from(
+            select ROW_NUMBER() over(order by v_date desc) as recNUM,
+             v_date,
+      member_id,
+      v_gender,
+      v_roadAddress,
+      v_birth
+      FROM visit  WHERE v_date BETWEEN TO_DATE(#{fromDate}, 'yyyy-MM-dd') 
                    AND TO_DATE(#{toDate}, 'yyyy-MM-dd')+0.99999
                    order by v_date desc 
+      ) a
+        where Recnum between(#{section}-1)*100+(#{pageNum}-1)*10+1 and (#{section}-1)*100+#{pageNum}*10
+      order by v_date desc
                   
       ]]>
 	</select>
@@ -116,29 +135,29 @@
    group by y order by y
       ]]>
 	</select>
-	
+
 	<!-- 기간별 총 방문자 수 -->
-	   <select id="totVisit"  parameterType="java.util.Map"
-      resultType="int">
+	<select id="totVisit" parameterType="java.util.Map"
+		resultType="int">
     <![CDATA[
          SELECT count(*)
    from visit 
    group by substr(v_date,0, 10) order by substr(v_date,0, 10) 
     ]]>
-   </select>
-   
-   <!--기간별 날짜  -->
-   <select id="totVisitDate"  parameterType="java.util.Map"
-      resultType="String">
+	</select>
+
+	<!--기간별 날짜 -->
+	<select id="totVisitDate" parameterType="java.util.Map"
+		resultType="String">
     <![CDATA[
        SELECT  vdate from visitView
    order by vdate
     ]]>
-   </select>
-   
-   <!-- 기간별 검색 총 방문자 수 -->
-	   <select id="searchTotVisit"  parameterType="java.util.Map"
-      resultType="int">
+	</select>
+
+	<!-- 기간별 검색 총 방문자 수 -->
+	<select id="searchTotVisit" parameterType="java.util.Map"
+		resultType="int">
     <![CDATA[
           SELECT count(*)
    from visit 
@@ -146,20 +165,20 @@
                    AND TO_DATE(#{toDate}, 'yyyy-MM-dd')+0.99999
    group by substr(v_date,0, 10) order by substr(v_date,0, 10)
     ]]>
-   </select>
-   
-   <!--기간별 검색 날짜  -->
-   <select id="searchTotVisitDate"  parameterType="java.util.Map"
-      resultType="String">
+	</select>
+
+	<!--기간별 검색 날짜 -->
+	<select id="searchTotVisitDate" parameterType="java.util.Map"
+		resultType="String">
     <![CDATA[
     SELECT  vdate from visitView
     where vdate BETWEEN TO_DATE(#{fromDate}, 'yyyy-MM-dd') 
                    AND TO_DATE(#{toDate}, 'yyyy-MM-dd')+0.99999
    order by vdate
     ]]>
-   </select>
-	
-	
+	</select>
+
+
 
 
 </mapper>

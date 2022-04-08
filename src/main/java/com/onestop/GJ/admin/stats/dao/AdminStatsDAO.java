@@ -8,8 +8,6 @@ import com.onestop.GJ.admin.stats.vo.AdminStatsVO;
 
 public interface AdminStatsDAO {
 
-	List selectAllVisitList();
-
 	void insertVisit(Map visitMap);
 
 	int getVisitTotCnt(Map visitMap);
@@ -37,6 +35,8 @@ public interface AdminStatsDAO {
 	List<AdminStatsVO> searchTotVisit(Map dateMap);
 
 	List<AdminStatsVO> searchTotVisitDate(Map dateMap);
+
+	List<AdminStatsVO> selectAllVisitList(Map pagingMap);
 
 	
 
