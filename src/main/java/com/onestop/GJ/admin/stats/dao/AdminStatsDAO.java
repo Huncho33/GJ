@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.onestop.GJ.admin.stats.vo.AdminStatsVO;
+import com.onestop.GJ.apply.mon23.vo.ApplyMonVO;
 
 public interface AdminStatsDAO {
 
@@ -37,6 +38,16 @@ public interface AdminStatsDAO {
 	List<AdminStatsVO> searchTotVisitDate(Map dateMap);
 
 	List<AdminStatsVO> selectAllVisitList(Map pagingMap);
+
+	int searchMonApply(Map dateMap);
+
+	int searchBackApply(Map dateMap);
+
+	int searchRentApply(Map dateMap);
+
+	int searchReturnApply(Map dateMap);
+
+	int searchShareApply(Map dateMap);
 
 	
 

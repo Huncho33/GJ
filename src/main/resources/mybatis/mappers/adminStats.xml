@@ -18,7 +18,7 @@
 		resultMap="visitResult">
       <![CDATA[
          select a.* from(
-      select ROW_NUMBER() over(order by 'v_date' desc) as recNUM,
+      select ROW_NUMBER() over(order by v_date desc) as recNUM,
       v_date,
       member_id,
       v_gender,
@@ -177,7 +177,69 @@
    order by vdate
     ]]>
 	</select>
+	
+	
+	<!-- 월세 검색 총 방문자 수 -->
+	<select id="searchMonApply" 
+		resultType="int">
+    <![CDATA[
+          SELECT count(*)
+   from mon_apply 
+    where mo_date BETWEEN TO_DATE(#{fromDate}, 'yyyy-MM-dd') 
+                   AND TO_DATE(#{toDate}, 'yyyy-MM-dd')+0.99999
+   
+    ]]>
+	</select>
 
+
+	
+		<!-- 귀환  검색 총 방문자 수 -->
+	<select id="searchBackApply" 
+		resultType="int">
+    <![CDATA[
+          SELECT count(*)
+   from back_apply 
+    where ba_date BETWEEN TO_DATE(#{fromDate}, 'yyyy-MM-dd') 
+                   AND TO_DATE(#{toDate}, 'yyyy-MM-dd')+0.99999
+   
+    ]]>
+	</select>
+	
+		<!-- 전세 검색 총 방문자 수 -->
+	<select id="searchRentApply" 
+		resultType="int">
+    <![CDATA[
+          SELECT count(*)
+   from rent_apply 
+    where rent_date BETWEEN TO_DATE(#{fromDate}, 'yyyy-MM-dd') 
+                   AND TO_DATE(#{toDate}, 'yyyy-MM-dd')+0.99999
+   
+    ]]>
+	</select>
+	
+		<!-- 반환 검색 총 방문자 수 -->
+	<select id="searchReturnApply" 
+		resultType="int">
+    <![CDATA[
+          SELECT count(*)
+   from rent_return_apply 
+    where ret_date BETWEEN TO_DATE(#{fromDate}, 'yyyy-MM-dd') 
+                   AND TO_DATE(#{toDate}, 'yyyy-MM-dd')+0.99999
+   
+    ]]>
+	</select>
+	
+		<!-- 공공 검색 총 방문자 수 -->
+	<select id="searchShareApply" 
+		resultType="int">
+    <![CDATA[
+          SELECT count(*)
+   from share_apply 
+    where sh_date BETWEEN TO_DATE(#{fromDate}, 'yyyy-MM-dd') 
+                   AND TO_DATE(#{toDate}, 'yyyy-MM-dd')+0.99999
+   
+    ]]>
+	</select>
 
 
 

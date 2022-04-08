@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.onestop.GJ.admin.stats.vo.AdminStatsVO;
+import com.onestop.GJ.apply.mon23.vo.ApplyMonVO;
 
 @Repository("adminStatsDAO")
 public class AdminStatsDAOImpl implements AdminStatsDAO {
@@ -130,6 +131,47 @@ public class AdminStatsDAOImpl implements AdminStatsDAO {
 	    List<AdminStatsVO> searchTotVisitDate = sqlSession.selectList("mapper.adminStats.searchTotVisitDate", dateMap);
         System.out.println("검색 날짜 " + searchTotVisitDate);
         return searchTotVisitDate;
+	}
+
+	
+	// 월세 신청 검색 수 
+	@Override
+	public int searchMonApply(Map dateMap) {
+		int searchMonApply = sqlSession.selectOne("mapper.adminStats.searchMonApply", dateMap);
+        System.out.println("searchMonApply :  " + searchMonApply);
+        return searchMonApply;
+	}
+	
+	// 귀환 신청 검색 수
+	@Override
+	public int searchBackApply(Map dateMap) {
+		int searchBackApply = sqlSession.selectOne("mapper.adminStats.searchBackApply", dateMap);
+        System.out.println("searchBackApply :  " + searchBackApply);
+        return searchBackApply;
+	}
+	
+	// 전세 신청 검색 수
+	@Override
+	public int searchRentApply(Map dateMap) {
+		int searchRentApply = sqlSession.selectOne("mapper.adminStats.searchRentApply", dateMap);
+        System.out.println("searchRentApply :  " + searchRentApply);
+        return searchRentApply;
+	}
+
+	// 반환 신청 검색 수
+	@Override
+	public int searchReturnApply(Map dateMap) {
+		int searchReturnApply = sqlSession.selectOne("mapper.adminStats.searchReturnApply", dateMap);
+        System.out.println("searchReturnApply :  " + searchReturnApply);
+        return searchReturnApply;
+	}
+	
+	// 공공 신청 검색 수
+	@Override
+	public int searchShareApply(Map dateMap) {
+		int searchShareApply = sqlSession.selectOne("mapper.adminStats.searchShareApply", dateMap);
+        System.out.println("searchShareApply :  " + searchShareApply);
+        return searchShareApply;
 	}
 
 }

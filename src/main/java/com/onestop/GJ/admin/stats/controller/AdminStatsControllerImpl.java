@@ -4,7 +4,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.onestop.GJ.admin.apply.mon.service.AdminMonApplyService;
 import com.onestop.GJ.admin.stats.service.AdminStatsService;
 import com.onestop.GJ.member.vo.MemberVO;
 
@@ -28,6 +28,9 @@ public class AdminStatsControllerImpl implements AdminStatsController {
 
 	@Autowired
 	private AdminStatsService statsService;
+	
+	@Autowired
+	private AdminMonApplyService adminService;
 
 	//통계 방문자 리스트
 	@Override
@@ -46,12 +49,14 @@ public class AdminStatsControllerImpl implements AdminStatsController {
 		pagingMap.put("pageNum", pageNum);
 		
 		Map visitMap = statsService.listStats(pagingMap);
-		
+		Map applyMap = adminService.joinTable(pagingMap);
+		System.out.println("applyMap : " + applyMap);
 		visitMap.put("section", section);
 		visitMap.put("pageNum", pageNum);
+		visitMap.put("applyMap", applyMap);
 		
 		Map countMap = statsService.getTotCnt(visitMap); //총 방문자수, 구별 인구 수, 남녀비율 
-		System.out.println("visitList : " + visitMap);
+		System.out.println("visitMap : " + visitMap);
 		
 		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);

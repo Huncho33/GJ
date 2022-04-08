@@ -1,6 +1,5 @@
 package com.onestop.GJ.admin.stats.service;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.onestop.GJ.admin.stats.dao.AdminStatsDAO;
 import com.onestop.GJ.admin.stats.vo.AdminStatsVO;
+import com.onestop.GJ.apply.mon23.vo.ApplyMonVO;
 
 @Service("adminStatsService")
 @Transactional(propagation = Propagation.REQUIRED)
@@ -65,6 +65,14 @@ public class AdminStatsServiceImpl implements AdminStatsService {
       List<AdminStatsVO> searchAgeTotVisit = statsDAO.searchAgeTotVisit(dateMap);
       List<AdminStatsVO> searchTotVisit = statsDAO.searchTotVisit(dateMap);
       List<AdminStatsVO> searchTotVisitDate = statsDAO.searchTotVisitDate(dateMap);
+      
+      //신청별 검색 수
+     int searchMonApply = statsDAO.searchMonApply(dateMap);
+     int searchBackApply = statsDAO.searchBackApply(dateMap);
+     int searchRentApply = statsDAO.searchRentApply(dateMap);
+     int searchReturnApply = statsDAO.searchReturnApply(dateMap);
+     int searchShareApply = statsDAO.searchShareApply(dateMap);
+     
       System.out.println("서비스 searchAddrList : " + searchAddrList);
 
       List searchGenderCnt = statsDAO.searchGenderCnt(dateMap);
@@ -76,6 +84,13 @@ public class AdminStatsServiceImpl implements AdminStatsService {
       searchMap.put("searchGenderCnt", searchGenderCnt);//성별 검색수
       searchMap.put("searchTotVisit", searchTotVisit);//성별 검색수
       searchMap.put("searchTotVisitDate", searchTotVisitDate);//성별 검색수
+      
+      searchMap.put("searchMonApply", searchMonApply);//월세 검색수
+      searchMap.put("searchBackApply", searchBackApply);//귀환 검색수
+      searchMap.put("searchRentApply", searchRentApply);//전세검색수
+      searchMap.put("searchReturnApply", searchReturnApply);//반환 검색수
+      searchMap.put("searchShareApply", searchShareApply);//공공 검색수
+      
 
       return searchMap;
    }
