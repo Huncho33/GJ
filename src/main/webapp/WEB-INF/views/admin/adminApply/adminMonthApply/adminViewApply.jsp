@@ -136,9 +136,6 @@ input {
 
 			}
 
-			/*    var _mo_reason = document.getElementById("_mo_reason").value; */
-			/*    var _mo_startpay = document.getElementById("_mo_startpay").value;
-			   var _mo_endpay = document.getElementById("_mo_endpay").value; */
 
 			value = _mo_result + "," + _mo_reason + "," + _mo_startpay + ","
 					+ _mo_endpay;

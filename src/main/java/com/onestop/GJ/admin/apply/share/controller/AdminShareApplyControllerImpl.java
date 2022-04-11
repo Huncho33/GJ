@@ -1,4 +1,4 @@
-package com.onestop.GJ.admin.apply.rent.controller;
+package com.onestop.GJ.admin.apply.share.controller;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,23 +16,28 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.onestop.GJ.admin.apply.rent.service.AdminRentApplyService;
-import com.onestop.GJ.apply.rent.vo.ApplyRentVO;
+import com.onestop.GJ.admin.apply.share.service.AdminShareApplyService;
+import com.onestop.GJ.admin.apply.share.vo.AdminShareApplyVO;
+import com.onestop.GJ.apply.mon23.vo.ApplyMonVO;
+import com.onestop.GJ.apply.share.vo.ApplyShareVO;
 import com.onestop.GJ.member.vo.MemberVO;
+import com.onestop.GJ.mypage.service.MypageService;
 
-@Controller("AdminRentApplyControllerImpl")
-public class AdminRentApplyControllerImpl implements AdminRentApplyController {
+@Controller("AdminShareApplyController")
+public class AdminShareApplyControllerImpl implements AdminShareApplyController {
 	@Autowired
 	private MemberVO memberVO;
 	@Autowired
-	private AdminRentApplyService adminService;
+	private AdminShareApplyService adminService;
+	@Autowired
+	private MypageService mypageService;
 
 	@Override
-	@RequestMapping(value = "/admin/adminApply/adminRentApply.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/adminApply/adminShareApply.do", method = RequestMethod.GET)
 	public ModelAndView applyListMembers(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("html/text;charset=utf-8");
-		System.out.println("rent 회원정보리스트");
+		System.out.println("회원정보리스트");
 		String _section = request.getParameter("section");
 		String _pageNum = request.getParameter("pageNum");
 		int section = Integer.parseInt(((_section == null) ? "1" : _section));
@@ -56,7 +61,7 @@ public class AdminRentApplyControllerImpl implements AdminRentApplyController {
 
 	// 검색창
 	@Override
-	@RequestMapping(value = "/admin/adminApply/adminSearchRentApply.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/adminApply/adminSearchShareApply.do", method = RequestMethod.GET)
 	public ModelAndView searchApplyList(@RequestParam("searchApply") String searchApply,
 			@RequestParam("searchType") String searchType, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
@@ -89,11 +94,11 @@ public class AdminRentApplyControllerImpl implements AdminRentApplyController {
 	}
 
 //  신청 정보 상세
-	@RequestMapping(value = "/admin/adminApply/adminViewRentApply.do", method = RequestMethod.GET)
-	public ModelAndView viewMember(@RequestParam("rent_no") int rent_no, @RequestParam("member_id") String member_id,
+	@RequestMapping(value = "/admin/adminApply/adminShareViewApply.do", method = RequestMethod.GET)
+	public ModelAndView viewMember(@RequestParam("sh_no") int sh_no, @RequestParam("member_id") String member_id,
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = (String) request.getAttribute("viewName");
-		Map membersMap = adminService.viewApplyMember(rent_no, member_id);
+		Map membersMap = adminService.viewApplyMember(sh_no, member_id);
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(viewName);
 		mav.addObject("membersMap", membersMap);
@@ -102,9 +107,9 @@ public class AdminRentApplyControllerImpl implements AdminRentApplyController {
 
 	// 내정보 수정 기능 (responseEntity)
 	@Override
-	@RequestMapping(value = "/admin/adminApply/modifyAdminRent.do", method = RequestMethod.POST)
-	public ResponseEntity modifyAdminRent(@RequestParam("attribute") String attribute,
-			@RequestParam("value") String value, @RequestParam("rent_no") int rent_no, HttpServletRequest request,
+	@RequestMapping(value = "/admin/adminApply/modifyAdminShare.do", method = RequestMethod.POST)
+	public ResponseEntity modifyAdminShare(@RequestParam("attribute") String attribute,
+			@RequestParam("value") String value, @RequestParam("sh_no") int sh_no, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		System.out.println("!");
 		Map membersMap = new HashMap();
@@ -115,45 +120,45 @@ public class AdminRentApplyControllerImpl implements AdminRentApplyController {
 		
 		
 		String val[] = null;
-		if (attribute.equals("adminRent")) {
+		if (attribute.equals("adminShare")) {
 			val = value.split(",");
 			if (val[0] == "null") {
-				membersMap.put("_rent_result", null);
+				membersMap.put("_sh_result", null);
 			} else if (val[0] != "null") {
-				membersMap.put("_rent_result", val[0]);
+				membersMap.put("_sh_result", val[0]);
 			}
 			if (val[1] == "null") {
-				membersMap.put("_rent_reason", null);
+				membersMap.put("_sh_reason", null);
 			} else if (val[1] != "null") {
-				membersMap.put("_rent_reason", val[1]);
+				membersMap.put("_sh_reason", val[1]);
 			}
-			membersMap.put("_rent_startpay", val[2]);
-			membersMap.put("_rent_endpay", val[3]);
+			membersMap.put("_sh_startpay", val[2]);
+			membersMap.put("_sh_endpay", val[3]);
 		} else {
 			membersMap.put(attribute, value);
 		}
-		membersMap.put("rent_no", rent_no);
+		membersMap.put("sh_no", sh_no);
 		
-		if (!membersMap.get("_rent_result").equals("승인") && !membersMap.get("_rent_startpay").equals("null")) {
-			System.out.println("먹어라: " + membersMap.get("_rent_result"));
+		if (!membersMap.get("_sh_result").equals("승인") && !membersMap.get("_sh_startpay").equals("null")) {
+			System.out.println("먹어라: " + membersMap.get("_sh_result"));
 			message = "not_correct";
 			resEntity = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
 			return resEntity;
 		} 
 
-		ApplyRentVO applyRentVO = (ApplyRentVO) adminService.modifyAdminRent(membersMap);
-		membersMap.put("applyRent", applyRentVO);
-		System.out.println("_rent_startpay 값 : " + membersMap.get("_rent_startpay"));
-		System.out.println("_rent_startpay 형 : " + membersMap.get("_rent_startpay").getClass().getName());
+		AdminShareApplyVO applyShareVO = (AdminShareApplyVO) adminService.modifyAdminShare(membersMap);
+		membersMap.put("applyShare", applyShareVO);
+		System.out.println("_sh_startpay 값 : " + membersMap.get("_sh_startpay"));
+		System.out.println("_sh_startpay 형 : " + membersMap.get("_sh_startpay").getClass().getName());
 
-		if (membersMap.get("_rent_startpay").equals("null")) {
+		if (membersMap.get("_sh_startpay").equals("null")) {
 			System.out.println("pass");
 		} else {
-			ApplyRentVO applyRentVO2 = (ApplyRentVO) adminService.modifyAdminRentPay(membersMap);
-			membersMap.put("applyRent", applyRentVO2);
+			AdminShareApplyVO applyShareVO2 = (AdminShareApplyVO) adminService.modifyAdminSharePay(membersMap);
+			membersMap.put("applyShare", applyShareVO2);
 		}
 		System.out.println("membersMap 값들 : " + membersMap);
-		System.out.println("membersMap 값들 : " + (membersMap.get("applyRent")));
+		System.out.println("membersMap 값들 : " + (membersMap.get("applyS")));
 
 		
 

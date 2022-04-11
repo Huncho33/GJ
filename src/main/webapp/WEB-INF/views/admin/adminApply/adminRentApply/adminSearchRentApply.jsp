@@ -1,4 +1,4 @@
-<%--   <%@ page language="java" contentType="text/html; charset=UTF-8"
+  <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -70,14 +70,14 @@
 					<h3 class="adm_memberManage_tit">신청자 관리</h3>
 				</div>
 					<li><a href="${contextPath}/admin/adminApply/adminMonthApply.do">월세지원</a></li>
-					<li><a href="${contextPath}/adminApply/adminRentApply.do">전세지원</a></li>
-					<li><a href="${contextPath}/adminApply/adminShareApply.do">공공임대</a></li>
+					<li><a href="${contextPath}/admin/adminApply/adminRentApply.do">전세지원</a></li>
+					<li><a href="${contextPath}/admin/adminApply/adminShareApply.do">공공임대</a></li>
 				
 				<!-- 검색 창 -->
 				<div id="adm_memberManage_search">
 					<span>[검색 회원: ${totApply }명]</span>
 					<form name="frmSearch"
-						action="${contextPath}/admin/adminApply/adminSearchMonthApply.do">
+						action="${contextPath}/admin/adminApply/adminSearchRentApply.do">
 						
 						<input type="submit" name="search" value="검 색"><input
 							name="searchApply" type="text">
@@ -85,10 +85,8 @@
 							<select id="searchType" name="searchType">
 						<option value="member_id" 
 						<c:if test="${searchType eq 'member_id' }">selected</c:if>>ID</option>
-						<option value="member_name"
-						<c:if test="${searchType eq 'member_name' }">selected</c:if>>이름</option>
-						<option value="mo_result"
-						<c:if test="${searchType eq 'mo_result' }">selected</c:if>>진행사항</option>
+						<option value="rent_result"
+						<c:if test="${searchType eq 'rent_result' }">selected</c:if>>진행사항</option>
 						</select>
 					</form>
 				</div>
@@ -115,13 +113,13 @@
 							<c:forEach var="join" items="${applyList}" varStatus="status" >
 								<tr align="center">
 									<td width="10%">
-									 <a class='memberInfo' href="${contextPath}/admin/member/viewMember.do?member_id=${member.member_id }">
-										${join.mo_no}</a></td> 
+									 <a class='memberInfo' href="${contextPath}/admin/adminApply/adminViewRentApply.do?rent_no=${join.rent_no }&member_id=${join.member_id}">
+										${join.rent_no}</a></td> 
 									  <td width="15%">${join.member_id}</td>  
 									<td width="10%">${join.membervo.member_name}</td>
-									<td width="15%">${join.mo_policy}</td>
-									<td width="12%">${join.mo_date}</td>
-									<td width="15%">${join.mo_result}</td>
+									<td width="15%">${join.rent_policy}</td>
+									<td width="12%">${join.rent_date}</td>
+									<td width="15%">${join.rent_result}</td>
 								</tr>
 							</c:forEach>
 						</c:when>
@@ -131,48 +129,48 @@
 					href="${contextPath}/member/memberForm.do">회원등록</a>
 
 				<div class="cls2">
-					<c:if test="${totApply != null }">
+					<c:if test="${searchTotApply != null }">
 
 						<c:choose>
 
-							<c:when test="${totApply >100 }">
+							<c:when test="${searchTotApply >100 }">
 								<!-- 글 개수가 100 초과인경우 -->
 								<c:forEach var="page" begin="1" end="10" step="1">
 									<c:if test="${section >1 && page==1 }">
 										<a class="no-uline"
-											href="${contextPath}/admin/adminApply/adminMonthApply.do?searchMember=${searchMember }&search=검+색section=${section-1}&pageNum=${(section-1)*10 +1 }">&nbsp;
+											href="${contextPath}/admin/adminApply/adminRentApply.do?searchMember=${searchApply }&search=검+색section=${section-1}&pageNum=${(section-1)*10 +1 }">&nbsp;
 											< </a>
 									</c:if>
 									<a class="no-uline"
-										href="${contextPath }/admin/adminApply/adminMonthApply.do?searchMember=${searchMember }&search=검+색section=${section}&pageNum=${page}">${(section-1)*10 +page }
+										href="${contextPath }/admin/adminApply/adminRentApply.do?searchMember=${searchApply }&search=검+색section=${section}&pageNum=${page}">${(section-1)*10 +page }
 									</a>
 									<c:if test="${page ==10 }">
 										<a class="no-uline"
-											href="${contextPath }/admin/adminApply/adminMonthApply.do?searchMember=${searchMember }&search=검+색section=${section+1}&pageNum=${section*10+1}">&nbsp;
+											href="${contextPath }/admin/adminApply/adminRentApply.do?searchMember=${searchApply }&search=검+색section=${section+1}&pageNum=${section*10+1}">&nbsp;
 											></a>
 									</c:if>
 								</c:forEach>
 							</c:when>
-							<c:when test="${totApply ==100 }">
+							<c:when test="${searchTotApply ==100 }">
 								<!--등록된 글 개수가 100개인경우  -->
 								<c:forEach var="page" begin="1" end="10" step="1">
 									<a class="no-uline" href="#">${page } </a>
 								</c:forEach>
 							</c:when>
 
-							<c:when test="${totApply < 100 }">
+							<c:when test="${searchTotApply < 100 }">
 								<!--등록된 글 개수가 100개 미만인 경우  -->
-								<c:forEach var="page" begin="1" end="${totApply/10 +1}"
+								<c:forEach var="page" begin="1" end="${searchTotApply/10 +1}"
 									step="1">
 									<c:choose>
 										<c:when test="${page==pageNum }">
 											<a class="sel-page"
-												href="${contextPath }/admin/adminApply/adminMonthApply.do?searchMember=${searchMember }&search=검+색section=${section}&pageNum=${page}">${page }
+												href="${contextPath }/admin/adminApply/adminRentApply.do?searchMember=${searchApply }&search=검+색section=${section}&pageNum=${page}">${page }
 											</a>
 										</c:when>
 										<c:otherwise>
 											<a class="no-uline"
-												href="${contextPath }/admin/adminApply/adminMonthApply.do?searchMember=${searchMember }&search=검+색section=${section}&pageNum=${page}">${page }
+												href="${contextPath }/admin/adminApply/adminRentApply.do?searchMember=${searchApply }&search=검+색section=${section}&pageNum=${page}">${page }
 											</a>
 										</c:otherwise>
 									</c:choose>
@@ -190,4 +188,3 @@
  
 
  
- --%>

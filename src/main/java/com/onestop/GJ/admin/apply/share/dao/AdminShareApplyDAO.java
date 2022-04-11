@@ -1,16 +1,17 @@
-package com.onestop.GJ.admin.apply.rent.dao;
+package com.onestop.GJ.admin.apply.share.dao;
 
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.dao.DataAccessException;
 
+import com.onestop.GJ.admin.apply.share.vo.AdminShareApplyVO;
 import com.onestop.GJ.apply.mon23.vo.ApplyMonFileVO;
 import com.onestop.GJ.apply.mon23.vo.ApplyMonVO;
-import com.onestop.GJ.apply.rent.vo.ApplyRentVO;
+import com.onestop.GJ.apply.share.vo.ApplyShareVO;
 import com.onestop.GJ.member.vo.MemberVO;
 
-public interface AdminRentApplyDAO {
+public interface AdminShareApplyDAO {
 
 	List selectAllMemberList(Map pagingMap) throws DataAccessException;
 
@@ -22,15 +23,14 @@ public interface AdminRentApplyDAO {
 
 	int selectSearchTotMembers(Map pagingMap) throws DataAccessException;
 
-	MemberVO selectMember(int rent_no) throws DataAccessException;
+	MemberVO selectMember(int sh_no) throws DataAccessException;
 
-	MemberVO selectRentApplyView(int rent_no) throws DataAccessException;
+	MemberVO selectShareApplyView(int sh_no) throws DataAccessException;
 
 	MemberVO selectIdMember(String member_id) throws DataAccessException;
 
-	ApplyRentVO selectApplyRent(int rent_no) throws DataAccessException;
-
-	List selectApplyRentFile(int rent_no) throws DataAccessException;
+	
+	List selectApplyShareFile(int sh_no) throws DataAccessException;
 
 	MemberVO selectMemberId(String member_id) throws DataAccessException;
 
@@ -42,9 +42,11 @@ public interface AdminRentApplyDAO {
 
 	int selectDetailApply() throws DataAccessException;
 
-	void modifyAdminRent(Map membersMap) throws Exception;
+	void modifyAdminShare(Map membersMap) throws Exception;
 
-	void modifyAdminRentPay(Map membersMap) throws Exception;
+	void modifyAdminSharePay(Map membersMap) throws Exception;
+
+	AdminShareApplyVO selectApplyShare(int sh_no) throws DataAccessException;
 
 
 

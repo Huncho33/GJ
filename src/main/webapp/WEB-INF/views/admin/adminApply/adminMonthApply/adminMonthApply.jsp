@@ -76,10 +76,8 @@
 					<h3 class="adm_memberManage_tit">신청자 관리</h3>
 				</div>
 					<li><a href="${contextPath}/admin/adminApply/adminMonthApply.do">월세지원</a></li>
-					<li><a href="">전월세보증금이자지원</a></li>
-					<li><a href="">전세반환보증금보증료지원</a></li>
-					<li><a href="">신혼부부전세자금이자지원</a></li>
-					<li><a href="">공공임대</a></li>
+					<li><a href="${contextPath}/admin/adminApply/adminRentApply.do">전세지원</a></li>
+					<li><a href="${contextPath}/admin/adminApply/adminShareApply.do">공공임대</a></li>
 				
 				<!-- 검색 창 -->
 				<div id="adm_memberManage_search">
@@ -93,8 +91,6 @@
 							<select id="searchType" name="searchType">
 						<option value="member_id" 
 						<c:if test="${searchType eq 'member_id' }">selected</c:if>>ID</option>
-						<option value="member_name"
-						<c:if test="${searchType eq 'member_name' }">selected</c:if>>이름</option>
 						<option value="mo_result"
 						<c:if test="${searchType eq 'mo_result' }">selected</c:if>>진행사항</option>
 						</select>

@@ -1,4 +1,4 @@
-package com.onestop.GJ.admin.apply.mon.service;
+package com.onestop.GJ.admin.apply.share.service;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -11,16 +11,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.onestop.GJ.admin.apply.mon.dao.AdminMonApplyDAOImpl;
-import com.onestop.GJ.apply.mon23.vo.ApplyMonFileVO;
+import com.onestop.GJ.admin.apply.share.dao.AdminShareApplyDAOImpl;
+import com.onestop.GJ.admin.apply.share.vo.AdminShareApplyVO;
 import com.onestop.GJ.apply.mon23.vo.ApplyMonVO;
+import com.onestop.GJ.apply.share.vo.ApplyShareFileVO;
+import com.onestop.GJ.apply.share.vo.ApplyShareVO;
 import com.onestop.GJ.member.vo.MemberVO;
 
-@Service("AdminMonApplyServiceImpl")
+@Service("AdminShareApplyService")
 @Transactional(propagation = Propagation.REQUIRED)
-public class AdminMonApplyServiceImpl implements AdminMonApplyService {
+public class AdminShareApplyServiceImpl implements AdminShareApplyService {
 	@Autowired
-	private AdminMonApplyDAOImpl adminDAO;
+	private AdminShareApplyDAOImpl adminDAO;
 
 	// 신청 회원정보 조회
 	@Override
@@ -32,14 +34,13 @@ public class AdminMonApplyServiceImpl implements AdminMonApplyService {
 		membersMap.put("membersList", membersList);
 		membersMap.put("totMembers", totMembers);
 		return membersMap;
-//		List membersList = null;
 	}
 
 	// 검색창
 	@Override
 	public Map searchMemberList(Map pagingMap) throws Exception {
 		Map membersMap = new HashMap();
-		List<ApplyMonVO> applyList = adminDAO.selectApplyBySearchMember(pagingMap);
+		List<AdminShareApplyVO> applyList = adminDAO.selectApplyBySearchMember(pagingMap);
 		System.out.println("서비스로 돌아옴");
 		int searchTotApply = adminDAO.selectSearchTotApply(pagingMap);
 		System.out.println("서비스 searchTotApply : " + searchTotApply);
@@ -53,14 +54,14 @@ public class AdminMonApplyServiceImpl implements AdminMonApplyService {
 
 	// 회원 상세 - 해당 회원정보,신청정보 호출
 	@Override
-	public Map viewApplyMember(int mo_no, String member_id) throws Exception {
+	public Map viewApplyMember(int sh_no, String member_id) throws Exception {
 		Map membersMap = new HashMap();
-		ApplyMonVO applyMonVO = adminDAO.selectApplyMon(mo_no);
+		AdminShareApplyVO applyShareVO = adminDAO.selectApplyShare(sh_no);
 		MemberVO memberVO = adminDAO.selectIdMember(member_id);
-		List<ApplyMonFileVO> monthFileList = adminDAO.selectApplyMonFile(mo_no);
+		List<ApplyShareFileVO> shareFileList = adminDAO.selectApplyShareFile(sh_no);
 		membersMap.put("member", memberVO);
-		membersMap.put("applyMon", applyMonVO);
-		membersMap.put("monthFileList", monthFileList);
+		membersMap.put("applyShare", applyShareVO);
+		membersMap.put("shareFileList", shareFileList);
 		Collection<String> value = membersMap.values();
 
 		return membersMap;
@@ -78,7 +79,7 @@ public class AdminMonApplyServiceImpl implements AdminMonApplyService {
 	public Map joinTable(Map pagingMap) {
 		Map applyMap = new HashMap();
 		System.out.println("서비스  pagingMap 값들 : " + pagingMap);
-		List<ApplyMonVO> applyList = adminDAO.joinTable(pagingMap);
+		List<AdminShareApplyVO> applyList = adminDAO.joinTable(pagingMap);
 		int totApply = adminDAO.selectTotApply();
 		applyMap.put("applyList", applyList);
 		applyMap.put("totApply", totApply);
@@ -91,18 +92,18 @@ public class AdminMonApplyServiceImpl implements AdminMonApplyService {
 
 	// 신청상태 적용
 	@Override
-	public ApplyMonVO modifyAdminMon(Map membersMap) throws Exception {
-		adminDAO.modifyAdminMon(membersMap);
-		int mo_no = (Integer) membersMap.get("mo_no");
-		return adminDAO.selectApplyMon(mo_no);
+	public AdminShareApplyVO modifyAdminShare(Map membersMap) throws Exception {
+		adminDAO.modifyAdminShare(membersMap);
+		int sh_no = (Integer) membersMap.get("sh_no");
+		return adminDAO.selectApplyShare(sh_no);
 	}
 
 	// 신청상태 적용 (지급날짜)
 	@Override
-	public ApplyMonVO modifyAdminMonPay(Map membersMap) throws Exception {
-		adminDAO.modifyAdminMonPay(membersMap);
-		int mo_no = (Integer) membersMap.get("mo_no");
-		return adminDAO.selectApplyMon(mo_no);
+	public AdminShareApplyVO modifyAdminSharePay(Map membersMap) throws Exception {
+		adminDAO.modifyAdminSharePay(membersMap);
+		int sh_no = (Integer) membersMap.get("sh_no");
+		return adminDAO.selectApplyShare(sh_no);
 	}
 
 }

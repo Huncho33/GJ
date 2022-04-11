@@ -1,11 +1,13 @@
+
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <c:set var="viewMember" value="${membersMap.member}" />
-<c:set var="viewRentApply" value="${membersMap.applyRent}" />
-<c:set var="rentFileList" value="${membersMap.rentFileList}" />
+<c:set var="viewShareApply" value="${membersMap.applyShare}" />
+<c:set var="shareFileList" value="${membersMap.shareFileList}" />
 <%
 	request.setCharacterEncoding("UTF-8");
 %>
@@ -98,47 +100,50 @@ input {
 	}
 
 	// ajax 입력값 전송 기능
-	function fn_adminRentApply(attribute) {
+	function fn_adminShareApply(attribute) {
 		var value;
-		var adminRentApply_frm = document.adminRentApply_frm;
-		var rent_no = document.getElementById("rent_no").value;
-		if (attribute == 'adminRent') {
+		var adminShareApply_frm = document.adminShareApply_frm;
+		var sh_no = document.getElementById("sh_no").value;
+		if (attribute == 'adminShare') {
 
-			if (document.getElementById("_rent_result").value == "") {
-				if(document.getElementById("rent_result").value != ""){
-					var _rent_result = document.getElementById("rent_result").value;
+			if (document.getElementById("_sh_result").value == "") {
+				if(document.getElementById("sh_result").value != ""){
+					var _sh_result = document.getElementById("sh_result").value;
 				} else {
-					var _rent_result = "null";
+					var _sh_result = "null";
 				}
 			} else {
-				var _rent_result = document.getElementById("_rent_result").value;
+				var _sh_result = document.getElementById("_sh_result").value;
 			}
 			
 
-			if (document.getElementById("_rent_reason").value == "") {
-				var _rent_reason = "null";
+			if (document.getElementById("_sh_reason").value == "") {
+				var _sh_reason = "null";
 			} else {
-				var _rent_reason = document.getElementById("_rent_reason").value;
+				var _sh_reason = document.getElementById("_sh_reason").value;
 
 			}
 
-			if (document.getElementById("_rent_startpay").value == "") {
-				var _rent_startpay = "null";
+			if (document.getElementById("_sh_startpay").value == "") {
+				var _sh_startpay = "null";
 			} else {
-				var _rent_startpay = document.getElementById("_rent_startpay").value;
+				var _sh_startpay = document.getElementById("_sh_startpay").value;
 
 			}
 
-			if (document.getElementById("_rent_endpay").value == "") {
-				var _rent_endpay = "null";
+			if (document.getElementById("_sh_endpay").value == "") {
+				var _sh_endpay = "null";
 			} else {
-				var _rent_endpay = document.getElementById("_rent_endpay").value;
+				var _sh_endpay = document.getElementById("_sh_endpay").value;
 
 			}
 
+			/*    var _mo_reason = document.getElementById("_mo_reason").value; */
+			/*    var _mo_startpay = document.getElementById("_mo_startpay").value;
+			   var _mo_endpay = document.getElementById("_mo_endpay").value; */
 
-			value = _rent_result + "," + _rent_reason + "," + _rent_startpay + ","
-					+ _rent_endpay;
+			value = _sh_result + "," + _sh_reason + "," + _sh_startpay + ","
+					+ _sh_endpay;
 
 		}
 
@@ -146,11 +151,11 @@ input {
 		$.ajax({
 			type : "post",
 			async : false, //false인 경우 동기식으로 처리한다.
-			url : "${contextPath}/admin/adminApply/modifyAdminRent.do",
+			url : "${contextPath}/admin/adminApply/modifyAdminShare.do",
 			data : {
 				attribute : attribute, 
 				value : value,
-				rent_no : rent_no,
+				sh_no : sh_no,
 			},
 			success : function(data, textStatus) {
 				if (data.trim() == 'mod_success') {
@@ -212,7 +217,7 @@ input {
 						<li><a id="khs_left khs_left2" class="khs_lnb"><p>신청
 									관리</p></a>
 							<ul class="khs_depth2">
-								<li><a href="${contextPath}/admin/adminApply/adminRentApply.do">-
+								<li><a href="${contextPath}/admin/adminApply/adminMonthApply.do">-
 										신청자 관리</a></li>
 								<li><a href="">- 신청 통계</a></li>
 							</ul></li>
@@ -230,7 +235,7 @@ input {
 				</div>
 			</div>
 			<div id="memberInfo_tot">
-				<form id="adminRentApply_frm" name="adminRentApply_frm">
+				<form id="adminMonApply_frm" name="adminMonApply_frm">
 					<div id="memberInfo_tit2">
 						<p class="memberInfo_subtit" style="font-weight: bold;">
 							<strong>｜</strong> 신청자 상세 정보
@@ -242,10 +247,10 @@ input {
 							<table>
 								<tr height="50">
 									<td width="150">:: 신청번호</td>
-									<td><input type="text" name="rent_no" id="rent_no"
-										value="${viewRentApply.rent_no}" size="30" disabled><input
-										type="hidden" name="rent_no" id="rent_no"
-										value="${viewRentApply.rent_no}"></td>
+									<td><input type="text" name="sh_no" id="sh_no"
+										value="${viewShareApply.sh_no}" size="30" disabled><input
+										type="hidden" name="sh_no" id="sh_no"
+										value="${viewShareApply.sh_no}"></td>
 								</tr>
 								<tr height="50">
 									<td width="150">:: 아이디</td>
@@ -319,27 +324,27 @@ input {
 
 								<tr height="50">
 									<td width="150">:: 신청 정책</td>
-									<td colspan="2"><input type="text" name="rent_policy"
-										id="rent_policy" value="${viewRentApply.rent_policy}" size="30"
+									<td colspan="2"><input type="text" name="sh_policy"
+										id="sh_policy" value="${viewShareApply.sh_policy}" size="30"
 										disabled /></td>
 								</tr>
 
 								<tr height="50">
 									<td width="150">:: 지원 상태</td>
-									<td colspan="2"><input type="text" name="rent_result"
-										id="rent_result" value="${viewRentApply.rent_result}" size="30"
+									<td colspan="2"><input type="text" name="sh_result"
+										id="sh_result" value="${viewShareApply.sh_result}" size="30"
 										disabled /></td>
 								</tr>
 
 								<tr height="50">
 									<td width="150">:: 지급 이력</td>
 									<td colspan="2"><c:choose>
-											<c:when test="${empty viewRentApply.rent_startpay}">
+											<c:when test="${empty viewShareApply.sh_startpay}">
 				                              -
 				                           </c:when>
 											<c:otherwise>
-												<input type="text" name="rent_pay" id="rent_pay"
-													value="${viewRentApply.rent_startpay} ~ ${viewRentApply.rent_endpay}"
+												<input type="text" name="sh_pay" id="sh_pay"
+													value="${viewShareApply.sh_startpay} ~ ${viewShareApply.sh_endpay}"
 													size="30" disabled />
 											</c:otherwise>
 										</c:choose></td>
@@ -349,12 +354,12 @@ input {
 									<td width="150">:: 처리사유</td>
 									<td colspan=2><c:choose>
 											<c:when
-												test="${viewRentApply.rent_reason == 'null' || empty viewRentApply.rent_reason}">
+												test="${viewShareApply.sh_reason == 'null' || empty viewShareApply.sh_reason}">
                                     -
                                  </c:when>
 											<c:otherwise>
-												<input type="text" name="rent_reason"
-													value="${viewRentApply.rent_reason}" size="30">
+												<input type="text" name="sh_reason"
+													value="${viewShareApply.sh_reason}" size="30">
 											</c:otherwise>
 										</c:choose></td>
 								</tr>
@@ -370,19 +375,19 @@ input {
 
 								<c:choose>
 									<c:when
-										test="${not empty rentFileList && rentFileList!='null' }">
-										<c:forEach var="rentFile" items="${rentFileList}"
+										test="${not empty shareFileList && shareFileList!='null' }">
+										<c:forEach var="shareFile" items="${shareFileList}"
 											varStatus="status">
 											<tr id="tr_${status.count }" class="table_fileTr"
 												align="center">
 												<td width="25%" style="background: #efefef;">등록서류${status.count }</td>
 												<td colspan="3" width="75%"><input type="hidden"
-													name="oldFileName" value="${rentFile.up_filename }" /> <input
+													name="oldFileName" value="${shareFile.up_filename }" /> <input
 													type="hidden" name="up_fileno"
-													value="${rentFile.up_fileno }" />
+													value="${shareFile.up_fileno }" />
 													<div id="filedown">
 														<a
-															href="${contextPath}/adminRentDownload.do?rent_no=${viewRentApply.rent_no}&up_filename=${rentFile.up_filename}">${rentFile.up_filename}</a>
+															href="${contextPath}/adminShareDownload.do?sh_no=${viewShareApply.sh_no}&up_filename=${shareFile.up_filename}">${shareFile.up_filename}</a>
 													</div></td>
 											</tr>
 										</c:forEach>
@@ -401,7 +406,7 @@ input {
 							<table>
 								<tr height="50">
 									<td width="150">:: 진행현황</td>
-									<td><select id="_rent_result" name="_rent_result">
+									<td><select id="_sh_result" name="_sh_result">
 											<option value="">---신청현황---</option>
 											<option value="심사대기">심사대기</option>
 											<option value="심사중">심사중</option>
@@ -415,13 +420,13 @@ input {
 									<td width="150">:: 처리사유</td>
 									<td colspan=2>
 									<c:choose>
-										<c:when test="${viewRentApply.rent_reason != 'null'}">
-											<textarea name="_rent_reason" id="_rent_reason"
+										<c:when test="${viewShareApply.sh_reason != 'null'}">
+											<textarea name="_sh_reason" id="_sh_reason"
 												rows="6" style="resize: none;" cols="90" maxlength="2000"
-												>${viewRentApply.rent_reason}</textarea>
+												>${viewShareApply.sh_reason}</textarea>
 										</c:when>
 										<c:otherwise>
-											<textarea name="_rent_reason" id="_rent_reason"
+											<textarea name="_sh_reason" id="_sh_reason"
 												rows="6" style="resize: none;" cols="90" maxlength="2000"
 												placeholder="처리사유를 작성해주세요." ></textarea>
 										</c:otherwise>
@@ -434,13 +439,13 @@ input {
 								<tr height="50">
 									<td width="150">:: 지급기간설정</td>
 									<td width="150">지급시작날짜</td>
-									<td><input type="date" id="_rent_startpay"
-										name="_rent_startpay" value=""></td>
+									<td><input type="date" id="_sh_startpay"
+										name="_sh_startpay" value=""></td>
 								</tr>
 								<tr>
 									<td></td>
 									<td width="150">지급종료날짜</td>
-									<td><input type="date" id="_rent_endpay" name="_rent_endpay"
+									<td><input type="date" id="_sh_endpay" name="_sh_endpay"
 										value =""></td>
 								</tr>
 
@@ -451,7 +456,7 @@ input {
 					<div class="memberInfo_cnt2">
 						<div class="join_btn join_btn2">
 							<input type="submit" value="적용" id="memberInfo_mod"
-								name="memberInfo_mod" onClick="fn_adminRentApply('adminRent');">
+								name="memberInfo_mod" onClick="fn_adminShareApply('adminShare');">
 						</div>
 						<div class="join_btn join_btn2">
 							<input type="button" value="삭제" id="memberInfo_del"

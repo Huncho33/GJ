@@ -35,23 +35,49 @@
 			value="/WEB-INF/views/admin/adminApply/adminMonthApply/adminViewApply.jsp" />
 	</definition>
 	
-	
-	<!-- <definition name="/adminApply/adminRentApply"
+	<!--전세지원 -->
+	<definition name="/admin/adminApply/adminRentApply"
 		extends="baseLayout">
 		<put-attribute name="title" value="전세신청관리페이지" />
 		<put-attribute name="body"
-			value="/WEB-INF/views/admin/adminApply/adminMonApply/adminMonthApply.jsp" />
+			value="/WEB-INF/views/admin/adminApply/adminRentApply/adminRentApply.jsp" />
 	</definition>
-	 -->
-	<!-- <definition name="/adminApply/adminShareApply"
-		extends="baseLayout">
-		<put-attribute name="title" value="공공임대신청관리페이지" />
-		<put-attribute name="body"
-			value="/WEB-INF/views/admin/adminApply/adminMonApply/adminMonthApply.jsp" />
-	</definition>
- -->
 	
-
+	<definition name="/admin/adminApply/adminSearchRentApply"
+		extends="baseLayout">
+		<put-attribute name="title" value="전세신청검색페이지" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/adminApply/adminRentApply/adminSearchRentApply.jsp" />
+	</definition>
+	
+	<definition name="/admin/adminApply/adminViewRentApply"
+		extends="baseLayout">
+		<put-attribute name="title" value="전세신청상세페이지" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/adminApply/adminRentApply/adminViewRentApply.jsp" />
+	</definition>
+	
+	<!--공공임대지원  -->
+	<definition name="/admin/adminApply/adminShareApply"
+		extends="baseLayout">
+		<put-attribute name="title" value="공공임대지원신청관리페이지" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/adminApply/adminShareApply/adminShareApply.jsp" />
+	</definition>
+	
+	<definition name="/admin/adminApply/adminSearchShareApply"
+		extends="baseLayout">
+		<put-attribute name="title" value="공공임대지원신청검색페이지" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/adminApply/adminShareApply/adminSearchShareApply.jsp" />
+	</definition>
+	
+	<definition name="/admin/adminApply/adminShareViewApply"
+		extends="baseLayout">
+		<put-attribute name="title" value="공공임대지원신청상세페이지" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/adminApply/adminShareApply/adminShareViewApply.jsp" />
+	</definition>
 
 
 

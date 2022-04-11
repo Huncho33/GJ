@@ -15,12 +15,8 @@
 		<typeAlias type="com.onestop.GJ.admin.member.vo.AdminMemberVO"  alias="adminMemberVO" />
 		<!--관리자 신청  -->
 		<typeAlias type="com.onestop.GJ.admin.apply.mon.vo.AdminMonApplyVO"  alias="adminMonApplyVO" /> 
-		<!-- <typeAlias type="com.onestop.GJ.admin.apply.rent.vo.AdminRentApplyVO"  alias="adminRentApplyVO" /> -->
-		
-		
-		
-		
-		
+		<typeAlias type="com.onestop.GJ.admin.apply.rent.vo.AdminRentApplyVO"  alias="adminRentApplyVO" /> 
+		<typeAlias type="com.onestop.GJ.admin.apply.share.vo.AdminShareApplyVO"  alias="adminShareApplyVO" /> 
 		
 		<typeAlias type="com.onestop.GJ.admin.notice.vo.AdminNoticeVO"  alias="adminNoticeVO" />
 		<typeAlias type="com.onestop.GJ.admin.notice.vo.AdminNoticeImageVO"  alias="adminNoticeImageVO" />

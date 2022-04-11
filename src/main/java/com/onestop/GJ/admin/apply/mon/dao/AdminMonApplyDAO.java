@@ -23,11 +23,6 @@ public interface AdminMonApplyDAO {
 
 	int insertMember(MemberVO memberVO) throws DataAccessException;
 
-//	//¿·±ÒΩ√«Ë
-//	List findAll();
-//	//
-
-//	List joinTable();
 
 	int selectTotApply() throws DataAccessException;
 
