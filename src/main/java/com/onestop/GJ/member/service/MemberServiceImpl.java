@@ -148,10 +148,11 @@ public class MemberServiceImpl implements MemberService {
 			// 비밀번호 변경 메일 발송
 			send_PwMail(memberVO);
 
-			out.print("이메일로 임시 비밀번호를 발송하였습니다. 임시 비밀번호로 이동해주세요.");
+			out.print("이메일로 임시 비밀번호를 발송하였습니다. 임시 비밀번호로 다시 로그인 해 주세요.");
 			out.close();
-
+			
 		}
+		
 	}
 
 	// ID찾기

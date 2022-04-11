@@ -22,6 +22,7 @@
 <script src="${contextPath}/resources/js/qna/listQnas.js"></script>
 <script src="https://kit.fontawesome.com/fc92373f81.js"
 	crossorigin="anonymous"></script>
+	
 </head>
 
 <body>

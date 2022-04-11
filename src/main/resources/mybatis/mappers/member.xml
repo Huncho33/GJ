@@ -66,8 +66,8 @@
 		<![CDATA[
 
 		 insert into member(member_id,
-		 					member_pw,
 		 					member_name,
+		 					member_pw,
 		 					member_gender,
 		 					member_birth,
 		 					member_phoneno,

@@ -7,6 +7,8 @@ import java.sql.Date;
 
 import org.springframework.stereotype.Component;
 
+import com.onestop.GJ.member.vo.MemberVO;
+
 @Component("ApplyRentVO")
 public class ApplyRentVO {
 	private int rent_no;
@@ -16,9 +18,45 @@ public class ApplyRentVO {
 	private String rent_result;
 	private String rent_policy;
 	private String rent_reason;
+	private MemberVO membervo;
+	
+	
+	public MemberVO getMembervo() {
+		return membervo;
+	}
+
+	public void setMembervo(MemberVO membervo) {
+		this.membervo = membervo;
+	}
+
+	private ApplyRentFileVO applyrentfileVO;
 	private Date rent_startpay;
 	private Date rent_endpay;
 	
+
+	public Date getRent_startpay() {
+		return rent_startpay;
+	}
+
+	public void setRent_startpay(Date rent_startpay) {
+		this.rent_startpay = rent_startpay;
+	}
+
+	public Date getRent_endpay() {
+		return rent_endpay;
+	}
+
+	public void setRent_endpay(Date rent_endpay) {
+		this.rent_endpay = rent_endpay;
+	}
+
+	public ApplyRentFileVO getApplyrentfileVO() {
+		return applyrentfileVO;
+	}
+
+	public void setApplyrentfileVO(ApplyRentFileVO applyrentfileVO) {
+		this.applyrentfileVO = applyrentfileVO;
+	}
 
 	public String getRent_policy() {
 		return rent_policy;
@@ -88,22 +126,6 @@ public class ApplyRentVO {
 
 	public void setRent_result(String rent_result) {
 		this.rent_result = rent_result;
-	}
-
-	public Date getRent_startpay() {
-		return rent_startpay;
-	}
-
-	public void setRent_startpay(Date rent_startpay) {
-		this.rent_startpay = rent_startpay;
-	}
-
-	public Date getRent_endpay() {
-		return rent_endpay;
-	}
-
-	public void setRent_endpay(Date rent_endpay) {
-		this.rent_endpay = rent_endpay;
 	}
 
 	@Override

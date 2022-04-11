@@ -10,15 +10,6 @@
 		});
 	});
 
-	
-	// 목록으로 돌아가기
-	function backToList(obj) {
-		if (confirm("글 작성을 취소하고 목록으로 돌아가시겠습니까?") == true) {
-			window.location.href = "${contextPath}/qna/listQnas.do";
-		} else {
-			return false;
-		}
-	}
 
 	// 제목, 내용 필수 alert
 	function QnaformCheck(form) {

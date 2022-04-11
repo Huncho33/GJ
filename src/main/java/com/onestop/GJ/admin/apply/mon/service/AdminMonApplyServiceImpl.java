@@ -41,14 +41,12 @@ public class AdminMonApplyServiceImpl implements AdminMonApplyService {
 		Map membersMap = new HashMap();
 		List<ApplyMonVO> applyList = adminDAO.selectApplyBySearchMember(pagingMap);
 		System.out.println("서비스로 돌아옴");
-//		int searchTotMembers = adminDAO.selectSearchTotMembers(pagingMap);
 		int searchTotApply = adminDAO.selectSearchTotApply(pagingMap);
 		System.out.println("서비스 searchTotApply : " + searchTotApply);
 		int totApply = adminDAO.selectTotApply();
 		membersMap.put("applyList", applyList);
 		membersMap.put("searchTotApply", searchTotApply);
 		membersMap.put("totMembers", totApply);
-//		      articlesMap.put("searchTotArticles", 170);
 		System.out.println("서비스 searchMemberList. membersMap : " + membersMap);
 		return membersMap;
 	}

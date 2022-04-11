@@ -8,6 +8,7 @@
 <c:set var="pageNum" value="${membersMap.pageNum}" />
 <c:set var="totMembers" value="${membersMap.totMembers}" />
 <c:set var="searchMember" value="${membersMap.searchMember}" />
+<c:set var="searchType" value="${membersMap.searchType}" />
 <c:set var="searchTotMembers" value="${membersMap.searchTotMembers}" />
 
 <%
@@ -37,19 +38,12 @@
 				</div>
 				<div id="khs_subMenu">
 					<ul>
-						<li><a id="khs_left khs_left1" class="khs_lnb"><p>사용자
+						<li><a href="${contextPath}/admin/member/listMembers.do" id="khs_left khs_left1" class="khs_lnb"><p>사용자
 									관리</p></a>
-							<ul class="khs_depth2">
-								<li><a href="${contextPath}/admin/member/listMembers.do">-
-										사용자 관리</a></li>
-								<li><a href="#">- 관리자 관리</a></li>
-							</ul></li>
-						<li><a id="khs_left khs_left2" class="khs_lnb"><p>신청
+						</li>
+						<li><a href="${contextPath}/admin/adminApply/adminMonthApply.do" id="khs_left khs_left2" class="khs_lnb"><p>신청
 									관리</p></a>
-							<ul class="khs_depth2">
-								<li><a href="${contextPath}/admin/adminApply/adminMonthApply.do">- 신청자 관리</a></li>
-								<li><a href="">- 신청 통계</a></li>
-							</ul></li>
+							</li>
 						<li><a id="khs_left khs_left3" class="khs_lnb"><p>게시판
 									관리</p></a>
 							<ul class="khs_depth2">
@@ -61,10 +55,9 @@
 										상담게시판 관리</a></li>
 								<li><a href="${contextPath}/adminFree/listArticles.do">-
 										자유게시판 관리</a></li>
-								<li><a href="${contextPath}/adminAlarm/listArticles.do">-
-										알림게시판 관리</a></li>
 							</ul></li>
-						<li><a id="khs_left khs_left3" class="khs_lnb"><p>통계</p></a></li>
+						<li><a href="${contextPath}/admin/stats/stats.do"
+							id="khs_left khs_left3" class="khs_lnb"><p>통계</p></a></li>
 					</ul>
 				</div>
 			</div>
@@ -140,15 +133,15 @@
 								<c:forEach var="page" begin="1" end="10" step="1">
 									<c:if test="${section >1 && page==1 }">
 										<a class="no-uline"
-											href="${contextPath }/admin/member/searchMemberList.do?searchMember=${searchMember }&search=검+색section=${section-1}&pageNum=${(section-1)*10 +1 }">&nbsp;
+											href="${contextPath }/admin/member/searchMemberList.do?searchMember=${searchMember }&searchType=${searchType }&search=검+색&section=${section-1}&pageNum=${(section-1)*10 +1 }">&nbsp;
 											< </a>
 									</c:if>
 									<a class="no-uline"
-										href="${contextPath }/admin/member/searchMemberList.do?searchMember=${searchMember }&search=검+색section=${section}&pageNum=${page}">${(section-1)*10 +page }
+										href="${contextPath }/admin/member/searchMemberList.do?searchMember=${searchMember }&searchType=${searchType }&search=검+색&section=${section}&pageNum=${page}">${(section-1)*10 +page }
 									</a>
 									<c:if test="${page ==10 }">
 										<a class="no-uline"
-											href="${contextPath }/admin/member/searchMemberList.do?searchMember=${searchMember }&search=검+색section=${section+1}&pageNum=${section*10+1}">&nbsp;
+											href="${contextPath }/admin/member/searchMemberList.do?searchMember=${searchMember }&searchType=${searchType }&search=검+색&section=${section+1}&pageNum=${section*10+1}">&nbsp;
 											></a>
 									</c:if>
 								</c:forEach>
@@ -167,12 +160,12 @@
 									<c:choose>
 										<c:when test="${page==pageNum }">
 											<a class="sel-page"
-												href="${contextPath }/admin/member/searchMemberList.do?searchMember=${searchMember }&search=검+색section=${section}&pageNum=${page}">${page }
+												href="${contextPath }/admin/member/searchMemberList.do?searchMember=${searchMember }&searchType=${searchType }&search=검+색section=${section}&pageNum=${page}">${page }
 											</a>
 										</c:when>
 										<c:otherwise>
 											<a class="no-uline"
-												href="${contextPath }/admin/member/searchMemberList.do?searchMember=${searchMember }&search=검+색section=${section}&pageNum=${page}">${page }
+												href="${contextPath }/admin/member/searchMemberList.do?searchMember=${searchMember }&searchType=${searchType }&&search=검+색section=${section}&pageNum=${page}">${page }
 											</a>
 										</c:otherwise>
 									</c:choose>

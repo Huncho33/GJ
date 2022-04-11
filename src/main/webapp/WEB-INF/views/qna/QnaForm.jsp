@@ -13,6 +13,17 @@
 	rel="stylesheet" type="text/css">
 <script src="${contextPath}/resources/js/qna/QnaForm.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+	<script>
+	// 목록으로 돌아가기
+	function backToList(obj) {
+		if (confirm("글 작성을 취소하고 목록으로 돌아가시겠습니까?") == true) {
+			window.location.href = "${contextPath}/qna/listQnas.do";
+		} else {
+			return false;
+		}
+	}
+	</script>
 </head>
 <body>
 	<div id="qnaFrm_bground">

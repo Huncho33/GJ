@@ -385,19 +385,12 @@
 				</div>
 				<div id="khs_subMenu">
 					<ul>
-						<li><a id="khs_left khs_left1" class="khs_lnb"><p>사용자
+						<li><a href="${contextPath}/admin/member/listMembers.do" id="khs_left khs_left1" class="khs_lnb"><p>사용자
 									관리</p></a>
-							<ul class="khs_depth2">
-								<li><a href="${contextPath}/admin/member/listMembers.do">-
-										사용자 관리</a></li>
-								<li><a href="#">- 관리자 관리</a></li>
-							</ul></li>
-						<li><a id="khs_left khs_left2" class="khs_lnb"><p>신청
+						</li>
+						<li><a href="${contextPath}/admin/adminApply/adminMonthApply.do" id="khs_left khs_left2" class="khs_lnb"><p>신청
 									관리</p></a>
-							<ul class="khs_depth2">
-								<li><a href="">- 신청자 관리</a></li>
-								<li><a href="">- 신청 통계</a></li>
-							</ul></li>
+							</li>
 						<li><a id="khs_left khs_left3" class="khs_lnb"><p>게시판
 									관리</p></a>
 							<ul class="khs_depth2">
@@ -409,8 +402,6 @@
 										상담게시판 관리</a></li>
 								<li><a href="${contextPath}/adminFree/listArticles.do">-
 										자유게시판 관리</a></li>
-								<li><a href="${contextPath}/adminAlarm/listArticles.do">-
-										알림게시판 관리</a></li>
 							</ul></li>
 						<li><a href="${contextPath}/admin/stats/stats.do"
 							id="khs_left khs_left3" class="khs_lnb"><p>통계</p></a></li>

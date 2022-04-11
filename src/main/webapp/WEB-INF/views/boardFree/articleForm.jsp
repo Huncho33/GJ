@@ -14,6 +14,13 @@
 	rel="stylesheet" type="text/css">
 <script src="${contextPath }/resources/js/free/articleForm.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+<script>
+function backToList(obj) {
+	obj.action = "${contextPath}/boardFree/listArticles.do";
+	obj.submit();
+}
+</script>
 </head>
 <body>
 	<div id="freeFrm_bground">

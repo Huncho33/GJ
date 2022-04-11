@@ -13,6 +13,13 @@
 <script src="${contextPath }/resources/js/data/articleForm.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <title>기타자료실::글작성</title>
+
+<script>
+function backToList(obj) {
+	obj.action = "${contextPath}/boardData/listArticles.do";
+	obj.submit();
+}
+</script>
 </head>
 
 <body>

@@ -1,4 +1,5 @@
-  <%@ page language="java" contentType="text/html; charset=UTF-8"
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -10,7 +11,7 @@
 <c:set var="totApply" value="${applyMap.totApply}" />
 <c:set var="applyList" value="${applyMap.applyList}" />
 <c:set var="section" value="${applyMap.section}" />
-<c:set var="pageNum" value="${applyMap.pageNum}" /> 
+<c:set var="pageNum" value="${applyMap.pageNum}" />
 <%
 	request.setCharacterEncoding("UTF-8");
 %>
@@ -30,10 +31,43 @@
 <script src="${contextPath}/resources/js/sidemenu.js"></script>
 
 <script>
- function fn_viewInfo(mo_no, member_id) {
-	 action:
- }
+	function fn_viewInfo(mo_no, member_id) {
+		action:
+	}
 </script>
+
+<style>
+#kindApplycontainer {
+	width: 900px;
+	height: 80px;
+	margin-bottom:40px;
+}
+
+#kindApply {
+	float: left;
+	width: 33%;
+	height: 60px;
+	margin: 1.2px;
+	
+	background-color: lightgray;
+	text-align: center;
+	color:white;
+}
+
+a {
+	text-decoration: none;
+}
+
+#kindApply:hover {
+	background-color: lightsteelblue;
+}
+
+a:hover {
+	color: black;
+	font-weight: bold;
+	text-decoration: none;
+}
+</style>
 
 
 </head>
@@ -46,57 +80,56 @@
 				</div>
 				<div id="khs_subMenu">
 					<ul>
-						<li><a id="khs_left khs_left1" class="khs_lnb"><p>사용자
+						<li><a href="${contextPath}/admin/member/listMembers.do"
+							id="khs_left khs_left1" class="khs_lnb"><p>사용자 관리</p></a></li>
+						<li><a
+							href="${contextPath}/admin/adminApply/adminMonthApply.do"
+							id="khs_left khs_left2" class="khs_lnb"><p>신청 관리</p></a></li>
+						<li><a id="khs_left khs_left3" class="khs_lnb"><p>게시판
 									관리</p></a>
 							<ul class="khs_depth2">
-								<li><a href="${contextPath}/admin/member/listMembers.do">- 사용자 관리</a></li>
-								<li><a href="#">-
-										관리자 관리</a></li>
+								<li><a href="${contextPath}/adminNotice/listArticles.do">-
+										공지사항 관리</a></li>
+								<li><a href="${contextPath}/adminData/listArticles.do">-
+										기타자료실 관리</a></li>
+								<li><a href="${contextPath}/adminQna/listQnas.do">-
+										상담게시판 관리</a></li>
+								<li><a href="${contextPath}/adminFree/listArticles.do">-
+										자유게시판 관리</a></li>
 							</ul></li>
-						<li><a id="khs_left khs_left2" class="khs_lnb"><p>신청관리</p></a>
-							<ul class="khs_depth2">
-								<li><a href="${contextPath}/admin/adminApply/adminMonthApply.do">- 신청자 관리</a></li>
-								<li><a href="">- 신청 통계</a></li>
-							</ul></li>
-						<li><a id="khs_left khs_left3" class="khs_lnb"><p>게시판 관리</p></a>
-							<ul class="khs_depth2">
-								<li><a href="${contextPath}/adminNotice/listArticles.do">- 공지사항 관리</a></li>
-								<li><a href="${contextPath}/adminData/listArticles.do">- 기타자료실 관리</a></li>
-								<li><a href="">- 상담게시판 관리</a></li>
-								<li><a href="${contextPath}/adminFree/listArticles.do">- 자유게시판 관리</a></li>
-								<li><a href="">- 알림게시판 관리</a></li>
-							</ul></li>
-						<li><a id="khs_left khs_left3" class="khs_lnb"><p>통계</p></a></li>
+						<li><a href="${contextPath}/admin/stats/stats.do"
+							id="khs_left khs_left3" class="khs_lnb"><p>통계</p></a></li>
 					</ul>
 				</div>
 			</div>
-			
+
 			<div id="adm_memberManage_tot">
 				<div id="adm_memberManage_tit1">
 					<h3 class="adm_memberManage_tit">신청자 관리</h3>
 				</div>
-					<li><a href="${contextPath}/admin/adminApply/adminMonthApply.do">월세지원</a></li>
-					<li><a href="">전월세보증금이자지원</a></li>
-					<li><a href="">전세반환보증금보증료지원</a></li>
-					<li><a href="">신혼부부전세자금이자지원</a></li>
-					<li><a href="">공공임대</a></li>
-				
+				<div id='kindApplycontainer'>
+					<a id="kindApply"
+						href="${contextPath}/admin/adminApply/adminMonthApply.do"><br>월세지원</a>
+					<a id="kindApply"
+						href="${contextPath}/admin/adminApply/adminRentApply.do"><br>전세지원</a>
+					<a id="kindApply"
+						href="${contextPath}/admin/adminApply/adminShareApply.do"><br>공공임대</a><br>
+				</div>
+
+
 				<!-- 검색 창 -->
 				<div id="adm_memberManage_search">
 					<span>[검색 회원: ${totApply }명]</span>
 					<form name="frmSearch"
 						action="${contextPath}/admin/adminApply/adminSearchMonthApply.do">
-						
+
 						<input type="submit" name="search" value="검 색"><input
-							name="searchApply" type="text">
-							
-							<select id="searchType" name="searchType">
-						<option value="member_id" 
-						<c:if test="${searchType eq 'member_id' }">selected</c:if>>ID</option>
-						<option value="member_name"
-						<c:if test="${searchType eq 'member_name' }">selected</c:if>>이름</option>
-						<option value="mo_result"
-						<c:if test="${searchType eq 'mo_result' }">selected</c:if>>진행사항</option>
+							name="searchApply" type="text"> <select id="searchType"
+							name="searchType">
+							<option value="member_id"
+								<c:if test="${searchType eq 'member_id' }">selected</c:if>>ID</option>
+							<option value="mo_result"
+								<c:if test="${searchType eq 'mo_result' }">selected</c:if>>진행사항</option>
 						</select>
 					</form>
 				</div>
@@ -120,12 +153,12 @@
 							</tr>
 						</c:when>
 						<c:when test="${not empty applyList }">
-							<c:forEach var="join" items="${applyList}" varStatus="status" >
+							<c:forEach var="join" items="${applyList}" varStatus="status">
 								<tr align="center">
-									<td width="10%">
-									 <a class='memberInfo' href="${contextPath}/admin/adminApply/adminViewApply.do?mo_no=${join.mo_no }&member_id=${join.member_id}">
-										${join.mo_no}</a></td> 
-									  <td width="15%">${join.member_id}</td>  
+									<td width="10%"><a class='memberInfo'
+										href="${contextPath}/admin/adminApply/adminViewApply.do?mo_no=${join.mo_no }&member_id=${join.member_id}">
+											${join.mo_no}</a></td>
+									<td width="15%">${join.member_id}</td>
 									<td width="10%">${join.membervo.member_name}</td>
 									<td width="15%">${join.mo_policy}</td>
 									<td width="12%">${join.mo_date}</td>
@@ -170,8 +203,7 @@
 
 							<c:when test="${totApply < 100 }">
 								<!--등록된 글 개수가 100개 미만인 경우  -->
-								<c:forEach var="page" begin="1" end="${totApply/10 +1}"
-									step="1">
+								<c:forEach var="page" begin="1" end="${totApply/10 +1}" step="1">
 									<c:choose>
 										<c:when test="${page==pageNum }">
 											<a class="sel-page"
@@ -195,6 +227,6 @@
 </body>
 </html>
 
- 
 
- 
+
+

@@ -1,7 +1,3 @@
-function backToList(obj){
-       obj.action="${contextPath}/boardFree/listArticles.do";
-       obj.submit();
-     }
      
     function fn_enable(obj){
        document.getElementById("fr_title").disabled=false;

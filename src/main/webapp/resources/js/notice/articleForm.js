@@ -7,10 +7,6 @@ function readURL(input) {
 			reader.readAsDataURL(input.files[0]);
 		}
 	}
-	function backToList(obj) {
-		obj.action = "${contextPath}/boardNotice/listArticles.do";
-		obj.submit();
-	}
 
 	var cnt = 1;
 	function fn_addFile() {

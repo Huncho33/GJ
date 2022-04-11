@@ -187,6 +187,7 @@
 			alert("11자리 숫자로 입력하세요.(예)01011111234");
 			return false;
 		}
+		
 		if (form.member_email1.value == "" || form.member_email2.value == "") {
 			alert('이메일을 입력하세요.')
 			form.member_email1.focus();
@@ -304,7 +305,7 @@
 										type="password" size="20" minlength="8" maxlength="25" />
 								</tr>
 								<span id="pwck1"
-									style="color: lime; display: none; font-size: 14px;">비밀번호가
+									style="color: dodgerblue; display: none; font-size: 14px;">비밀번호가
 									일치합니다.</span>
 								<span id="pwck2"
 									style="color: red; display: none; font-size: 14px;">비밀번호가

@@ -8,11 +8,6 @@ function readURL(input) {
 	}
 }
 
-function backToList(obj) {
-	obj.action = "${contextPath}/boardFree/listArticles.do";
-	obj.submit();
-}
-
 var cnt = 1;
 function fn_addFile() {
 	$("#d_file").append(
