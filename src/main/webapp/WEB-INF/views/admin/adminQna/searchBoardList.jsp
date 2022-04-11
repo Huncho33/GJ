@@ -63,8 +63,6 @@
 										상담게시판 관리</a></li>
 								<li><a href="${contextPath}/adminFree/listArticles.do">-
 										자유게시판 관리</a></li>
-								<li><a href="${contextPath}/adminAlarm/listArticles.do">-
-										알림게시판 관리</a></li>
 							</ul></li>
 						<li><a id="khs_left khs_left3" class="khs_lnb"><p>통계</p></a></li>
 					</ul>

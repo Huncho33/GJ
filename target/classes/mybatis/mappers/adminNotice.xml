@@ -21,13 +21,7 @@
 	</resultMap>
 
 
-
-
-	<!-- 게시판 리스트 불러오기기 <select id="selectAllArticlesList" resultMap="articlesResult"> 
-		<![CDATA[ SELECT noti_NO, noti_title, noti_context, noti_date, up_fileName, 
-		noti_hits, member_id from board_Notice ]]> </select> -->
-
-	<!-- 게시판 리스트, 페이징 -->
+	<!-- 공지사항 관리 게시글 목록 -->
 	<select id="selectAllArticlesList" parameterType="java.util.Map"
 		resultMap="articlesResult">
     <![CDATA[
@@ -46,7 +40,7 @@
     ]]>
 	</select>
 
-	<!-- 검색창 -->
+	<!-- 공지사항 관리 게시글 검색 목록 -->
 	<select id="selectBoardListBySearchWord" parameterType="java.util.Map"
 		resultMap="articlesResult" >
      <![CDATA[
@@ -75,15 +69,16 @@
       where Recnum between(#{section}-1)*100+(#{pageNum}-1)*10+1 and (#{section}-1)*100+#{pageNum}*10
       order by noti_NO desc	
 	]]>
-		
 	</select>
 
+	<!-- 공지사항 관리 게시글 개수 -->
 	<select id="selectTotArticles" resultType="int">
     <![CDATA[
      select count(noti_NO) from board_Notice
     ]]>
 	</select>
 	
+	<!-- 공지사항 관리 게시글 검색 개수  -->
 	<select id="selectSearchTotArticles" parameterType="java.util.Map" resultType="int">
     <![CDATA[
      select count(noti_NO) from board_Notice
@@ -102,8 +97,7 @@
     
 	</select>
 
-	<!--게시판 상세글 조회하기 -->
-
+	<!-- 공지사항 관리 게시글 상세화면 -->
 	<select id="selectArticle" resultType="adminNoticeVO"
 		parameterType="int">
     <![CDATA[
@@ -112,16 +106,14 @@
     ]]>
 	</select>
 
-	<!-- 게시글 번호 생성 -->
-
+	<!-- 공지사항 관리 게시글 번호 생성  -->
 	<select id="selectNewArticleNO" resultType="int">
 <![CDATA[
    SELECT  nvl(max(noti_NO),0) +1 from board_Notice
 ]]>
 	</select>
 
-
-	<!-- 게시글 추가하기 -->
+	<!-- 공지사항 관리 게시글 추가-->
 	<insert id="insertNewArticle" parameterType="java.util.Map">
     <![CDATA[
       INSERT into board_Notice(noti_NO, noti_title, noti_context, up_fileName, member_id)
@@ -129,9 +121,7 @@
     ]]>
 	</insert>
 
-
-
-	<!-- 이미지 추가 -->
+	<!-- 공지사항 관리 게시글 첨부파일 추가  -->
 	<insert id="insertNewImage" parameterType="java.util.Map">
 		<foreach item="item" collection="list" open="INSERT ALL"
 			separator=" " close="SELECT * FROM DUAL">
@@ -142,14 +132,14 @@
 		</foreach>
 	</insert>
 
+	<!-- 공지사항 관리 게시글 첨부파일 번호 생성  -->
 	<select id="selectNewImageFileNO" resultType="int">
 <![CDATA[
    SELECT nvl(max(up_fileNO),0) from noti_file
 ]]>
 	</select>
 
-
-	<!-- 이미지 표시하기 -->
+	<!-- 공지사항 관리 게시글 상세화면 (첨부파일 보이기)-->
 	<select id="selectImageFileList" resultMap="imgResult"
 		parameterType="int">
     <![CDATA[
@@ -158,8 +148,7 @@
     ]]>
 	</select>
 	
-
-	<!-- 글 삭제하기 -->
+	<!-- 공지사항 관리 게시글 삭제 -->
 	<delete id="deleteArticle" parameterType="int">
     <![CDATA[
       delete from board_Notice
@@ -170,7 +159,7 @@
     ]]>
 	</delete>
 
-		<!-- 다중 파일 수정하기 -->
+	<!-- 공지사항 관리 게시글  수정  -->
 	<update id="updateArticle" parameterType="java.util.Map">
 		update board_Notice
 		set noti_title=#{noti_title},
@@ -178,6 +167,7 @@
 		where noti_NO=#{noti_NO}
 	</update>
 	
+		<!-- 공지사항 관리 게시글 수정(첨부파일 수정 )-->
 		<update id="updateImageFile" parameterType="java.util.List">
 		<foreach collection="list" item="item" separator=";" open="DECLARE BEGIN" close="; END;">
 			<choose>
@@ -188,13 +178,11 @@
 					noti_NO=#{item.noti_NO}
 					and up_fileNO = #{item.up_fileNO}
 				</when>
-				<otherwise>
-
-				</otherwise>
 			</choose>
 		</foreach>
 	</update>
 	
+		<!-- 공지사항 관리 게시글 수정(첨부파일 삭제) -->
 		<delete id="deleteModImage" parameterType="adminNoticeImageVO">
 	    <![CDATA[
 	      delete from noti_file
@@ -203,6 +191,7 @@
 	    ]]>
 	</delete>
 	
+		<!-- 공지사항 관리 게시글 수정(첨부파일 추가) -->
 		<insert id="insertModNewImage" parameterType="java.util.Map">
 		<foreach item="item" collection="list" open="INSERT ALL" separator=" " close="SELECT * FROM DUAL">
 			INTO noti_file(up_fileNO, up_fileName, noti_NO, up_date)
@@ -213,25 +202,12 @@
 		</foreach>
 	</insert>
 	
-	
-
-
-	<!-- 게시판 조회수 -->
+	<!-- 공지사항 관리 게시글  조회수 추가 -->
 	<update id="boardHits" parameterType="int">
 		UPDATE board_Notice SET
 		noti_hits = noti_hits+1
 		WHERE noti_NO = #{noti_NO}
 	</update>
-
-<!-- 게시글 이동 -->
-	<select id="checkPwd" resultType="int">
-		SELECT COUNT(*) FROM board
-		WHERE qna_no=#{qna_no} AND qna_pw=#{qna_pw}
-	</select>
-
-
-
-
 
 </mapper>
 	

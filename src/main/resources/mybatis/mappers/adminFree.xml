@@ -23,7 +23,7 @@
 
 
 
-	<!-- 게시판 리스트, 페이징 -->
+	<!--자유게시판 관리 게시글 목록(페이징)-->
 	<select id="selectAllArticlesList" parameterType="java.util.Map"
 		resultMap="articlesResult">
     <![CDATA[
@@ -42,7 +42,7 @@
     ]]>
 	</select>
 
-	<!-- 검색창 -->
+	<!--자유게시판 관리 게시글 검색 목록(페이징)-->
 	<select id="selectBoardListBySearchWord" parameterType="java.util.Map"
 		resultMap="articlesResult" >
      <![CDATA[
@@ -74,15 +74,16 @@
       where Recnum between(#{section}-1)*100+(#{pageNum}-1)*10+1 and (#{section}-1)*100+#{pageNum}*10
       order by fr_NO desc	
 		]]>
-		
 	</select>
 
+	<!--자유게시판 관리 게시글 개수 -->
 	<select id="selectTotArticles" resultType="int">
     <![CDATA[
      select count(fr_NO) from board_Free
     ]]>
 	</select>
 	
+	<!--자유게시판 관리 게시글 검색 개수 -->
 	<select id="selectSearchTotArticles" parameterType="java.util.Map" resultType="int">
     <![CDATA[
      select count(fr_NO) from board_Free
@@ -102,8 +103,7 @@
       </if>
 	</select>
 
-	<!--게시판 상세글 조회하기 -->
-
+	<!--자유게시판 관리 게시글 상세 -->
 	<select id="selectArticle" resultType="adminFreeVO"
 		parameterType="int">
     <![CDATA[
@@ -112,16 +112,14 @@
     ]]>
 	</select>
 
-	<!-- 게시글 번호 생성 -->
-
+	<!--자유게시판 관리 게시글 번호 생성 -->
 	<select id="selectNewArticleNO" resultType="int">
 <![CDATA[
    SELECT  nvl(max(fr_NO),0) +1 from board_Free
 ]]>
 	</select>
 
-
-	<!-- 게시글 추가하기 -->
+	<!--자유게시판 관리 게시글 추가-->
 	<insert id="insertNewArticle" parameterType="java.util.Map">
     <![CDATA[
       INSERT into board_Free(fr_NO, fr_title, fr_context, up_fileName, member_id)
@@ -129,9 +127,7 @@
     ]]>
 	</insert>
 
-
-
-	<!-- 이미지 추가 -->
+    <!--자유게시판 관리 게시글 첨부파일 추가 -->
 	<insert id="insertNewImage" parameterType="java.util.Map">
 		<foreach item="item" collection="list" open="INSERT ALL"
 			separator=" " close="SELECT * FROM DUAL">
@@ -141,15 +137,15 @@
 			#{item.fr_NO}, SYSDATE)	
 		</foreach>
 	</insert>
-
+	
+	<!--자유게시판 관리 게시글 첨부파일 번호 생성 -->
 	<select id="selectNewImageFileNO" resultType="int">
 <![CDATA[
    SELECT nvl(max(up_fileNO),0) from free_file
 ]]>
 	</select>
 
-
-	<!-- 이미지 표시하기 -->
+	<!--자유게시판 관리 게시글 상세화면(첨부파일 보이기)-->
 	<select id="selectImageFileList" resultMap="imgResult"
 		parameterType="int">
     <![CDATA[
@@ -158,19 +154,17 @@
     ]]>
 	</select>
 	
-
-	<!-- 글 삭제하기 -->
+	<!--자유게시판 관리 게시글 삭제-->
 	<delete id="deleteArticle" parameterType="int">
     <![CDATA[
       delete from board_free
       where fr_NO in (
          SELECT fr_NO FROM  board_free
          where fr_NO = #{fr_NO})
-       
     ]]>
 	</delete>
 
-		<!-- 다중 파일 수정하기 -->
+	<!--자유게시판 관리 게시글 수정-->
 	<update id="updateArticle" parameterType="java.util.Map">
 		update board_free
 		set fr_title=#{fr_title},
@@ -178,6 +172,7 @@
 		where fr_NO=#{fr_NO}
 	</update>
 	
+	<!--자유게시판 관리 게시글 수정(첨부파일 수정)-->
 		<update id="updateImageFile" parameterType="java.util.List">
 		<foreach collection="list" item="item" separator=";" open="DECLARE BEGIN" close="; END;">
 			<choose>
@@ -194,7 +189,8 @@
 			</choose>
 		</foreach>
 	</update>
-	
+		
+		<!--자유게시판 관리 게시글 수정(첨부파일 삭제 )-->
 		<delete id="deleteModImage" parameterType="adminFreeImageVO">
 	    <![CDATA[
 	      delete from free_file
@@ -203,6 +199,7 @@
 	    ]]>
 	</delete>
 	
+		<!--자유게시판 관리 게시글 수정(첨부파일 추가)-->
 		<insert id="insertModNewImage" parameterType="java.util.Map">
 		<foreach item="item" collection="list" open="INSERT ALL" separator=" " close="SELECT * FROM DUAL">
 			INTO free_file(up_fileNO, up_fileName, fr_NO, up_date)

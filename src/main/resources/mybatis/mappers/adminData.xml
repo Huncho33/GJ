@@ -23,7 +23,7 @@
 
 
 
-	<!-- 게시판 리스트, 페이징 -->
+	<!-- 기타자료실  게시글 목록 (페이징) -->
 	<select id="selectAllArticlesList" parameterType="java.util.Map"
 		resultMap="articlesResult">
     <![CDATA[
@@ -42,7 +42,7 @@
     ]]>
 	</select>
 
-	<!-- 검색창 -->
+	<!-- 기타자료실  게시글 검색 목록 (페이징) -->
 	<select id="selectBoardListBySearchWord" parameterType="java.util.Map"
 		resultMap="articlesResult" >
      <![CDATA[
@@ -76,13 +76,15 @@
 	]]>
 		
 	</select>
-
+	
+	<!-- 기타자료실  게시글 개수 -->
 	<select id="selectTotArticles" resultType="int">
     <![CDATA[
      select count(etc_NO) from board_Data
     ]]>
 	</select>
 	
+	<!-- 기타자료실  게시글 검색 개수 -->
 	<select id="selectSearchTotArticles" parameterType="java.util.Map" resultType="int">
     <![CDATA[
      select count(etc_NO) from board_Data
@@ -103,8 +105,7 @@
       
 	</select>
 
-	<!--게시판 상세글 조회하기 -->
-
+	<!-- 기타자료실  게시글 상세화면 -->
 	<select id="selectArticle" resultType="adminDataVO"
 		parameterType="int">
     <![CDATA[
@@ -113,8 +114,7 @@
     ]]>
 	</select>
 
-	<!-- 게시글 번호 생성 -->
-
+	<!-- 기타자료실  게시글 번호 생성  -->
 	<select id="selectNewArticleNO" resultType="int">
 <![CDATA[
    SELECT  nvl(max(etc_NO),0) +1 from board_Data
@@ -122,7 +122,7 @@
 	</select>
 
 
-	<!-- 게시글 추가하기 -->
+	<!-- 기타자료실  게시글  추가 -->
 	<insert id="insertNewArticle" parameterType="java.util.Map">
     <![CDATA[
       INSERT into board_Data(etc_NO, etc_title, etc_context, up_fileName, member_id)
@@ -132,7 +132,7 @@
 
 
 
-	<!-- 이미지 추가 -->
+	<!-- 기타자료실  게시글 첨부파일 추가 -->
 	<insert id="insertNewImage" parameterType="java.util.Map">
 		<foreach item="item" collection="list" open="INSERT ALL"
 			separator=" " close="SELECT * FROM DUAL">
@@ -143,6 +143,7 @@
 		</foreach>
 	</insert>
 
+	<!-- 기타자료실  게시글 첨부파일 번호 생성  -->
 	<select id="selectNewImageFileNO" resultType="int">
 <![CDATA[
    SELECT nvl(max(up_fileNO),0) from data_file
@@ -150,7 +151,7 @@
 	</select>
 
 
-	<!-- 이미지 표시하기 -->
+	<!-- 기타자료실  게시글 상세화면(첨부파일보이기 ) -->
 	<select id="selectImageFileList" resultMap="imgResult"
 		parameterType="int">
     <![CDATA[
@@ -160,7 +161,7 @@
 	</select>
 	
 
-	<!-- 글 삭제하기 -->
+	<!-- 기타자료실  게시글 삭제 -->
 	<delete id="deleteArticle" parameterType="int">
     <![CDATA[
       delete from board_data
@@ -171,7 +172,7 @@
     ]]>
 	</delete>
 
-		<!-- 다중 파일 수정하기 -->
+	<!-- 기타자료실  게시글 수정-->
 	<update id="updateArticle" parameterType="java.util.Map">
 		update board_data
 		set etc_title=#{etc_title},
@@ -179,6 +180,7 @@
 		where etc_NO=#{etc_NO}
 	</update>
 	
+	<!-- 기타자료실  게시글 수정(첨부파일) -->
 		<update id="updateImageFile" parameterType="java.util.List">
 		<foreach collection="list" item="item" separator=";" open="DECLARE BEGIN" close="; END;">
 			<choose>
@@ -189,13 +191,10 @@
 					etc_NO=#{item.etc_NO}
 					and up_fileNO = #{item.up_fileNO}
 				</when>
-				<otherwise>
-
-				</otherwise>
 			</choose>
 		</foreach>
 	</update>
-	
+	<!-- 기타자료실  게시글 수정(첨부파일 삭제) -->
 		<delete id="deleteModImage" parameterType="adminDataImageVO">
 	    <![CDATA[
 	      delete from data_file
@@ -204,31 +203,22 @@
 	    ]]>
 	</delete>
 	
+	<!-- 기타자료실  게시글 수정(첨부파일 추가) -->
 		<insert id="insertModNewImage" parameterType="java.util.Map">
 		<foreach item="item" collection="list" open="INSERT ALL" separator=" " close="SELECT * FROM DUAL">
 			INTO data_file(up_fileNO, up_fileName, etc_NO, up_date)
 			VALUES (#{item.up_fileNO},
 						#{item.up_fileName},
-						#{item.etc_NO},
-						sysdate)
+						#{item.etc_NO},sysdate)
 		</foreach>
 	</insert>
-	
-	
 
-
-	<!-- 게시판 조회수 -->
+	<!-- 기타자료실  게시글 조회수 추가 -->
 	<update id="boardHits" parameterType="int">
 		UPDATE board_data SET
 		etc_hits = etc_hits + 1
 		WHERE etc_NO = #{etc_NO}
 	</update>
-
-
-
-
-
-
 
 </mapper>
 	

@@ -58,7 +58,7 @@
 		
 	// 목록으로 돌아가기
 	function backToList(obj) {
-		obj.action = "${contextPath}/qna/listQnas.do";
+		obj.action = "${contextPath}/adminQna/listQnas.do";
 		obj.submit();
 	}
 	
@@ -76,7 +76,7 @@
 	 
 	// 글 수정하기
 	 function fn_modify_qna(obj){
-		obj.action="${contextPath}/qna/modQna.do";
+		obj.action="${contextPath}/adminQna/modQna.do";
 		obj.submit();
 	}
 	 
@@ -143,7 +143,6 @@
 								<li><a href="${contextPath}/adminData/listArticles.do">- 기타자료실 관리</a></li>
 								<li><a href="${contextPath}/adminQna/listQnas.do">- 상담게시판 관리</a></li>
 								<li><a href="${contextPath}/adminFree/listArticles.do">- 자유게시판 관리</a></li>
-								<li><a href="${contextPath}/adminAlarm/listArticles.do">- 알림게시판 관리</a></li>
 							</ul></li>
 						<li><a id="khs_left khs_left3" class="khs_lnb"><p>통계</p></a></li>
 					</ul>
@@ -239,7 +238,7 @@
 							<div class="qnaView_btn_list qnaView_btn_list2">
 								<div class="qnaView_btn qnaView_btn1">
 									<input type="button" value="삭제하기"
-										onClick="fn_remove_qna('${contextPath}/qna/removeQna.do', ${qna.qna_no})">
+										onClick="fn_remove_qna('${contextPath}/adminQna/removeQna.do', ${qna.qna_no})">
 								</div>
 								<div class="qnaView_btn qnaView_btn1">
 									<input type="button" value="수정하기" onClick="fn_enable()">
