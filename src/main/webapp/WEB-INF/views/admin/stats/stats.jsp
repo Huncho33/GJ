@@ -428,10 +428,10 @@
 				<div id="adm_visit_search">
 					<form name="v_search"
 						action="${contextPath}/admin/stats/searchVisit.do">
-						<span>[총 방문: ${getVisitTotCnt}명]</span> <span>[총 신청:
-							${totApply}명]</span> <input type="submit" name="search" value="검 색">
-						<input type="date" id="toDate" name="toDate"> <input
-							type="date" id="fromDate" name="fromDate">
+						<span>[총 방문: ${getVisitTotCnt}명]</span> <input type="submit"
+							name="search" value="검 색"> <input type="date" id="toDate"
+							name="toDate"> <input type="date" id="fromDate"
+							name="fromDate">
 					</form>
 				</div>
 
