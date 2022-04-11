@@ -22,13 +22,13 @@
 		
 		
 		
-		<typeAlias type="com.onestop.GJ.admin.notice.vo.AdminNoticeVO"  alias="adminNoticeVO" />
-		<typeAlias type="com.onestop.GJ.admin.notice.vo.AdminNoticeImageVO"  alias="adminNoticeImageVO" />
-		<typeAlias type="com.onestop.GJ.admin.data.vo.AdminDataVO"  alias="adminDataVO" />
-		<typeAlias type="com.onestop.GJ.admin.data.vo.AdminDataImageVO"  alias="adminDataImageVO" />
-		<typeAlias type="com.onestop.GJ.admin.free.vo.AdminFreeVO"  alias="adminFreeVO" />
-		<typeAlias type="com.onestop.GJ.admin.free.vo.AdminFreeImageVO"  alias="adminFreeImageVO" />
-		<typeAlias type="com.onestop.GJ.admin.QNA.vo.AdminQnaVO"  alias="adminQnaVO" />
+		<typeAlias type="com.onestop.GJ.admin.board.notice.vo.AdminNoticeVO"  alias="adminNoticeVO" />
+		<typeAlias type="com.onestop.GJ.admin.board.notice.vo.AdminNoticeImageVO"  alias="adminNoticeImageVO" />
+		<typeAlias type="com.onestop.GJ.admin.board.data.vo.AdminDataVO"  alias="adminDataVO" />
+		<typeAlias type="com.onestop.GJ.admin.board.data.vo.AdminDataImageVO"  alias="adminDataImageVO" />
+		<typeAlias type="com.onestop.GJ.admin.board.free.vo.AdminFreeVO"  alias="adminFreeVO" />
+		<typeAlias type="com.onestop.GJ.admin.board.free.vo.AdminFreeImageVO"  alias="adminFreeImageVO" />
+		<typeAlias type="com.onestop.GJ.admin.board.QNA.vo.AdminQnaVO"  alias="adminQnaVO" />
 		<typeAlias type="com.onestop.GJ.admin.stats.vo.AdminStatsVO"  alias="adminStatsVO" />
 		
 		

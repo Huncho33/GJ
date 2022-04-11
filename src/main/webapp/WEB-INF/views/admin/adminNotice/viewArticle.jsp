@@ -90,12 +90,7 @@
         }
     }
     
-/*    var cnt = 1;
-      function fn_addFile() {
-         $("#d_file").append(
-               "<br>" + "<input type='file' name='up_fileName"+cnt+"' />");
-         cnt++;
-      }*/
+
       
       function fn_removeModImage(_up_fileNO, _noti_NO, _up_fileName, rowNum){
           alert(rowNum);
@@ -198,7 +193,6 @@
 								<li><a href="${contextPath}/adminData/listArticles.do">- 기타자료실 관리</a></li>
 								<li><a href="${contextPath}/adminQna/listQnas.do">- 상담게시판 관리</a></li>
 								<li><a href="${contextPath}/adminFree/listArticles.do">- 자유게시판 관리</a></li>
-								<li><a href="${contextPath}/adminAlarm/listArticles.do">- 알림게시판 관리</a></li>
 							</ul></li>
 						<li><a id="khs_left khs_left3" class="khs_lnb"><p>통계</p></a></li>
 					</ul>
@@ -317,8 +311,7 @@
 						<div class="notiView_btn_list notiView_btn_list1">
 							<div id="notiView_mainBtn">
 								<div id="notiView_mainBtn" class="notiView_btn notiView_btn3">
-										<input type=button value="삭제하기"
-											onClick="fn_remove_article('${contextPath}/adminNotice/removeArticle.do', ${article.noti_NO})">
+										<input type=button value="삭제하기" onClick="fn_remove_article('${contextPath}/adminNotice/removeArticle.do', ${article.noti_NO})">
 								</div>
 								<div id="notiView_mainBtn" class="notiView_btn notiView_btn1">
 									<input type=button value="목록" onClick="backToList(this.form)">

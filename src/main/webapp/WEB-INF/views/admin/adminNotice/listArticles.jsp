@@ -42,24 +42,6 @@
 			location.href = loginForm + '?action=/adminNotice/articleForm.do';
 		}
 	}
-	// 모달창 보이기
-	function fn_modalOpen(no) {
-		if ($("input:checkbox[name=checkcheck]").is(":checked") == true) {
-
-			console.log(no);
-			var modal = document.getElementById('noti_modal');
-			modal.style.display = 'block';
-			noti_no.value = Number(no);
-		} else {
-			alert('게시물 선택후 버튼을 클릭해주세요.');
-		}
-
-	}
-	// 모달창 감추기
-	function fn_modalClose() {
-		var modal = document.getElementById('noti_modal');
-		modal.style.display = 'none';
-	}
 </script>
 <body onload="adm_reg('${member.member_right}')">
 
@@ -96,8 +78,6 @@
 										상담게시판 관리</a></li>
 								<li><a href="${contextPath}/adminFree/listArticles.do">-
 										자유게시판 관리</a></li>
-								<li><a href="${contextPath}/adminAlarm/listArticles.do">-
-										알림게시판 관리</a></li>
 							</ul></li>
 						<li><a id="khs_left khs_left3" class="khs_lnb"><p>통계</p></a></li>
 					</ul>
@@ -132,7 +112,6 @@
 
 				<table id=noti_list_tab align="center" width="100%">
 					<tr height="40" align="center" bgcolor="#abd1f6">
-						<td></td>
 						<td>글번호</td>
 						<td>제목</td>
 						<td>작성자</td>
@@ -153,23 +132,19 @@
 							<c:forEach var="article" items="${articlesList }"
 								varStatus="articleNum">
 								<tr align="center" height="35">
-									<td width="5%"><input type="checkbox" id="checkbox"
-										name="checkcheck" value="${article.noti_NO}" /></td>
 									<td width="10%">${article.noti_NO}</td>
-									<td width="40%"><a class='cls1'
+									<td width="45%"><a class='cls1'
 										href="${contextPath}/adminNotice/viewArticle.do?noti_NO=${article.noti_NO }">
 											${article.noti_title }</a>
 									<td width="15%">관리자</td>
 									<td width="20%">${article.noti_date}</td>
-									<td width="10%">${article.noti_hits}</td>
+									<td width="15%">${article.noti_hits}</td>
 								</tr>
 							</c:forEach>
 						</c:when>
 					</c:choose>
 				</table>
 
-				<%-- <input type="button" name="change" value="게시글 이동 "
-						onClick="fn_modalOpen(${article.noti_NO});" /> --%>
 				<div style="margin-bottom: 50px;">
 					<a id="noti_write"
 						href="javascript:fn_articleForm('${isLogOn}','${contextPath}/adminNotice/articleForm.do', 
@@ -226,24 +201,6 @@
 					</c:if>
 				</div>
 			</div>
-		</div>
-	</div>
-	<!-- 게시글 이동 모달창 -->
-	<div id="noti_modal">
-		<div id="noti_modalCnt">
-			<form id="noti_modalFrm"
-				action="${contextPath}/adminNotice/modalCheck.do" method="post"
-				enctype="multipart/form-data">
-				<input type="button" value="✕" class="noti_modalClose"
-					onclick="fn_modalClose();" /> <label class="noti_modalLabel">
-					게시글을 이동합니다.</label> <select>
-					<option value="기타자료실">기타자료실</option>
-
-				</select> <input type="hidden" id="checkbox" name="checkcheck"> <input
-					type="hidden" id="noti_no" name="noti_no"> <input
-					type="submit" value="확인" id="noti_modalChk" name="noti_modalChk"
-					onclick="fn_adminCheck()" />
-			</form>
 		</div>
 	</div>
 </body>
