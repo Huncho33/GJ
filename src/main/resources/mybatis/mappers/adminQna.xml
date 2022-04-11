@@ -16,9 +16,9 @@
 		<result property="qna_reply" column="qna_reply" />
 	</resultMap>
 
-
 	<!-- 상담글 리스트 불러오기 -->
-	<select id="selectAllQnasList" parameterType="java.util.Map" resultMap="qnasResult">
+	<select id="selectAllQnasList" parameterType="java.util.Map"
+		resultMap="qnasResult">
     <![CDATA[
     SELECT * FROM (
 				select ROWNUM  as recNum,
@@ -45,9 +45,10 @@
       
     ]]>
 	</select>
+	
 	<!-- 검색창 -->
-   <select id="selectBoardListBySearchWord" parameterType="java.util.Map"
-      resultMap="qnasResult" >
+	<select id="selectBoardListBySearchWord"
+		parameterType="java.util.Map" resultMap="qnasResult">
      <![CDATA[
       select a.* from(
       select ROW_NUMBER() over(order by qna_no desc) as recNUM,
@@ -71,50 +72,50 @@
 														   START WITH  qnaparent_no=0
 														   CONNECT BY PRIOR qna_no = qnaparent_no
 														   ORDER SIBLINGS BY qna_no DESC)  ]]>
-      
-       <if test='searchType_qna.equals("qna_title_context")'>
-      where lower(qna_title) like lower('%' || #{searchWord} || '%') 
-      or lower(qna_content) like lower('%' || #{searchWord} || '%')) a
-      </if>
-      <if test='searchType_qna.equals("qna_title")'>
-      where lower(qna_title) like lower('%' || #{searchWord} || '%')) a
-      </if>
-      <if test='searchType_qna.equals("qna_context")'>
-      where lower(qna_content) like lower('%' || #{searchWord} || '%')) a
-      </if>
+
+		<if test='searchType_qna.equals("qna_title_context")'>
+			where lower(qna_title) like lower('%' || #{searchWord} || '%')
+			or lower(qna_content) like lower('%' || #{searchWord} || '%')) a
+		</if>
+		<if test='searchType_qna.equals("qna_title")'>
+			where lower(qna_title) like lower('%' || #{searchWord} || '%')) a
+		</if>
+		<if test='searchType_qna.equals("qna_context")'>
+			where lower(qna_content) like lower('%' || #{searchWord} || '%')) a
+		</if>
       
        <![CDATA[
       where Recnum between(#{section}-1)*100+(#{pageNum}-1)*10+1 and (#{section}-1)*100+#{pageNum}*10
       order by qna_NO desc   
    ]]>
-      
-   </select>
-	
-	<select id="selectSearchTotArticles" parameterType="java.util.Map" resultType="int">
+	</select>
+
+	<!--총 검색 게시글 수  -->
+	<select id="selectSearchTotArticles"
+		parameterType="java.util.Map" resultType="int">
     <![CDATA[
      select count(qna_NO) from board_qna
      ]]>
-     <if test='searchType_qna.equals("qna_title_context")'>
-      where lower(qna_title) like lower('%' || #{searchWord} || '%')
-      or lower(qna_content) like lower('%' || #{searchWord} || '%')  
-      </if>
-        <if test='searchType_qna.equals("qna_title")'>
-      where lower(qna_title) like lower('%' || #{searchWord} || '%') 
-      </if>
-          <if test='searchType_qna.equals("qna_content")'>
-      where lower(qna_content) like lower('%' || #{searchWord} || '%') 
-      </if>
-     
-    
-   </select>
-	
+		<if test='searchType_qna.equals("qna_title_context")'>
+			where lower(qna_title) like lower('%' || #{searchWord} || '%')
+			or lower(qna_content) like lower('%' || #{searchWord} || '%')
+		</if>
+		<if test='searchType_qna.equals("qna_title")'>
+			where lower(qna_title) like lower('%' || #{searchWord} || '%')
+		</if>
+		<if test='searchType_qna.equals("qna_content")'>
+			where lower(qna_content) like lower('%' || #{searchWord} || '%')
+		</if>
+	</select>
+
+	<!--총 게시글 수  -->
 	<select id="selectTotQnas" resultType="int">
 	<![CDATA[
 		SELECT count(qna_no) FROM board_qna
 	]]>
-	
+
 	</select>
-	
+
 	<!-- 새 상담글 내용 셀렉하기 -->
 	<select id="selectNewQnaNO" resultType="int">
     <![CDATA[
@@ -122,7 +123,7 @@
       FROM board_qna
     ]]>
 	</select>
-	
+
 	<!-- 상담글 추가하기 -->
 	<insert id="insertNewQna" parameterType="java.util.Map">
     <![CDATA[
@@ -130,15 +131,17 @@
       VALUES(#{qna_no}, #{qnaparent_no}, #{member_id}, #{qna_title}, #{qna_content}, #{qna_pw, jdbcType=VARCHAR}, #{qna_policy})
     ]]>
 	</insert>
-	
-	<select id="selectQna" resultType="adminQnaVO" parameterType="int">
+
+	<!--게시글 조회  -->
+	<select id="selectQna" resultType="adminQnaVO"
+		parameterType="int">
     <![CDATA[
       SELECT * from board_qna
       WHERE qna_no = #{qna_no}		
     ]]>
 	</select>
-	
-	
+
+
 	<!-- 답변여부 상태 변경 -->
 	<update id="updateReply" parameterType="java.util.Map">
 	<![CDATA[
@@ -147,8 +150,8 @@
 		WHERE qna_no = #{qnaparent_no}
 	]]>
 	</update>
-	
-	
+
+	<!--게시글 수정  -->
 	<update id="updateQna" parameterType="java.util.Map">
 	<![CDATA[
 		UPDATE board_qna
@@ -158,8 +161,8 @@
 		WHERE qna_no = #{qna_no}
 	]]>
 	</update>
-	
-	
+
+	<!--게시글 삭제  -->
 	<delete id="deleteQna" parameterType="int">
 	<![CDATA[
 		DELETE FROM board_qna
@@ -169,11 +172,11 @@
 			CONNECT BY PRIOR qna_no = qnaparent_no )
 	]]>
 	</delete>
-	
+
 	<!-- 비밀글 비밀번호 체크 -->
 	<select id="checkPwd" resultType="int">
 		SELECT COUNT(*) FROM board_qna
 		WHERE qna_no=#{qna_no} AND qna_pw=#{qna_pw}
 	</select>
-	
+
 </mapper>

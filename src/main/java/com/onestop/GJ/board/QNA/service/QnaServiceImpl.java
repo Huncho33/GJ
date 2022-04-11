@@ -57,7 +57,6 @@ public class QnaServiceImpl implements QnaService {
 		Map QnaParentMap = new HashMap();
 		QnaVO QnaVO = QnaDAO.selectParentQna(_qnaparent_no);
 		QnaParentMap.put("QnaVO", QnaVO);
-		System.out.println("QnaParentMap SERVICE: " + QnaParentMap);
 		return QnaParentMap;
 	}
 
@@ -76,7 +75,6 @@ public class QnaServiceImpl implements QnaService {
 	// 비밀번호 재확인 기능
 	@Override
 	public boolean checkPwd(int qna_no, int qna_pw) throws Exception {
-		System.out.println("서비스 qna_no:" + qna_no + " / 서비스 qna_pw:" + qna_pw);
 		return QnaDAO.checkPwd(qna_no, qna_pw);
 	}
 

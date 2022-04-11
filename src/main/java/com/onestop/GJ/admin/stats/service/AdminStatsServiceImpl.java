@@ -30,69 +30,64 @@ public class AdminStatsServiceImpl implements AdminStatsService {
 	@Override
 	public void insertVisit(Map visitMap) {
 		statsDAO.insertVisit(visitMap);
-
 	}
 
 //  방문자 수
-   @Override
-   public Map getTotCnt(Map visitMap) {
-      int getVisitTotCnt = statsDAO.getVisitTotCnt(visitMap);
-      List<AdminStatsVO> getAddrTotVisit = statsDAO.getAddrTotVisit(visitMap);
-      List<AdminStatsVO> getAgeTotVisit = statsDAO.getAgeTotVisit(visitMap);
-      List<AdminStatsVO> totVisit = statsDAO.totVisit(visitMap);
-      List<AdminStatsVO> totVisitDate = statsDAO.totVisitDate(visitMap);
+	@Override
+	public Map getTotCnt(Map visitMap) {
+		int getVisitTotCnt = statsDAO.getVisitTotCnt(visitMap);
+		List<AdminStatsVO> getAddrTotVisit = statsDAO.getAddrTotVisit(visitMap);
+		List<AdminStatsVO> getAgeTotVisit = statsDAO.getAgeTotVisit(visitMap);
+		List<AdminStatsVO> totVisit = statsDAO.totVisit(visitMap);
+		List<AdminStatsVO> totVisitDate = statsDAO.totVisitDate(visitMap);
 
-      List getGenderCnt = statsDAO.getGenderCnt(visitMap);
+		List getGenderCnt = statsDAO.getGenderCnt(visitMap);
 
-      visitMap.put("getVisitTotCnt", getVisitTotCnt);
-      visitMap.put("getAddrTotVisit", getAddrTotVisit);
-      visitMap.put("getAgeTotVisit", getAgeTotVisit);
-      visitMap.put("getGenderCnt", getGenderCnt);//성별 수
-      visitMap.put("totVisit", totVisit);
-      visitMap.put("totVisitDate", totVisitDate);
+		visitMap.put("getVisitTotCnt", getVisitTotCnt);
+		visitMap.put("getAddrTotVisit", getAddrTotVisit);
+		visitMap.put("getAgeTotVisit", getAgeTotVisit);
+		visitMap.put("getGenderCnt", getGenderCnt);// 성별 수
+		visitMap.put("totVisit", totVisit);
+		visitMap.put("totVisitDate", totVisitDate);
 
-      return visitMap;
-   }
+		return visitMap;
+	}
 
-//   방문자 검색
-   @Override
-   public Map searchVisit(Map dateMap) {
-      Map searchMap = new HashMap();
-      System.out.println("서비스 dateMap : " + dateMap);
-      int searchVisitTotCnt = statsDAO.searchVisitTotCnt(dateMap);
-      List<AdminStatsVO> searchList = statsDAO.selectVisitListBySearchVisit(dateMap);
-      List<AdminStatsVO> searchAddrList = statsDAO.getSearchAddrTotList(dateMap);
-      List<AdminStatsVO> searchAgeTotVisit = statsDAO.searchAgeTotVisit(dateMap);
-      List<AdminStatsVO> searchTotVisit = statsDAO.searchTotVisit(dateMap);
-      List<AdminStatsVO> searchTotVisitDate = statsDAO.searchTotVisitDate(dateMap);
-      
-      //신청별 검색 수
-     int searchMonApply = statsDAO.searchMonApply(dateMap);
-     int searchBackApply = statsDAO.searchBackApply(dateMap);
-     int searchRentApply = statsDAO.searchRentApply(dateMap);
-     int searchReturnApply = statsDAO.searchReturnApply(dateMap);
-     int searchShareApply = statsDAO.searchShareApply(dateMap);
-     
-      System.out.println("서비스 searchAddrList : " + searchAddrList);
+	// 방문자 검색
+	@Override
+	public Map searchVisit(Map dateMap) {
+		Map searchMap = new HashMap();
+		int searchVisitTotCnt = statsDAO.searchVisitTotCnt(dateMap);
+		List<AdminStatsVO> searchList = statsDAO.selectVisitListBySearchVisit(dateMap);
+		List<AdminStatsVO> searchAddrList = statsDAO.getSearchAddrTotList(dateMap);
+		List<AdminStatsVO> searchAgeTotVisit = statsDAO.searchAgeTotVisit(dateMap);
+		List<AdminStatsVO> searchTotVisit = statsDAO.searchTotVisit(dateMap);
+		List<AdminStatsVO> searchTotVisitDate = statsDAO.searchTotVisitDate(dateMap);
 
-      List searchGenderCnt = statsDAO.searchGenderCnt(dateMap);
+		// 신청별 검색 수
+		int searchMonApply = statsDAO.searchMonApply(dateMap);
+		int searchBackApply = statsDAO.searchBackApply(dateMap);
+		int searchRentApply = statsDAO.searchRentApply(dateMap);
+		int searchReturnApply = statsDAO.searchReturnApply(dateMap);
+		int searchShareApply = statsDAO.searchShareApply(dateMap);
 
-      searchMap.put("searchList", searchList);
-      searchMap.put("searchVisitTotCnt", searchVisitTotCnt);//검색 총 방문자 수
-      searchMap.put("searchAddrList", searchAddrList); //구별 검색수
-      searchMap.put("searchAgeTotVisit", searchAgeTotVisit); //연령별 검색수 
-      searchMap.put("searchGenderCnt", searchGenderCnt);//성별 검색수
-      searchMap.put("searchTotVisit", searchTotVisit);//성별 검색수
-      searchMap.put("searchTotVisitDate", searchTotVisitDate);//성별 검색수
-      
-      searchMap.put("searchMonApply", searchMonApply);//월세 검색수
-      searchMap.put("searchBackApply", searchBackApply);//귀환 검색수
-      searchMap.put("searchRentApply", searchRentApply);//전세검색수
-      searchMap.put("searchReturnApply", searchReturnApply);//반환 검색수
-      searchMap.put("searchShareApply", searchShareApply);//공공 검색수
-      
+		List searchGenderCnt = statsDAO.searchGenderCnt(dateMap);
 
-      return searchMap;
-   }
+		searchMap.put("searchList", searchList);
+		searchMap.put("searchVisitTotCnt", searchVisitTotCnt);// 검색 총 방문자 수
+		searchMap.put("searchAddrList", searchAddrList); // 구별 검색수
+		searchMap.put("searchAgeTotVisit", searchAgeTotVisit); // 연령별 검색수
+		searchMap.put("searchGenderCnt", searchGenderCnt);// 성별 검색수
+		searchMap.put("searchTotVisit", searchTotVisit);// 성별 검색수
+		searchMap.put("searchTotVisitDate", searchTotVisitDate);// 성별 검색수
+
+		searchMap.put("searchMonApply", searchMonApply);// 월세 검색수
+		searchMap.put("searchBackApply", searchBackApply);// 귀환 검색수
+		searchMap.put("searchRentApply", searchRentApply);// 전세검색수
+		searchMap.put("searchReturnApply", searchReturnApply);// 반환 검색수
+		searchMap.put("searchShareApply", searchShareApply);// 공공 검색수
+
+		return searchMap;
+	}
 
 }

@@ -13,9 +13,6 @@ public interface AdminMemberController {
 
 	ModelAndView listMembers(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
-	ModelAndView addMember(MemberVO member, HttpServletRequest request, HttpServletResponse response)
-			throws Exception;
-
 	ResponseEntity modMemberInfo(String attribute, String value, String sltmember_id, HttpServletRequest request,
 			HttpServletResponse response) throws Exception;
 

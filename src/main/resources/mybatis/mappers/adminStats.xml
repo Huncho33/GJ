@@ -10,10 +10,10 @@
 		<result property="v_gender" column="v_gender" />
 		<result property="v_roadAddress" column="v_roadAddress" />
 		<result property="v_birth" column="v_birth" />
-
 	</resultMap>
 
 
+	<!--방문자 리스트 -->
 	<select id="selectAllVisitList" parameterType="java.util.Map"
 		resultMap="visitResult">
       <![CDATA[
@@ -55,7 +55,6 @@
    group by v_gender
     ]]>
 	</select>
-
 
 	<!-- 검색 -->
 	<select id="selectVisitListBySearchVisit"
@@ -99,7 +98,6 @@
       group by a
       ]]>
 	</select>
-
 
 	<!--검색 방문 성별 수 -->
 	<select id="searchGenderCnt" parameterType="java.util.Map"
@@ -177,11 +175,10 @@
    order by vdate
     ]]>
 	</select>
-	
-	
+
+
 	<!-- 월세 검색 총 방문자 수 -->
-	<select id="searchMonApply" 
-		resultType="int">
+	<select id="searchMonApply" resultType="int">
     <![CDATA[
           SELECT count(*)
    from mon_apply 
@@ -192,10 +189,9 @@
 	</select>
 
 
-	
-		<!-- 귀환  검색 총 방문자 수 -->
-	<select id="searchBackApply" 
-		resultType="int">
+
+	<!-- 귀환 검색 총 방문자 수 -->
+	<select id="searchBackApply" resultType="int">
     <![CDATA[
           SELECT count(*)
    from back_apply 
@@ -204,10 +200,9 @@
    
     ]]>
 	</select>
-	
-		<!-- 전세 검색 총 방문자 수 -->
-	<select id="searchRentApply" 
-		resultType="int">
+
+	<!-- 전세 검색 총 방문자 수 -->
+	<select id="searchRentApply" resultType="int">
     <![CDATA[
           SELECT count(*)
    from rent_apply 
@@ -216,10 +211,9 @@
    
     ]]>
 	</select>
-	
-		<!-- 반환 검색 총 방문자 수 -->
-	<select id="searchReturnApply" 
-		resultType="int">
+
+	<!-- 반환 검색 총 방문자 수 -->
+	<select id="searchReturnApply" resultType="int">
     <![CDATA[
           SELECT count(*)
    from rent_return_apply 
@@ -228,10 +222,9 @@
    
     ]]>
 	</select>
-	
-		<!-- 공공 검색 총 방문자 수 -->
-	<select id="searchShareApply" 
-		resultType="int">
+
+	<!-- 공공 검색 총 방문자 수 -->
+	<select id="searchShareApply" resultType="int">
     <![CDATA[
           SELECT count(*)
    from share_apply 

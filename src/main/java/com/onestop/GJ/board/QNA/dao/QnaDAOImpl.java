@@ -16,17 +16,18 @@ public class QnaDAOImpl implements QnaDAO {
 	@Autowired
 	private SqlSession sqlSession;
 
+	//게시글 리스트
 	@Override
 	public List selectAllQnasList(Map pagingMap) throws Exception {
 		List<QnaVO> QnasList = sqlSession.selectList("mapper.boardQna.selectAllQnasList", pagingMap);
 		return QnasList;
 	}
 
+	//총 게시글 수
 	@Override
 	public int selectTotQnas() throws DataAccessException {
 		int totQnas = sqlSession.selectOne("mapper.boardQna.selectTotQnas");
 		return totQnas;
-
 	}
 
 	// 상담글 추가하기
@@ -78,7 +79,6 @@ public class QnaDAOImpl implements QnaDAO {
 	@Override
 	public boolean checkPwd(int qna_no, int qna_pw) throws DataAccessException {
 		boolean result = false;
-		System.out.println("dao qna_no:" + qna_no + " / dao qna_pw:" + qna_pw);
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		map.put("qna_no", qna_no);
 		map.put("qna_pw", qna_pw);

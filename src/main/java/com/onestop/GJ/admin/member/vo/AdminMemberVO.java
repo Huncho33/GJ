@@ -153,11 +153,4 @@ public class AdminMemberVO {
 	            + ", member_roadAddress=" + member_roadAddress + ", member_jibunAddress=" + member_jibunAddress
 	            + ", member_namujiAddress=" + member_namujiAddress + "]";
 	   }
-
-//	
-//	public Object getMember_id() {
-//		
-//		return null;
-//	}
-
 }

@@ -40,6 +40,7 @@ public class BoardNoticeControllerImpl implements BoardNoticeController {
 	@Autowired
 	BoardNoticeVO boardNoticeVO;
 
+	// 게시판 리스트 조회
 	@Override
 	@RequestMapping(value = { "/boardNotice/listArticles.do" }, method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView listArticles(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -56,7 +57,6 @@ public class BoardNoticeControllerImpl implements BoardNoticeController {
 		articlesMap.put("pageNum", pageNum);
 
 		String viewName = (String) request.getAttribute("viewName");
-		System.out.println("viewname : " + viewName);
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("articlesMap", articlesMap);
 		return mav;
@@ -88,7 +88,6 @@ public class BoardNoticeControllerImpl implements BoardNoticeController {
 		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("articlesMap", articlesMap);
-		System.out.println("??" + articlesMap.size());
 		return mav;
 	}
 
@@ -168,29 +167,6 @@ public class BoardNoticeControllerImpl implements BoardNoticeController {
 		return resEnt;
 	}
 
-//   // 한개 이미지 업로드하기
-//   private String upload(MultipartHttpServletRequest multipartRequest) throws Exception {
-//      String up_fileName = null;
-//      Iterator<String> fileNames = multipartRequest.getFileNames();
-//
-//      while (fileNames.hasNext()) {
-//         String fileName = fileNames.next();
-//         MultipartFile mFile = multipartRequest.getFile(fileName);
-//         up_fileName = mFile.getOriginalFilename();
-//         File file = new File(ARTICLE_IMAGE_REPO + "\\" + fileName);
-//         if (mFile.getSize() != 0) { // File Null Check
-//            if (!file.exists()) { // 경로상에 파일이 존재하지 않을 경우
-//               if (file.getParentFile().mkdirs()) { // 경로에 해당하는 디렉토리들을 생성
-//                  file.createNewFile(); // 이후 파일 생성
-//               }
-//            }
-//            mFile.transferTo(new File(ARTICLE_IMAGE_REPO + "\\" + "temp" + "\\" + up_fileName));
-//            // 임시로 저장된 multipartFile을 실제 파일로 전송
-//         }
-//      }
-//      return up_fileName;
-//   }
-
 	// 다중 이미지 업로드하기
 	private List<String> upload(MultipartHttpServletRequest multipartRequest, RequestMethod post) throws Exception {
 		List<String> fileList = new ArrayList<String>();
@@ -237,10 +213,8 @@ public class BoardNoticeControllerImpl implements BoardNoticeController {
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 		try {
-			System.out.println("noti : " + noti_NO);
 			boardService.removeArticle(noti_NO);
 			File destDir = new File(ARTICLE_IMAGE_REPO + "\\" + noti_NO);
-			System.out.println("삭제파일2 : " + destDir);
 			FileUtils.deleteDirectory(destDir);
 
 			message = "<script>";
@@ -418,7 +392,6 @@ public class BoardNoticeControllerImpl implements BoardNoticeController {
 			} else {
 				fileList.add(null);
 			}
-
 		}
 		return fileList;
 	}
