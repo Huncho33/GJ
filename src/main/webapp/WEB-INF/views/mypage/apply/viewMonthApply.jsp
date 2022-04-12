@@ -309,7 +309,7 @@
 									<c:when test="${month.mo_result == '심사대기'}">
 										<div class="join_btn join_btn3">
 											<input type="button" value="신청취소"
-												onClick="fn_remove_apply('${contextPath}/mypage/removeApply.do', ${month.mo_no})">
+												onClick="fn_remove_apply('${contextPath}/mypage/removeMonthApply.do', ${month.mo_no})">
 										</div>
 										<div class="join_btn join_btn1">
 											<input type="button" value="수정" onClick="fn_enable()">

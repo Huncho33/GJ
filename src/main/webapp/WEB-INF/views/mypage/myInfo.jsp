@@ -284,9 +284,9 @@
 								</tr>
 								<tr height="50">
 									<td width="150"></td>
-									<td>네 &nbsp;&nbsp; <input type="radio" checked /> <span
+									<td>네 &nbsp;&nbsp; <input type="radio" name="message" checked /> <span
 										style="padding-left: 120px"></span> 아니오 &nbsp;&nbsp; <input
-										type="radio" /></td>
+										type="radio" name="message" /></td>
 								</tr>
 							</table>
 						</div>
