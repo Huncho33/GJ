@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.dao.DataAccessException;
 
 import com.onestop.GJ.apply.share.vo.ApplyShareVO;
+import com.onestop.GJ.member.vo.MemberVO;
 
 public interface ApplyShareDAO {
 
@@ -21,5 +22,7 @@ public interface ApplyShareDAO {
 	ApplyShareVO findAll(String member_id);
 
 	ApplyShareVO findNo(int sh_no);
+
+	MemberVO modifyMember(MemberVO member);
 
 }

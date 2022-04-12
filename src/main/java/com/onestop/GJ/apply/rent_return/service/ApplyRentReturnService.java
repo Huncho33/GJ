@@ -1,9 +1,9 @@
 package com.onestop.GJ.apply.rent_return.service;
 
-import java.util.List;
 import java.util.Map;
 
 import com.onestop.GJ.apply.rent_return.vo.ApplyRentReturnVO;
+import com.onestop.GJ.member.vo.MemberVO;
 
 public interface ApplyRentReturnService {
 
@@ -14,6 +14,8 @@ public interface ApplyRentReturnService {
 	ApplyRentReturnVO findAll(String id);
 
 	ApplyRentReturnVO findNo(int no);
+
+	MemberVO modifyMember(MemberVO member);
 
 
 }

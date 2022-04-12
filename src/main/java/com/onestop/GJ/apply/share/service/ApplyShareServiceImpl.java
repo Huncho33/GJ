@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.onestop.GJ.apply.back.vo.ApplyBackVO;
 import com.onestop.GJ.apply.share.dao.ApplyShareDAO;
 import com.onestop.GJ.apply.share.vo.ApplyShareVO;
+import com.onestop.GJ.member.vo.MemberVO;
 
 @Service("ApplyShareServiceImpl")
 @Transactional(propagation = Propagation.REQUIRED)
@@ -42,6 +43,12 @@ public class ApplyShareServiceImpl implements ApplyShareService{
 	@Override
 	public ApplyShareVO findNo(int no) {
 		return  applyShareDAO.findNo(no);
+	}
+
+
+	@Override
+	public MemberVO modifyMember(MemberVO member) {
+		return applyShareDAO.modifyMember(member);
 	}
 
 

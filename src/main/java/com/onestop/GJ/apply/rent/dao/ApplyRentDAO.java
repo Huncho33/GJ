@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.dao.DataAccessException;
 
 import com.onestop.GJ.apply.rent.vo.ApplyRentVO;
+import com.onestop.GJ.member.vo.MemberVO;
 
 public interface ApplyRentDAO {
 
@@ -17,4 +18,5 @@ public interface ApplyRentDAO {
 	int insertResultNO();
 	ApplyRentVO findAll(String member_id);
 	ApplyRentVO findNo(int rent_no);
+	MemberVO modifyMember(MemberVO member);
 }

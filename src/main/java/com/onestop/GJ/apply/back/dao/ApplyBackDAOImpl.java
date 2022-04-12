@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.onestop.GJ.apply.back.vo.ApplyBackFileVO;
 import com.onestop.GJ.apply.back.vo.ApplyBackVO;
+import com.onestop.GJ.member.vo.MemberVO;
 
 @Repository("ApplyBackDAOImpl")
 public class ApplyBackDAOImpl implements ApplyBackDAO {
@@ -28,10 +29,8 @@ public class ApplyBackDAOImpl implements ApplyBackDAO {
 	public int insertResult(Map articleMap) throws DataAccessException {
 		int ba_no = insertResultNO();
 		articleMap.put("ba_no", ba_no);
-		System.out.println("테스트11 : " + articleMap);
 
 		sqlSession.insert("mapper.back.insertResult", articleMap);
-		System.out.println("테스트22 : " + articleMap);
 		return ba_no;
 
 	}
@@ -42,30 +41,21 @@ public class ApplyBackDAOImpl implements ApplyBackDAO {
 	}
 
 	// 다중 파일 업로드
-	@SuppressWarnings("unlikely-arg-type")
 	@Override
 	public void insertNewFile(Map articleMap) throws DataAccessException {
 		List<ApplyBackFileVO> backApplyFileList = (ArrayList) articleMap.get("imageFileList");
-		System.out.println("why? : " + backApplyFileList);
 		int ba_no = (Integer) articleMap.get("ba_no");
 
 		int MO_FILENO = selectNewImageFileNO();
 
 		if (backApplyFileList != null && backApplyFileList.size() != 0) {
-			System.out.println("다오 if문 실행");
-			System.out.println("if문 backApplyFileList" + backApplyFileList);
 
 			for (ApplyBackFileVO applyBackFileVO : backApplyFileList) {
-				System.out.println("뭘까1?" + applyBackFileVO);
 				applyBackFileVO.setUp_fileno(++MO_FILENO);
 				applyBackFileVO.setBa_no(ba_no);
-				System.out.println("뭘까2?" + applyBackFileVO);
 			}
-
 		}
-		System.out.println("imageFileList" + backApplyFileList);
 		sqlSession.insert("mapper.back.insertNewImage", backApplyFileList);
-		System.out.println("최종 : " + backApplyFileList);
 	}
 
 	private int selectNewImageFileNO() {
@@ -84,6 +74,11 @@ public class ApplyBackDAOImpl implements ApplyBackDAO {
 	public ApplyBackVO findNo(int ba_no) {
 		ApplyBackVO month = sqlSession.selectOne("mapper.back.findNo", ba_no);
 		return month;
+	}
+
+	@Override
+	public MemberVO modifyMember(MemberVO member) {
+		return sqlSession.selectOne("mapper.member.updateMember", member);
 	}
 
 }

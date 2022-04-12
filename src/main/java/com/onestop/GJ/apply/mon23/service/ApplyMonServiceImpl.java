@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.onestop.GJ.apply.mon23.dao.ApplyMonDAO;
 import com.onestop.GJ.apply.mon23.vo.ApplyMonVO;
+import com.onestop.GJ.member.vo.MemberVO;
 
 @Service("ApplyMonServiceImpl")
 @Transactional(propagation = Propagation.REQUIRED)
@@ -42,6 +43,12 @@ public class ApplyMonServiceImpl implements ApplyMonService{
 	@Override
 	public ApplyMonVO findNo(int no) {
 		return  applymonDAO.findNo(no);
+	}
+
+
+	@Override
+	public MemberVO modifyMember(MemberVO member) {
+		return applymonDAO.modifyMember(member);
 	}
 
 

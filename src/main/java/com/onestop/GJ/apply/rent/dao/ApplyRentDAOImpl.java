@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.onestop.GJ.apply.rent.vo.ApplyRentFileVO;
 import com.onestop.GJ.apply.rent.vo.ApplyRentVO;
+import com.onestop.GJ.member.vo.MemberVO;
 
 @Repository("ApplyRentDAOImpl")
 public class ApplyRentDAOImpl implements ApplyRentDAO {
@@ -29,10 +30,8 @@ public class ApplyRentDAOImpl implements ApplyRentDAO {
 	public int insertResult(Map articleMap) throws DataAccessException {
 		int rent_no = insertResultNO();
 		articleMap.put("rent_no", rent_no);
-		System.out.println("테스트11 : " + articleMap);
 
 		sqlSession.insert("mapper.rent.insertResult", articleMap);
-		System.out.println("테스트22 : " + articleMap);
 		return rent_no;
 
 	}
@@ -55,7 +54,6 @@ public class ApplyRentDAOImpl implements ApplyRentDAO {
 				applyRentFileVO.setUp_fileno(++RENT_FILENO);
 				applyRentFileVO.setRent_no(rent_no);
 			}
-			System.out.println("imageFileList" + rentApplyFileList);
 			sqlSession.insert("mapper.rent.insertNewImage", rentApplyFileList);
 		}
 	}
@@ -76,6 +74,11 @@ public class ApplyRentDAOImpl implements ApplyRentDAO {
 	public ApplyRentVO findNo(int rent_no) {
 		ApplyRentVO Rent = sqlSession.selectOne("mapper.rent.findNo", rent_no);
 		return Rent;
+	}
+
+	@Override
+	public MemberVO modifyMember(MemberVO member) {
+		return sqlSession.selectOne("mapper.member.updateMember", member);
 	}
 
 }

@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.onestop.GJ.apply.back.dao.ApplyBackDAO;
 import com.onestop.GJ.apply.back.vo.ApplyBackVO;
+import com.onestop.GJ.member.vo.MemberVO;
 
 @Service("ApplyBackServiceImpl")
 @Transactional(propagation = Propagation.REQUIRED)
@@ -42,6 +43,13 @@ public class ApplyBackServiceImpl implements ApplyBackService{
 	@Override
 	public ApplyBackVO findNo(int no) {
 		return  applybackDAO.findNo(no);
+	}
+
+
+	@Override
+	public MemberVO modifyMember(MemberVO member) {
+		
+		return applybackDAO.modifyMember(member);
 	}
 
 

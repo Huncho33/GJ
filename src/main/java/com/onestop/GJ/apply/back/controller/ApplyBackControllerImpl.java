@@ -20,6 +20,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,6 +28,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.onestop.GJ.apply.back.service.ApplyBackService;
 import com.onestop.GJ.apply.back.vo.ApplyBackFileVO;
@@ -42,13 +44,10 @@ public class ApplyBackControllerImpl implements ApplyBackController {
 	@Autowired
 	private ApplyBackService applyBackService;
 	@Autowired
-	private MypageService mypageService;
-	@Autowired
 	private MemberVO memberVO;
 	@Autowired
 	private ApplyBackVO applyBackVO;
 
-	// 신청한 아이디 있는지 체크
 		@RequestMapping(value = "/back/backApplyForm0.do", method = { RequestMethod.GET, RequestMethod.POST })
 		private ResponseEntity applyCheck(HttpServletRequest request, HttpServletResponse response) throws Exception {
 			response.setContentType("text/html; charset=utf-8");
@@ -58,15 +57,11 @@ public class ApplyBackControllerImpl implements ApplyBackController {
 			HttpHeaders responseHeaders = new HttpHeaders();
 			responseHeaders.add("content-Type", "text/html; charset=utf-8");
 			String viewName = (String) request.getAttribute("viewName");
-			System.out.println("viewName" + viewName);
 			HttpSession session = request.getSession();
 			memberVO = (MemberVO) session.getAttribute("member");
-			System.out.println("memberVO 값 불러오기" + memberVO);
 			String id = memberVO.getMember_id();
 			ApplyBackVO list = applyBackService.findAll(id);
-			System.out.println("apply 테이블 값 : " + list);
 			if (list != null && list.getMember_id().equals(id)) {
-				System.out.println("아이디값 가져옴: " + list.getMember_id());
 				message = "<script>";
 				message += " alert('이미 신청한 아이디입니다.');";
 				message += " location.href='" + request.getContextPath() + "/main.do'";
@@ -83,7 +78,6 @@ public class ApplyBackControllerImpl implements ApplyBackController {
 	@RequestMapping(value = "/back/backApplyForm1.do", method = { RequestMethod.GET, RequestMethod.POST })
 	private ModelAndView applyForm(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = (String) request.getAttribute("viewName");
-		System.out.println("viewName" + viewName);
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(viewName);
 		return mav;
@@ -93,50 +87,24 @@ public class ApplyBackControllerImpl implements ApplyBackController {
 	// 신청정보 등록(수정)
 	@Override
 	@RequestMapping(value = "/back/backApplyForm2.do", method = RequestMethod.POST)
-	public ResponseEntity modApplyInfo(@RequestParam("attribute") String attribute, @RequestParam("value") String value,
+	public ModelAndView modApplyInfo(@ModelAttribute("member") MemberVO member,
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
-		response.setContentType("text/html;charset=utf-8");
-		Map<String, String> memberMap = new HashMap<String, String>();
-		String val[] = null;
 		HttpSession session = request.getSession();
 		memberVO = (MemberVO) session.getAttribute("member");
-		String member_id = memberVO.getMember_id();
+		ModelAndView mav = new ModelAndView();
+		memberVO = (MemberVO) applyBackService.modifyMember(member);
+		mav.setViewName("redirect:/back/backApplyForm3.do");
+		return mav;
 
-		if (attribute.equals("member")) {
-			val = value.split(",");
-			memberMap.put("member_phoneno", val[0]);
-			memberMap.put("member_email1", val[1]);
-			memberMap.put("member_email2", val[2]);
-			memberMap.put("member_zipcode", val[3]);
-			memberMap.put("member_roadAddress", val[4]);
-			memberMap.put("member_jibunAddress", val[5]);
-			memberMap.put("member_namujiAddress", val[6]);
-		} else {
-			memberMap.put(attribute, value);
-		}
-
-		memberMap.put("member_id", member_id);
-
-		System.out.println(memberMap);
-
-		memberVO = (MemberVO) mypageService.modifyMember(memberMap);
-		session.removeAttribute("member");
-		session.setAttribute("member", memberVO);
-
-		String message = null;
-		ResponseEntity resEntity = null;
-		HttpHeaders responseHeaders = new HttpHeaders();
-		message = "mod_success";
-		resEntity = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
-
-		return resEntity;
+		
 	}
 
+	
+	
 	// 신청페이지 화면 호출(backApplyForm3)
 	@RequestMapping(value = "/back/backApplyForm3.do", method = RequestMethod.POST)
 	private ModelAndView applyForms(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = (String) request.getAttribute("viewName");
-		System.out.println("viewName" + viewName);
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("redirect:/back/backApplyForm4.do");
 
@@ -155,9 +123,7 @@ public class ApplyBackControllerImpl implements ApplyBackController {
 		Enumeration enu = multipartRequest.getParameterNames();
 		while (enu.hasMoreElements()) {
 			String name = (String) enu.nextElement();
-			System.out.println("컨트롤러 이름:" + name);
 			String value = multipartRequest.getParameter(name);
-			System.out.println("컨트롤러 값 :" + value);
 			articleMap.put(name, value);
 		}
 
@@ -165,14 +131,9 @@ public class ApplyBackControllerImpl implements ApplyBackController {
 		MemberVO memberVO = (MemberVO) session.getAttribute("member");
 		String member_id = memberVO.getMember_id();
 		articleMap.put("member_id", member_id);
-		System.out.println("아티클맵 : " + articleMap);
 		List<String> fileList = upload(multipartRequest, RequestMethod.POST);
 		List<ApplyBackFileVO> imageFileList = new ArrayList<ApplyBackFileVO>();
-		System.out.println("fileList : " + fileList);
-		System.out.println("imageFileList : " + imageFileList);
 		fileList.removeAll(Arrays.asList("", null));
-		System.out.println("fileList 삭제후 : " + fileList);
-		System.out.println("imageFileList : " + imageFileList);
 		if (fileList != null && fileList.size() != 0) {
 			for (String fileName : fileList) {
 				ApplyBackFileVO applyBackFileVO = new ApplyBackFileVO();
@@ -191,10 +152,8 @@ public class ApplyBackControllerImpl implements ApplyBackController {
 			if (imageFileList != null && imageFileList.size() != 0) {
 				for (ApplyBackFileVO applyBackFileVO : imageFileList) {
 					up_fileName = applyBackFileVO.getUp_filename();
-					System.out.println("apply : " + applyBackFileVO.toString());
 					File srcFile = new File(backApply_REPO + "\\" + "temp" + "\\" + up_fileName);
 					File destDir = new File(backApply_REPO + "\\" + ba_no);
-					// destDir.mkdirs();
 					FileUtils.moveFileToDirectory(srcFile, destDir, true);
 				}
 			}
@@ -205,7 +164,6 @@ public class ApplyBackControllerImpl implements ApplyBackController {
 					+ ba_no + "';";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
-			System.out.println("신청번호:" + ba_no);
 
 		} catch (Exception e) {
 			if (imageFileList != null && imageFileList.size() != 0) {
@@ -251,12 +209,9 @@ public class ApplyBackControllerImpl implements ApplyBackController {
 	@RequestMapping(value = "/back/backApplyResult.do")
 	public ModelAndView findAll(HttpServletRequest request, @RequestParam("ba_no") int ba_no) {
 		String viewName = (String) request.getAttribute("viewName");
-		System.out.println("ba_no : " + ba_no);
-		System.out.println("viewName" + viewName);
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
 		memberVO = (MemberVO) session.getAttribute("member");
-		System.out.println(memberVO.getMember_id());
 		String id = memberVO.getMember_id();
 		int no = applyBackVO.getBa_no();
 
@@ -271,24 +226,18 @@ public class ApplyBackControllerImpl implements ApplyBackController {
 	@RequestMapping(value = "/back/backSelectedResult.do")
 	private ModelAndView backSelectedPage(HttpServletRequest request) throws Exception {
 		String viewName = (String) request.getAttribute("viewName");
-		System.out.println("viewName" + viewName);
 		ModelAndView mav = new ModelAndView();
 
 		HttpSession session = request.getSession();
 		memberVO = (MemberVO) session.getAttribute("member");
-//		System.out.println(memberVO.getMember_id());
 		String id = memberVO.getMember_id();
 		ApplyBackVO list = applyBackService.findAll(id);
-		System.out.println(list);
 
 		mav.addObject("apply", list);
 		mav.setViewName(viewName);
-		System.out.println("list값 : "+list);
 		if (list == null) {
-			System.out.println("result controller if문");
 			mav.addObject("message", "신청내역이 없는 아이디 입니다.");
 		} else {
-			System.out.println("else문");
 		}
 		return mav;
 	}

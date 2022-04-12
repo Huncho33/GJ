@@ -1,9 +1,9 @@
 package com.onestop.GJ.apply.mon23.service;
 
-import java.util.List;
 import java.util.Map;
 
 import com.onestop.GJ.apply.mon23.vo.ApplyMonVO;
+import com.onestop.GJ.member.vo.MemberVO;
 
 public interface ApplyMonService {
 
@@ -18,11 +18,12 @@ public interface ApplyMonService {
 	ApplyMonVO findNo(int no);
 
 
+	MemberVO modifyMember(MemberVO member);
+
+
 	
 
 
-	// 신청등록
-//	public void insertResult(ApplyMonVO applymonVO) throws DataAccessException;
 
 	
 

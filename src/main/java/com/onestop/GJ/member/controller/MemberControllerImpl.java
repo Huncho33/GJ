@@ -109,7 +109,7 @@ public class MemberControllerImpl implements MemberController {
 		session.removeAttribute("isLogOut");
 		ModelAndView mav = new ModelAndView();
 
-		rAttr.addAttribute("result", "logOut");
+		//rAttr.addAttribute("result", "logOut");
 		session.invalidate();
 		mav.setViewName("redirect:/main.do");
 		return mav;

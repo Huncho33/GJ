@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.onestop.GJ.apply.back.vo.ApplyBackVO;
+import com.onestop.GJ.member.vo.MemberVO;
 
 public interface ApplyBackService {
 
@@ -14,5 +15,7 @@ public interface ApplyBackService {
 	ApplyBackVO findAll(String id);
 
 	ApplyBackVO findNo(int no);
+
+	MemberVO modifyMember(MemberVO member);
 
 }

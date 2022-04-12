@@ -21,6 +21,16 @@
 <link rel="stylesheet"
    href="${contextPath}/resources/css/memberForm/memberForm1.css">
 <script type="text/javascript">
+
+//취소
+function cancel() {
+	if (confirm("정말 취소하시겠습니까?") == true) { //확인
+		window.location.href = '../main.do';
+	} else { //취소
+		return false;
+	}
+}
+
 $(document).ready(function(){
    //전체 체크박스 클릭
    $("#checkAll").click(function(){
@@ -445,7 +455,7 @@ $(document).ready(function(){
                </div>
                <div class="join_btn_list">
                   <div class="join_btn join_btn1">
-                     <input type="reset" value="취소">
+                     <input type="reset" value="취소" onclick="cancel()">
                   </div>
                   
                   <div class="join_btn join_btn2">

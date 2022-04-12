@@ -7,6 +7,7 @@ import org.springframework.dao.DataAccessException;
 
 import com.onestop.GJ.apply.back.vo.ApplyBackFileVO;
 import com.onestop.GJ.apply.back.vo.ApplyBackVO;
+import com.onestop.GJ.member.vo.MemberVO;
 
 public interface ApplyBackDAO {
 
@@ -19,5 +20,7 @@ public interface ApplyBackDAO {
 	ApplyBackVO findAll(String member_id);
 
 	ApplyBackVO findNo(int ba_no);
+
+	MemberVO modifyMember(MemberVO member);
 
 }

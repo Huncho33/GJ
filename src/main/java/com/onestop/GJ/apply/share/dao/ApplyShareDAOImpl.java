@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.onestop.GJ.apply.share.vo.ApplyShareFileVO;
 import com.onestop.GJ.apply.share.vo.ApplyShareVO;
+import com.onestop.GJ.member.vo.MemberVO;
 
 @Repository("ApplyShareDAOImpl")
 public class ApplyShareDAOImpl implements ApplyShareDAO {
@@ -28,10 +29,8 @@ public class ApplyShareDAOImpl implements ApplyShareDAO {
 	public int insertResult(Map articleMap) throws DataAccessException {
 		int sh_no = insertResultNO();
 		articleMap.put("sh_no", sh_no);
-		System.out.println("테스트11 : " + articleMap);
 
 		sqlSession.insert("mapper.share.insertResult", articleMap);
-		System.out.println("테스트22 : " + articleMap);
 		return sh_no;
 
 	}
@@ -45,7 +44,6 @@ public class ApplyShareDAOImpl implements ApplyShareDAO {
 	@Override
 	public void insertNewFile(Map articleMap) throws DataAccessException {
 		List<ApplyShareFileVO> shareApplyFileList = (ArrayList) articleMap.get("imageFileList");
-		System.out.println("why? : " + shareApplyFileList);
 		int sh_no = (Integer) articleMap.get("sh_no");
 
 		int MO_FILENO = selectNewImageFileNO();
@@ -55,7 +53,6 @@ public class ApplyShareDAOImpl implements ApplyShareDAO {
 				applyShareFileVO.setUp_fileno(++MO_FILENO);
 				applyShareFileVO.setSh_no(sh_no);
 			}
-			System.out.println("imageFileList" + shareApplyFileList);
 			sqlSession.insert("mapper.share.insertNewImage", shareApplyFileList);
 		}
 	}
@@ -76,6 +73,11 @@ public class ApplyShareDAOImpl implements ApplyShareDAO {
 	public ApplyShareVO findNo(int sh_no) {
 		ApplyShareVO month = sqlSession.selectOne("mapper.share.findNo", sh_no);
 		return month;
+	}
+
+	@Override
+	public MemberVO modifyMember(MemberVO member) {
+		return sqlSession.selectOne("mapper.member.updateMember", member);
 	}
 
 }

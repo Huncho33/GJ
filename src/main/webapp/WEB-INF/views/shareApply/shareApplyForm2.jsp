@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" isELIgnored="false"%>
+	pageEncoding="UTF-8" isELIgnored="false" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
@@ -24,54 +24,6 @@
 <link href="${contextPath}/resources/css/common.css" rel="stylesheet"
 	type="text/css">
 <script language="javascript">
-	
-	
-	
-	function fn_modApplyFormData(attribute) {
-		var value;
-		var myInfo_frm = document.myInfo_frm;
-		if(attribute == 'member'){
-			/* var member_pw = document.getElementById("member_pw").value; */
-			var member_phoneno = document.getElementById("member_phoneno").value;
-			var member_email1 = document.getElementById("member_email1").value;
-			var member_email2 = document.getElementById("member_email2").value;
-			var member_zipcode = document.getElementById("member_zipcode").value;
-			var member_roadAddress = document.getElementById("member_roadAddress").value;
-			var member_jibunAddress = document.getElementById("member_jibunAddress").value;
-			var member_namujiAddress = document.getElementById("member_namujiAddress").value;
-			
-			value = member_phoneno +","+ member_email1 +","+ member_email2 +","+ member_zipcode +","+ member_roadAddress +","+ member_jibunAddress +","+ member_namujiAddress;
-		}
-		console.log(value);
-		
-		$.ajax({
-			type : "post",
-			async : false, //false인 경우 동기식으로 처리한다.
-			url : "${contextPath}/share/shareApplyForm2.do",
-			data : {
-				attribute:attribute,
-				value:value,
-			},
-			success : function(data, textStatus) {
-				if(data.trim()=='mod_success'){
-					 
-					 location.href = "../share/shareApplyForm3.do";
-					 alert("다음단계로 이동합니다."); 
-					return 
-				}else if(data.trim()=='failed'){
-					alert("다시 시도해 주세요.");	
-				}
-				
-			},
-			error : function(data, textStatus) {
-				alert("에러가 발생했습니다." + data);
-			},
-			complete : function(data, textStatus) {
-				//alert("작업을 완료 했습니다");
-				
-			}
-		}); //end ajax
-	}
 	
 	function cancel() {
 
@@ -130,7 +82,7 @@
 				</p>
 			</div>
 			<div id="monthApply_table">
-				<form>
+				<form action="${contextPath }/share/shareApplyForm2.do" method="post">
 					<div id="detail_table">
 						<table id="join_detail_table">
 							<tbody>
@@ -225,8 +177,7 @@
 							<input type="reset" value="취소" onclick="cancel()">
 						</div>
 						<div class="join_btn join_btn2">
-							<input type="submit" value="다음"
-								onClick="fn_modApplyFormData('member');">
+							<input type="submit" value="다음">
 						</div>
 					</div>
 				</form>

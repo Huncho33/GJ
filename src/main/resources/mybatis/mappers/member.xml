@@ -101,12 +101,12 @@
 		#{member_id}
 	</update>
 
+	<!-- 회원정보수정 -->
 	<update id="updateMember" parameterType="memberVO">
      <![CDATA[
-	     update member
+	    update member
 	     set
 	     member_id=#{member_id},
-		 member_pw=#{member_pw}, 
 	     member_phoneno=#{member_phoneno},
 	     member_email1=#{member_email1}, 
 	     member_email2=#{member_email2},

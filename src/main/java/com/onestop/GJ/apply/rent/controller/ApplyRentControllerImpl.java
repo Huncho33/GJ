@@ -19,6 +19,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -41,8 +42,6 @@ public class ApplyRentControllerImpl implements ApplyRentController {
 	@Autowired
 	private ApplyRentService applyrentService;
 	@Autowired
-	private MypageService mypageService;
-	@Autowired
 	private MemberVO memberVO;
 	@Autowired
 	private ApplyRentVO applyrentVO;
@@ -57,15 +56,11 @@ public class ApplyRentControllerImpl implements ApplyRentController {
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("content-Type", "text/html; charset=utf-8");
 		String viewName = (String) request.getAttribute("viewName");
-		System.out.println("viewName" + viewName);
 		HttpSession session = request.getSession();
 		memberVO = (MemberVO) session.getAttribute("member");
-		System.out.println("memberVO 값 불러오기" + memberVO);
 		String id = memberVO.getMember_id();
 		ApplyRentVO list = applyrentService.findAll(id);
-		System.out.println("apply 테이블 값 : " + list);
 		if (list != null && list.getMember_id().equals(id)) {
-			System.out.println("아이디값 가져옴: " + list.getMember_id());
 			message = "<script>";
 			message += " alert('이미 신청한 아이디입니다.');";
 			message += " location.href='" + request.getContextPath() + "/main.do'";
@@ -82,7 +77,6 @@ public class ApplyRentControllerImpl implements ApplyRentController {
 	@RequestMapping(value = "/rent/rentApplyForm1.do", method = { RequestMethod.GET, RequestMethod.POST })
 	private ModelAndView applyForm(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = (String) request.getAttribute("viewName");
-		System.out.println("viewName" + viewName);
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(viewName);
 		return mav;
@@ -90,52 +84,24 @@ public class ApplyRentControllerImpl implements ApplyRentController {
 	}
 
 	// 신청정보 등록(수정)
-	@Override
-	@RequestMapping(value = "/rent/rentApplyForm2.do", method = RequestMethod.POST)
-	public ResponseEntity modApplyInfo(@RequestParam("attribute") String attribute, @RequestParam("value") String value,
-			HttpServletRequest request, HttpServletResponse response) throws Exception {
-		response.setContentType("text/html;charset=utf-8");
-		Map<String, String> memberMap = new HashMap<String, String>();
-		String val[] = null;
-		HttpSession session = request.getSession();
-		memberVO = (MemberVO) session.getAttribute("member");
-		String member_id = memberVO.getMember_id();
+		@Override
+		@RequestMapping(value = "/rent/rentApplyForm2.do", method = RequestMethod.POST)
+		public ModelAndView modApplyInfo(@ModelAttribute("member") MemberVO member,
+				HttpServletRequest request, HttpServletResponse response) throws Exception {
+			HttpSession session = request.getSession();
+			memberVO = (MemberVO) session.getAttribute("member");
+			ModelAndView mav = new ModelAndView();
+			memberVO = (MemberVO) applyrentService.modifyMember(member);
+			mav.setViewName("redirect:/rent/rentApplyForm3.do");
+			return mav;
 
-		if (attribute.equals("member")) {
-			val = value.split(",");
-			memberMap.put("member_phoneno", val[0]);
-			memberMap.put("member_email1", val[1]);
-			memberMap.put("member_email2", val[2]);
-			memberMap.put("member_zipcode", val[3]);
-			memberMap.put("member_roadAddress", val[4]);
-			memberMap.put("member_jibunAddress", val[5]);
-			memberMap.put("member_namujiAddress", val[6]);
-		} else {
-			memberMap.put(attribute, value);
+			
 		}
-
-		memberMap.put("member_id", member_id);
-
-		System.out.println(memberMap);
-
-		memberVO = (MemberVO) mypageService.modifyMember(memberMap);
-		session.removeAttribute("member");
-		session.setAttribute("member", memberVO);
-
-		String message = null;
-		ResponseEntity resEntity = null;
-		HttpHeaders responseHeaders = new HttpHeaders();
-		message = "mod_success";
-		resEntity = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
-
-		return resEntity;
-	}
 
 	// 신청페이지 화면 호출(rentApplyForm3)
 	@RequestMapping(value = "/rent/rentApplyForm3.do", method = RequestMethod.POST)
 	private ModelAndView applyForms(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = (String) request.getAttribute("viewName");
-		System.out.println("viewName" + viewName);
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("redirect:/rent/rentApplyForm4.do");
 
@@ -162,13 +128,10 @@ public class ApplyRentControllerImpl implements ApplyRentController {
 		MemberVO memberVO = (MemberVO) session.getAttribute("member");
 		String member_id = memberVO.getMember_id();
 		articleMap.put("member_id", member_id);
-		System.out.println("아티클맵 : " + articleMap);
 
 		List<String> fileList = upload(multipartRequest, RequestMethod.POST);
 		List<ApplyRentFileVO> imageFileList = new ArrayList<ApplyRentFileVO>();
-		System.out.println("fileList : " + fileList);
 		fileList.removeAll(Arrays.asList("", null));
-		System.out.println("fileList null값 삭제후 : " + fileList);
 		if (fileList != null && fileList.size() != 0) {
 			for (String fileName : fileList) {
 				ApplyRentFileVO applyRentFileVO = new ApplyRentFileVO();
@@ -187,10 +150,8 @@ public class ApplyRentControllerImpl implements ApplyRentController {
 			if (imageFileList != null && imageFileList.size() != 0) {
 				for (ApplyRentFileVO applyRentFileVO : imageFileList) {
 					up_fileName = applyRentFileVO.getUp_filename();
-					System.out.println("apply : " + applyRentFileVO.toString());
 					File srcFile = new File(rentApply_REPO + "\\" + "temp" + "\\" + up_fileName);
 					File destDir = new File(rentApply_REPO + "\\" + rent_no);
-					// destDir.mkdirs();
 					FileUtils.moveFileToDirectory(srcFile, destDir, true);
 				}
 			}
@@ -201,7 +162,6 @@ public class ApplyRentControllerImpl implements ApplyRentController {
 					+ rent_no + "';";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
-			System.out.println("신청번호:" + rent_no);
 
 		} catch (Exception e) {
 			if (imageFileList != null && imageFileList.size() != 0) {
@@ -247,22 +207,14 @@ public class ApplyRentControllerImpl implements ApplyRentController {
 	@RequestMapping(value = "/rent/rentApplyResult.do")
 	public ModelAndView findAll(HttpServletRequest request, @RequestParam("rent_no") int rent_no) {
 		String viewName = (String) request.getAttribute("viewName");
-		System.out.println("rent_no : " + rent_no);
-		System.out.println("viewName" + viewName);
 		ModelAndView mav = new ModelAndView();
-		System.out.println("1");
 		HttpSession session = request.getSession();
 		memberVO = (MemberVO) session.getAttribute("member");
-		System.out.println(memberVO.getMember_id());
 		String id = memberVO.getMember_id();
 		int no = applyrentVO.getRent_no();
 
-//			List list = applymonService.findAll(id);
-
 		ApplyRentVO applyno = applyrentService.findNo(rent_no);
-//			System.out.println(list);
 
-//			mav.addObject("apply", list);
 		mav.addObject("no", applyno);
 		mav.setViewName(viewName);
 		return mav;
@@ -272,14 +224,11 @@ public class ApplyRentControllerImpl implements ApplyRentController {
 	@RequestMapping(value = "/rent/rentSelectedResult.do")
 	private ModelAndView rentSelectedPage(HttpServletRequest request) throws Exception {
 		String viewName = (String) request.getAttribute("viewName");
-		System.out.println("viewName" + viewName);
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
 		memberVO = (MemberVO) session.getAttribute("member");
-		System.out.println(memberVO.getMember_id());
 		String id = memberVO.getMember_id();
 		ApplyRentVO list = applyrentService.findAll(id);
-		System.out.println(list);
 		mav.addObject("apply", list);
 		mav.setViewName(viewName);
 		if (list == null) {

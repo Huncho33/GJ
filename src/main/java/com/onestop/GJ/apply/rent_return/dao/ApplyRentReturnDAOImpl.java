@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.onestop.GJ.apply.mon23.vo.ApplyMonVO;
 import com.onestop.GJ.apply.rent_return.vo.ApplyRentReturnFileVO;
 import com.onestop.GJ.apply.rent_return.vo.ApplyRentReturnVO;
+import com.onestop.GJ.member.vo.MemberVO;
 
 @Repository("ApplyRentReturnDAOImpl")
 public class ApplyRentReturnDAOImpl implements ApplyRentReturnDAO {
@@ -30,10 +31,8 @@ public class ApplyRentReturnDAOImpl implements ApplyRentReturnDAO {
 	public int insertResult(Map articleMap) throws DataAccessException {
 		int ret_no = insertResultNO();
 		articleMap.put("ret_no", ret_no);
-		System.out.println("테스트11 : " + articleMap + "ret_no"+ ret_no);
 
 		sqlSession.insert("mapper.rentReturn.insertResult", articleMap);
-		System.out.println("테스트22 : " + articleMap);
 		return ret_no;
 
 	}
@@ -47,7 +46,6 @@ public class ApplyRentReturnDAOImpl implements ApplyRentReturnDAO {
 	@Override
 	public void insertNewFile(Map articleMap) throws DataAccessException {
 		List<ApplyRentReturnFileVO> rentReturnApplyFileList = (ArrayList) articleMap.get("imageFileList");
-		System.out.println("why? : " + rentReturnApplyFileList);
 		int return_no = (Integer) articleMap.get("return_no");
 
 		int RETURN_FILENO = selectNewImageFileNO();
@@ -57,7 +55,6 @@ public class ApplyRentReturnDAOImpl implements ApplyRentReturnDAO {
 				applyrentReturnFileVO.setUp_fileno(++RETURN_FILENO);
 				applyrentReturnFileVO.setRet_no(return_no);
 			}
-			System.out.println("imageFileList" + rentReturnApplyFileList);
 			sqlSession.insert("mapper.rentReturn.insertNewImage", rentReturnApplyFileList);
 		}
 	}
@@ -78,6 +75,11 @@ public class ApplyRentReturnDAOImpl implements ApplyRentReturnDAO {
 	public ApplyRentReturnVO findNo(int mo_no) {
 		ApplyRentReturnVO ret = sqlSession.selectOne("mapper.rentReturn.findNo", mo_no);
 		return ret;
+	}
+
+	@Override
+	public MemberVO modifyMember(MemberVO member) {
+		return sqlSession.selectOne("mapper.member.updateMember", member);
 	}
 
 }
