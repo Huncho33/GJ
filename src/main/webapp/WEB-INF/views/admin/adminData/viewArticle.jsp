@@ -334,6 +334,7 @@
 						</div>
 					</c:if>
 				</form>
+				</div>
 			</div>
 		</div>
 	</div>

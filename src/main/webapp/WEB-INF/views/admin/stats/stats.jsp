@@ -471,7 +471,7 @@
 								<c:forEach var="page" begin="1" end="10" step="1">
 									<c:if test="${section >1 && page==1 }">
 										<a class="no-uline"
-											href="${contextPath }/admin/stats/stats.do?section=${section-1}&pageNum=${(section-1)*10 +1 }">&nbsp;
+											href="${contextPath }/admin/stats/stats.do?section=${section-1}&pageNum=${(section-1)*10  }">&nbsp;
 											< </a>
 									</c:if>
 									<a class="no-uline"
@@ -479,7 +479,7 @@
 									</a>
 									<c:if test="${page ==10 }">
 										<a class="no-uline"
-											href="${contextPath }/admin/stats/stats.do?section=${section+1}&pageNum=${section*10+1}">&nbsp;
+											href="${contextPath }/admin/stats/stats.do?section=${section+1}&pageNum=${(page-10)+1}">&nbsp;
 											></a>
 									</c:if>
 								</c:forEach>

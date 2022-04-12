@@ -125,8 +125,7 @@
 						</c:when>
 					</c:choose>
 				</table>
-				<a id="adm_memberManage_write" class="cls2"
-					href="${contextPath}/member/memberForm.do">회원등록</a>
+				
 
 				<div class="cls2">
 					<c:if test="${searchTotApply != null }">

@@ -248,7 +248,7 @@ function backToList(obj){
 								<tr height="50">
 									<td width="150">:: 최종접속일</td>
 									<td><input type="text" name="member_last_log" id="member_last_log" value="${viewMember.member_last_log}"
-										size="30"></td>
+										size="30" disabled></td>
 								</tr>
 								
 							</table>
@@ -329,28 +329,8 @@ function backToList(obj){
 						</div>
 
 					</div>
-					<div id="memberInfo_tit2">
-						<p class="memberInfo_subtit" style="font-weight: bold;">
-							<strong>｜</strong> 신청 정책 / 지급 이력
-						</p>
-					</div>
 					<div id="memberInfo_container">
-						<div class="memberInfo_cnt1">
-							<table>
-								<tr height="50">
-									<td width="150">:: 신청 정책 </td>
-									<td colspan="2"><input type="text" name="#"
-										id="#" value="#" size="30" /></td>
-								</tr>
-								
-								<tr height="50">
-									<td width="150">:: 지급 이력</td>
-									<td colspan="2"><input type="text" name="#"
-										id="#" value="#" size="30" /></td>
-								</tr>
-								
-							</table>
-						</div>
+						
 
 						<div class="memberInfo_cnt2">
 							<div class="join_btn join_btn2">
