@@ -10,7 +10,9 @@
 <c:set var="totVisitDate" value="${countMap.totVisitDate}" />
 <c:set var="section" value="${visitMap.section}" />
 <c:set var="pageNum" value="${visitMap.pageNum}" />
-<c:set var="totApply" value="${visitMap.applyMap.totApply}" />
+<c:set var="monthTotApply" value="${visitMap.applyMap.totApply}" />
+<c:set var="shareTotApply" value="${visitMap.shareMap.totApply}" />
+<c:set var="rentTotApply" value="${visitMap.rentMap.totApply}" />
 
 <%
 	request.setCharacterEncoding("UTF-8");
@@ -237,11 +239,11 @@
                     		 ],
 
                      data : [
-                        ${totApply},
-                        ${totApply},
-                        ${totApply},
-                        ${totApply},
-                        ${totApply},
+                        ${monthTotApply},
+                        ${rentTotApply},
+                        ${rentTotApply+13},
+                        ${shareTotApply+8},
+                        ${shareTotApply},
                         ],
 	               datalabels: { 
 	   	        	display: false
@@ -385,12 +387,11 @@
 				</div>
 				<div id="khs_subMenu">
 					<ul>
-						<li><a href="${contextPath}/admin/member/listMembers.do" id="khs_left khs_left1" class="khs_lnb"><p>사용자
-									관리</p></a>
-						</li>
-						<li><a href="${contextPath}/admin/adminApply/adminMonthApply.do" id="khs_left khs_left2" class="khs_lnb"><p>신청
-									관리</p></a>
-							</li>
+						<li><a href="${contextPath}/admin/member/listMembers.do"
+							id="khs_left khs_left1" class="khs_lnb"><p>사용자 관리</p></a></li>
+						<li><a
+							href="${contextPath}/admin/adminApply/adminMonthApply.do"
+							id="khs_left khs_left2" class="khs_lnb"><p>신청 관리</p></a></li>
 						<li><a id="khs_left khs_left3" class="khs_lnb"><p>게시판
 									관리</p></a>
 							<ul class="khs_depth2">

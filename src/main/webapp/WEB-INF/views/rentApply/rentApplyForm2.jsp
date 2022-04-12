@@ -24,6 +24,7 @@
 <link href="${contextPath}/resources/css/common.css" rel="stylesheet"
 	type="text/css">
 <script language="javascript">
+
 	function cancel() {
 		if (confirm("정말 취소하시겠습니까?") == true) { //확인
 			console.log("hi");

@@ -25,8 +25,6 @@
 	type="text/css">
 <script language="javascript">
 	
-
-	
 	function cancel() {
 
 		if (confirm("정말 취소하시겠습니까?") == true) { //확인
@@ -99,8 +97,8 @@
 								</tr>
 
 								<tr class="dot_line">
-									<td class="fixed_join">:: 생년월일<span
-										style="font-weight: bold; color: red;">*</span>
+									<td class="fixed_join">:: 생년월일
+									<span style="font-weight: bold; color: red;">*</span>
 									</td>
 									<td colspan="2"><input type="text" name="member_birth"
 										id="member_birth" value="${member.member_birth}" size="20"
