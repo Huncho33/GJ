@@ -20,6 +20,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -40,8 +41,6 @@ public class ApplyMonControllerImpl implements ApplyMonController {
 	private static String monApply_REPO = "C:\\GJ\\file_repo\\apply\\month";
 	@Autowired
 	private ApplyMonService applymonService;
-	@Autowired
-	private MypageService mypageService;
 	@Autowired
 	private MemberVO memberVO;
 	@Autowired
@@ -84,41 +83,18 @@ public class ApplyMonControllerImpl implements ApplyMonController {
 	}
 
 	// 신청정보 등록(수정)
-	@Override
-	@RequestMapping(value = "/month/monthApplyForm2.do", method = RequestMethod.POST)
-	public ResponseEntity modApplyInfo(@RequestParam("attribute") String attribute, @RequestParam("value") String value,
-			HttpServletRequest request, HttpServletResponse response) throws Exception {
-		response.setContentType("text/html;charset=utf-8");
-		Map<String, String> memberMap = new HashMap<String, String>();
-		String val[] = null;
-		HttpSession session = request.getSession();
-		memberVO = (MemberVO) session.getAttribute("member");
-		String member_id = memberVO.getMember_id();
-		if (attribute.equals("member")) {
-			val = value.split(",");
-			memberMap.put("member_phoneno", val[0]);
-			memberMap.put("member_email1", val[1]);
-			memberMap.put("member_email2", val[2]);
-			memberMap.put("member_zipcode", val[3]);
-			memberMap.put("member_roadAddress", val[4]);
-			memberMap.put("member_jibunAddress", val[5]);
-			memberMap.put("member_namujiAddress", val[6]);
-		} else {
-			memberMap.put(attribute, value);
+
+		@Override
+		@RequestMapping(value = "/month/monthApplyForm2.do", method = RequestMethod.POST)
+		public ModelAndView modApplyInfo(@ModelAttribute("member") MemberVO member,
+				HttpServletRequest request, HttpServletResponse response) throws Exception {
+			HttpSession session = request.getSession();
+			memberVO = (MemberVO) session.getAttribute("member");
+			ModelAndView mav = new ModelAndView();
+			memberVO = (MemberVO) applymonService.modifyMember(member);
+			mav.setViewName("redirect:/month/monthApplyForm3.do");
+			return mav;
 		}
-		memberMap.put("member_id", member_id);
-		memberVO = (MemberVO) mypageService.modifyMember(memberMap);
-		session.removeAttribute("member");
-		session.setAttribute("member", memberVO);
-
-		String message = null;
-		ResponseEntity resEntity = null;
-		HttpHeaders responseHeaders = new HttpHeaders();
-		message = "mod_success";
-		resEntity = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
-
-		return resEntity;
-	}
 
 	// 신청페이지 화면 호출(monthApplyForm3)
 	@RequestMapping(value = "/month/monthApplyForm3.do", method = RequestMethod.POST)
@@ -255,8 +231,6 @@ public class ApplyMonControllerImpl implements ApplyMonController {
 		}
 		else {
 		}
-
 		return mav;
 	}
-
 }

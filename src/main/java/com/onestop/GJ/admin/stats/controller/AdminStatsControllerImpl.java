@@ -18,8 +18,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.onestop.GJ.admin.apply.mon.service.AdminMonApplyService;
+import com.onestop.GJ.admin.apply.rent.service.AdminRentApplyService;
+import com.onestop.GJ.admin.apply.share.service.AdminShareApplyService;
 import com.onestop.GJ.admin.stats.service.AdminStatsService;
-import com.onestop.GJ.member.vo.MemberVO;
 
 @Controller("adminStatsController")
 public class AdminStatsControllerImpl implements AdminStatsController {
@@ -27,7 +28,11 @@ public class AdminStatsControllerImpl implements AdminStatsController {
 	@Autowired
 	private AdminStatsService statsService;
 	@Autowired
-	private AdminMonApplyService adminService;
+	private AdminMonApplyService adminMonthService;
+	@Autowired
+	private AdminRentApplyService adminRentApplyService;
+	@Autowired
+	private AdminShareApplyService adminShareApplyService;
 
 	// 통계 방문자 리스트
 	@Override
@@ -46,10 +51,15 @@ public class AdminStatsControllerImpl implements AdminStatsController {
 		pagingMap.put("pageNum", pageNum);
 
 		Map visitMap = statsService.listStats(pagingMap);
-		Map applyMap = adminService.joinTable(pagingMap);
+		Map applyMap = adminMonthService.joinTable(pagingMap);
+		Map shareMap = adminShareApplyService.joinTable(pagingMap);
+		Map rentMap = adminRentApplyService.joinTable(pagingMap);
+		
 		visitMap.put("section", section);
 		visitMap.put("pageNum", pageNum);
 		visitMap.put("applyMap", applyMap);
+		visitMap.put("shareMap", shareMap);
+		visitMap.put("rentMap", rentMap);
 
 		Map countMap = statsService.getTotCnt(visitMap); // 총 방문자수, 구별 인구 수, 남녀비율
 

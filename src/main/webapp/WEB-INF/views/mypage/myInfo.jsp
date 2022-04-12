@@ -85,55 +85,60 @@
 	function fn_modFormData(attribute) {
 		var value;
 		var myInfo_frm = document.myInfo_frm;
-		if(attribute == 'member'){
+		if (attribute == 'member') {
 			var member_pw = document.getElementById("member_pw").value;
 			var member_phoneno = document.getElementById("member_phoneno").value;
 			var member_email1 = document.getElementById("member_email1").value;
 			var member_email2 = document.getElementById("member_email2").value;
 			var member_zipcode = document.getElementById("member_zipcode").value;
-			var member_roadAddress = document.getElementById("member_roadAddress").value;
-			if(document.getElementById("member_jibunAddress").value == ""){
+			var member_roadAddress = document
+					.getElementById("member_roadAddress").value;
+			if (document.getElementById("member_jibunAddress").value == "") {
 				var member_jibunAddress = " ";
-			} else{
-				var member_jibunAddress = document.getElementById("member_jibunAddress").value;
+			} else {
+				var member_jibunAddress = document
+						.getElementById("member_jibunAddress").value;
 			}
-			if(document.getElementById("member_namujiAddress").value == ""){
+			if (document.getElementById("member_namujiAddress").value == "") {
 				var member_namujiAddress = " ";
-			}else{
-				var member_namujiAddress = document.getElementById("member_namujiAddress").value;
+			} else {
+				var member_namujiAddress = document
+						.getElementById("member_namujiAddress").value;
 			}
-			
-			value = member_pw +","+ member_phoneno +","+ member_email1 +","+ member_email2 +","+ member_zipcode +","+ member_roadAddress +","+ member_jibunAddress +","+ member_namujiAddress;
+
+			value = member_pw + "," + member_phoneno + "," + member_email1
+					+ "," + member_email2 + "," + member_zipcode + ","
+					+ member_roadAddress + "," + member_jibunAddress + ","
+					+ member_namujiAddress;
 		}
 		console.log(value);
-		
+
 		$.ajax({
 			type : "post",
 			async : false, //false인 경우 동기식으로 처리한다.
 			url : "${contextPath}/mypage/modMyInfo.do",
 			data : {
-				attribute:attribute,
-				value:value,
+				attribute : attribute,
+				value : value,
 			},
 			success : function(data, textStatus) {
-				if(data.trim()=='mod_success'){
+				if (data.trim() == 'mod_success') {
 					alert("회원 정보를 수정했습니다.");
 					return;
-				}else if(data.trim()=='failed'){
-					alert("다시 시도해 주세요.");	
+				} else if (data.trim() == 'failed') {
+					alert("다시 시도해 주세요.");
 				}
-				
+
 			},
 			error : function(data, textStatus) {
 				alert("에러가 발생했습니다." + data);
 			},
 			complete : function(data, textStatus) {
 				//alert("작업을 완료 했습니다");
-				
+
 			}
 		}); //end ajax
 	}
-	
 </script>
 
 </head>
@@ -159,8 +164,10 @@
 							<ul class="khs_depth2">
 								<li><a href="${contextPath}/mypage/monthApplyList.do">-
 										월세지원 신청 현황</a></li>
-								<li><a href="${contextPath}/mypage/rentApplyList.do">- 전세지원 신청 현황</a></li>
-								<li><a href="${contextPath}/mypage/shareApplyList.do">- 행복주택지원 신청 현황</a></li>
+								<li><a href="${contextPath}/mypage/rentApplyList.do">-
+										전세지원 신청 현황</a></li>
+								<li><a href="${contextPath}/mypage/shareApplyList.do">-
+										행복주택지원 신청 현황</a></li>
 							</ul></li>
 						<li><a id="khs_left khs_left3" class="khs_lnb"><p>나의
 									게시글 및 상담</p></a>
@@ -187,17 +194,19 @@
 							<table>
 								<tr height="50">
 									<td width="150">:: 아이디</td>
-									<td><input type="text" name="member_id" id="member_id" value="${member.member_id}" size="30" disabled><input
+									<td><input type="text" name="member_id" id="member_id"
+										value="${member.member_id}" size="30" disabled><input
 										type="hidden" name="member_id2" id="member_id2"></td>
 								</tr>
 								<tr height="50">
 									<td width="150">:: 이름</td>
-									<td><input type="text" value="${member.member_name}" size="30" disabled></td>
+									<td><input type="text" value="${member.member_name}"
+										size="30" disabled></td>
 								</tr>
 								<tr height="50">
 									<td width="150">:: 비밀번호</td>
-									<td><input type="password" name="member_pw" id="member_pw" value="${member.member_pw}"
-										size="30"></td>
+									<td><input type="password" name="member_pw" id="member_pw"
+										value="${member.member_pw}" size="30"></td>
 								</tr>
 							</table>
 						</div>
@@ -284,9 +293,9 @@
 								</tr>
 								<tr height="50">
 									<td width="150"></td>
-									<td>네 &nbsp;&nbsp; <input type="radio" name="message" checked /> <span
-										style="padding-left: 120px"></span> 아니오 &nbsp;&nbsp; <input
-										type="radio" name="message" /></td>
+									<td>네 &nbsp;&nbsp; <input type="radio" name="message"
+										checked /> <span style="padding-left: 120px"></span> 아니오
+										&nbsp;&nbsp; <input type="radio" name="message" /></td>
 								</tr>
 							</table>
 						</div>
@@ -294,8 +303,7 @@
 						<div class="myInfo_cnt2">
 							<div class="join_btn join_btn2">
 								<input type="submit" value="수정" id="myInfo_mod"
-									name="myInfo_mod"
-									onClick="fn_modFormData('member');">
+									name="myInfo_mod" onClick="fn_modFormData('member');">
 							</div>
 							<div class="join_btn join_btn1">
 								<input type="reset" value="취소">

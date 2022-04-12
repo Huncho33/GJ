@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.onestop.GJ.apply.share.vo.ApplyShareFileVO;
 import com.onestop.GJ.apply.share.vo.ApplyShareVO;
+import com.onestop.GJ.member.vo.MemberVO;
 
 @Repository("ApplyShareDAOImpl")
 public class ApplyShareDAOImpl implements ApplyShareDAO {
@@ -65,6 +66,11 @@ public class ApplyShareDAOImpl implements ApplyShareDAO {
 	public ApplyShareVO findNo(int sh_no) {
 		ApplyShareVO month = sqlSession.selectOne("mapper.share.findNo", sh_no);
 		return month;
+	}
+
+	@Override
+	public MemberVO modifyMember(MemberVO member) {
+		return sqlSession.selectOne("mapper.member.updateMember", member);
 	}
 
 }

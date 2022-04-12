@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.onestop.GJ.apply.back.vo.ApplyBackFileVO;
 import com.onestop.GJ.apply.back.vo.ApplyBackVO;
+import com.onestop.GJ.member.vo.MemberVO;
 
 @Repository("ApplyBackDAOImpl")
 public class ApplyBackDAOImpl implements ApplyBackDAO {
@@ -33,7 +34,6 @@ public class ApplyBackDAOImpl implements ApplyBackDAO {
 	}
 
 	// 다중 파일 업로드
-	@SuppressWarnings("unlikely-arg-type")
 	@Override
 	public void insertNewFile(Map articleMap) throws DataAccessException {
 		List<ApplyBackFileVO> backApplyFileList = (ArrayList) articleMap.get("imageFileList");
@@ -44,7 +44,6 @@ public class ApplyBackDAOImpl implements ApplyBackDAO {
 				applyBackFileVO.setUp_fileno(++MO_FILENO);
 				applyBackFileVO.setBa_no(ba_no);
 			}
-
 		}
 		sqlSession.insert("mapper.back.insertNewImage", backApplyFileList);
 	}
@@ -66,6 +65,11 @@ public class ApplyBackDAOImpl implements ApplyBackDAO {
 	public ApplyBackVO findNo(int ba_no) {
 		ApplyBackVO month = sqlSession.selectOne("mapper.back.findNo", ba_no);
 		return month;
+	}
+
+	@Override
+	public MemberVO modifyMember(MemberVO member) {
+		return sqlSession.selectOne("mapper.member.updateMember", member);
 	}
 
 }

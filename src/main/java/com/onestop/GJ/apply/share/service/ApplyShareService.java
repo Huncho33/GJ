@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.onestop.GJ.apply.share.vo.ApplyShareVO;
+import com.onestop.GJ.member.vo.MemberVO;
 
 public interface ApplyShareService {
 
@@ -12,5 +13,7 @@ public interface ApplyShareService {
 	ApplyShareVO findAll(String id);
 
 	ApplyShareVO findNo(int no);
+
+	MemberVO modifyMember(MemberVO member);
 
 }

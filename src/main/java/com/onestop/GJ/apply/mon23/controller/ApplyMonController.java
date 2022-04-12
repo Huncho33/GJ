@@ -5,16 +5,18 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.onestop.GJ.member.vo.MemberVO;
 
 public interface ApplyMonController {
 
-	// 
-
-	ResponseEntity modApplyInfo(String attribute, String value, HttpServletRequest request,
-			HttpServletResponse response) throws Exception;
-
 
 	ResponseEntity insertResult(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)
+			throws Exception;
+
+
+	ModelAndView modApplyInfo(MemberVO member, HttpServletRequest request, HttpServletResponse response)
 			throws Exception;
 
 

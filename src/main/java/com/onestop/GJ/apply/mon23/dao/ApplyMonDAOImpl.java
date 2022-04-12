@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.onestop.GJ.apply.back.vo.ApplyBackFileVO;
 import com.onestop.GJ.apply.mon23.vo.ApplyMonFileVO;
 import com.onestop.GJ.apply.mon23.vo.ApplyMonVO;
+import com.onestop.GJ.member.vo.MemberVO;
 
 @Repository("ApplyMonDAOImpl")
 public class ApplyMonDAOImpl implements ApplyMonDAO {
@@ -66,5 +67,10 @@ public class ApplyMonDAOImpl implements ApplyMonDAO {
 	public ApplyMonVO findNo(int mo_no) {
 		ApplyMonVO month = sqlSession.selectOne("mapper.apply.findNo", mo_no);
 		return month;
+	}
+
+	@Override
+	public MemberVO modifyMember(MemberVO member) {
+		return sqlSession.selectOne("mapper.member.updateMember", member);
 	}
 }

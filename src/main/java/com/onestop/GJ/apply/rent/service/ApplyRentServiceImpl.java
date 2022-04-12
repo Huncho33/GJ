@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.onestop.GJ.apply.rent.dao.ApplyRentDAO;
 import com.onestop.GJ.apply.rent.vo.ApplyRentVO;
+import com.onestop.GJ.member.vo.MemberVO;
 
 @Service("ApplyRentServiceImpl")
 @Transactional(propagation = Propagation.REQUIRED)
@@ -39,6 +40,12 @@ public class ApplyRentServiceImpl implements ApplyRentService{
 	@Override
 	public ApplyRentVO findNo(int no) {
 		return  applyrentDAO.findNo(no);
+	}
+
+
+	@Override
+	public MemberVO modifyMember(MemberVO member) {
+		return applyrentDAO.modifyMember(member);
 	}
 	
 }

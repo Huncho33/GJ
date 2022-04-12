@@ -1188,6 +1188,8 @@ public class MypageControllerImpl implements MypageController {
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 		try {
 			mypageService.removeApply(mo_no);
+			File destDir = new File(monApply_REPO + "\\" + mo_no);
+			FileUtils.deleteDirectory(destDir);
 
 			message = "<script>";
 			message += " alert('신청을 취소했습니다.');";
@@ -1217,6 +1219,8 @@ public class MypageControllerImpl implements MypageController {
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 		try {
 			mypageService.removeRentApply(rent_no);
+			File destDir = new File(rentApply_REPO + "\\" + rent_no);
+			FileUtils.deleteDirectory(destDir);
 
 			message = "<script>";
 			message += " alert('신청을 취소했습니다.');";
@@ -1246,6 +1250,8 @@ public class MypageControllerImpl implements MypageController {
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 		try {
 			mypageService.removeRetApply(ret_no);
+			File destDir = new File(retApply_REPO   + "\\" + ret_no);
+			FileUtils.deleteDirectory(destDir);
 
 			message = "<script>";
 			message += " alert('신청을 취소했습니다.');";
@@ -1275,6 +1281,8 @@ public class MypageControllerImpl implements MypageController {
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 		try {
 			mypageService.removeBackApply(ba_no);
+			File destDir = new File(backApply_REPO + "\\" + ba_no);
+			FileUtils.deleteDirectory(destDir);
 
 			message = "<script>";
 			message += " alert('신청을 취소했습니다.');";
@@ -1304,6 +1312,8 @@ public class MypageControllerImpl implements MypageController {
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 		try {
 			mypageService.removeShareApply(sh_no);
+			File destDir = new File(shareApply_REPO  + "\\" + sh_no);
+			FileUtils.deleteDirectory(destDir);
 
 			message = "<script>";
 			message += " alert('신청을 취소했습니다.');";

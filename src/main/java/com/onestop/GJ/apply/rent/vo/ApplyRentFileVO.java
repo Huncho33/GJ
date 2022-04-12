@@ -14,22 +14,14 @@ public class ApplyRentFileVO {
 	private int rent_no;
 	
 	
-	
-
-	
-	
 	public int getUp_fileno() {
 		return up_fileno;
 	}
 
 
-
-
 	public void setUp_fileno(int up_fileno) {
 		this.up_fileno = up_fileno;
 	}
-
-
 
 
 	public String getUp_filename() {
@@ -57,13 +49,9 @@ public class ApplyRentFileVO {
 	   }
 
 
-
-
 	public Date getUp_date() {
 		return up_date;
 	}
-
-
 
 
 	public void setUp_date(Date up_date) {
@@ -72,19 +60,14 @@ public class ApplyRentFileVO {
 
 
 
-
 	public int getRent_no() {
 		return rent_no;
 	}
 
 
-
-
 	public void setRent_no(int rent_no) {
 		this.rent_no = rent_no;
 	}
-
-
 
 
 	@Override

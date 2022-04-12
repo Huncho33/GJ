@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.onestop.GJ.apply.rent.vo.ApplyRentFileVO;
 import com.onestop.GJ.apply.rent.vo.ApplyRentVO;
+import com.onestop.GJ.member.vo.MemberVO;
 
 @Repository("ApplyRentDAOImpl")
 public class ApplyRentDAOImpl implements ApplyRentDAO {
@@ -25,7 +26,6 @@ public class ApplyRentDAOImpl implements ApplyRentDAO {
 		articleMap.put("rent_no", rent_no);
 		sqlSession.insert("mapper.rent.insertResult", articleMap);
 		return rent_no;
-
 	}
 
 	// 신청번호
@@ -67,6 +67,11 @@ public class ApplyRentDAOImpl implements ApplyRentDAO {
 	public ApplyRentVO findNo(int rent_no) {
 		ApplyRentVO Rent = sqlSession.selectOne("mapper.rent.findNo", rent_no);
 		return Rent;
+	}
+
+	@Override
+	public MemberVO modifyMember(MemberVO member) {
+		return sqlSession.selectOne("mapper.member.updateMember", member);
 	}
 
 }
