@@ -253,7 +253,6 @@ public class MypageDAOImpl implements MypageDAO {
 		}
 
 		if (monthFileList != null && monthFileList.size() != 0) {
-			System.out.println("monthFileList MYPAGEDAO: " + monthFileList);
 			sqlSession.update("mapper.mypage.updateImageFile", monthFileList);
 		}
 	}

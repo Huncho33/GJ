@@ -51,17 +51,13 @@
 		where member_id = #{id}
 	</select>
 
-
-	<!-- <select id="login" resultType="memberVO" parameterType="java.util.Map"> 
-		<![CDATA[ select * from member where member_id=#{member_id} and member_pw=#{member_pw} 
-		]]> </select> -->
-
 	<select id="selectAllMemberList" resultMap="memResult">
       <![CDATA[
          select * from member order by joinDate desc	 	
       ]]>
 	</select>
 
+	<!-- 회원추가 -->
 	<insert id="insertMember" parameterType="memberVO">
 		<![CDATA[
 
@@ -92,6 +88,7 @@
 		]]>
 	</insert>
 
+	<!-- 최종접속시간 -->
 	<update id="last_logOn" parameterType="String">
 		UPDATE member
 		SET
@@ -101,31 +98,7 @@
 		#{member_id}
 	</update>
 
-	<update id="updateMember" parameterType="memberVO">
-     <![CDATA[
-	     update member
-	     set
-	     member_id=#{member_id},
-		 member_pw=#{member_pw}, 
-	     member_phoneno=#{member_phoneno},
-	     member_email1=#{member_email1}, 
-	     member_email2=#{member_email2},
-	     member_zipcode=#{member_zipcode},
-		 member_roadAddress=#{member_roadAddress},
-		 member_jibunAddress=#{member_jibunAddress},
-		 member_namujiAddress=#{member_namujiAddress}
-	     where
-	     member_id=#{member_id}
-      ]]>
-	</update>
-
-	<delete id="deleteMember" parameterType="String">
-	<![CDATA[
-	   delete from  member
-	   where
-	   id=#{member_id}
-	]]>
-	</delete>
+	<!-- 로그인 -->
 	<select id="loginById" resultType="memberVO"
 		parameterType="memberVO">
 	<![CDATA[

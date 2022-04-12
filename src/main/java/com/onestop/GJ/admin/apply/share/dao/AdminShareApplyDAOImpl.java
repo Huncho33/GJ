@@ -97,12 +97,6 @@ public class AdminShareApplyDAOImpl implements AdminShareApplyDAO {
 		return sqlSession.selectOne("mapper.adminShareApply.selectMember", member_id);
 	}
 
-	@Override
-	public int insertMember(MemberVO memberVO) throws DataAccessException {
-		int result = sqlSession.insert("mapper.adminShareApply.insertMember_adm", memberVO);
-		return result;
-	}
-
 	// 신청 테이블과 member 테이블 join
 	@Override
 	public List joinTable(Map pagingMap) {

@@ -34,8 +34,6 @@ public interface AdminRentApplyDAO {
 
 	MemberVO selectMemberId(String member_id) throws DataAccessException;
 
-	int insertMember(MemberVO memberVO) throws DataAccessException;
-
 	List joinTable(Map pagingMap);
 
 	int selectTotApply() throws DataAccessException;

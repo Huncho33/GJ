@@ -8,6 +8,7 @@
    request.setCharacterEncoding("UTF-8");
 %>
 
+<!-- 회원가입 인증 선택창 -->
 <!DOCTYPE html>
 <html>
 

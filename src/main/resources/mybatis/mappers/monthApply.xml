@@ -13,9 +13,9 @@
 		<result property="mo_result" column="mo_result" />
 		<result property="mo_policy" column="mo_policy" />
 		<result property="mo_reason" column="mo_reason" />
-		
+
 	</resultMap>
-	
+
 	<resultMap id="monFileResult" type="ApplyMonFileVO">
 		<result property="up_fileno" column="up_fileno" />
 		<result property="up_filename" column="up_filename" />
@@ -31,9 +31,6 @@
 		
 		]]>
 	</select>
-
-
-	
 
 	<insert id="insertResult" parameterType="java.util.Map">
 		<![CDATA[
@@ -51,32 +48,34 @@
 		 		#{mo_reason}) 	
 		]]>
 	</insert>
-	
-		<!-- 월세 신청 번호 생성 -->
+
+	<!-- 월세 신청 번호 생성 -->
 	<select id="insertResultNO" resultType="int">
 	<![CDATA[
    select  nvl(max(mo_no),0) +1 from mon_apply
 	]]>
 	</select>
-	
+
 	<!-- 파일 추가 -->
 	<insert id="insertNewImage" parameterType="java.util.Map">
-		 <foreach item="item" collection="list" open="INSERT ALL"
+		<foreach item="item" collection="list" open="INSERT ALL"
 			separator=" " close="SELECT * FROM DUAL">
-			into mon_file(up_fileno, up_filename, up_date, mo_no)
-			values (#{item.up_fileno}, #{item.up_filename}, sysdate, #{item.mo_no})
-		</foreach>   
+			into mon_file(up_fileno, up_filename, up_date,
+			mo_no)
+			values (#{item.up_fileno}, #{item.up_filename}, sysdate,
+			#{item.mo_no})
+		</foreach>
 	</insert>
-	
+
 	<!-- 월세지원 파일번호 생성 -->
-		<select id="selectMoFileNO" resultType="int">
+	<select id="selectMoFileNO" resultType="int">
 <![CDATA[
    select nvl(max(up_fileno),0) from mon_file
 ]]>
 	</select>
 
-	
-	<!--결과페이지 관련, 아이디로 찾아서 아이디에 해당하는 값들 조회  -->	
+
+	<!--결과페이지 관련, 아이디로 찾아서 아이디에 해당하는 값들 조회 -->
 	<select id="all" resultMap="applyResult">
 		<![CDATA[
          select * 
@@ -84,14 +83,14 @@
          where member_id=#{member_id}
       ]]>
 	</select>
-	
+
 	<select id="findNo" resultMap="applyResult">
 		<![CDATA[
          select * 
          from mon_apply
          where mo_no=#{mo_no}
       ]]>
-	</select>	
-	
+	</select>
+
 
 </mapper>

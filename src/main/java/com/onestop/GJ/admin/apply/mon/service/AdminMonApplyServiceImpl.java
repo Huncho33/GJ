@@ -32,7 +32,6 @@ public class AdminMonApplyServiceImpl implements AdminMonApplyService {
 		membersMap.put("membersList", membersList);
 		membersMap.put("totMembers", totMembers);
 		return membersMap;
-//		List membersList = null;
 	}
 
 	// 검색창
@@ -40,18 +39,15 @@ public class AdminMonApplyServiceImpl implements AdminMonApplyService {
 	public Map searchMemberList(Map pagingMap) throws Exception {
 		Map membersMap = new HashMap();
 		List<ApplyMonVO> applyList = adminDAO.selectApplyBySearchMember(pagingMap);
-		System.out.println("서비스로 돌아옴");
 		int searchTotApply = adminDAO.selectSearchTotApply(pagingMap);
-		System.out.println("서비스 searchTotApply : " + searchTotApply);
 		int totApply = adminDAO.selectTotApply();
 		membersMap.put("applyList", applyList);
 		membersMap.put("searchTotApply", searchTotApply);
 		membersMap.put("totMembers", totApply);
-		System.out.println("서비스 searchMemberList. membersMap : " + membersMap);
 		return membersMap;
 	}
 
-	// 회원 상세 - 해당 회원정보,신청정보 호출
+	// 회원 상세 - 해당 회원정보, 신청정보 호출
 	@Override
 	public Map viewApplyMember(int mo_no, String member_id) throws Exception {
 		Map membersMap = new HashMap();
@@ -62,9 +58,7 @@ public class AdminMonApplyServiceImpl implements AdminMonApplyService {
 		membersMap.put("applyMon", applyMonVO);
 		membersMap.put("monthFileList", monthFileList);
 		Collection<String> value = membersMap.values();
-
 		return membersMap;
-
 	}
 
 	// 셀렉한 멤버VO 가져오기
@@ -77,15 +71,10 @@ public class AdminMonApplyServiceImpl implements AdminMonApplyService {
 	@Override
 	public Map joinTable(Map pagingMap) {
 		Map applyMap = new HashMap();
-		System.out.println("서비스  pagingMap 값들 : " + pagingMap);
 		List<ApplyMonVO> applyList = adminDAO.joinTable(pagingMap);
 		int totApply = adminDAO.selectTotApply();
 		applyMap.put("applyList", applyList);
 		applyMap.put("totApply", totApply);
-		System.out.println("서비스 totApply : " + totApply);
-		System.out.println("서비스 applyList : " + applyList);
-//		list.add(list);
-//		list.add(totApply);
 		return applyMap;
 	}
 
@@ -104,5 +93,4 @@ public class AdminMonApplyServiceImpl implements AdminMonApplyService {
 		int mo_no = (Integer) membersMap.get("mo_no");
 		return adminDAO.selectApplyMon(mo_no);
 	}
-
 }

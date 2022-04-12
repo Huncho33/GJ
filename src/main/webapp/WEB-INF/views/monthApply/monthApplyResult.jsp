@@ -9,7 +9,6 @@
 	request.setCharacterEncoding("UTF-8");
 %>
 
-
 <!DOCTYPE html>
 <html>
 
@@ -91,9 +90,6 @@
 
 		</div>
 	</div>
-	
-	
-	
 </body>
 
 </html>

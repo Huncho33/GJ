@@ -47,7 +47,7 @@ public class ApplyMonControllerImpl implements ApplyMonController {
 	@Autowired
 	private ApplyMonVO applymonVO;
 
-	// 신청한 아이디 있는지 체크
+	// 신청 아이디  체크
 	@RequestMapping(value = "/month/monthApplyForm0.do", method = { RequestMethod.GET, RequestMethod.POST })
 	private ResponseEntity applyCheck(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		response.setContentType("text/html; charset=utf-8");
@@ -57,15 +57,11 @@ public class ApplyMonControllerImpl implements ApplyMonController {
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("content-Type", "text/html; charset=utf-8");
 		String viewName = (String) request.getAttribute("viewName");
-		System.out.println("viewName" + viewName);
 		HttpSession session = request.getSession();
 		memberVO = (MemberVO) session.getAttribute("member");
-		System.out.println("memberVO 값 불러오기" + memberVO);
 		String id = memberVO.getMember_id();
 		ApplyMonVO list = applymonService.findAll(id);
-		System.out.println("apply 테이블 값 : " + list);
 		if (list != null && list.getMember_id().equals(id)) {
-			System.out.println("아이디값 가져옴: " + list.getMember_id());
 			message = "<script>";
 			message += " alert('이미 신청한 아이디입니다.');";
 			message += " location.href='" + request.getContextPath() + "/main.do'";
@@ -82,13 +78,10 @@ public class ApplyMonControllerImpl implements ApplyMonController {
 	@RequestMapping(value = "/month/monthApplyForm1.do", method = { RequestMethod.GET, RequestMethod.POST })
 	private ModelAndView applyForm(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = (String) request.getAttribute("viewName");
-		System.out.println("viewName" + viewName);
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(viewName);
 		return mav;
-
 	}
-
 
 	// 신청정보 등록(수정)
 	@Override
@@ -101,7 +94,6 @@ public class ApplyMonControllerImpl implements ApplyMonController {
 		HttpSession session = request.getSession();
 		memberVO = (MemberVO) session.getAttribute("member");
 		String member_id = memberVO.getMember_id();
-//		memberMap.values().removeAll(Collections.singleton(null));
 		if (attribute.equals("member")) {
 			val = value.split(",");
 			memberMap.put("member_phoneno", val[0]);
@@ -111,17 +103,10 @@ public class ApplyMonControllerImpl implements ApplyMonController {
 			memberMap.put("member_roadAddress", val[4]);
 			memberMap.put("member_jibunAddress", val[5]);
 			memberMap.put("member_namujiAddress", val[6]);
-//			memberMap.values().removeAll(Collections.singleton(null));
-			System.out.println("memberMap: "+memberMap);
-			System.out.println("attribute : " +attribute);
 		} else {
 			memberMap.put(attribute, value);
 		}
-
 		memberMap.put("member_id", member_id);
-
-		System.out.println(memberMap);
-
 		memberVO = (MemberVO) mypageService.modifyMember(memberMap);
 		session.removeAttribute("member");
 		session.setAttribute("member", memberVO);
@@ -139,10 +124,8 @@ public class ApplyMonControllerImpl implements ApplyMonController {
 	@RequestMapping(value = "/month/monthApplyForm3.do", method = RequestMethod.POST)
 	private ModelAndView applyForms(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = (String) request.getAttribute("viewName");
-		System.out.println("viewName" + viewName);
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("redirect:/month/monthApplyForm4.do");
-
 		return mav;
 	}
 
@@ -166,13 +149,10 @@ public class ApplyMonControllerImpl implements ApplyMonController {
 		MemberVO memberVO = (MemberVO) session.getAttribute("member");
 		String member_id = memberVO.getMember_id();
 		articleMap.put("member_id", member_id);
-		System.out.println("아티클맵 : " + articleMap);
 
 		List<String> fileList = upload(multipartRequest, RequestMethod.POST);
 		List<ApplyMonFileVO> imageFileList = new ArrayList<ApplyMonFileVO>();
-		System.out.println("fileList : "+ fileList);
 		fileList.removeAll(Arrays.asList("", null));
-		System.out.println("fileList null값 삭제후 : "+ fileList);
 		if (fileList != null && fileList.size() != 0) {
 			for (String fileName : fileList) {
 				ApplyMonFileVO applyMonFileVO = new ApplyMonFileVO();
@@ -191,10 +171,8 @@ public class ApplyMonControllerImpl implements ApplyMonController {
 			if (imageFileList != null && imageFileList.size() != 0) {
 				for (ApplyMonFileVO applyMonFileVO : imageFileList) {
 					up_fileName = applyMonFileVO.getUp_filename();
-					System.out.println("apply : " + applyMonFileVO.toString());
 					File srcFile = new File(monApply_REPO + "\\" + "temp" + "\\" + up_fileName);
 					File destDir = new File(monApply_REPO + "\\" + mo_no);
-					// destDir.mkdirs();
 					FileUtils.moveFileToDirectory(srcFile, destDir, true);
 				}
 			}
@@ -205,7 +183,6 @@ public class ApplyMonControllerImpl implements ApplyMonController {
 					+ mo_no + "';";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
-			System.out.println("신청번호:" + mo_no);
 
 		} catch (Exception e) {
 			if (imageFileList != null && imageFileList.size() != 0) {
@@ -224,7 +201,6 @@ public class ApplyMonControllerImpl implements ApplyMonController {
 			e.printStackTrace();
 		}
 		return resEnt;
-		//
 	}
 
 	// 다중 파일 업로드하기
@@ -251,17 +227,11 @@ public class ApplyMonControllerImpl implements ApplyMonController {
 	@RequestMapping(value = "/month/monthApplyResult.do")
 	public ModelAndView findAll(HttpServletRequest request, @RequestParam("mo_no") int mo_no) {
 		String viewName = (String) request.getAttribute("viewName");
-		System.out.println("mo_no : " + mo_no);
-		System.out.println("viewName" + viewName);
 		ModelAndView mav = new ModelAndView();
-		System.out.println("1");
 		HttpSession session = request.getSession();
 		memberVO = (MemberVO) session.getAttribute("member");
-		System.out.println(memberVO.getMember_id());
 		String id = memberVO.getMember_id();
 		int no = applymonVO.getMo_no();
-
-
 		ApplyMonVO applyno = applymonService.findNo(mo_no);
 		mav.addObject("no", applyno);
 		mav.setViewName(viewName);
@@ -273,14 +243,11 @@ public class ApplyMonControllerImpl implements ApplyMonController {
 	@RequestMapping(value = "/month/monthSelectedResult.do")
 	private ModelAndView monthSelectedPage(HttpServletRequest request) throws Exception {
 		String viewName = (String) request.getAttribute("viewName");
-		System.out.println("viewName" + viewName);
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
 		memberVO = (MemberVO) session.getAttribute("member");
-		System.out.println(memberVO.getMember_id());
 		String id = memberVO.getMember_id();
 		ApplyMonVO list = applymonService.findAll(id);
-		System.out.println(list);
 		mav.addObject("apply", list);
 		mav.setViewName(viewName);
 		if(list==null ) {

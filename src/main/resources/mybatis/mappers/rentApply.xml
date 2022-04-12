@@ -33,9 +33,6 @@
 		]]>
 	</select>
 
-
-	
-
 	<insert id="insertResult" parameterType="java.util.Map">
 		<![CDATA[
 

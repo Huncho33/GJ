@@ -107,6 +107,7 @@
 		</foreach>
 	</insert>
 
+	<!-- 파일 번호 셀렉트 -->
 	<select id="selectNewImageFileNO" resultType="int">
 	<![CDATA[
    SELECT nvl(max(up_fileNO),0) from data_file

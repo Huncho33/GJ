@@ -7,11 +7,12 @@
 	request.setCharacterEncoding("UTF-8");
 %>
 
+<!-- 회원가입 약관 동의 -->
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>메인 페이지</title>
+
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
@@ -21,6 +22,7 @@
 	href="${contextPath}/resources/css/memberForm/memberForm1.css">
 <script type="text/javascript">
 $(document).ready(function(){
+	
 	//전체 체크박스 클릭
 	$("#checkAll").click(function(){
 		if ($("#checkAll").prop("checked")) {

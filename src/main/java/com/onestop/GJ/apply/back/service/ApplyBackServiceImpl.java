@@ -17,13 +17,7 @@ public class ApplyBackServiceImpl implements ApplyBackService{
 	@Autowired
 	private ApplyBackDAO applybackDAO;
 	
-	
-	@Override
-	public ApplyBackVO selectResult(Map resultMap) throws Exception {
-	  return applybackDAO.selectResult(resultMap);
-	}
-	
-	
+//	첨부파일 등록
 	 @Override
 		public int addResult(Map articleMap) throws Exception {
 			int ba_no = applybackDAO.insertResult(articleMap);
@@ -32,6 +26,7 @@ public class ApplyBackServiceImpl implements ApplyBackService{
 			return ba_no;
 		}
 	
+	// 신청 아이디  체크
 	@Override
 	public ApplyBackVO findAll(String id) {
 		ApplyBackVO list = null;
@@ -39,6 +34,7 @@ public class ApplyBackServiceImpl implements ApplyBackService{
 		return list;
 	}
 	
+	// 결과페이지
 	@Override
 	public ApplyBackVO findNo(int no) {
 		return  applybackDAO.findNo(no);

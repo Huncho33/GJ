@@ -52,7 +52,6 @@ public class QnaServiceImpl implements QnaService {
 	// 부모글 조회하기
 	@Override
 	public Map selectParentQna(String qnaparent_no) throws Exception {
-		System.out.println("SERVICE :" + qnaparent_no);
 		int _qnaparent_no = Integer.parseInt(qnaparent_no);
 		Map QnaParentMap = new HashMap();
 		QnaVO QnaVO = QnaDAO.selectParentQna(_qnaparent_no);

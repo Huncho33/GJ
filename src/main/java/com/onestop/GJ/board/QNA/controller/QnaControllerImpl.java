@@ -239,7 +239,6 @@ public class QnaControllerImpl implements QnaController {
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = (String) request.getAttribute("viewName");
 		Map QnaParentMap = qnaService.selectParentQna(qnaparent_no);
-		System.out.println("QnaParentMap if Àü: " + QnaParentMap);
 		HttpSession session = request.getSession();
 		ModelAndView mav = new ModelAndView();
 		if (qnaparent_no != null) {

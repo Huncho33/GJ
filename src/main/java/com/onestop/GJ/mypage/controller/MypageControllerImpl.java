@@ -76,8 +76,6 @@ public class MypageControllerImpl implements MypageController {
 			// 비밀번호가 맞다면 내정보 상세창 리턴
 			return "redirect:/mypage/myInfo.do";
 		} else {
-			System.out.println(member_id);
-			System.out.println(member_pw);
 			return "redirect:/mypage/confirmPwdView.do";
 		}
 	}
@@ -210,9 +208,7 @@ public class MypageControllerImpl implements MypageController {
 						HttpServletRequest request, HttpServletResponse response) throws Exception {
 		response.setContentType("text/html; charset=euc-kr");
 		PrintWriter out = response.getWriter();
-		System.out.println("qna_no:" + qna_no + "qna_pw:" + qna_pw);
 		boolean result = qnaService.checkPwd(qna_no, qna_pw);
-		System.out.println("result: " + result);
 
 		if (result == true) {
 			// 비밀번호가 맞다면 해당 글 상세창으로 이동
@@ -499,7 +495,6 @@ public class MypageControllerImpl implements MypageController {
 
 		List<ApplyMonFileVO> monthFileList = new ArrayList<ApplyMonFileVO>();
 		List<ApplyMonFileVO> modAddimageFileList = new ArrayList<ApplyMonFileVO>();
-		System.out.println("파일리스트 : " + fileList);
 		if (fileList != null && fileList.size() != 0) {
 			String[] up_fileNO = (String[]) ViewMonthMap.get("up_fileno");
 
@@ -1076,7 +1071,6 @@ public class MypageControllerImpl implements MypageController {
 
 		List<ApplyShareFileVO> shareFileList = new ArrayList<ApplyShareFileVO>();
 		List<ApplyShareFileVO> modAddshareFileList = new ArrayList<ApplyShareFileVO>();
-		System.out.println("파일리스트 : " + fileList);
 		if (fileList != null && fileList.size() != 0) {
 			String[] up_fileNO = (String[]) ViewMonthMap.get("up_fileno");
 
@@ -1388,7 +1382,6 @@ public class MypageControllerImpl implements MypageController {
 
 		List<ApplyMonFileVO> monthFileList = new ArrayList<ApplyMonFileVO>();
 		List<ApplyMonFileVO> modAddimageFileList = new ArrayList<ApplyMonFileVO>();
-		System.out.println("파일리스트 : " + fileList);
 		if (fileList != null && fileList.size() != 0) {
 			String[] up_fileNO = (String[]) ViewMonthMap.get("up_fileno");
 
@@ -1692,9 +1685,7 @@ public class MypageControllerImpl implements MypageController {
 			message += " </script>";
 			
 			
-			System.out.println("ViewRetMap CONTROLLER ALARM:"+fileList);
 			ViewRetMap.put("fileList", fileList);
-			System.out.println("ViewRetMap CONTROLLER ALARM:"+ViewRetMap);
 			mypageService.modifyAlarm(ViewRetMap);
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 		} catch (Exception e) {
@@ -1878,7 +1869,6 @@ public class MypageControllerImpl implements MypageController {
 
 		List<ApplyShareFileVO> shareFileList = new ArrayList<ApplyShareFileVO>();
 		List<ApplyShareFileVO> modAddshareFileList = new ArrayList<ApplyShareFileVO>();
-		System.out.println("파일리스트 : " + fileList);
 		if (fileList != null && fileList.size() != 0) {
 			String[] up_fileNO = (String[]) ViewMonthMap.get("up_fileno");
 

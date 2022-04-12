@@ -281,7 +281,6 @@ public class BoardDataControllerImpl implements BoardDataController {
 		}
 
 		String etc_NO = (String) articleMap.get("etc_NO");
-		System.out.println("etc_NO1 : " + etc_NO);
 		String message;
 		ResponseEntity resEnt = null;
 		HttpHeaders responseHeaders = new HttpHeaders();
@@ -351,8 +350,6 @@ public class BoardDataControllerImpl implements BoardDataController {
 			String up_fileName = (String) request.getParameter("up_fileName");
 			String etc_NO = (String) request.getParameter("etc_NO");
 
-			System.out.println("up_fileNO = " + up_fileNO);
-			System.out.println("etc_NO = " + etc_NO);
 
 			BoardDataImageVO boardDataImageVO = new BoardDataImageVO();
 			boardDataImageVO.setEtc_NO(Integer.parseInt(etc_NO));

@@ -6,7 +6,7 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 
-
+<!-- 아이디찾기 -->
 <!DOCTYPE html>
 <html>
 <head>

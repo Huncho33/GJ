@@ -134,7 +134,6 @@ public class BoardNoticeDAOImpl implements BoardNoticeDAO {
 		}
 
 		if (imageFileList != null && imageFileList.size() != 0) {
-			System.out.println("imageFileList" + imageFileList);
 			sqlSession.update("mapper.boardNotice.updateImageFile", imageFileList);
 		}
 	}

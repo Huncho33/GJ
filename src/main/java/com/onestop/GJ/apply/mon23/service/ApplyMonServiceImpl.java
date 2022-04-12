@@ -17,13 +17,7 @@ public class ApplyMonServiceImpl implements ApplyMonService{
 	@Autowired
 	private ApplyMonDAO applymonDAO;
 	
-	
-	@Override
-	public ApplyMonVO selectResult(Map resultMap) throws Exception {
-	  return applymonDAO.selectResult(resultMap);
-	}
-	
-	
+	//	첨부파일 등록
 	 @Override
 		public int addResult(Map articleMap) throws Exception {
 			int mo_no = applymonDAO.insertResult(articleMap);
@@ -31,7 +25,8 @@ public class ApplyMonServiceImpl implements ApplyMonService{
 			applymonDAO.insertNewFile(articleMap);
 			return mo_no;
 		}
-	
+	 
+	// 신청 아이디  체크
 	@Override
 	public ApplyMonVO findAll(String id) {
 		ApplyMonVO list = null;
@@ -39,12 +34,10 @@ public class ApplyMonServiceImpl implements ApplyMonService{
 		return list;
 	}
 	
+	// 결과페이지
 	@Override
 	public ApplyMonVO findNo(int no) {
 		return  applymonDAO.findNo(no);
 	}
-
-
-	
 }
 

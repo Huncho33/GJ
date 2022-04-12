@@ -9,26 +9,17 @@ import com.onestop.GJ.member.vo.MemberVO;
 
 public interface MemberDAO {
 
-	List selectAllMemberList() throws DataAccessException;
-
 	void insertMember(MemberVO memberVO) throws DataAccessException;
-
-	int deleteMember(String id) throws DataAccessException;
 
 	MemberVO loginById(MemberVO memberVO) throws DataAccessException;
 
-	public MemberVO login(Map loginMap) throws DataAccessException;
+	void last_logOn(String member_id) throws DataAccessException;
 
-	int update_pw(MemberVO member) throws Exception;
+	String selectOverlappedID(String id) throws DataAccessException;
 
-	String selectOverlappedID(String string) throws DataAccessException;
-
-	MemberVO SearchById(MemberVO memberVO) throws DataAccessException;
-	
-	//ID Ã£±â
 	MemberVO certHp_Id(MemberVO memberVO) throws DataAccessException;
 
-	void last_logOn(String member_id) throws DataAccessException;
+	int update_pw(MemberVO member) throws Exception;
 
 	List selectNotiList() throws Exception;
 
@@ -37,6 +28,9 @@ public interface MemberDAO {
 	void insertVisit(Map visitMap);
 
 	int getVisitTotCnt(Map visitMap);
+
+	MemberVO SearchById(MemberVO memberVO) throws DataAccessException;
+
 
 	
 

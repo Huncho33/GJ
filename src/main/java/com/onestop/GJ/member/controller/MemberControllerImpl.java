@@ -71,7 +71,7 @@ public class MemberControllerImpl implements MemberController {
 	         String member_right = memberVO.getMember_right();
 	         memberService.last_log(member_id);
 	         Date member_last_log = memberVO.getMember_last_log();
-	         System.out.println("권한 확인 : "+ member_right);
+	        
 	         Map visitMap = new HashMap();
 	         if(member_right.equals("MEMBER")) {
 	            visitMap.put("member_id", member_id);
@@ -80,7 +80,7 @@ public class MemberControllerImpl implements MemberController {
 	            visitMap.put("member_birth", member_birth);
 	            visitMap.put("member_last_log", member_last_log);
 	            
-	         System.out.println("멤컨 확인");
+	         
 	         memberService.insertVisit(visitMap);
 	         Map countMap = memberService.getTotCnt(visitMap); 
 	         }
@@ -100,7 +100,7 @@ public class MemberControllerImpl implements MemberController {
 	      return mav;
 	   }
 
-	@Override // 로그아웃 창
+	@Override // 로그아웃
 	@RequestMapping(value = "/member/logout.do", method = RequestMethod.GET)
 	public ModelAndView logout(@ModelAttribute("member") MemberVO member, RedirectAttributes rAttr,
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -115,42 +115,20 @@ public class MemberControllerImpl implements MemberController {
 		return mav;
 
 	}
-
+	
 	@RequestMapping(value = "/member/*Form.do", method = RequestMethod.GET)
 	private ModelAndView form(@RequestParam(value = "result", required = false) String result,
 			@RequestParam(value = "action", required = false) String action, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		String viewName = (String) request.getAttribute("viewName");
-
 		HttpSession session = request.getSession();
 		session.setAttribute("action", action);
-
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("result", result);
 		mav.setViewName(viewName);
 		return mav;
 	}
-	
-	//회원가입
-	@RequestMapping(value = "/member/memberForm2.do", method = RequestMethod.GET)
-	private ModelAndView memberForm2(@RequestParam(value = "result", required = false) String result,
-			HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String viewName = (String) request.getAttribute("viewName");
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("result", result);
-		mav.setViewName(viewName);
-		return mav;
-	}
-
-	@RequestMapping(value = "/member/memberForm3.do", method = RequestMethod.GET)
-	private ModelAndView memberForm3(@RequestParam(value = "result", required = false) String result,
-			HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String viewName = (String) request.getAttribute("viewName");
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("result", result);
-		mav.setViewName(viewName);
-		return mav;
-	}
+		
 
 	// 회원가입
 	@Override
@@ -194,16 +172,8 @@ public class MemberControllerImpl implements MemberController {
 	}
 
 
-	// 비밀번호 찾기 폼 출력 메서드
-	@RequestMapping(value = "/member/find_pw_form.do", method = RequestMethod.GET)
-	private ModelAndView find_pw_form(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String viewName = (String) request.getAttribute("viewName");
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName(viewName);
-		return mav;
-	}
 
-	// 비밀번호 찾기 기능 메서드
+	// 비밀번호 찾기(이메일)
 	@RequestMapping(value = "/member/find_pw.do", method = RequestMethod.POST)
 	public void find_pw(@RequestParam("id") String find_id, @RequestParam("email") String find_email, MemberVO memberVO,
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -216,54 +186,42 @@ public class MemberControllerImpl implements MemberController {
 			memberVO.setMember_email1(find_email.substring(0, index));
 			memberVO.setMember_email2(find_email.substring(index + 1));
 			memberService.find_pw(response, memberVO);
+		
 		} else {
 			out.print("올바르지 않은 이메일 형식입니다.");
 			out.close();
 		}
-
+		
 	}
 
-	//	--아이디찾기
+	// 아이디찾기
 	@Override
 	@RequestMapping(value = "/member/findYourId.do", method = RequestMethod.POST)
 	public ResponseEntity sendPhone(@ModelAttribute("member") MemberVO member, RedirectAttributes rAttr,
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		memberVO = memberService.findId_hp(member);
-		
 		String message = null;
 		ResponseEntity resEntity1 = null;
 		HttpHeaders responseHeaders1 = new HttpHeaders();
 		responseHeaders1.add("Content-Type", "text/html; charset=utf-8");
 		
-		
 		if (memberVO != null) {
-			
 			message = "<script>";
 			message += " alert('" +"아이디 : "+  memberVO.getMember_id()  + "');";
 			message += " location.href='" + request.getContextPath() + "/member/loginForm.do';";
 			message += " </script>";
-			
-
 			System.out.println("ok~"+ memberVO.getMember_id());
 			
 		}else {
 			System.out.println("not okay");
-			
 			message = "<script>";
 			message += " alert('" +" 입력한 정보가 올바르지 않습니다. "  + "');";
 			message += " location.href='" + request.getContextPath() + "/member/findId_cellph.do';";
 			message += " </script>";
-	
-	
 		}
-			
 		resEntity1 = new ResponseEntity(message, responseHeaders1, HttpStatus.OK);
 		return resEntity1;
-		
-
-
-
 	}
 
 }

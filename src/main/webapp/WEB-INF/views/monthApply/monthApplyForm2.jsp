@@ -24,6 +24,7 @@
 <link href="${contextPath}/resources/css/common.css" rel="stylesheet"
 	type="text/css">
 <script language="javascript">
+
    
    
    
@@ -79,22 +80,20 @@
       }); //end ajax
    }
 
+
    
    function cancel() {
 
       if (confirm("정말 취소하시겠습니까?") == true) { //확인
 
          window.location.href = '../main.do';
-
       } else { //취소
 
          return false;
 
       }
-
-   }
-   
-   </script>
+	
+	</script>
 </head>
 
 <body>

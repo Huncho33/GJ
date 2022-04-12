@@ -37,7 +37,6 @@ public class AdminShareApplyControllerImpl implements AdminShareApplyController 
 	public ModelAndView applyListMembers(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("html/text;charset=utf-8");
-		System.out.println("회원정보리스트");
 		String _section = request.getParameter("section");
 		String _pageNum = request.getParameter("pageNum");
 		int section = Integer.parseInt(((_section == null) ? "1" : _section));
@@ -46,16 +45,13 @@ public class AdminShareApplyControllerImpl implements AdminShareApplyController 
 		Map pagingMap = new HashMap();
 		pagingMap.put("section", section);
 		pagingMap.put("pageNum", pageNum);
-		System.out.println("controller  pagingMap 값들 : " + pagingMap);
 		Map applyMap = adminService.joinTable(pagingMap);
 		applyMap.put("section", section);
 		applyMap.put("pageNum", pageNum);
-		System.out.println("applyMap 값 체크 : " + applyMap);
 
 		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("applyMap", applyMap);
-
 		return mav;
 	}
 
@@ -67,7 +63,6 @@ public class AdminShareApplyControllerImpl implements AdminShareApplyController 
 			throws Exception {
 		response.setContentType("text/html;charset=utf-8");
 		response.setCharacterEncoding("utf-8");
-		System.out.println("1");
 		String _section = request.getParameter("section");
 		String _pageNum = request.getParameter("pageNum");
 		int section = Integer.parseInt(((_section == null) ? "1" : _section));
@@ -79,7 +74,6 @@ public class AdminShareApplyControllerImpl implements AdminShareApplyController 
 		pagingMap.put("searchType", searchType);
 		Map applyMap = adminService.searchMemberList(pagingMap);
 
-		System.out.println("applyMap : " + applyMap);
 		applyMap.put("section", section);
 		applyMap.put("pageNum", pageNum);
 		applyMap.put("searchApply", searchApply);
@@ -88,8 +82,6 @@ public class AdminShareApplyControllerImpl implements AdminShareApplyController 
 		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("applyMap", applyMap);
-		System.out.println("검색창 applyMap 값들 : " + applyMap);
-		System.out.println("??" + applyMap.size());
 		return mav;
 	}
 
@@ -111,7 +103,6 @@ public class AdminShareApplyControllerImpl implements AdminShareApplyController 
 	public ResponseEntity modifyAdminShare(@RequestParam("attribute") String attribute,
 			@RequestParam("value") String value, @RequestParam("sh_no") int sh_no, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		System.out.println("!");
 		Map membersMap = new HashMap();
 		
 		String message = null;
@@ -140,7 +131,6 @@ public class AdminShareApplyControllerImpl implements AdminShareApplyController 
 		membersMap.put("sh_no", sh_no);
 		
 		if (!membersMap.get("_sh_result").equals("승인") && !membersMap.get("_sh_startpay").equals("null")) {
-			System.out.println("먹어라: " + membersMap.get("_sh_result"));
 			message = "not_correct";
 			resEntity = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
 			return resEntity;
@@ -148,27 +138,15 @@ public class AdminShareApplyControllerImpl implements AdminShareApplyController 
 
 		AdminShareApplyVO applyShareVO = (AdminShareApplyVO) adminService.modifyAdminShare(membersMap);
 		membersMap.put("applyShare", applyShareVO);
-		System.out.println("_sh_startpay 값 : " + membersMap.get("_sh_startpay"));
-		System.out.println("_sh_startpay 형 : " + membersMap.get("_sh_startpay").getClass().getName());
 
 		if (membersMap.get("_sh_startpay").equals("null")) {
-			System.out.println("pass");
 		} else {
 			AdminShareApplyVO applyShareVO2 = (AdminShareApplyVO) adminService.modifyAdminSharePay(membersMap);
 			membersMap.put("applyShare", applyShareVO2);
 		}
-		System.out.println("membersMap 값들 : " + membersMap);
-		System.out.println("membersMap 값들 : " + (membersMap.get("applyS")));
-
-		
-
-		
 		message = "mod_success";
-		
-		
 		resEntity = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
 		return resEntity;
-
 	}
 
 }

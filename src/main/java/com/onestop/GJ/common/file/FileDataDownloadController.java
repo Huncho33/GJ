@@ -31,7 +31,6 @@ public class FileDataDownloadController {
 			originFileName = URLDecoder.decode(up_fileName, "UTF-8");
             String onlyFileName = originFileName.substring(originFileName.lastIndexOf("_") + 1);
             
-         //   headers.add("Content-Dispostion", "attachment; filename=" + new String(resourceName.getBytes("UTF-8"),"ㅑ냬-8859-1"));
             String filePath = ARTICLE_IMAGE_REPO + "\\" + etc_NO + "\\" + up_fileName;
 
             File file = new File(filePath);
@@ -72,23 +71,3 @@ public class FileDataDownloadController {
         }
 	}
 }
-		
-//		OutputStream out = response.getOutputStream();
-//		String filePath = ARTICLE_IMAGE_REPO + "\\" + noti_NO + "\\" + up_fileName;
-//		File image = new File(filePath);
-//
-	//	response.setContentType("application/download; UTF-8");
-	//	response.setHeader("Cache-Control", "no-cache");
-	//	response.addHeader("Content-disposition", "attachment; fileName=" + up_fileName);
-	//	FileInputStream in = new FileInputStream(image);
-	//	byte[] buffer = new byte[1024 * 8];
-	//	while (true) {
-	//		int count = in.read(buffer); // 버퍼에 읽어들인 문자개수
-	//		if (count == -1) // 버퍼의 마지막에 도달했는지 체크
-	//			break;
-	//		out.write(buffer, 0, count);
-	//	}
-	//	in.close();
-	//	out.close();
-//
-//	}

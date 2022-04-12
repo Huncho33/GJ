@@ -9,8 +9,6 @@ import com.onestop.GJ.apply.share.vo.ApplyShareVO;
 
 public interface ApplyShareDAO {
 
-	ApplyShareVO selectResult(Map resultMap) throws DataAccessException;
-
 	// 신청결과 값 넣기.
 	int insertResult(Map articleMap) throws DataAccessException;
 
