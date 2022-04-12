@@ -95,9 +95,8 @@ $(function(){
 
 			<div id="monthApply_table">
 				
-					<div class="join_btn1">
-						<input type="submit" value="나의신청현황확인"
-							onClick="fn_modApplyFormData('member');" >
+				<div class="join_btn1">
+						<button onclick ="location.href='${contextPath}/mypage/rentApplyList.do'">나의신청현황확인</button>
 					</div>
 				</div>
 			</div>

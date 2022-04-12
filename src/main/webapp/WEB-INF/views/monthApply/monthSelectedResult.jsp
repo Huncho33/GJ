@@ -34,7 +34,7 @@ $(function(){
         window.location.href = '../main.do';
     }
 }) 
-	
+
 	
 </script>
 </head>
@@ -96,8 +96,7 @@ $(function(){
 			<div id="monthApply_table">
 				
 					<div class="join_btn1">
-						<input type="submit" value="나의신청현황확인"
-							onClick="fn_modApplyFormData('member');" >
+						<button onclick ="location.href='${contextPath}/mypage/monthApplyList.do'">나의신청현황확인</button>
 					</div>
 				</div>
 			</div>
