@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.dao.DataAccessException;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.onestop.GJ.board.data.vo.BoardDataVO;
 import com.onestop.GJ.board.notice.vo.BoardNoticeVO;
@@ -27,7 +28,7 @@ public interface MemberService {
 	void send_PwMail(MemberVO member) throws Exception;
 
 // pw 찾기 인증
-	void find_pw(HttpServletResponse response, MemberVO member) throws Exception;
+	ModelAndView find_pw(HttpServletResponse response, MemberVO member) throws Exception;
 
 // ID 찾기
 	MemberVO findId_hp(MemberVO memberVO) throws Exception;

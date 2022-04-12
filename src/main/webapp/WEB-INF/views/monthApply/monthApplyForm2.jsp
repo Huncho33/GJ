@@ -24,82 +24,77 @@
 <link href="${contextPath}/resources/css/common.css" rel="stylesheet"
 	type="text/css">
 <script language="javascript">
-	
-	
-	
-	function fn_modApplyFormData(attribute) {
-		var value;
-		var myInfo_frm = document.myInfo_frm;
-		if(attribute == 'member'){
-			var value;
-			var myInfo_frm = document.myInfo_frm;
-			if(attribute == 'member'){
-				var member_pw = document.getElementById("member_pw").value;
-				var member_phoneno = document.getElementById("member_phoneno").value;
-				var member_email1 = document.getElementById("member_email1").value;
-				var member_email2 = document.getElementById("member_email2").value;
-				var member_zipcode = document.getElementById("member_zipcode").value;
-				var member_roadAddress = document.getElementById("member_roadAddress").value;
-				if(document.getElementById("member_jibunAddress").value == ""){
-					var member_jibunAddress = " ";
-				} else{
-					var member_jibunAddress = document.getElementById("member_jibunAddress").value;
-				}
-				if(document.getElementById("member_namujiAddress").value == ""){
-					var member_namujiAddress = " ";
-				}else{
-					var member_namujiAddress = document.getElementById("member_namujiAddress").value;
-				}
-				
-				value = member_pw +","+ member_phoneno +","+ member_email1 +","+ member_email2 +","+ member_zipcode +","+ member_roadAddress +","+ member_jibunAddress +","+ member_namujiAddress;
-			}
-			console.log(value);
-		
-		$.ajax({
-			type : "post",
-			async : false, //false인 경우 동기식으로 처리한다.
-			url : "${contextPath}/month/monthApplyForm2.do",
-			data : {
-				attribute:attribute,
-				value:value,
-			},
-			success : function(data, textStatus) {
-				if(data.trim()=='mod_success'){
-					 location.href = "${contextPath}/month/monthApplyForm3.do";
-					 alert("다음단계로 이동합니다."); 
-					return 
-				}else if(data.trim()=='failed'){
-					alert("다시 시도해 주세요.");	
-				}
-				
-			},
-			error : function(data, textStatus) {
-				alert("에러가 발생했습니다." + data);
-			},
-			complete : function(data, textStatus) {
-				//alert("작업을 완료 했습니다");
-				
-			}
-		}); //end ajax
-	}
-	
-	function cancel() {
+   
+   
+   
+   function fn_modApplyFormData(attribute) {
+      var value;
+      var myInfo_frm = document.myInfo_frm;
+         if(attribute == 'member'){
+            var member_phoneno = document.getElementById("member_phoneno").value;
+            var member_email1 = document.getElementById("member_email1").value;
+            var member_email2 = document.getElementById("member_email2").value;
+            var member_zipcode = document.getElementById("member_zipcode").value;
+            var member_roadAddress = document.getElementById("member_roadAddress").value;
+            if(document.getElementById("member_jibunAddress").value == ""){
+               var member_jibunAddress = " ";
+            } else{
+               var member_jibunAddress = document.getElementById("member_jibunAddress").value;
+            }
+            if(document.getElementById("member_namujiAddress").value == ""){
+               var member_namujiAddress = " ";
+            }else{
+               var member_namujiAddress = document.getElementById("member_namujiAddress").value;
+            }
+            
+            value = member_phoneno +","+ member_email1 +","+ member_email2 +","+ member_zipcode +","+ member_roadAddress +","+ member_jibunAddress +","+ member_namujiAddress;
+         }
+         console.log(value);
+      
+      $.ajax({
+         type : "post",
+         async : false, //false인 경우 동기식으로 처리한다.
+         url : "${contextPath}/month/monthApplyForm2.do",
+         data : {
+            attribute:attribute,
+            value:value,
+         },
+         success : function(data, textStatus) {
+            if(data.trim()=='mod_success'){
+                location.href = "${contextPath}/month/monthApplyForm3.do";
+                alert("다음단계로 이동합니다."); 
+               return 
+            }else if(data.trim()=='failed'){
+               alert("다시 시도해 주세요.");   
+            }
+            
+         },
+         error : function(data, textStatus) {
+            alert("에러가 발생했습니다." + data);
+         },
+         complete : function(data, textStatus) {
+            //alert("작업을 완료 했습니다");
+            
+         }
+      }); //end ajax
+   }
 
-		if (confirm("정말 취소하시겠습니까?") == true) { //확인
+   
+   function cancel() {
 
-			window.location.href = '../main.do';
+      if (confirm("정말 취소하시겠습니까?") == true) { //확인
 
-		} else { //취소
+         window.location.href = '../main.do';
 
-			return false;
+      } else { //취소
 
-		}
+         return false;
 
-	}
+      }
 
-
-	
-	</script>
+   }
+   
+   </script>
 </head>
 
 <body>

@@ -14,6 +14,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.onestop.GJ.board.data.vo.BoardDataVO;
 import com.onestop.GJ.board.notice.vo.BoardNoticeVO;
@@ -107,10 +108,10 @@ public class MemberServiceImpl implements MemberService {
 
 	// 비밀번호 찾기
 	@Override
-	public void find_pw(HttpServletResponse response, MemberVO memberVO) throws Exception {
+	public ModelAndView find_pw(HttpServletResponse response, MemberVO memberVO) throws Exception {
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
-
+		  ModelAndView mav = new ModelAndView();
 		String res_overlap = (memberDAO.selectOverlappedID(memberVO.getMember_id()));
 
 		// 아이디가 없는 경우
@@ -147,12 +148,11 @@ public class MemberServiceImpl implements MemberService {
 
 			// 비밀번호 변경 메일 발송
 			send_PwMail(memberVO);
-
-			out.print("이메일로 임시 비밀번호를 발송하였습니다. 임시 비밀번호로 다시 로그인 해 주세요.");
-			out.close();
 			
+			out.print("이메일로 임시 비밀번호를 발송하였습니다.\n 임시 비밀번호로 다시 로그인 해 주세요.");
+			mav.setViewName("redirect:/main.do");
 		}
-		
+		return mav;
 	}
 
 	// ID찾기
