@@ -37,8 +37,16 @@
 			var member_email2 = document.getElementById("member_email2").value;
 			var member_zipcode = document.getElementById("member_zipcode").value;
 			var member_roadAddress = document.getElementById("member_roadAddress").value;
-			var member_jibunAddress = document.getElementById("member_jibunAddress").value;
-			var member_namujiAddress = document.getElementById("member_namujiAddress").value;
+            if(document.getElementById("member_jibunAddress").value == ""){
+                var member_jibunAddress = " ";
+             } else{
+                var member_jibunAddress = document.getElementById("member_jibunAddress").value;
+             }
+             if(document.getElementById("member_namujiAddress").value == ""){
+                var member_namujiAddress = " ";
+             }else{
+                var member_namujiAddress = document.getElementById("member_namujiAddress").value;
+             }
 			
 			value = member_phoneno +","+ member_email1 +","+ member_email2 +","+ member_zipcode +","+ member_roadAddress +","+ member_jibunAddress +","+ member_namujiAddress;
 		}
