@@ -46,6 +46,7 @@
     ]]>
 	</select>
 	
+	<!-- 총 게시글 수 -->
 	<select id="selectTotQnas" resultType="int">
 	<![CDATA[
 		SELECT count(qna_no) FROM board_qna
@@ -69,6 +70,7 @@
     ]]>
 	</insert>
 	
+	<!-- 상세글 보기 글 고르기 -->
 	<select id="selectQna" resultType="QnaVO" parameterType="int">
     <![CDATA[
       SELECT * from board_qna
@@ -86,7 +88,7 @@
 	]]>
 	</update>
 	
-	
+	<!-- 글 수정업데이트 -->
 	<update id="updateQna" parameterType="java.util.Map">
 	<![CDATA[
 		UPDATE board_qna
@@ -97,7 +99,7 @@
 	]]>
 	</update>
 	
-	
+	<!-- 글 삭제하기 -->
 	<delete id="deleteQna" parameterType="int">
 	<![CDATA[
 		DELETE FROM board_qna

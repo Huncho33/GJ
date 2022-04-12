@@ -7,8 +7,6 @@ import com.onestop.GJ.apply.back.vo.ApplyBackVO;
 
 public interface ApplyBackService {
 
-	ApplyBackVO selectResult(Map resultMap) throws Exception;
-
 	int addResult(Map articleMap) throws Exception;
 
 	ApplyBackVO findAll(String id);

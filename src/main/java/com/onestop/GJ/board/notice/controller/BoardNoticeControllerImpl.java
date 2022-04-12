@@ -260,8 +260,6 @@ public class BoardNoticeControllerImpl implements BoardNoticeController {
 		List<String> fileList = uploadModImageFile(multipartRequest);// 수정한 이미지 파일을 업로드한다.
 		int added_img_num = Integer.parseInt((String) articleMap.get("added_img_num"));
 		int pre_img_num = Integer.parseInt((String) articleMap.get("pre_img_num"));
-		System.out.println("added_img_num : " + added_img_num);
-		System.out.println("pre_img_num : " + pre_img_num);
 		List<BoardNoticeImageVO> imageFileList = new ArrayList<BoardNoticeImageVO>();
 		List<BoardNoticeImageVO> modAddimageFileList = new ArrayList<BoardNoticeImageVO>();
 		if (fileList != null && fileList.size() != 0) {
@@ -353,9 +351,6 @@ public class BoardNoticeControllerImpl implements BoardNoticeController {
 			String up_fileNO = (String) request.getParameter("up_fileNO");
 			String up_fileName = (String) request.getParameter("up_fileName");
 			String noti_NO = (String) request.getParameter("noti_NO");
-
-			System.out.println("up_fileNO = " + up_fileNO);
-			System.out.println("noti_NO = " + noti_NO);
 
 			BoardNoticeImageVO boardNoticeImageVO = new BoardNoticeImageVO();
 			boardNoticeImageVO.setNoti_NO(Integer.parseInt(noti_NO));

@@ -210,10 +210,8 @@ public class BoardFreeControllerImpl implements BoardFreeController {
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 		try {
-			System.out.println("fr : " + fr_NO);
 			boardService.removeArticle(fr_NO);
 			File destDir = new File(ARTICLE_IMAGE_REPO + "\\" + fr_NO);
-			System.out.println("삭제파일1 : " + destDir);
 			FileUtils.deleteDirectory(destDir);
 
 			message = "<script>";
@@ -258,8 +256,6 @@ public class BoardFreeControllerImpl implements BoardFreeController {
 		List<String> fileList = uploadModImageFile(multipartRequest);// 수정한 이미지 파일을 업로드한다.
 		int added_img_num = Integer.parseInt((String) articleMap.get("added_img_num"));
 		int pre_img_num = Integer.parseInt((String) articleMap.get("pre_img_num"));
-		System.out.println("added_img_num : " + added_img_num);
-		System.out.println("pre_img_num : " + pre_img_num);
 		List<BoardFreeImageVO> imageFileList = new ArrayList<BoardFreeImageVO>();
 		List<BoardFreeImageVO> modAddimageFileList = new ArrayList<BoardFreeImageVO>();
 		if (fileList != null && fileList.size() != 0) {
@@ -283,7 +279,6 @@ public class BoardFreeControllerImpl implements BoardFreeController {
 		}
 
 		String fr_NO = (String) articleMap.get("fr_NO");
-		System.out.println("fr_NO1 : " + fr_NO);
 		String message;
 		ResponseEntity resEnt = null;
 		HttpHeaders responseHeaders = new HttpHeaders();
@@ -353,8 +348,6 @@ public class BoardFreeControllerImpl implements BoardFreeController {
 			String up_fileName = (String) request.getParameter("up_fileName");
 			String fr_NO = (String) request.getParameter("fr_NO");
 
-			System.out.println("up_fileNO = " + up_fileNO);
-			System.out.println("fr_NO = " + fr_NO);
 
 			BoardFreeImageVO boardFreeImageVO = new BoardFreeImageVO();
 			boardFreeImageVO.setFr_NO(Integer.parseInt(fr_NO));

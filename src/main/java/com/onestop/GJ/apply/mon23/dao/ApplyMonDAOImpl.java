@@ -18,21 +18,12 @@ public class ApplyMonDAOImpl implements ApplyMonDAO {
 	@Autowired
 	private SqlSession sqlSession;
 
-	@Override
-	public ApplyMonVO selectResult(Map resultMap) throws DataAccessException {
-		ApplyMonVO applymonVO = (ApplyMonVO) sqlSession.selectOne("mapper.apply.selectResult", resultMap);
-		return applymonVO;
-	}
-
 	// 신청결과 값 넣기.
 	@Override
 	public int insertResult(Map articleMap) throws DataAccessException {
 		int mo_no = insertResultNO();
 		articleMap.put("mo_no", mo_no);
-		System.out.println("테스트11 : " + articleMap);
-
 		sqlSession.insert("mapper.apply.insertResult", articleMap);
-		System.out.println("테스트22 : " + articleMap);
 		return mo_no;
 
 	}
@@ -46,20 +37,14 @@ public class ApplyMonDAOImpl implements ApplyMonDAO {
 	@Override
 	public void insertNewFile(Map articleMap) throws DataAccessException {
 		List<ApplyMonFileVO> monApplyFileList = (ArrayList) articleMap.get("imageFileList");
-		System.out.println("why? : " + monApplyFileList);
 		int mo_no = (Integer) articleMap.get("mo_no");
-
 		int MO_FILENO = selectNewImageFileNO();
-
 		if (monApplyFileList != null && monApplyFileList.size() != 0) {
-
 			for (ApplyMonFileVO applyMonFileVO : monApplyFileList) {
 				applyMonFileVO.setUp_fileno(++MO_FILENO);
 				applyMonFileVO.setMo_no(mo_no);
 			}
-
 		}
-		System.out.println("imageFileList" + monApplyFileList);
 		sqlSession.insert("mapper.apply.insertNewImage", monApplyFileList);
 	}
 
@@ -68,7 +53,7 @@ public class ApplyMonDAOImpl implements ApplyMonDAO {
 		return sqlSession.selectOne("mapper.apply.selectMoFileNO");
 	}
 
-	// 결과페이지(memberVO id값을 통해 member테이블값 조회)
+	// 결과페이지(memberVO id값을 통해 member테이블값 조회) 신청 아이디 체크
 	@Override
 	public ApplyMonVO findAll(String member_id) {
 		ApplyMonVO list = null;
@@ -82,5 +67,4 @@ public class ApplyMonDAOImpl implements ApplyMonDAO {
 		ApplyMonVO month = sqlSession.selectOne("mapper.apply.findNo", mo_no);
 		return month;
 	}
-
 }

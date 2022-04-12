@@ -35,7 +35,6 @@ $(function(){
     }
 }) 
 	
-	
 </script>
 </head>
 
@@ -92,9 +91,7 @@ $(function(){
 				</table>
 				</p>
 			</div>
-
 			<div id="monthApply_table">
-				
 					<div class="join_btn1">
 						<input type="submit" value="나의신청현황확인"
 							onClick="fn_modApplyFormData('member');" >
@@ -104,9 +101,6 @@ $(function(){
 
 		</div>
 	</div>
-	
-	
-	
 </body>
 
 </html>

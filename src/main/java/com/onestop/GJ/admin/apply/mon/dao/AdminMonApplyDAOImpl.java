@@ -30,16 +30,13 @@ public class AdminMonApplyDAOImpl implements AdminMonApplyDAO {
 	public List selectApplyBySearchMember(Map pagingMap) throws DataAccessException {
 		List<ApplyMonVO> selectApplyList = sqlSession.selectList("mapper.adminApply.selectApplyBySearchMember",
 				pagingMap);
-		System.out.println("다오 apply 검색창" + selectApplyList);
 		return selectApplyList;
 	}
 
 	// 검색창(신청) 총 검색수
 	@Override
 	public int selectSearchTotApply(Map pagingMap) throws DataAccessException {
-		System.out.println("DAO selectSearchTotApply 메소드 안으로 들어옴 ");
 		int searchTotApply = sqlSession.selectOne("mapper.adminApply.selectSearchTotApply", pagingMap);
-		System.out.println("검색회원수" + searchTotApply);
 		return searchTotApply;
 	}
 
@@ -49,26 +46,6 @@ public class AdminMonApplyDAOImpl implements AdminMonApplyDAO {
 		int totMembers = sqlSession.selectOne("mapper.adminApply.selectTotMembers");
 		return totMembers;
 
-	}
-
-	// 검색창 총 검색수
-	@Override
-	public int selectSearchTotMembers(Map pagingMap) throws DataAccessException {
-		int searchTotMembers = sqlSession.selectOne("mapper.adminApply.selectSearchTotMembers", pagingMap);
-		System.out.println("검색회원수" + searchTotMembers);
-		return searchTotMembers;
-	}
-
-//  회원 상세보기
-	@Override
-	public MemberVO selectMember(int mo_no) throws DataAccessException {
-		return sqlSession.selectOne("mapper.adminApply.selectMember", mo_no);
-	}
-
-//  회원 상세보기
-	@Override
-	public MemberVO selectMonApplyView(int mo_no) throws DataAccessException {
-		return sqlSession.selectOne("mapper.adminApply.selectMonApplyView", mo_no);
 	}
 
 	// id로 회원 정보 불러오기
@@ -91,45 +68,32 @@ public class AdminMonApplyDAOImpl implements AdminMonApplyDAO {
 		return monthFileList;
 	}
 
+	//	회원 상세 조회
 	@Override
 	public MemberVO selectMemberId(String member_id) throws DataAccessException {
 		return sqlSession.selectOne("mapper.adminApply.selectMember", member_id);
 	}
 
-	@Override
-	public int insertMember(MemberVO memberVO) throws DataAccessException {
-		int result = sqlSession.insert("mapper.adminApply.insertMember_adm", memberVO);
-		return result;
-	}
-
 	// 신청 테이블과 member 테이블 join
 	@Override
 	public List joinTable(Map pagingMap) {
-		System.out.println("조인 다오 쿼리진행");
 		List<ApplyMonVO> applyList = null;
-		System.out.println("다오  pagingMap 값들 : " + pagingMap);
 		applyList = sqlSession.selectList("mapper.adminApply.joinTable", pagingMap);
-		System.out.println("다오  applyList 값들 : " + applyList);
 		return applyList;
-
 	}
 
 	// 총 회원수
 	@Override
 	public int selectTotApply() throws DataAccessException {
 		int totApply = sqlSession.selectOne("mapper.adminApply.selectTotApply");
-		System.out.println("DAO totMembers : " + totApply);
 		return totApply;
-
 	}
 
 	// 회원 상세정보
 	@Override
 	public int selectDetailApply() throws DataAccessException {
 		int totApply = sqlSession.selectOne("mapper.adminApply.selectTotApply");
-		System.out.println("DAO totMembers : " + totApply);
 		return totApply;
-
 	}
 
 	// 신청상태 적용
@@ -143,13 +107,6 @@ public class AdminMonApplyDAOImpl implements AdminMonApplyDAO {
 	public void modifyAdminMonPay(Map membersMap) throws Exception {
 		sqlSession.update("mapper.adminApply.modifyAdminMonPay", membersMap);
 	}
-	/*
-	 * // 검색창 총 검색수
-	 * 
-	 * @Override public int selectSearchTotApply(Map pagingMap) throws
-	 * DataAccessException { int searchTotApply =
-	 * sqlSession.selectOne("mapper.adminApply.selectSearchTotMembers", pagingMap);
-	 * System.out.println("검색 신청 수" + searchTotApply); return searchTotApply; }
-	 */
+	
 
 }

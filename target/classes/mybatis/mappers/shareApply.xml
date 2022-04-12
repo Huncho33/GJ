@@ -13,9 +13,9 @@
 		<result property="sh_result" column="sh_result" />
 		<result property="sh_policy" column="sh_policy" />
 		<result property="sh_reason" column="sh_reason" />
-		
+
 	</resultMap>
-	
+
 	<resultMap id="shareFileResult" type="ApplyShareFileVO">
 		<result property="up_fileno" column="up_fileno" />
 		<result property="up_filename" column="up_filename" />
@@ -31,9 +31,6 @@
 		
 		]]>
 	</select>
-
-
-	
 
 	<insert id="insertResult" parameterType="java.util.Map">
 		<![CDATA[
@@ -51,32 +48,34 @@
 		 		#{sh_reason}) 	
 		]]>
 	</insert>
-	
-		<!-- 월세 신청 번호 생성 -->
+
+	<!-- 월세 신청 번호 생성 -->
 	<select id="insertResultNO" resultType="int">
 	<![CDATA[
    select  nvl(max(sh_no),0) +1 from share_apply
 	]]>
 	</select>
-	
+
 	<!-- 파일 추가 -->
 	<insert id="insertNewImage" parameterType="java.util.Map">
-		 <foreach item="item" collection="list" open="INSERT ALL"
+		<foreach item="item" collection="list" open="INSERT ALL"
 			separator=" " close="SELECT * FROM DUAL">
-			into share_file(up_fileno, up_filename, up_date, sh_no)
-			values (#{item.up_fileno}, #{item.up_filename}, sysdate, #{item.sh_no})
-		</foreach>   
+			into share_file(up_fileno, up_filename, up_date,
+			sh_no)
+			values (#{item.up_fileno}, #{item.up_filename}, sysdate,
+			#{item.sh_no})
+		</foreach>
 	</insert>
-	
+
 	<!-- 월세지원 파일번호 생성 -->
-		<select id="selectShFileNO" resultType="int">
+	<select id="selectShFileNO" resultType="int">
 <![CDATA[
    select nvl(max(up_fileno),0) from share_file
 ]]>
 	</select>
 
-	
-	<!--결과페이지 관련, 아이디로 찾아서 아이디에 해당하는 값들 조회  -->	
+
+	<!--결과페이지 관련, 아이디로 찾아서 아이디에 해당하는 값들 조회 -->
 	<select id="all" resultMap="shareApplyResult">
 		<![CDATA[
          select * 
@@ -90,7 +89,5 @@
          from share_apply
          where sh_no=#{sh_no}
       ]]>
-	</select>	
-		
-
+	</select>
 </mapper>

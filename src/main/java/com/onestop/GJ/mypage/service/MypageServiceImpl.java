@@ -144,7 +144,6 @@ public class MypageServiceImpl implements MypageService {
 		ViewRentMap.put("applyRent", applyRentVO);
 		ViewRentMap.put("rentFileList", rentFileList);
 		Collection<String> value = ViewRentMap.values();
-		System.out.println("mypageSERVICE rentFileList VALUE:" + value);
 
 		return ViewRentMap;
 	}
@@ -158,7 +157,6 @@ public class MypageServiceImpl implements MypageService {
 		ViewRetMap.put("applyRentReturn", applyRentReturnVO);
 		ViewRetMap.put("retFileList", retFileList);
 		Collection<String> value = ViewRetMap.values();
-		System.out.println("mypageSERVICE retFileList VALUE:" + value);
 
 		return ViewRetMap;
 	}
@@ -172,8 +170,6 @@ public class MypageServiceImpl implements MypageService {
 		ViewBackMap.put("applyBack", applyBackVO);
 		ViewBackMap.put("backFileList", backFileList);
 		Collection<String> value = ViewBackMap.values();
-		System.out.println("mypageSERVICE backFileList VALUE:" + value);
-
 		return ViewBackMap;
 	}
 
@@ -186,8 +182,6 @@ public class MypageServiceImpl implements MypageService {
 		ViewShareMap.put("applyShare", applyShareVO);
 		ViewShareMap.put("shareFileList", shareFileList);
 		Collection<String> value = ViewShareMap.values();
-		System.out.println("mypageSERVICE shareFileList VALUE:" + value);
-
 		return ViewShareMap;
 	}
 

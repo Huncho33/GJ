@@ -7,8 +7,6 @@ import com.onestop.GJ.apply.share.vo.ApplyShareVO;
 
 public interface ApplyShareService {
 
-	ApplyShareVO selectResult(Map resultMap) throws Exception;
-
 	int addResult(Map articleMap) throws Exception;
 
 	ApplyShareVO findAll(String id);

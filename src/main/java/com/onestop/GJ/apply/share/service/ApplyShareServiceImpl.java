@@ -18,12 +18,7 @@ public class ApplyShareServiceImpl implements ApplyShareService{
 	@Autowired
 	private ApplyShareDAO applyShareDAO;
 
-	@Override
-	public ApplyShareVO selectResult(Map resultMap) throws Exception {
-	  return applyShareDAO.selectResult(resultMap);
-	}
-	
-	
+//	첨부파일 등록
 	 @Override
 		public int addResult(Map articleMap) throws Exception {
 			int sh_no = applyShareDAO.insertResult(articleMap);
@@ -31,7 +26,8 @@ public class ApplyShareServiceImpl implements ApplyShareService{
 			applyShareDAO.insertNewFile(articleMap);
 			return sh_no;
 		}
-	
+	 
+	// 신청 아이디  체크
 	@Override
 	public ApplyShareVO findAll(String id) {
 		ApplyShareVO list = null;
@@ -39,11 +35,9 @@ public class ApplyShareServiceImpl implements ApplyShareService{
 		return list;
 	}
 	
+	// 결과페이지
 	@Override
 	public ApplyShareVO findNo(int no) {
 		return  applyShareDAO.findNo(no);
 	}
-
-
-	
 }

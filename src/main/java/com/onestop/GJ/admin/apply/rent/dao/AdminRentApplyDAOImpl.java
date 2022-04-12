@@ -30,16 +30,13 @@ public class AdminRentApplyDAOImpl implements AdminRentApplyDAO {
 	public List selectApplyBySearchMember(Map pagingMap) throws DataAccessException {
 		List<ApplyRentVO> selectApplyList = sqlSession.selectList("mapper.adminRentApply.selectApplyBySearchMember",
 				pagingMap);
-		System.out.println("다오 apply 검색창" + selectApplyList);
 		return selectApplyList;
 	}
 
 	// 검색창(신청) 총 검색수
 	@Override
 	public int selectSearchTotApply(Map pagingMap) throws DataAccessException {
-		System.out.println("DAO selectSearchTotApply 메소드 안으로 들어옴 ");
 		int searchTotApply = sqlSession.selectOne("mapper.adminRentApply.selectSearchTotApply", pagingMap);
-		System.out.println("검색회원수" + searchTotApply);
 		return searchTotApply;
 	}
 
@@ -55,7 +52,6 @@ public class AdminRentApplyDAOImpl implements AdminRentApplyDAO {
 	@Override
 	public int selectSearchTotMembers(Map pagingMap) throws DataAccessException {
 		int searchTotMembers = sqlSession.selectOne("mapper.adminRentApply.selectSearchTotMembers", pagingMap);
-		System.out.println("검색회원수" + searchTotMembers);
 		return searchTotMembers;
 	}
 
@@ -96,20 +92,11 @@ public class AdminRentApplyDAOImpl implements AdminRentApplyDAO {
 		return sqlSession.selectOne("mapper.adminRentApply.selectMember", member_id);
 	}
 
-	@Override
-	public int insertMember(MemberVO memberVO) throws DataAccessException {
-		int result = sqlSession.insert("mapper.adminRentApply.insertMember_adm", memberVO);
-		return result;
-	}
-
 	// 신청 테이블과 member 테이블 join
 	@Override
 	public List joinTable(Map pagingMap) {
-		System.out.println("조인 다오 쿼리진행");
 		List<ApplyRentVO> applyList = null;
-		System.out.println("다오  pagingMap 값들 : " + pagingMap);
 		applyList = sqlSession.selectList("mapper.adminRentApply.joinTable", pagingMap);
-		System.out.println("다오  applyList 값들 : " + applyList);
 		return applyList;
 
 	}
@@ -118,7 +105,6 @@ public class AdminRentApplyDAOImpl implements AdminRentApplyDAO {
 	@Override
 	public int selectTotApply() throws DataAccessException {
 		int totApply = sqlSession.selectOne("mapper.adminRentApply.selectTotApply");
-		System.out.println("DAO totMembers : " + totApply);
 		return totApply;
 
 	}
@@ -127,7 +113,6 @@ public class AdminRentApplyDAOImpl implements AdminRentApplyDAO {
 	@Override
 	public int selectDetailApply() throws DataAccessException {
 		int totApply = sqlSession.selectOne("mapper.adminRentApply.selectTotApply");
-		System.out.println("DAO totMembers : " + totApply);
 		return totApply;
 
 	}

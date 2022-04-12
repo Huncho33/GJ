@@ -61,7 +61,6 @@ public class BoardNoticeServiceImpl implements BoardNoticeService {
 		articleMap.put("article", boardNoticeVO);
 		articleMap.put("imageFileList", imageFileList);
 		Collection<String> value = articleMap.values();
-//      System.out.println(value);
 
 		// 조회수 추가하기
 		boardDAO.boardHits(noti_NO);

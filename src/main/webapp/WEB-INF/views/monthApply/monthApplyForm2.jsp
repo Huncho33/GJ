@@ -25,16 +25,10 @@
 	type="text/css">
 <script language="javascript">
 	
-	
-	
 	function fn_modApplyFormData(attribute) {
-		var value;
-		var myInfo_frm = document.myInfo_frm;
-		if(attribute == 'member'){
 			var value;
 			var myInfo_frm = document.myInfo_frm;
 			if(attribute == 'member'){
-				var member_pw = document.getElementById("member_pw").value;
 				var member_phoneno = document.getElementById("member_phoneno").value;
 				var member_email1 = document.getElementById("member_email1").value;
 				var member_email2 = document.getElementById("member_email2").value;
@@ -50,8 +44,7 @@
 				}else{
 					var member_namujiAddress = document.getElementById("member_namujiAddress").value;
 				}
-				
-				value = member_pw +","+ member_phoneno +","+ member_email1 +","+ member_email2 +","+ member_zipcode +","+ member_roadAddress +","+ member_jibunAddress +","+ member_namujiAddress;
+				value = member_phoneno +","+ member_email1 +","+ member_email2 +","+ member_zipcode +","+ member_roadAddress +","+ member_jibunAddress +","+ member_namujiAddress;
 			}
 			console.log(value);
 		
@@ -71,16 +64,14 @@
 				}else if(data.trim()=='failed'){
 					alert("다시 시도해 주세요.");	
 				}
-				
 			},
 			error : function(data, textStatus) {
 				alert("에러가 발생했습니다." + data);
 			},
 			complete : function(data, textStatus) {
-				//alert("작업을 완료 했습니다");
 				
 			}
-		}); //end ajax
+		}); 
 	}
 	
 	function cancel() {
@@ -92,11 +83,8 @@
 		} else { //취소
 
 			return false;
-
 		}
-
 	}
-
 
 	
 	</script>

@@ -55,15 +55,11 @@ public class ApplyShareControllerImpl implements ApplyShareController {
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("content-Type", "text/html; charset=utf-8");
 		String viewName = (String) request.getAttribute("viewName");
-		System.out.println("viewName" + viewName);
 		HttpSession session = request.getSession();
 		memberVO = (MemberVO) session.getAttribute("member");
-		System.out.println("memberVO 값 불러오기" + memberVO);
 		String id = memberVO.getMember_id();
 		ApplyShareVO list = applyShareService.findAll(id);
-		System.out.println("apply 테이블 값 : " + list);
 		if (list != null && list.getMember_id().equals(id)) {
-			System.out.println("아이디값 가져옴: " + list.getMember_id());
 			message = "<script>";
 			message += " alert('이미 신청한 아이디입니다.');";
 			message += " location.href='" + request.getContextPath() + "/main.do'";
@@ -80,7 +76,6 @@ public class ApplyShareControllerImpl implements ApplyShareController {
 	@RequestMapping(value = "/share/shareApplyForm1.do", method = { RequestMethod.GET, RequestMethod.POST })
 	private ModelAndView applyForm(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = (String) request.getAttribute("viewName");
-		System.out.println("viewName" + viewName);
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(viewName);
 		return mav;
@@ -113,9 +108,6 @@ public class ApplyShareControllerImpl implements ApplyShareController {
 		}
 
 		memberMap.put("member_id", member_id);
-
-		System.out.println(memberMap);
-
 		memberVO = (MemberVO) mypageService.modifyMember(memberMap);
 		session.removeAttribute("member");
 		session.setAttribute("member", memberVO);
@@ -133,14 +125,13 @@ public class ApplyShareControllerImpl implements ApplyShareController {
 	@RequestMapping(value = "/share/shareApplyForm3.do", method = RequestMethod.POST)
 	private ModelAndView applyForms(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = (String) request.getAttribute("viewName");
-		System.out.println("viewName" + viewName);
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("redirect:/share/shareApplyForm4.do");
 
 		return mav;
 	}
 
-	// 신청등록
+	// 첨부파일등록
 	@Override
 	@RequestMapping(value = "/share/shareApplyForm4.do", method = RequestMethod.POST)
 	@ResponseBody
@@ -160,8 +151,6 @@ public class ApplyShareControllerImpl implements ApplyShareController {
 		MemberVO memberVO = (MemberVO) session.getAttribute("member");
 		String member_id = memberVO.getMember_id();
 		articleMap.put("member_id", member_id);
-		System.out.println("아티클맵 : " + articleMap);
-
 		List<String> fileList = upload(multipartRequest, RequestMethod.POST);
 		List<ApplyShareFileVO> imageFileList = new ArrayList<ApplyShareFileVO>();
 		fileList.removeAll(Arrays.asList("", null));
@@ -183,10 +172,8 @@ public class ApplyShareControllerImpl implements ApplyShareController {
 			if (imageFileList != null && imageFileList.size() != 0) {
 				for (ApplyShareFileVO applyShareFileVO : imageFileList) {
 					up_fileName = applyShareFileVO.getUp_filename();
-					System.out.println("apply : " + applyShareFileVO.toString());
 					File srcFile = new File(shareApply_REPO + "\\" + "temp" + "\\" + up_fileName);
 					File destDir = new File(shareApply_REPO + "\\" + sh_no);
-					// destDir.mkdirs();
 					FileUtils.moveFileToDirectory(srcFile, destDir, true);
 				}
 			}
@@ -197,8 +184,6 @@ public class ApplyShareControllerImpl implements ApplyShareController {
 					+ sh_no + "';";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
-			System.out.println("신청번호:" + sh_no);
-
 		} catch (Exception e) {
 			if (imageFileList != null && imageFileList.size() != 0) {
 				for (ApplyShareFileVO applyShareFileVO : imageFileList) {
@@ -243,13 +228,9 @@ public class ApplyShareControllerImpl implements ApplyShareController {
 	@RequestMapping(value = "/share/shareApplyResult.do")
 	public ModelAndView findAll(HttpServletRequest request, @RequestParam("sh_no") int sh_no) {
 		String viewName = (String) request.getAttribute("viewName");
-		System.out.println("sh_no : " + sh_no);
-		System.out.println("viewName" + viewName);
 		ModelAndView mav = new ModelAndView();
-		System.out.println("1");
 		HttpSession session = request.getSession();
 		memberVO = (MemberVO) session.getAttribute("member");
-		System.out.println(memberVO.getMember_id());
 		String id = memberVO.getMember_id();
 		int no = applyShareVO.getSh_no();
 
@@ -264,22 +245,17 @@ public class ApplyShareControllerImpl implements ApplyShareController {
 	@RequestMapping(value = "/share/shareSelectedResult.do")
 	private ModelAndView shareSelectedPage(HttpServletRequest request) throws Exception {
 		String viewName = (String) request.getAttribute("viewName");
-		System.out.println("viewName" + viewName);
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
 		memberVO = (MemberVO) session.getAttribute("member");
-		System.out.println(memberVO.getMember_id());
 		String id = memberVO.getMember_id();
 		ApplyShareVO list = applyShareService.findAll(id);
-		System.out.println(list);
 		mav.addObject("apply", list);
 		mav.setViewName(viewName);
 		if (list == null) {
 			mav.addObject("message", "신청내역이 없는 아이디 입니다.");
 		} else {
-			System.out.println("else 문 list : " + list);
 		}
-			System.out.println("if,else문 밖 list값 : "+list);
 		return mav;
 	}
 

@@ -59,7 +59,6 @@ public class QnaDAOImpl implements QnaDAO {
 	// 상세글 보기 할 글 고르기
 	@Override
 	public QnaVO selectParentQna(int _qnaparent_no) throws DataAccessException {
-		System.out.println("DAO :" + _qnaparent_no);
 		return sqlSession.selectOne("mapper.boardQna.selectQna", _qnaparent_no);
 	}
 

@@ -6,11 +6,9 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 
+<!-- 아이디찾기 선택창 -->
 <!DOCTYPE html>
 <style>
-
-
-       
         .joinForm2_Title {
             float: left;
             width: 820px;

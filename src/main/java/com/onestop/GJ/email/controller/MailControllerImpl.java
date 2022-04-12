@@ -38,7 +38,6 @@ public class MailControllerImpl implements MailController {
 	@RequestMapping(value = "/email/mail.do", method = RequestMethod.POST)
 	public String emailConfirm(String email) throws Exception {
 		logger.info("post emailConfirm");
-		System.out.println("전달 받은 이메일 : " + email);
 		mailService.sendSimpleMessage(email);
 		return "redirect:/member/emailSend.do";
 
@@ -57,8 +56,6 @@ public class MailControllerImpl implements MailController {
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 
 		int result = 0;
-		System.out.println("code : " + code);
-		System.out.println("code match : " + MailServiceImpl.ePw.equals(code));
 
 		if (MailServiceImpl.ePw.equals(code)) {
 			result = 1;
@@ -77,5 +74,4 @@ public class MailControllerImpl implements MailController {
 		resEntity = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
 		return resEntity;
 	}
-
 }

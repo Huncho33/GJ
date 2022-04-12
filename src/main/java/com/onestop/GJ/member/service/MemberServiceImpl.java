@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,46 +30,32 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	private JavaMailSender mailSender;
 
-	@Override
-	public List listMembers() throws DataAccessException {
-		List membersList = null;
-		membersList = memberDAO.selectAllMemberList();
-		return membersList;
-	}
 
+//	회원추가
 	@Override
 	public void addMember(MemberVO memberVO) throws DataAccessException {
 		memberDAO.insertMember(memberVO);
 	}
-
-	@Override
-	public int removeMember(String id) throws DataAccessException {
-		return memberDAO.deleteMember(id);
-	}
-
+	
+//	로그임
 	@Override
 	public MemberVO login(MemberVO memberVO) throws Exception {
 		return memberDAO.loginById(memberVO);
 	}
 	
+//	
 	@Override
 	public void last_log(String member_id) throws Exception {
 		memberDAO.last_logOn(member_id);
 	}
 	
-
+//	아이디 중복체크
 	@Override
 	public String overlapped(String id) throws Exception {
 		return memberDAO.selectOverlappedID(id);
 	}
 
-//  -- 인증 관련(비밀번호)
-//	@Override
-//	public MemberVO findPw_hp(MemberVO memberVO) throws Exception {
-//		return memberDAO.certHp_Pw(memberVO);
-//	}
-
-	// 이메일 임시 비밀번호 발송 메서드
+//
 	@Override
 	public void send_PwMail(MemberVO memberVO) throws Exception {
 		String to = memberVO.getMember_email1() + "@" + memberVO.getMember_email2();
@@ -101,13 +88,12 @@ public class MemberServiceImpl implements MemberService {
 			messageHelper.setText(body, true);
 			mailSender.send(message);
 		} catch (Exception e) {
-			System.out.println("메일발송 실패 : " + e);
 		}
 	}
 
 	// 비밀번호 찾기
 	@Override
-	public void find_pw(HttpServletResponse response, MemberVO memberVO) throws Exception {
+	public void find_pw(HttpServletResponse response,  MemberVO memberVO) throws Exception {
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
 
@@ -117,7 +103,6 @@ public class MemberServiceImpl implements MemberService {
 		if (res_overlap.equals("false")) {
 			out.print("아이디가 없습니다.");
 			out.close();
-			System.out.println(memberVO.getMember_id());
 		}
 
 		String input_email1 = memberVO.getMember_email1();
@@ -131,16 +116,11 @@ public class MemberServiceImpl implements MemberService {
 			out.print("가입 시 등록한 이메일이 아닙니다.");
 			out.close();
 		} else {
-			// 아이디 이메일 일치
-			// 임시 비밀번호 생성
 			String member_pw = "";
 			for (int i = 0; i < 12; i++) {
 				member_pw += (char) ((Math.random() * 26) + 97);
 			}
 			memberVO.setMember_pw(member_pw);
-			System.out.println(memberVO.toString());
-
-			System.out.println("비밀번호 변경 아이디: " + memberVO.getMember_id());
 
 			// 비밀번호 변경
 			memberDAO.update_pw(memberVO);
@@ -148,6 +128,7 @@ public class MemberServiceImpl implements MemberService {
 			// 비밀번호 변경 메일 발송
 			send_PwMail(memberVO);
 
+		
 			out.print("이메일로 임시 비밀번호를 발송하였습니다. 임시 비밀번호로 다시 로그인 해 주세요.");
 			out.close();
 			

@@ -10,8 +10,6 @@ import com.onestop.GJ.apply.back.vo.ApplyBackVO;
 
 public interface ApplyBackDAO {
 
-	ApplyBackVO selectResult(Map resultMap) throws DataAccessException;
-
 	int insertResult(Map articleMap) throws DataAccessException;
 
 	void insertNewFile(Map articleMap) throws DataAccessException;

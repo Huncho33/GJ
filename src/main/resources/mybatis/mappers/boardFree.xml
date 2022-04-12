@@ -143,6 +143,7 @@
 		where fr_NO=#{fr_NO}
 	</update>
 
+	<!-- 파일수정 -->
 	<update id="updateImageFile" parameterType="java.util.List">
 		<foreach collection="list" item="item" separator=";"
 			open="DECLARE BEGIN" close="; END;">

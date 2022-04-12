@@ -18,13 +18,7 @@ public class ApplyRentServiceImpl implements ApplyRentService{
 	@Autowired
 	private ApplyRentDAO applyrentDAO;
 	
-	
-	@Override
-	public ApplyRentVO selectResult(Map resultMap) throws Exception {
-	  return applyrentDAO.selectResult(resultMap);
-	}
-	
-	
+//	첨부파일 등록
 	 @Override
 		public int addResult(Map articleMap) throws Exception {
 			int rent_no = applyrentDAO.insertResult(articleMap);
@@ -33,6 +27,7 @@ public class ApplyRentServiceImpl implements ApplyRentService{
 			return rent_no;
 		}
 	
+		// 신청 아이디  체크
 	@Override
 	public ApplyRentVO findAll(String id) {
 		ApplyRentVO list = null;
@@ -40,6 +35,7 @@ public class ApplyRentServiceImpl implements ApplyRentService{
 		return list;
 	}
 	
+	// 결과페이지
 	@Override
 	public ApplyRentVO findNo(int no) {
 		return  applyrentDAO.findNo(no);

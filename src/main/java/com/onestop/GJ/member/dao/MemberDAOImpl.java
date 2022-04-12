@@ -18,36 +18,20 @@ public class MemberDAOImpl implements MemberDAO {
 	@Autowired
 	private SqlSession sqlSession;
 
-	@Override
-	public MemberVO login(Map loginMap) throws DataAccessException {
-		MemberVO member = (MemberVO) sqlSession.selectOne("mapper.member.login", loginMap);
-		return member;
-	}
-
-	@Override
-	public List selectAllMemberList() throws DataAccessException {
-		List<MemberVO> membersList = null;
-		membersList = sqlSession.selectList("mapper.member.selectAllMemberList");
-		return membersList;
-	}
-
+//	회원추가
 	@Override
 	public void insertMember(MemberVO memberVO) throws DataAccessException {
 		sqlSession.insert("mapper.member.insertMember", memberVO);
 	}
 
-	@Override
-	public int deleteMember(String id) throws DataAccessException {
-		int result = sqlSession.delete("mapper.member.deleteMember", id);
-		return result;
-	}
-
+//	로그인
 	@Override
 	public MemberVO loginById(MemberVO memberVO) throws DataAccessException {
 		MemberVO vo = sqlSession.selectOne("mapper.member.loginById", memberVO);
 		return vo;
 	}
-
+	
+//	최종접속시간
 	@Override
 	public void last_logOn(String member_id) throws DataAccessException {
 		sqlSession.update("mapper.member.last_logOn", member_id);
@@ -58,14 +42,15 @@ public class MemberDAOImpl implements MemberDAO {
 		MemberVO vo = sqlSession.selectOne("mapper.member.SearchById", memberVO);
 		return vo;
 	}
-
+	
+//	아이디 중북체크
 	@Override
 	public String selectOverlappedID(String id) throws DataAccessException {
 		String result = sqlSession.selectOne("mapper.member.selectOverlappedID", id);
 		return result;
 	}
 
-//	--아이디찾기
+//	아이디찾기
 	@Override
 	public MemberVO certHp_Id(MemberVO memberVO) throws DataAccessException {
 		MemberVO vo = sqlSession.selectOne("mapper.member.certHp_Id", memberVO);
@@ -95,7 +80,6 @@ public class MemberDAOImpl implements MemberDAO {
 	//방문자 정보 저장
 	@Override
 	public void insertVisit(Map visitMap) {
-		System.out.println("확인 : "+visitMap);
 		sqlSession.insert("mapper.member.insertVisit", visitMap);
 		
 	}

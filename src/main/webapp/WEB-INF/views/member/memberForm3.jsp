@@ -8,6 +8,7 @@
 	request.setCharacterEncoding("UTF-8");
 %>
 
+<!-- 회원정보입력 -->
 <!DOCTYPE html>
 <html>
 

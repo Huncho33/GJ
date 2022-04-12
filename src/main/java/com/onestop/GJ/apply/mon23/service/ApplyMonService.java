@@ -7,24 +7,10 @@ import com.onestop.GJ.apply.mon23.vo.ApplyMonVO;
 
 public interface ApplyMonService {
 
-	ApplyMonVO selectResult(Map resultMap) throws Exception;
-
-
 	int addResult(Map mo_no) throws Exception;
 
 	ApplyMonVO findAll(String id);
 
-
 	ApplyMonVO findNo(int no);
 
-
-	
-
-
-	// 신청등록
-//	public void insertResult(ApplyMonVO applymonVO) throws DataAccessException;
-
-	
-
-	
 }

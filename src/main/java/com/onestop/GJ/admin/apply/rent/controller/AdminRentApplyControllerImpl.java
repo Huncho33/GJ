@@ -41,11 +41,9 @@ public class AdminRentApplyControllerImpl implements AdminRentApplyController {
 		Map pagingMap = new HashMap();
 		pagingMap.put("section", section);
 		pagingMap.put("pageNum", pageNum);
-		System.out.println("controller  pagingMap 값들 : " + pagingMap);
 		Map applyMap = adminService.joinTable(pagingMap);
 		applyMap.put("section", section);
 		applyMap.put("pageNum", pageNum);
-		System.out.println("applyMap 값 체크 : " + applyMap);
 
 		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
@@ -62,7 +60,6 @@ public class AdminRentApplyControllerImpl implements AdminRentApplyController {
 			throws Exception {
 		response.setContentType("text/html;charset=utf-8");
 		response.setCharacterEncoding("utf-8");
-		System.out.println("1");
 		String _section = request.getParameter("section");
 		String _pageNum = request.getParameter("pageNum");
 		int section = Integer.parseInt(((_section == null) ? "1" : _section));
@@ -74,7 +71,6 @@ public class AdminRentApplyControllerImpl implements AdminRentApplyController {
 		pagingMap.put("searchType", searchType);
 		Map applyMap = adminService.searchMemberList(pagingMap);
 
-		System.out.println("applyMap : " + applyMap);
 		applyMap.put("section", section);
 		applyMap.put("pageNum", pageNum);
 		applyMap.put("searchApply", searchApply);
@@ -83,8 +79,6 @@ public class AdminRentApplyControllerImpl implements AdminRentApplyController {
 		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("applyMap", applyMap);
-		System.out.println("검색창 applyMap 값들 : " + applyMap);
-		System.out.println("??" + applyMap.size());
 		return mav;
 	}
 
@@ -106,7 +100,6 @@ public class AdminRentApplyControllerImpl implements AdminRentApplyController {
 	public ResponseEntity modifyAdminRent(@RequestParam("attribute") String attribute,
 			@RequestParam("value") String value, @RequestParam("rent_no") int rent_no, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		System.out.println("!");
 		Map membersMap = new HashMap();
 		
 		String message = null;
@@ -135,7 +128,6 @@ public class AdminRentApplyControllerImpl implements AdminRentApplyController {
 		membersMap.put("rent_no", rent_no);
 		
 		if (!membersMap.get("_rent_result").equals("승인") && !membersMap.get("_rent_startpay").equals("null")) {
-			System.out.println("먹어라: " + membersMap.get("_rent_result"));
 			message = "not_correct";
 			resEntity = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
 			return resEntity;
@@ -143,24 +135,13 @@ public class AdminRentApplyControllerImpl implements AdminRentApplyController {
 
 		ApplyRentVO applyRentVO = (ApplyRentVO) adminService.modifyAdminRent(membersMap);
 		membersMap.put("applyRent", applyRentVO);
-		System.out.println("_rent_startpay 값 : " + membersMap.get("_rent_startpay"));
-		System.out.println("_rent_startpay 형 : " + membersMap.get("_rent_startpay").getClass().getName());
 
 		if (membersMap.get("_rent_startpay").equals("null")) {
-			System.out.println("pass");
 		} else {
 			ApplyRentVO applyRentVO2 = (ApplyRentVO) adminService.modifyAdminRentPay(membersMap);
 			membersMap.put("applyRent", applyRentVO2);
 		}
-		System.out.println("membersMap 값들 : " + membersMap);
-		System.out.println("membersMap 값들 : " + (membersMap.get("applyRent")));
-
-		
-
-		
 		message = "mod_success";
-		
-		
 		resEntity = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
 		return resEntity;
 

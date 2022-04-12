@@ -39,16 +39,11 @@ public class AdminRentApplyServiceImpl implements AdminRentApplyService {
 	public Map searchMemberList(Map pagingMap) throws Exception {
 		Map membersMap = new HashMap();
 		List<ApplyRentVO> applyList = adminDAO.selectApplyBySearchMember(pagingMap);
-		System.out.println("서비스로 돌아옴");
-//		int searchTotMembers = adminDAO.selectSearchTotMembers(pagingMap);
 		int searchTotApply = adminDAO.selectSearchTotApply(pagingMap);
-		System.out.println("서비스 searchTotApply : " + searchTotApply);
 		int totApply = adminDAO.selectTotApply();
 		membersMap.put("applyList", applyList);
 		membersMap.put("searchTotApply", searchTotApply);
 		membersMap.put("totMembers", totApply);
-//		      articlesMap.put("searchTotArticles", 170);
-		System.out.println("서비스 searchMemberList. membersMap : " + membersMap);
 		return membersMap;
 	}
 
@@ -78,15 +73,10 @@ public class AdminRentApplyServiceImpl implements AdminRentApplyService {
 	@Override
 	public Map joinTable(Map pagingMap) {
 		Map applyMap = new HashMap();
-		System.out.println("서비스  pagingMap 값들 : " + pagingMap);
 		List<ApplyRentVO> applyList = adminDAO.joinTable(pagingMap);
 		int totApply = adminDAO.selectTotApply();
 		applyMap.put("applyList", applyList);
 		applyMap.put("totApply", totApply);
-		System.out.println("서비스 totApply : " + totApply);
-		System.out.println("서비스 applyList : " + applyList);
-//		list.add(list);
-//		list.add(totApply);
 		return applyMap;
 	}
 

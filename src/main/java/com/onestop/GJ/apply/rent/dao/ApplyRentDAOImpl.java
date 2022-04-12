@@ -18,21 +18,12 @@ public class ApplyRentDAOImpl implements ApplyRentDAO {
 	@Autowired
 	private SqlSession sqlSession;
 
-	@Override
-	public ApplyRentVO selectResult(Map resultMap) throws DataAccessException {
-		ApplyRentVO applyrentVO = (ApplyRentVO) sqlSession.selectOne("mapper.rent.selectResult", resultMap);
-		return applyrentVO;
-	}
-
 	// 신청결과 값 넣기.
 	@Override
 	public int insertResult(Map articleMap) throws DataAccessException {
 		int rent_no = insertResultNO();
 		articleMap.put("rent_no", rent_no);
-		System.out.println("테스트11 : " + articleMap);
-
 		sqlSession.insert("mapper.rent.insertResult", articleMap);
-		System.out.println("테스트22 : " + articleMap);
 		return rent_no;
 
 	}
@@ -55,11 +46,11 @@ public class ApplyRentDAOImpl implements ApplyRentDAO {
 				applyRentFileVO.setUp_fileno(++RENT_FILENO);
 				applyRentFileVO.setRent_no(rent_no);
 			}
-			System.out.println("imageFileList" + rentApplyFileList);
 			sqlSession.insert("mapper.rent.insertNewImage", rentApplyFileList);
 		}
 	}
 
+	// 파일 번호생성
 	private int selectNewImageFileNO() {
 		return sqlSession.selectOne("mapper.rent.selectRentFileNO");
 	}

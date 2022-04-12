@@ -16,7 +16,6 @@ public class MemberVO {
 	// 이메일 추가.
 	private String member_email1;
 	private String member_email2;
-//	private String emailsts_yn;
 	// 주소 추가.
 	private String member_zipcode;
 	private String member_roadAddress;
@@ -153,11 +152,4 @@ public class MemberVO {
 	            + ", member_roadAddress=" + member_roadAddress + ", member_jibunAddress=" + member_jibunAddress
 	            + ", member_namujiAddress=" + member_namujiAddress + ", member_right=" + member_right + "]";
 	   }
-
-//	
-//	public Object getMember_id() {
-//		
-//		return null;
-//	}
-
 }

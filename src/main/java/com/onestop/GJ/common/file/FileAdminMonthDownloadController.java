@@ -31,7 +31,6 @@ public class FileAdminMonthDownloadController {
 			originFileName = URLDecoder.decode(up_filename, "UTF-8");
             String onlyFileName = originFileName.substring(originFileName.lastIndexOf("_") + 1);
             
-         //   headers.add("Content-Dispostion", "attachment; filename=" + new String(resourceName.getBytes("UTF-8"),"¤Á†v-8859-1"));
             String filePath = admin_monthApply_REPO + "\\" + mo_no + "\\" + up_filename;
 
             File file = new File(filePath);

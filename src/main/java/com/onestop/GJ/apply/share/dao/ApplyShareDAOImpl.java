@@ -17,21 +17,12 @@ public class ApplyShareDAOImpl implements ApplyShareDAO {
 	@Autowired
 	private SqlSession sqlSession;
 
-	@Override
-	public ApplyShareVO selectResult(Map resultMap) throws DataAccessException {
-		ApplyShareVO applyShareVO = (ApplyShareVO) sqlSession.selectOne("mapper.share.selectResult", resultMap);
-		return applyShareVO;
-	}
-
 	// 신청결과 값 넣기.
 	@Override
 	public int insertResult(Map articleMap) throws DataAccessException {
 		int sh_no = insertResultNO();
 		articleMap.put("sh_no", sh_no);
-		System.out.println("테스트11 : " + articleMap);
-
 		sqlSession.insert("mapper.share.insertResult", articleMap);
-		System.out.println("테스트22 : " + articleMap);
 		return sh_no;
 
 	}
@@ -45,9 +36,7 @@ public class ApplyShareDAOImpl implements ApplyShareDAO {
 	@Override
 	public void insertNewFile(Map articleMap) throws DataAccessException {
 		List<ApplyShareFileVO> shareApplyFileList = (ArrayList) articleMap.get("imageFileList");
-		System.out.println("why? : " + shareApplyFileList);
 		int sh_no = (Integer) articleMap.get("sh_no");
-
 		int MO_FILENO = selectNewImageFileNO();
 
 		if (shareApplyFileList != null && shareApplyFileList.size() != 0) {
@@ -55,11 +44,11 @@ public class ApplyShareDAOImpl implements ApplyShareDAO {
 				applyShareFileVO.setUp_fileno(++MO_FILENO);
 				applyShareFileVO.setSh_no(sh_no);
 			}
-			System.out.println("imageFileList" + shareApplyFileList);
 			sqlSession.insert("mapper.share.insertNewImage", shareApplyFileList);
 		}
 	}
 
+	// 파일 번호생성
 	private int selectNewImageFileNO() {
 		return sqlSession.selectOne("mapper.share.selectShFileNO");
 	}

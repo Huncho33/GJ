@@ -110,9 +110,7 @@
 		} else { //취소
 
 			return false;
-
 		}
-
 	}
 </script>
 
@@ -147,7 +145,6 @@
 					</p>
 				</div>
 
-
 				<div id="applyCond_cnt1">
 					<div id="applyCond_tit1">
 						<p>
@@ -166,8 +163,6 @@
 							onClick="div_OnOff(this.value,'checkcon')" style="margin-left:20px; margin-right:15px;"/>아니요
 					</div>
 					
-
-
 					<div id="applyCond_tit1">
 						<p>
 							<i class="fa-solid fa-circle-dot"></i>&nbsp;&nbsp;현재 신청일 기준 원가구
@@ -184,8 +179,6 @@
 							onClick="div_OnOff2(this.value,'checkcon2')" style="margin-left:20px; margin-right:15px;"/>아니요
 					</div>
 					
-
-
 					<div id="applyCond_tit1">
 						<p>
 							<i class="fa-solid fa-circle-dot"></i>&nbsp;&nbsp;현재 신청일 기준
@@ -205,7 +198,6 @@
 						</P>
 					</div>
 					
-
 					<div id="applyCond_tit1">
 						<p>
 							<i class="fa-solid fa-circle-dot"></i>&nbsp;&nbsp;현재 신청일 기준 임차보증금
@@ -223,8 +215,6 @@
 					</div>
 					
 				</div>
-
-
 
 				<div class="join_btn_list">
 					<div class="join_btn join_btn1">

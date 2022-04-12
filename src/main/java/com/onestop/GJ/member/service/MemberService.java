@@ -3,6 +3,7 @@ package com.onestop.GJ.member.service;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.dao.DataAccessException;
@@ -13,26 +14,18 @@ import com.onestop.GJ.member.vo.MemberVO;
 
 public interface MemberService {
 
-	List listMembers() throws DataAccessException;
-
-	public void addMember(MemberVO memberVO) throws DataAccessException;
-
-	int removeMember(String id) throws DataAccessException;
+	void addMember(MemberVO memberVO) throws DataAccessException;
 
 	MemberVO login(MemberVO memberVO) throws Exception;
 
+	void last_log(String member_id) throws Exception;
+
 	String overlapped(String id) throws Exception;
 
-// pw 찾기 인증 메일 보내기
-	void send_PwMail(MemberVO member) throws Exception;
+	void send_PwMail(MemberVO memberVO) throws Exception;
 
-// pw 찾기 인증
-	void find_pw(HttpServletResponse response, MemberVO member) throws Exception;
 
-// ID 찾기
 	MemberVO findId_hp(MemberVO memberVO) throws Exception;
-
-	void last_log(String member_id) throws Exception;
 
 	List<BoardNoticeVO> selectNotiList() throws Exception;
 
@@ -41,5 +34,9 @@ public interface MemberService {
 	void insertVisit(Map visitMap);
 
 	Map getTotCnt(Map visitMap);
+
+	void find_pw(HttpServletResponse response,  MemberVO memberVO) throws Exception;
+
+
 
 }

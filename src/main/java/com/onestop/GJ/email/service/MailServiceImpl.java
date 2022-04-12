@@ -31,6 +31,7 @@ public class MailServiceImpl implements MailService {
 	private MailDAO mailDAO;
 
 	public static final String ePw = createKey();
+	
 	// pw 찾기 시 이용
 	@Inject
 	private MailDAO manager;
@@ -69,12 +70,8 @@ public class MailServiceImpl implements MailService {
 	
 	// 회원가입 전 이메일 인증(이메일 확인)
 	
-
 	private MimeMessage createMessage(String to) throws Exception {
-		System.out.println("보내는 대상 : " + to);
-		System.out.println("인증 번호 : " + ePw);
 		MimeMessage message = mailSender.createMimeMessage();
-
 		message.addRecipients(RecipientType.TO, to);// 보내는 대상
 		message.setSubject("원스톱청년주거 회원가입 이메일 인증");// 제목
 
