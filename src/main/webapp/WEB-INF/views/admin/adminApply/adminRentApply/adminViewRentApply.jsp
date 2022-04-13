@@ -33,7 +33,7 @@ input {
 </style>
 <script language="javascript">
 	function backToList(obj) {
-		obj.action = "${contextPath}/admin/member/listMembers.do";
+		obj.action = "${contextPath}/admin/adminApply/adminRentApply.do";
 		obj.submit();
 	}
 	// 우편번호 검색 기능

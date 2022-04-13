@@ -28,7 +28,7 @@
 <script>
 	function adm_reg(member_right) {
 		console.log(member_right);
-		if (member_right == "ADMIN") {
+		if (member_right == "ADMIN" || member_right == "SuperAdmin") {
 			var a = document.getElementById("noti_write");
 			a.style.display = "block";
 		}

@@ -13,6 +13,14 @@
 	rel="stylesheet" type="text/css">
 <script src="${contextPath}/resources/js/qna/QnaForm.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+<script>
+function backToList(obj){
+    obj.action="${contextPath}/adminQna/listQnas.do";
+    obj.submit();
+  }
+</script>
+
 </head>
 <body>
 	<div id="qnaFrm_bground">

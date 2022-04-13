@@ -12,6 +12,14 @@
 <link href="${contextPath }/resources/css/data/articleForm.css" rel="stylesheet" type="text/css">
 <script src="${contextPath }/resources/js/data/articleForm.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+<script>
+function backToList(obj){
+    obj.action="${contextPath}/adminData/listArticles.do";
+    obj.submit();
+  }
+</script>
+
 <title>기타자료실::글작성</title>
 </head>
 

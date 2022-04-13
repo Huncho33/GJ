@@ -112,7 +112,7 @@
 									<td width="15%">${member.member_name}</td>
 									<td width="25%">${member.member_email1}@${member.member_email2}</td>
 									<td width="15%">${member.member_joinDate}</td>
-									<td width="12%">${member.member_joinDate}</td>
+									<td width="12%">${member.member_right}</td>
 									<td width="15%">${member.member_last_log}</td>
 								</tr>
 							</c:forEach>

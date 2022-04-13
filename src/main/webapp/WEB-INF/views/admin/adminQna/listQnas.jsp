@@ -119,7 +119,7 @@
 													</c:forEach>
 													<span style="font-size: 12px;">└[답변완료]</span>
 											&nbsp;<i class="fa-solid fa-lock"></i>&nbsp;<a class='cls1'
-														href="${contextPath}/qna/viewQna.do?=${qna.qna_no}">
+														href="${contextPath}/qna/viewQna.do?qna_no=${qna.qna_no}">
 														${qna.qna_title}</a>
 												</c:when>
 												<c:when test="${qna.qna_pw != '' }">
