@@ -27,7 +27,7 @@
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script language="javascript">
 	$(function() {
-		$("#findBtn").click(function() {
+		$("#find_pw_findBtn").click(function() {
 			$.ajax({
 				url : "${contextPath}/member/find_pw.do",
 				type : "POST",

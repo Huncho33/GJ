@@ -87,13 +87,7 @@
 					</c:when>
 				</c:choose>
 			</table>
-			<div style="margin-bottom: 50px;">
-				<a class="cls1"
-					href="javascript:fn_articleForm('${isLogOn}','${contextPath}/boardNotice/articleForm.do', 
-                                                    '${contextPath}/member/loginForm.do')"><p
-						class="cls2">글쓰기</p></a>
-			</div>
-		</div>
+		</div> 
 	</div>
 	<div id="noti_bground">
 		<div id="noti_container">

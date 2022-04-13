@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8" isELIgnored="false"%>
+	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
 <c:set var="applyVO" value="${articleMap}" />
 
 <%
-   request.setCharacterEncoding("UTF-8");
+	request.setCharacterEncoding("UTF-8");
 %>
 
 <!DOCTYPE html>
@@ -19,72 +19,76 @@
 <script src="${contextPath}/resources/js/memberForm1.js"></script>
 <!-- intro CSS -->
 <link rel="stylesheet"
-   href="${contextPath}/resources/css/memberForm/memberForm1.css">
+	href="${contextPath}/resources/css/memberForm/memberForm1.css">
 <script type="text/javascript">
-$(document).ready(function(){
-   //전체 체크박스 클릭
-   $("#checkAll").click(function(){
-      if ($("#checkAll").prop("checked")) {
-         $(".kkhs_agreeChk").prop("checked", true);
-      } else {
-         $(".kkhs_agreeChk").prop("checked", false);
-      }
-   });
-   
-   // 전체 체크박스 선택 중 체크박스 하나를 풀었을 때 전체 체크 해제
-   $(".kkhs_agreeChk").click(function(){
-      if($("input[name='check']:checked").length == 3) {
-         $("#checkAll").prop("checked", true);
-      } else {
-         $("#checkAll").prop("checked", false);
-      }
-   });
-});
+	$(document).ready(function() {
+		//전체 체크박스 클릭
+		$("#checkAll").click(function() {
+			if ($("#checkAll").prop("checked")) {
+				$(".kkhs_agreeChk").prop("checked", true);
+			} else {
+				$(".kkhs_agreeChk").prop("checked", false);
+			}
+		});
 
+		// 전체 체크박스 선택 중 체크박스 하나를 풀었을 때 전체 체크 해제
+		$(".kkhs_agreeChk").click(function() {
+			if ($("input[name='check']:checked").length == 3) {
+				$("#checkAll").prop("checked", true);
+			} else {
+				$("#checkAll").prop("checked", false);
+			}
+		});
+	});
 
-$(document).ready(function(){
-    $("#nextBtn").click(function(){    
-        if($("#check_1").is(":checked") == false){
-            alert("필수 약관에 동의 하셔야 다음 단계로 진행 가능합니다.");
-            return false ;
-        }else if($("#check_2").is(":checked") == false){
-            alert("필수 약관에 동의 하셔야 다음 단계로 진행 가능합니다.");
-            return false;
-        }else if($("#check_3").is(":checked") == false){
-            alert("필수 약관에 동의 하셔야 다음 단계로 진행 가능합니다.");
-            return false;
-        }else{
-            $("#kkhs_frm").submit();
-        }
-    });    
-});
+	$(document).ready(function() {
+		$("#nextBtn").click(function() {
+			if ($("#check_1").is(":checked") == false) {
+				alert("필수 약관에 동의 하셔야 다음 단계로 진행 가능합니다.");
+				return false;
+			} else if ($("#check_2").is(":checked") == false) {
+				alert("필수 약관에 동의 하셔야 다음 단계로 진행 가능합니다.");
+				return false;
+			} else if ($("#check_3").is(":checked") == false) {
+				alert("필수 약관에 동의 하셔야 다음 단계로 진행 가능합니다.");
+				return false;
+			} else {
+				$("#kkhs_frm").submit();
+			}
+		});
+	});
 
-
-
-
+	function cancel() {
+		if (confirm("정말 취소하시겠습니까?") == true) { //확인
+			window.location.href = '../main.do';
+		} else { //취소
+			return false;
+		}
+	}
 </script>
 
 </head>
 <body>
-   <div id="Memjoin1_bground">
-      <div id="#Memjoin1_total">
-         <div id="kkhs_sub" class="kkhs_joinCommon">
-            <div id="kkhs_subVisual">
-               <!-- <h3 class="kkhs_subTit">약관동의</h3> -->
-               <h3 class="kkhs_subTit"></h3>
-            </div>
-            <ul class="kkhs_processTab">
-               <li class="kkhs_on"><div style="margin-top: -20px;">신청자격</div></li>
-               <li class="kkhs_on"><div style="margin-top: -20px;">정보등록</div></li>
-               <li class="kkhs_on"><div style="margin-top: -20px;">약관동의</div></li>
-               <li ><div style="margin-top: -20px;">서류등록</div></li>
-            </ul>
-            <form id="kkhs_frm" name="kkhs_frm" method="post"  enctype="multipart/form-data" 
-               action="${contextPath}/month/monthApplyForm3.do" >
-               <div id="kkhs_agreeBox" class="kkhs_inner">
-                  <h2 class="kkhs_joinTit">(필수)신청 유의사항</h2>
-                  <div class="kkhs_box">
-                     <textarea class="kkhs_cont" id="kkhs_scroll" readonly>
+	<div id="Memjoin1_bground">
+		<div id="#Memjoin1_total">
+			<div id="kkhs_sub" class="kkhs_joinCommon">
+				<div id="kkhs_subVisual">
+					<!-- <h3 class="kkhs_subTit">약관동의</h3> -->
+					<h3 class="kkhs_subTit"></h3>
+				</div>
+				<ul class="kkhs_processTab">
+					<li class="kkhs_on"><div style="margin-top: -20px;">신청자격</div></li>
+					<li class="kkhs_on"><div style="margin-top: -20px;">정보등록</div></li>
+					<li class="kkhs_on"><div style="margin-top: -20px;">약관동의</div></li>
+					<li><div style="margin-top: -20px;">서류등록</div></li>
+				</ul>
+				<form id="kkhs_frm" name="kkhs_frm" method="post"
+					enctype="multipart/form-data"
+					action="${contextPath}/month/monthApplyForm3.do">
+					<div id="kkhs_agreeBox" class="kkhs_inner">
+						<h2 class="kkhs_joinTit">(필수)신청 유의사항</h2>
+						<div class="kkhs_box">
+							<textarea class="kkhs_cont" id="kkhs_scroll" readonly>
                      
 원스톱청년주거 신청 시 유의사항
 
@@ -377,14 +381,14 @@ $(document).ready(function(){
  부 칙 
  (시행일) 이 약관은 2020년 4월 1일부터 적용합니다.
                </textarea>
-                     <div class="kkhs_checkBox kkhs_fl-r ">
-                        <input type="checkbox" class="kkhs_agreeChk" name="check" id="check_1"
-                           style="float: right;"> 정부지원신청 약관에 동의합니다.
-                     </div>
-                  </div>
-                  <div class="kkhs_box">
-                     <h2 class="kkhs_joinTit">(필수)개인정보처리약관</h2>
-                     <textarea class="kkhs_cont" id="kkhs_scroll">
+							<div class="kkhs_checkBox kkhs_fl-r ">
+								<input type="checkbox" class="kkhs_agreeChk" name="check"
+									id="check_1" style="float: right;"> 정부지원신청 약관에 동의합니다.
+							</div>
+						</div>
+						<div class="kkhs_box">
+							<h2 class="kkhs_joinTit">(필수)개인정보처리약관</h2>
+							<textarea class="kkhs_cont" id="kkhs_scroll">
 원스톱청년주거 신청자 개인정보 수집 및 이용에 대한 안내
       
 원스톱청년주거는 정보주체의 동의에 의해 개인정보를 수집·이용합니다.
@@ -400,14 +404,14 @@ $(document).ready(function(){
 - 보유 및 이용기간 : 정부지원신청 ~ 신청취소(취소 시 삭제)
 - 정보주체의 권리 : 본인에 관한 개인정보 열람, 정정.삭제 청구권
                </textarea>
-                     <div class="kkhs_checkBox kkhs_fl-r">
-                        <input type="checkbox" class="kkhs_agreeChk" name="check" id="check_2"
-                           style="float: right;"> 개인정보처리 약관에 동의합니다.
-                     </div>
-                  </div>
-                  <div class="kkhs_box">
-                     <h2 class="kkhs_joinTit">(필수)지원자격 및 조건</h2>
-                     <textarea class="kkhs_cont" id="kkhs_scroll" readonly>
+							<div class="kkhs_checkBox kkhs_fl-r">
+								<input type="checkbox" class="kkhs_agreeChk" name="check"
+									id="check_2" style="float: right;"> 개인정보처리 약관에 동의합니다.
+							</div>
+						</div>
+						<div class="kkhs_box">
+							<h2 class="kkhs_joinTit">(필수)지원자격 및 조건</h2>
+							<textarea class="kkhs_cont" id="kkhs_scroll" readonly>
 원스톱청년주거는 전월세자금  융자이자 지원을 위해  개인정보보호법   제15조, 제 18조, 제22조 및 신용정보의 이용 및 보호에 관한 법률 제 15조2항, 32조 1항, 33조, 24조에  의거  동의가 필요합니다
                
 ■ 정보 수집·이용 출처  및  목적
@@ -429,32 +433,34 @@ $(document).ready(function(){
 ■ 수집·동의  거부  및  동의 거부에  다른 불이익 내용 
        개인(신용)정보 제공자의  정보에 오류, 누락 이 있을 시 지원 시  절차지연, 지원금 조정 및 중지 등의 불이익을  초래할 수 있고, 신청자(대출자)의 동의가 없을 시 이자지원사업 대상에서 제외 됨 
                    </textarea>
-                     <div style="float: center">
-                        <div class="kkhs_checkBox kkhs_fl-r">
-                           <input type="checkbox" class="kkhs_agreeChk" name="check" id="check_3"
-                              style="float: right;"> 지원자격 및 조건 약관 여부에 동의합니다.
-                        </div>
-                     </div>
-                  </div>
-                  <div class="kkhs_allAgree">
-                  
-                  
-                     전체 약관에 모두 동의합니다.<input type="checkbox" class="kkhs_agreeChk"
-                        id="checkAll" name="checkAll" style="float: right;">
-                  </div>
-               </div>
-               <div class="join_btn_list">
-                  <div class="join_btn join_btn1">
-                     <input type="reset" value="취소">
-                  </div>
-                  
-                  <div class="join_btn join_btn2">
-                     <input type="submit" id="nextBtn" value="다음">
-                  </div>
-               </div>
-            </form>
-         </div>
-      </div>
-   </div>
+							<div style="float: center">
+								<div class="kkhs_checkBox kkhs_fl-r">
+									<input type="checkbox" class="kkhs_agreeChk" name="check"
+										id="check_3" style="float: right;"> 지원자격 및 조건 약관 여부에
+									동의합니다.
+								</div>
+							</div>
+						</div>
+						<div class="kkhs_allAgree">
+
+
+							전체 약관에 모두 동의합니다.<input type="checkbox" class="kkhs_agreeChk"
+								id="checkAll" name="checkAll" style="float: right;">
+						</div>
+					</div>
+					<div class="join_btn_list">
+						<div class="join_btn_listInner">
+							<div class="join_btn join_btn1">
+								<input type="button" value="취소" button onclick="cancel()">
+							</div>
+							<div class="join_btn join_btn2" style="">
+								<input type="submit" id="nextBtn" value="다음">
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 </body>
 </html>
