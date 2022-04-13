@@ -217,7 +217,7 @@ function backToList(obj){
 								</tr>
 								<tr height="50">
 									<td width="150">:: 비밀번호</td>
-									<td><input type="text" name="member_pw" id="member_pw" value="${viewMember.member_pw}"
+									<td><input type="password" name="member_pw" id="member_pw" value="${viewMember.member_pw}"
 										size="30"></td>
 								</tr>
 								
@@ -340,13 +340,13 @@ function backToList(obj){
 								<tr height="50">
 									<td width="150">:: 신청 정책 </td>
 									<td colspan="2"><input type="text" name="#"
-										id="#" value="#" size="30" /></td>
+										id="#" value="-" size="30" style="border:none;"/></td>
 								</tr>
 								
 								<tr height="50">
 									<td width="150">:: 지급 이력</td>
 									<td colspan="2"><input type="text" name="#"
-										id="#" value="#" size="30" /></td>
+										id="#" value="-" size="30" style="border:none;"/></td>
 								</tr>
 								
 							</table>
@@ -358,7 +358,7 @@ function backToList(obj){
 									name="memberInfo_mod"
 									onClick="fn_modFormData('member');">
 							</div>
-							<div class="join_btn join_btn2">
+							<div class="join_btn join_btn2" style="margin-right:10px;">
 								<input type="button" value="삭제" id="memberInfo_del"
 									name="memberInfo_del"
 									onClick="fn_remove_mem('${contextPath}/admin/member/removeMember.do', '${viewMember.member_id}')">
@@ -367,7 +367,7 @@ function backToList(obj){
 							<div class="join_btn join_btn1">
 								<input type="reset" value="취소">
 								
-								<input type=button value="돌아가기"
+								<input type=button value="목록"
                      onClick="backToList(this.form)">
 							</div>
 						</div>

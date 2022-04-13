@@ -1,0 +1,108 @@
+@charset "UTF-8";
+
+#memberInfo_wrapper {
+	position: relative;
+	width: 100%;
+}
+
+#memberInfo_total {
+	position: relative;
+	margin: 0 auto;
+	width: 1300px;
+}
+
+#memberInfo_tot {
+	width: 900px;
+	margin-left: 300px;
+}
+
+#memberInfo_container {
+	width: 100%;
+}
+
+#memberInfo_tit2 {
+	margin-bottom: 20px;
+}
+
+h3.memberInfo_tit {
+	font-size: 24px;
+	font-weight: bold;
+	letter-spacing: -2.7px;
+	color: #272727;
+	text-align: center;
+	padding: 50px 0px 30px 0px;
+	border-bottom: 1px solid #cfcfcf;
+	margin-bottom: 60px;
+}
+
+.memberInfo_cnt1 {
+	border: 1px solid #cfcfcf;
+	padding: 20px 40px 20px 40px;
+	margin-bottom: 30px;
+}
+
+.memberInfo_info {
+	text-align: center;
+	font-size: 11pt;
+}
+
+.join_btn1 input {
+	width: 130px;
+	height: 40px;
+	font-size: 15px;
+	border: 0px;
+	border-radius: 0.5em;
+	background-color: darkgray;
+	color: white;
+	cursor: pointer;
+}
+
+.join_btn2 input {
+	width: 130px;
+	height: 40px;
+	font-size: 15px;
+	border: 0px;
+	border-radius: 0.5em;
+	background-color: dodgerblue;
+	color: white;
+	cursor: pointer;
+}
+tr.table_fileTr {
+	height: 40px;
+}
+
+.applyer_fileName {
+	text-decoration: none;
+	color: black;
+}
+
+.applyer_fileName:hover {
+	text-decoration: underline;
+	color: #005fbd;
+}
+
+#applyerFrm {
+	table-layout: fixed;
+}
+
+.applyer_status>input {
+	border: none;
+	background: none;
+}
+
+.fixed_join1 {
+	width: 140px;
+}
+
+.join_btn1 {
+	float: left;
+	margin-right: 15px;
+}
+
+.memberInfo_cnt2 {
+	width: 100%;
+}
+
+.join_btn {
+	float: right;
+}

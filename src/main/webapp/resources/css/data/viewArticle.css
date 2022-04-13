@@ -93,7 +93,7 @@ textarea {
 .dataView_btn_list2 {
 	width: 100%;
 	margin-top: 50px;
-	margin-left: 79%;
+	margin-left: 90%;
 }
 
 .dataView_btn1 input {
@@ -131,6 +131,19 @@ textarea {
 	cursor: pointer;
 }
 
+.dataView_btn4 input {
+	width: 100px; 
+	height : 30px; 
+	font-size : 10px;
+	border: 0px;
+	border-radius: 3em;
+	background-color: darkgray;
+	color: white;
+	cursor: pointer;
+	height: 30px;
+	font-size: 10px;
+}
+
 .dataView_btn1 {
 	float: left;
 	margin-right: 30px;
@@ -139,6 +152,11 @@ textarea {
 .dataView_btn3 {
 	float: left;
 	margin-right: 30px;
+}
+
+.dataView_btn4 {
+	width: 120px;
+	float: left;
 }
 
 #tr_btn_modify {

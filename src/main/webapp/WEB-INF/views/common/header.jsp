@@ -173,19 +173,6 @@
                </div>
             </div>
          </div>
-         <!-- 
-         <div id="header_mid2">
-            <div class="searchBox">
-               <form class="d-flex">
-                  <input class="form-control me-2" type="search"
-                     placeholder="Search" aria-label="Search">
-                  <button class="btn btn-outline-success" type="submit">
-                     <p>검색</p>
-                  </button>
-               </form>
-            </div>
-         </div>
-          -->
       </div>
       <div id="header_bottom">
          <div id="header_menu">

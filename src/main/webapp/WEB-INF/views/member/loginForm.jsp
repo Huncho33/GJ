@@ -54,7 +54,8 @@
                            aria-label="member_pw" name="member_pw" value="">
                      </div>
 
-                     <div class="row">
+                     <div class="row" style="margin-bottom:15px;">
+                     
                         <input type="submit" class="btn btn-primary" value="로그인">
                      </div>
                      <div class="login_btnList">

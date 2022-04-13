@@ -75,7 +75,8 @@
 			<div id="main_container2">
 				<div class="find_bar my-3">
 					<div class="find_bar_ele">
-						<a>맞춤형 정책찾기</a> <select>
+						<a><i class="fa-solid fa-check"></i>&nbsp;&nbsp;맞춤형 정책찾기</a> 
+						<select>
 							<option selected>대상 선택</option>
 							<option>신혼부부</option>
 							<option>무주택청년</option>

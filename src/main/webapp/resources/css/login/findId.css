@@ -1,0 +1,65 @@
+@charset "utf-8";
+
+#findID_bground {
+	position: relative;
+	width:100%;
+}
+
+#findID_container {
+	position: relative;
+	margin: 0 auto;
+	width: 1000px;
+}
+
+#findID_tot {
+	margin: 50px 0 250px 0;
+}
+
+#findID_titName {
+	margin: 0 auto;
+	width: 1000px;
+	height: 80px;
+	border: 2px solid #dddcdc;
+}
+
+.findID_Title {
+	width: 100%;
+	height: 80px;
+	line-height: 80px;
+	font-size: 15pt;
+	text-align: center;
+	color: dimgray;
+	font-weight: bold;
+	margin-bottom:
+}
+
+.findID_Title>span {
+	color: dodgerblue;
+}
+
+#findID_cerTap {
+	margin: 0 auto;
+	width: 1000px;
+}
+
+.findID_cerTitle {
+	width: 460px;
+	position: relative;
+	text-align: center;
+	border: 2px solid #dddcdc;
+	float: left;
+	margin-top: 50px;
+	padding: 50px;
+}
+
+.findID_cerTitle>i {
+	margin-bottom: 30px;
+}
+
+.findID_cerTitle>p {
+	font-size: 15pt;
+}
+
+#findID_cerPhone {
+	margin-right: 80px;
+}

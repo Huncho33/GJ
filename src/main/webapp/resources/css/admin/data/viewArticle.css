@@ -32,12 +32,13 @@ h3.dataView_titName {
 }
 
 #etc_select_view{
-	width: 1100px;
+	width: 900px;
 	position: relative;
 	margin: 0 auto;
 	border-collapse: collapse;
 	font-size: 12pt;
 	border-bottom: 2px solid darkgray;
+	table-layout: fixed;
 	
 }
 
@@ -49,7 +50,6 @@ h3.dataView_titName {
 
 #table_mainCnt {
 	border: 1px solid #c0c0c0;
-	height : 30px;
 }
 
 tr.table_title {
@@ -63,6 +63,7 @@ td.table_category{
 }
 
 #etc_select_view td{
+	
 	border-left: none;
 	border-right: none;
 }
@@ -153,4 +154,8 @@ textarea {
 
 #dataView_mainBtn {
 	display: block;
+}
+
+#etc_select_view input {
+	width: 100%;
 }

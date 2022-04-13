@@ -24,6 +24,8 @@
 	crossorigin="anonymous"></script>
 <link href="${contextPath}/resources/css/admin/searchMemberList.css"
 	rel="stylesheet" type="text/css">
+<link href="${contextPath}/resources/css/admin/policyKindBox.css"
+	rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="${contextPath}/resources/css/sidemenu.css"
 	type="text/css">
 <link href="${contextPath}/resources/css/common.css" rel="stylesheet"
@@ -35,40 +37,6 @@
 		action:
 	}
 </script>
-
-<style>
-#kindApplycontainer {
-	width: 900px;
-	height: 80px;
-	margin-bottom:40px;
-}
-
-#kindApply {
-	float: left;
-	width: 33%;
-	height: 60px;
-	margin: 1.2px;
-	
-	background-color: lightgray;
-	text-align: center;
-	color:white;
-}
-
-a {
-	text-decoration: none;
-}
-
-#kindApply:hover {
-	background-color: lightsteelblue;
-}
-
-a:hover {
-	color: black;
-	font-weight: bold;
-	text-decoration: none;
-}
-</style>
-
 
 </head>
 <body>
@@ -145,9 +113,9 @@ a:hover {
 					<c:choose>
 						<c:when test="${empty applyList }">
 							<tr height="35">
-								<td colspan="5">
+								<td colspan="6">
 									<p align="center">
-										<b><span style="font-size: 12pt;">등록된 회원이 없습니다.</span></b>
+										<b><span style="font-size: 11pt;">등록된 회원이 없습니다.</span></b>
 									</p>
 								</td>
 							</tr>

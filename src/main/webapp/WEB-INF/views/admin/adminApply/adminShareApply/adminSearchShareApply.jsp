@@ -26,6 +26,8 @@
 	crossorigin="anonymous"></script>
 <link href="${contextPath}/resources/css/admin/searchMemberList.css"
 	rel="stylesheet" type="text/css">
+<link href="${contextPath}/resources/css/admin/policyKindBox.css"
+	rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="${contextPath}/resources/css/sidemenu.css"
 	type="text/css">
 <link href="${contextPath}/resources/css/common.css" rel="stylesheet"
@@ -69,10 +71,14 @@
 				<div id="adm_memberManage_tit1">
 					<h3 class="adm_memberManage_tit">신청자 관리</h3>
 				</div>
-					<li><a href="${contextPath}/admin/adminApply/adminMonthApply.do">월세지원</a></li>
-					<li><a href="${contextPath}/admin/adminApply/adminRentApply.do">전세지원</a></li>
-					<li><a href="${contextPath}/admin/adminApply/adminShareApply.do">공공임대</a></li>
-				
+					<div id='kindApplycontainer'>
+					<a id="kindApply"
+						href="${contextPath}/admin/adminApply/adminMonthApply.do"><br>월세지원</a>
+					<a id="kindApply"
+						href="${contextPath}/admin/adminApply/adminRentApply.do"><br>전세지원</a>
+					<a id="kindApply"
+						href="${contextPath}/admin/adminApply/adminShareApply.do"><br>공공임대</a><br>
+				</div>
 				<!-- 검색 창 -->
 				<div id="adm_memberManage_search">
 					<span>[검색 회원: ${searchTotApply }명]</span>
@@ -103,9 +109,9 @@
 					<c:choose>
 						<c:when test="${empty applyList }">
 							<tr height="35">
-								<td colspan="5">
+								<td colspan="6">
 									<p align="center">
-										<b><span style="font-size: 12pt;">등록된 회원이 없습니다.</span></b>
+										<b><span style="font-size: 11pt;">등록된 회원이 없습니다.</span></b>
 									</p>
 								</td>
 							</tr>

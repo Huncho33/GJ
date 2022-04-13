@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8" isELIgnored="false"%>
+	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
@@ -12,22 +12,23 @@
 
 
 <%
-   request.setCharacterEncoding("UTF-8");
+	request.setCharacterEncoding("UTF-8");
 %>
 
 <head>
 <meta charset="utf-8">
-<link href="${contextPath }/resources/css/data/viewArticle.css" rel="stylesheet" type="text/css">
+<link href="${contextPath }/resources/css/data/viewArticle.css"
+	rel="stylesheet" type="text/css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 <c:choose>
-   <c:when test="${removeCompleted eq true }">
-      <script type="text/javascript">
+	<c:when test="${removeCompleted eq true }">
+		<script type="text/javascript">
    $(window).load(function(){
       fn_enable()
    }); 
    </script>
-   </c:when>
+	</c:when>
 </c:choose>
 
 
@@ -157,13 +158,13 @@
 
  </script>
 <c:choose>
-   <c:when test="${removeCompleted eq true }">
-      <script type="text/javascript">
+	<c:when test="${removeCompleted eq true }">
+		<script type="text/javascript">
    $(window).load(function(){
       fn_enable()
    }); 
    </script>
-   </c:when>
+	</c:when>
 </c:choose>
 
 </head>
@@ -182,7 +183,7 @@
 							<td class="table_container" colspan=3><input type=text
 								value="${article.etc_title}" name="etc_title" id="etc_title"
 								disabled /></td>
-						</tr>
+						</tr> 
 						<tr id="table_mainCnt">
 							<td class="table_category">글번호</td>
 							<td class="table_container" colspan=3><input type="text"
@@ -225,15 +226,15 @@
 
 									</tr>
 
-									<tr colspan="4" class="tr_modEnable" id="tr_sub${status.count }" style="display:none;">
+									<tr colspan="4" class="tr_modEnable"
+										id="tr_sub${status.count }" style="display: none;">
 										<td></td>
-										<td colspan="3">
-											<input type="file" name="up_fileName${status.index }"
-												id="up_fileName${status.index }"
-												onchange="readURL(this, ${status.index });" />
-											<input
-												type="button" value="기존파일 삭제"
-												onclick="fn_removeModImage(${item.up_fileNO },  ${item.etc_NO }, '${item.up_fileName }', ${status.count })" />
+										<td colspan="3"><input type="file"
+											name="up_fileName${status.index }"
+											id="up_fileName${status.index }"
+											onchange="readURL(this, ${status.index });" /> <input
+											type="button" value="기존파일 삭제"
+											onclick="fn_removeModImage(${item.up_fileNO },  ${item.etc_NO }, '${item.up_fileName }', ${status.count })" />
 										</td>
 									</tr>
 
@@ -266,24 +267,26 @@
 								</table>
 							</td>
 						</tr>
-						
+
 						<tr>
 							<td colspan="3"></td>
 							<td align="right">
 								<div id="tr_btn_modify">
-									<input type="button" value="파일 추가" onclick="fn_addModImage(${img_index})" />
-									<input type="button" value="수정반영하기" onClick="fn_modify_article(frmArticle)">
+									<input type="button" value="파일 추가"
+										onclick="fn_addModImage(${img_index})" /> <input
+										type="button" value="수정반영하기"
+										onClick="fn_modify_article(frmArticle)">
 								</div>
 							</td>
 						</tr>
-						
+
 					</table>
 					<c:if test="${member.member_id == article.member_id }">
 						<div class="dataView_btn_list dataView_btn_list1">
 							<div id="dataView_mainBtn">
 								<div id="dataView_mainBtn" class="dataView_btn dataView_btn3">
-										<input type=button value="삭제하기"
-											onClick="fn_remove_article('${contextPath}/boardData/removeArticle.do', ${article.etc_NO})">
+									<input type=button value="삭제하기"
+										onClick="fn_remove_article('${contextPath}/boardData/removeArticle.do', ${article.etc_NO})">
 								</div>
 								<div id="dataView_mainBtn" class="dataView_btn dataView_btn1">
 									<input type=button value="목록" onClick="backToList(this.form)">
@@ -297,10 +300,9 @@
 					<c:if test="${member.member_id != article.member_id }">
 						<div class="dataView_btn_list dataView_btn_list2">
 							<div id="dataView_mainBtn">
-								<div class="dataView_btn dataView_btn2">
-								<input type=button value="목록" onClick="backToList(this.form)">
+								<div class="dataView_btn dataView_btn4">
+									<input type=button value="목록" onClick="backToList(this.form)">
 								</div>
-								
 							</div>
 						</div>
 					</c:if>

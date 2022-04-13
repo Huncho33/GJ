@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+#kindApplycontainer {
+	width: 900px;
+	height: 60px;
+	margin-bottom: 30px;
+}
+
+#kindApply {
+	float: left;
+	width: 33%;
+	height: 60px;
+	margin: 1.2px;
+	background-color: #949494;
+	text-align: center;
+	color: white;
+}
+
+#kindApplycontainer>a {
+	text-decoration: none;
+	font-size: 17px;
+	line-height: 20px;
+}
+
+#kindApply:hover {
+	background-color: dodgerblue;
+}
+
+a:hover {
+	color: black;
+	font-weight: bold;
+	text-decoration: none;
+}

@@ -1,0 +1,72 @@
+@charset "utf-8";
+
+#findID_bground {
+	position: relative;
+	width: 100%;
+}
+
+#findID_container {
+	position: relative;
+	margin: 0 auto;
+	width: 1000px;
+}
+
+#findID_tot {
+	margin-top: 100px;
+}
+
+#findID_titName {
+	margin: 0 auto;
+	width: 800px;
+	height: 80px;
+	border: 2px solid #dddcdc;
+}
+
+.findID_Title {
+	width: 100%;
+	height: 80px;
+	line-height: 80px;
+	font-size: 15pt;
+	text-align: center;
+	color: dimgray;
+	font-weight: bold;
+}
+
+.findID_Title>span {
+	color: dodgerblue;
+}
+
+#findIDfrm_list {
+	margin-top: 50px;
+}
+
+.form-group {
+	margin: 0 auto;
+	width: 500px;
+	padding: 15px;
+}
+
+.emailInput {
+	float: left;
+	width: 210px;
+}
+
+.emailIcon {
+	float: left;
+	padding-left: 10px;
+}
+
+.emailInput1 {
+	width: 210px;
+	float: right;
+}
+
+#findID_button {
+	margin: 80px 0 0 0;
+	text-align: center;
+}
+
+#findID_button>input{
+	margin: 0 auto;
+	width: 400px;
+}

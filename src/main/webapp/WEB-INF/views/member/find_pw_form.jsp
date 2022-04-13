@@ -8,6 +8,7 @@
 	request.setCharacterEncoding("UTF-8");
 %>
 
+<!-- 비밀번호 찾기 -->
 <!DOCTYPE html>
 <html>
 
@@ -15,59 +16,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
-	crossorigin="anonymous">
+<!-- 부트스트랩 -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<link rel="stylesheet"
+	href="${contextPath}/resources/css/login/find_pw_form.css"
+	type="text/css">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-
-<style>
-.findPw {
-	width: 500px;
-	margin: 0 auto;
-	border: 2px solid gray;
-	margin-top: 220px;
-}
-
-#_id {
-	width: 400px;
-	height: 37px;
-	margin-top: 21px;
-	margin-bottom: 10px;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-#_email {
-	width: 400px;
-	height: 37px;
-	margin-top: 21px;
-	margin-bottom: 10px;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-h3 {
-	width: 300px;
-	display: table;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-#findBtn {
-	/*    position: absolute;*/
-	
-}
-
-.btn btn-primary {
-	/*   position: relative;*/
-	
-}
-</style>
-
-
-
 <script language="javascript">
 	$(function() {
 		$("#findBtn").click(function() {
@@ -87,32 +44,34 @@ h3 {
 </script>
 <title>비밀번호 찾기</title>
 </head>
-
 <body>
-	<form name="find_pw_form" class="findPw">
-		<div class="w3-content w3-container w3-margin-top">
-			<div class="w3-container w3-card-4">
-				<div class="w3-center w3-large w3-margin-top">
-					<h3>비밀번호 찾기</h3>
-				</div>
-				<div>
-					<p>
-						<label>ID</label> <input class="w3-input" type="text" id="_id"
-							name="id" placeholder="아이디를 입력해주세요 ">
-					</p>
-					<p>
-						<label>Email</label> <input class="w3-input" type="text"
-							id="_email" name="email" placeholder="이메일을 입력해주세요 ">
-					</p>
-					<p class="w3-center">
-						<button type="button" id=findBtn class="btn btn-primary">찾기</button>
-						<button type="button" onclick="history.go(-1);"
-							class="btn btn-primary">취소</button>
+	<div id=findID_bground>
+		<div id="findID_container">
+			<div id="findID_tot">
+				<div id="findID_titName">
+					<p class="findID_Title">
+						<span>가입 시 작성했던 아이디와 이메일 정보</span>를 입력하여 주십시오.
 					</p>
 				</div>
+				<form name="find_pw_form" class="findPw">
+					<div class="w3-content w3-container w3-margin-top">
+						<div class="w3-container w3-card-4">
+							<div>
+								<label id="find_pw_lab">ID</label> <input class="form-control"
+									type="text" id="find_pw_id" name="id"
+									placeholder="아이디를 입력해주세요."> <label id="find_pw_lab">Email</label>
+								<input class="form-control" type="text" id="find_pw_email"
+									name="email" placeholder="이메일을 입력해주세요. ">
+								<button type="button" id=find_pw_findBtn class="btn btn-primary">찾기</button>
+								<button type="button" id=find_pw_findBtn
+									onclick="history.go(-1);" class="btn btn-primary">취소</button>
+							</div>
+						</div>
+					</div>
+				</form>
 			</div>
 		</div>
-	</form>
+	</div>
 </body>
 
 </html>

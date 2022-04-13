@@ -15,34 +15,54 @@
 	height: auto;
 }
 
+/* 메인 배너 */
+.carousel-inner {
+	width: 1200px;
+	margin: 0 auto;
+}
+
+/* 맞춤형 정책찾기 */
 #main_container2 {
 	margin-bottom: 50px;
 	height: auto;
 }
 
+.find_bar {
+	width: 1200px;
+	height: 80px;
+	margin: 0 auto;
+	border: 2px solid rgb(71, 142, 223);
+	border-radius: 1rem;
+}
+
+.find_bar_ele {
+	line-height: 80px;
+}
+
+.find_bar_ele>a {
+	float: left;
+	margin: 0 50px 0 300px;
+}
+
+.find_bar_ele select {
+	width: 150px;
+	height: 30px;
+}
+
+.find_bar_ele button {
+	margin-left: 30px;
+}
+
+/* 공지사항, 자료실 탭 , 바로가기 */
 #main_container3 {
 	margin-bottom: 50px;
 	height: auto;
-}
-
-.find_bar {
-	width: 100%;
-	height: 80px;
-	border: 2px solid rgb(71, 142, 223);
-	border-radius: 1rem;
 }
 
 .main_cnt1 {
 	float: left;
 	height: 350px;
 	padding: 20px;
-}
-
-.main_cnt2 {
-	float: right;
-	height: 350px;
-	padding: 20px 10px 20px 10px;
-	margin-right: 30px;
 }
 
 .main_tabs p {
@@ -57,16 +77,6 @@
 .nav-item3 {
 	margin-left: 300px;
 	margin-top: 5px;
-}
-
-.find_bar_ele {
-	text-align: center;
-	line-height: 80px;
-}
-
-.find_bar_ele select {
-	width: 150px;
-	height: 30px;
 }
 
 .main_tablist1 {
@@ -145,7 +155,12 @@
 	font-size: 10pt;
 }
 
-.main_shortcut {
+/* 바로가기 버튼 */
+.main_cnt2 {
+	float: right;
+	height: 350px;
+	padding: 20px 10px 20px 10px;
+	margin-right: 30px;
 }
 
 .main_shortcut_tab {
@@ -184,30 +199,43 @@ figure {
 	background-image: url("../image/share_img.jpg")
 }
 
-figure:hover figcaption{ opacity: 1; }
-figure:hover .main_line::before { width: 80%; }
-figure:hover .main_line::after { width: 80%; }
-figure:hover .main_line span::before { height: 80%; }
-figure:hover .main_line span::after { height: 80.5%; }
-
-
-figcaption{
-  position:relative;
-  width:140px;
-  height:200px;
-  border-radius: 1rem;
-  margin-top: -16.5px;
-  background:rgba(0,0,0,0.4);
-  opacity:0;
-  transition: all 0.5s;
+figure:hover figcaption {
+	opacity: 1;
 }
 
-.main_long a figcaption p{
-  color:#fff;
-  font-weight:bold;
-  font-size:15px; 
-  text-align:center;
-  line-height:200px;
+figure:hover .main_line::before {
+	width: 80%;
+}
+
+figure:hover .main_line::after {
+	width: 80%;
+}
+
+figure:hover .main_line span::before {
+	height: 80%;
+}
+
+figure:hover .main_line span::after {
+	height: 80.5%;
+}
+
+figcaption {
+	position: relative;
+	width: 140px;
+	height: 200px;
+	border-radius: 1rem;
+	margin-top: -16.5px;
+	background: rgba(0, 0, 0, 0.4);
+	opacity: 0;
+	transition: all 0.5s;
+}
+
+.main_long a figcaption p {
+	color: #fff;
+	font-weight: bold;
+	font-size: 15px;
+	text-align: center;
+	line-height: 200px;
 }
 
 .main_line:before {

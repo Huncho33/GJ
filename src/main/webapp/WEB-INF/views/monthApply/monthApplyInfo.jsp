@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
-	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	request.setCharacterEncoding("UTF-8");
@@ -24,7 +24,7 @@
 	<div id="monthApply_bground">
 		<div id="monthApply_tot">
 			<div id="pl_introduce">
-				<img src="${contextPath}/resources/image/정책소개인덱스.png">
+				<img src="${contextPath}/resources/image/monthInfo.png">
 			</div>
 			<div id="month_intro_info">
 				<div class="month_intro_title">
@@ -134,7 +134,8 @@
 								</a>
 							</div>
 							<div class="intro_Button intro_Button2">
-								<a href="javascript:apply_form('${isLogOn}','${contextPath}/month/monthApplyForm0.do',
+								<a
+									href="javascript:apply_form('${isLogOn}','${contextPath}/month/monthApplyForm0.do',
 								'${contextPath}/member/loginForm.do')">
 									<div class="intro_apply_btn2">
 										<p>2023청년월세지원 신청</p>
@@ -148,16 +149,15 @@
 		</div>
 	</div>
 </body>
-						<script>
-						  function apply_form(isLogOn,applyForm,loginForm){
-				                  if(isLogOn != '' && isLogOn != 'false'){
-				                	  location.href = applyForm;
-				                 } else{
-				                    alert("로그인 후 이용해주세요.");
-				                    location.href = loginForm + '?action=/month/monthApplyForm1.do';
-				                 }
-				              }
-
-						</script>
+<script>
+	function apply_form(isLogOn, applyForm, loginForm) {
+		if (isLogOn != '' && isLogOn != 'false') {
+			location.href = applyForm;
+		} else {
+			alert("로그인 후 이용해주세요.");
+			location.href = loginForm + '?action=/month/monthApplyForm1.do';
+		}
+	}
+</script>
 </html>
 

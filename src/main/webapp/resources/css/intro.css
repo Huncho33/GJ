@@ -1,98 +1,87 @@
-@charset "utf-8";
-
-#khs_container {
-	margin-top: 112px;
-}
-
-#khs_contents {
-	max-width: 1200px;
-	margin: 100px auto 50px;
-}
-
-#khs_container *[class^="list_h"] {
-	display: block;
-	position: relative;
-}
-
-#khs_container *[class^="list_h"]>li, #khs_container .bul-ul {
-	position: relative;
-	padding-left: 1.0em;
-	font-size: 1.1em;
-}
-
-#khs_container *[class^="list_h"]>li:before, #khs_container .bul-ul:before
-	{
-	content: "";
-	display: block;
-	position: absolute;
-	top: 0.5em;
-	left: 0.3em;
-	width: 0.2em;
-	height: 0.2em;
-	background: #bbbbbb;
-}
-
-#khs_container .khs_list_h3 {
-	margin: 2em 0 2em 2em;
-}
-
-#khs_post-content>ul>li {
-	float: left;
-	width: 1200px;
-	height: 100px;
-	margin-top: 15px;
-}
-
-#khs_intro_Image {
-	text-align: center;
-	padding-bottom: 50px;
-}
-
-.khs_line_box {
-	border: 2px solid #dddddd;
-}
-
-.khs_cf:after {
-	display: block;
-	content: "";
-	clear: both;
-}
-
-.khs_request_btn {
-	width: 16.5%;
-	height: 180px;
-	display: table;
-	float: left;
-	margin: 3% 0.5%;
-}
-
-.khs_requestBtn {
+#monthApply_bground {
 	width: 100%;
-	height: 180px;
-	display: table-cell;
-	background: #4385f5;
-	text-align: center;
-	color: #fff !important;
-	font-weight: bold;
-	font-size: 1.5em;
-	line-height: 1.3em;
-	vertical-align: middle;
+	position: relative;
 }
 
-.khs_requestBtn:hover {
-	color: #fff;
-	text-decoration: none;
-	background: #2b60bb;
+#monthApply_bground>#monthApply_tot {
+	position: relative;
+	width: 1100px;
+	margin: 0 auto;
+	display: block;
 }
 
-.khs_requst_info {
-	width: 25%;
-	text-align: center;
+#pl_introduce {
+	margin-bottom: 70px;
+}
+
+#month_intro_info {
+	width: 1000px;
+	margin-left: 15px;
+}
+
+#month_intro_info h3 {
+	margin-bottom: 30px;
+	margin-left: 10px;
+}
+
+.month_intro_title {
+	margin: 30px 0px 30px 0px;
+}
+
+#intro_fileList {
+	border-collapse: collapse;
+	border-top: 2px solid gray;
+	border-bottom: 2px solid gray;
+}
+
+#intro_fileList>button {
+	background: white;
+}
+
+.intro_cnt1_tg {
+	margin: 10px 30px 50px 30px;
+	background-color: rgb(233, 233, 233);
+	border-radius: 1em;
+	padding: 20px 50px 20px 50px;
+}
+
+.intro_applys {
+	margin-left: 15%;
+}
+
+.intro_Button {
+	width: 150px;
+	height: 150px;
+	background-color: dodgerblue;
+	border-radius: 5em;
 	float: left;
-	margin: 3% 1%;
+	margin-left: 10%;
 }
 
-.khs_btnColorType14 {
-	background-color: #164578 !important;
-	color: #fff !important;
+.intro_Button a {
+	text-decoration: none;
+	
+	font-size: 13pt;
+	text-align: center;
+	line-height: 80px;
+}
+
+.intro_Button1 {
+	background-image: url("../image/month_img.jpg")
+}
+
+.intro_Button2 {
+	background-image: url("../image/rent_img.jpg")
+}
+
+.intro_Button3 {
+	background-image: url("../image/share_img.jpg")
+}
+
+.intro_apply_btn2>p {
+	font-size: 13pt;
+	text-align: center;
+	line-height: 150px;
+	font-weight: bold;
+	color: black;
 }
