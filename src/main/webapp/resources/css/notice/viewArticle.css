@@ -94,7 +94,7 @@ textarea {
 .notiView_btn_list2 {
 	width: 100%;
 	margin-top: 50px;
-	margin-left: 79%;
+	margin-left: 90%;
 }
 
 .notiView_btn1 input {
@@ -107,29 +107,31 @@ textarea {
 	color: white;
 	cursor: pointer;
 	height: 30px;
-	font-size: 10px;
+	font-size: 12px;
 }
 
 .notiView_btn2 input {
 	width: 100px;
 	height: 30px;
-	font-size: 10px;
+	font-size: 12px;
 	border: 0px;
 	border-radius: 3em;
 	background-color: dodgerblue;
 	color: white;
 	cursor: pointer;
+	
 }
 
 .notiView_btn3 input {
 	width: 100px;
 	height: 30px;
-	font-size: 10px;
+	font-size: 12px;
 	border: 0px;
 	border-radius: 3em;
 	background-color: darkgray;
 	color: white;
 	cursor: pointer;
+	
 }
 
 .notiView_btn1 {

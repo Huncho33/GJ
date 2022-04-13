@@ -300,9 +300,7 @@
 								<div class="notiView_btn notiView_btn1">
 								<input type=button value="목록" onClick="backToList(this.form)">
 								</div>
-								<div class="notiView_btn notiView_btn2">
-									<input type=button value="수정하기" onClick="fn_enable()">
-								</div>
+							
 							</div>
 						</div>
 					</c:if>
