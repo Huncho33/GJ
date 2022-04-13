@@ -29,13 +29,13 @@
 
 <script language="javascript">
 	$(function() {
-		$("#findBtn").click(function() {
+		$("#find_pw_findBtn").click(function() {
 			$.ajax({
 				url : "${contextPath}/member/find_pw.do",
 				type : "POST",
 				data : {
-					id : $("#_id").val(),
-					email : $("#_email").val()
+					id : $("#find_pw_id").val(),
+					email : $("#find_pw_email").val()
 				},
 				success : function(result) {
 					location.href = "../member/loginForm.do";
