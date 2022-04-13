@@ -58,30 +58,28 @@
 	margin-left: 10%;
 }
 
-.intro_Button a {
+.intro_Button a{
 	text-decoration: none;
-	
-	font-size: 13pt;
 	text-align: center;
-	line-height: 80px;
+	font-weight: bold;
+	color: #fff;
+	font-size: 13pt;
+	line-height: 150px;
 }
 
 .intro_Button1 {
-	background-image: url("../image/month_img.jpg")
+	color: dodgerblue;
 }
 
 .intro_Button2 {
-	background-image: url("../image/rent_img.jpg")
+	color: dodgerblue;
 }
 
 .intro_Button3 {
-	background-image: url("../image/share_img.jpg")
+	color: dodgerblue;
 }
 
 .intro_apply_btn2>p {
-	font-size: 13pt;
-	text-align: center;
-	line-height: 150px;
 	font-weight: bold;
-	color: black;
+	margin: 0 auto;
 }
