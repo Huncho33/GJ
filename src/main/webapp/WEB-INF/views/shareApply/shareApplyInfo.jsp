@@ -24,7 +24,7 @@
 	<div id="monthApply_bground">
 		<div id="monthApply_tot">
 			<div id="pl_introduce">
-				<img src="${contextPath}/resources/image/정책소개인덱스.png">
+				<img src="${contextPath}/resources/image/shareInfo.png">
 			</div>
 			<div id="month_intro_info">
 				<div class="month_intro_title">

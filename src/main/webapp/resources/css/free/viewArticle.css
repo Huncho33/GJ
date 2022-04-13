@@ -78,7 +78,7 @@ textarea {
 }
 
 #filedown>a {
-	font-size: 10pt;
+	font-size: 12pt;
 	text-decoration: underline;
 	color: black;
 	
@@ -112,7 +112,7 @@ textarea {
 	color: white;
 	cursor: pointer;
 	height: 30px;
-	font-size: 10px;
+	font-size: 12px;
 }
 
 .freeView_btn2 input {

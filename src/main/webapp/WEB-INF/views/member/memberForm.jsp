@@ -21,45 +21,39 @@
 <link rel="stylesheet"
 	href="${contextPath}/resources/css/memberForm/memberForm1.css">
 <script type="text/javascript">
-$(document).ready(function(){
-	
-	//전체 체크박스 클릭
-	$("#checkAll").click(function(){
-		if ($("#checkAll").prop("checked")) {
-			$(".kkhs_agreeChk").prop("checked", true);
-		} else {
-			$(".kkhs_agreeChk").prop("checked", false);
-		}
+	$(document).ready(function() {
+		//전체 체크박스 클릭
+		$("#checkAll").click(function() {
+			if ($("#checkAll").prop("checked")) {
+				$(".kkhs_agreeChk").prop("checked", true);
+			} else {
+				$(".kkhs_agreeChk").prop("checked", false);
+			}
+		});
+
+		// 전체 체크박스 선택 중 체크박스 하나를 풀었을 때 전체 체크 해제
+		$(".kkhs_agreeChk").click(function() {
+			if ($("input[name='check']:checked").length == 3) {
+				$("#checkAll").prop("checked", true);
+			} else {
+				$("#checkAll").prop("checked", false);
+			}
+		});
 	});
-	
-	// 전체 체크박스 선택 중 체크박스 하나를 풀었을 때 전체 체크 해제
-	$(".kkhs_agreeChk").click(function(){
-		if($("input[name='check']:checked").length == 3) {
-		   $("#checkAll").prop("checked", true);
-		} else {
-		   $("#checkAll").prop("checked", false);
-		}
+
+	$(document).ready(function() {
+		$("#nextBtn").click(function() {
+			if ($("#check_1").is(":checked") == false) {
+				alert("필수 약관에 동의 하셔야 다음 단계로 진행 가능합니다.");
+				return false;
+			} else if ($("#check_2").is(":checked") == false) {
+				alert("필수 약관에 동의 하셔야 다음 단계로 진행 가능합니다.");
+				return false;
+			} else {
+				$("#kkhs_frm").submit();
+			}
+		});
 	});
-});
-
-
-$(document).ready(function(){
-    $("#nextBtn").click(function(){    
-        if($("#check_1").is(":checked") == false){
-            alert("필수 약관에 동의 하셔야 다음 단계로 진행 가능합니다.");
-            return false ;
-        }else if($("#check_2").is(":checked") == false){
-            alert("필수 약관에 동의 하셔야 다음 단계로 진행 가능합니다.");
-            return false;
-        }else{
-            $("#kkhs_frm").submit();
-        }
-    });    
-});
-
-
-
-
 </script>
 
 </head>
@@ -374,8 +368,8 @@ $(document).ready(function(){
  (시행일) 이 약관은 2020년 4월 1일부터 적용합니다.
 					</textarea>
 							<div class="kkhs_checkBox kkhs_fl-r ">
-								<input type="checkbox" class="kkhs_agreeChk" name="check" id="check_1"
-									style="float: right;"> 회원가입 약관에 동의합니다.
+								<input type="checkbox" class="kkhs_agreeChk" name="check"
+									id="check_1" style="float: right;"> 회원가입 약관에 동의합니다.
 							</div>
 						</div>
 						<div class="kkhs_box">
@@ -397,8 +391,8 @@ $(document).ready(function(){
 - 정보주체의 권리 : 본인에 관한 개인정보 열람, 정정.삭제 청구권
 					</textarea>
 							<div class="kkhs_checkBox kkhs_fl-r">
-								<input type="checkbox" class="kkhs_agreeChk" name="check" id="check_2"
-									style="float: right;"> 개인정보처리 약관에 동의합니다.
+								<input type="checkbox" class="kkhs_agreeChk" name="check"
+									id="check_2" style="float: right;"> 개인정보처리 약관에 동의합니다.
 							</div>
 						</div>
 						<div class="kkhs_box">
@@ -438,11 +432,13 @@ $(document).ready(function(){
 						</div>
 					</div>
 					<div class="join_btn_list">
-						<div class="join_btn join_btn1">
-							<input type="reset" value="취소">
-						</div>
-						<div class="join_btn join_btn2">
-							<input type="submit" id="nextBtn" value="다음">
+						<div class="join_btn_listInner">
+							<div class="join_btn join_btn1">
+								<input type="reset" value="취소">
+							</div>
+							<div class="join_btn join_btn2">
+								<input type="submit" id="nextBtn" value="다음">
+							</div>
 						</div>
 					</div>
 				</form>

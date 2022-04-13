@@ -67,6 +67,7 @@ td.table_category{
 }
 
 #etc_select_view td{
+	
 	border-left: none;
 	border-right: none;
 }
@@ -157,4 +158,8 @@ textarea {
 
 #dataView_mainBtn {
 	display: block;
+}
+
+#etc_select_view input {
+	width: 100%;
 }

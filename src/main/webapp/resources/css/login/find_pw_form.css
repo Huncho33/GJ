@@ -1,0 +1,80 @@
+@charset "utf-8";
+
+#findID_bground {
+	position: relative;
+	width: 100%;
+}
+
+#findID_container {
+	position: relative;
+	margin: 0 auto;
+	width: 1000px;
+}
+
+#findID_tot {
+	margin-top: 100px;
+}
+
+#findID_titName {
+	margin: 0 auto;
+	width: 800px;
+	height: 80px;
+	border: 2px solid #dddcdc;
+}
+
+.findID_Title {
+	width: 100%;
+	height: 80px;
+	line-height: 80px;
+	font-size: 15pt;
+	text-align: center;
+	color: dimgray;
+	font-weight: bold;
+}
+
+.findID_Title>span {
+	color: dodgerblue;
+}
+
+.findPw {
+	width: 500px;
+	height: 350px;
+	margin: 0 auto;
+	margin-top: 50px;
+}
+
+#find_pw_id {
+	width: 400px;
+	height: 37px;
+	margin-top: 5px;
+	margin-bottom: 10px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#find_pw_email {
+	width: 400px;
+	height: 37px;
+	margin-top: 5px;
+	margin-bottom: 30px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#find_pw_title {
+	text-align: center;
+	width: 300px;
+	display: table;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#find_pw_lab {
+	margin-top: 20px;
+	margin-left: 50px;
+}
+
+#find_pw_findBtn {
+	margin-left: 65px;
+	width: 150px;
+}

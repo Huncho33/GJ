@@ -19,18 +19,12 @@
 <script src="https://kit.fontawesome.com/fc92373f81.js"
 	crossorigin="anonymous"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-<link href="${contextPath}/resources/css/admin/memberInfo.css"
+<link href="${contextPath}/resources/css/admin/applyerInfo.css"
 	rel="stylesheet" type="text/css">
 <link href="${contextPath}/resources/css/common.css" rel="stylesheet"
 	type="text/css">
 <script src="${contextPath}/resources/js/sidemenu.js"></script>
 <link rel="stylesheet" href="${contextPath}/resources/css/sidemenu.css">
-<style>
-input {
-	border: 0px;
-	background: none;
-}
-</style>
 <script language="javascript">
 	function backToList(obj) {
 		obj.action = "${contextPath}/admin/member/listMembers.do";
@@ -226,6 +220,9 @@ input {
 				</div>
 			</div>
 			<div id="memberInfo_tot">
+				<div id="memberInfo_tit1">
+					<h3 class="memberInfo_tit">신청자 정보 확인</h3>
+				</div>
 				<form id="adminMonApply_frm" name="adminMonApply_frm">
 					<div id="memberInfo_tit2">
 						<p class="memberInfo_subtit" style="font-weight: bold;">
@@ -235,24 +232,24 @@ input {
 					<div id="memberInfo_container">
 						<div class="memberInfo_cnt1">
 
-							<table>
+							<table id="applyerFrm" style="border-spacing: 0;">
 								<tr height="50">
 									<td width="150">:: 신청번호</td>
-									<td><input type="text" name="mo_no" id="mo_no"
+									<td colspan="2"><input type="text" name="mo_no" id="mo_no"
 										value="${viewMonApply.mo_no}" size="30" disabled><input
 										type="hidden" name="mo_no" id="mo_no"
 										value="${viewMonApply.mo_no}"></td>
 								</tr>
 								<tr height="50">
 									<td width="150">:: 아이디</td>
-									<td><input type="text" name="member_id" id="member_id"
+									<td colspan="2"><input type="text" name="member_id" id="member_id"
 										value="${viewMember.member_id}" size="30" disabled><input
 										type="hidden" name="member_id" id="member_id"
 										value="${viewMember.member_id}"></td>
 								</tr>
 								<tr height="50">
 									<td width="150">:: 이름</td>
-									<td><input type="text" value="${viewMember.member_name}"
+									<td colspan="2"><input type="text" value="${viewMember.member_name}"
 										size="30" disabled></td>
 								</tr>
 
@@ -269,47 +266,36 @@ input {
 										id="member_email1" name="member_email1"
 										value="${viewMember.member_email1}" disabled /> @ <input
 										size="15" type="text" id="member_email2" name="member_email2"
-										value="${viewMember.member_email2}" disabled /> <select
-										id="_member_email2" name="_member_email2"
-										onChange=emailSelect() title="직접입력">
-											<option value="non">직접입력</option>
-											<option value="hanmail.net">hanmail.net</option>
-											<option value="daum.net">daum.net</option>
-											<option value="naver.com">naver.com</option>
-											<option value="nate.com">nate.com</option>
-											<option value="google.com">google.com</option>
-											<option value="gmail.com">gmail.com</option>
-									</select></td>
+										value="${viewMember.member_email2}" disabled /></td>
 								</tr>
 
 								<tr height="30">
-									<td width="150">:: 주소</td>
-									<td width="150">우편번호</td>
+									<td class="fixed_join">:: 주소</td>
+									<td class="fixed_join fixed_join1">우편번호</td>
 									<td><input type="text" id="member_zipcode"
 										name="member_zipcode" size="10"
 										value="${viewMember.member_zipcode}" disabled>
 								</tr>
 								<tr height="30">
 									<td class="fixed_join"></td>
-									<td class="fixed_join fixed_join1">도로명 주소<span
-										style="font-weight: bold; color: red;" disabled>*</span>
+									<td class="fixed_join1">도로명 주소
 									</td>
 									<td><input type="text" id="member_roadAddress"
-										name="member_roadAddress" size="50"
+										name="member_roadAddress" size="60"
 										value="${viewMember.member_roadAddress}" disabled></td>
 								</tr>
 								<tr height="30">
 									<td class="fixed_join"></td>
-									<td class="fixed_join fixed_join1">지번 주소</td>
+									<td class="fixed_join1">지번 주소</td>
 									<td><input type="text" id="member_jibunAddress"
-										name="member_jibunAddress" size="50"
+										name="member_jibunAddress" size="60"
 										value="${viewMember.member_jibunAddress}" disabled></td>
 								</tr>
 								<tr height="30">
 									<td class="fixed_join"></td>
-									<td class="fixed_join fixed_join1">상세 주소</td>
+									<td class="fixed_join1">상세 주소</td>
 									<td><input type="text" id="member_namujiAddress"
-										name="member_namujiAddress" size="50"
+										name="member_namujiAddress" size="60"
 										value="${viewMember.member_namujiAddress}" disabled></td>
 								</tr>
 
@@ -322,14 +308,14 @@ input {
 
 								<tr height="50">
 									<td width="150">:: 지원 상태</td>
-									<td colspan="2"><input type="text" name="mo_result"
-										id="mo_result" value="${viewMonApply.mo_result}" size="30"
+									<td colspan="2" class="applyer_status"><input type="text" name="mo_result"
+										id="mo_result" value="${viewMonApply.mo_result}" style="color:blue;" size="30"
 										disabled /></td>
 								</tr>
 
 								<tr height="50">
 									<td width="150">:: 지급 이력</td>
-									<td colspan="2"><c:choose>
+									<td colspan="2" class="applyer_status"><c:choose>
 											<c:when test="${empty viewMonApply.mo_startpay}">
 				                              -
 				                           </c:when>
@@ -361,7 +347,10 @@ input {
 										id="member_phoneno" value="${viewMember.member_phoneno}"
 										size="30" disabled /></td>
 								</tr>
-
+								<tr height="50">
+									<td width="150">:: 등록신청서류</td>
+									<td colspan="2"></td>
+								</tr>
 
 
 								<c:choose>
@@ -377,7 +366,7 @@ input {
 													type="hidden" name="up_fileno"
 													value="${monthFile.up_fileno }" />
 													<div id="filedown">
-														<a
+														<a class="applyer_fileName"
 															href="${contextPath}/adminMonthDownload.do?mo_no=${viewMonApply.mo_no}&up_filename=${monthFile.up_filename}">${monthFile.up_filename}</a>
 													</div></td>
 											</tr>
@@ -446,7 +435,7 @@ input {
 					</div>
 					<div class="memberInfo_cnt2">
 						<div class="join_btn join_btn2">
-							<input type="submit" value="적용" id="memberInfo_mod"
+							<input type="submit" value="적용" id="memberInfo_mod" style="margin-left:10px;"
 								name="memberInfo_mod" onClick="fn_adminMonApply('adminMon');">
 						</div>
 						<div class="join_btn join_btn2">

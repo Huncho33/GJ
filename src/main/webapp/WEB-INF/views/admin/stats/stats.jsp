@@ -255,7 +255,7 @@
       
    /* 구별 방문자수 막대 그래프 데이터 셋 */
     var barChartData = {
-    	     labels : [ "수성구", "북구", "달성군", "중구", "동구", "서구", "남구", "달성구" ],
+    	     labels : [ "남구", "달성구", "달성군", "동구", "북구", "서구", "수성구", "중구" ],
              datasets : [
                    {
                       label : '방문자 수',
@@ -471,7 +471,7 @@
 								<c:forEach var="page" begin="1" end="10" step="1">
 									<c:if test="${section >1 && page==1 }">
 										<a class="no-uline"
-											href="${contextPath }/admin/stats/stats.do?section=${section-1}&pageNum=${(section-1)*10  }">&nbsp;
+											href="${contextPath }/admin/stats/stats.do?section=${section-1}&pageNum=${10  }">&nbsp;
 											< </a>
 									</c:if>
 									<a class="no-uline"
@@ -528,14 +528,14 @@
 				<table id="adm_visitList_tab" border="1" align="center" width="100%">
 					<tr height="40" align="center" bgcolor="#abd1f6">
 						<td width="11$"><b>구별</b></td>
-						<td width="11$"><b>수성구</b></td>
-						<td width="11$"><b>북구</b></td>
-						<td width="11$"><b>달성군</b></td>
-						<td width="11$"><b>중구</b></td>
-						<td width="11$"><b>동구</b></td>
-						<td width="11$"><b>서구</b></td>
 						<td width="11$"><b>남구</b></td>
 						<td width="11$"><b>달성구</b></td>
+						<td width="11$"><b>달성군</b></td>
+						<td width="11$"><b>동구</b></td>
+						<td width="11$"><b>북구</b></td>
+						<td width="11$"><b>서구</b></td>
+						<td width="11$"><b>수성구</b></td>
+						<td width="11$"><b>중구</b></td>
 					</tr>
 
 

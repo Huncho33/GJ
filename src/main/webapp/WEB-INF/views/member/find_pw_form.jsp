@@ -16,61 +16,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!-- 합쳐지고 최소화된 최신 CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
-    <!-- 부가적인 테마 -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<!-- 부트스트랩 -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<link rel="stylesheet"
+	href="${contextPath}/resources/css/login/find_pw_form.css"
+	type="text/css">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-
-<style>
-.findPw {
-	width: 500px;
-    height: 350px;
-	margin: 0 auto;
-	border: 2px solid gray;
-	margin-top: 80px;
-    
-}
-
-#_id {
-	width: 400px;
-	height: 37px;
-	margin-top: 5px;
-	margin-bottom: 10px;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-#_email {
-	width: 400px;
-	height: 37px;
-	margin-top: 5px;
-	margin-bottom: 30px;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-h3 {
-    text-align: center;
-	width: 300px;
-	display: table;
-	margin-left: auto;
-	margin-right: auto;
-}
-    
-    #lab{
-        margin-top: 20px;
-        margin-left: 50px;
-        
-    }
-    #findBtn{
-        margin-left: 65px;
-        width: 150px;
-    }
-
-</style>
-
 
 <script language="javascript">
 	$(function() {
@@ -93,29 +48,33 @@ h3 {
 <title>비밀번호 찾기</title>
 </head>
 <body>
-	<form name="find_pw_form" class="findPw">
-		<div class="w3-content w3-container w3-margin-top">
-			<div class="w3-container w3-card-4">
-				<div class="w3-center w3-large w3-margin-top">
-					<h3>비밀번호 찾기</h3>
+	<div id=findID_bground>
+		<div id="findID_container">
+			<div id="findID_tot">
+				<div id="findID_titName">
+					<p class="findID_Title">
+						<span>가입 시 작성했던 아이디와 이메일 정보</span>를 입력하여 주십시오.
+					</p>
 				</div>
-				<div>
-					
-						<label id="lab">ID</label> <input class="form-control" type="text" id="_id"
-							name="id" placeholder="아이디를 입력해주세요 ">
-					
-						<label id="lab">Email</label> <input class="form-control" type="text"
-							id="_email" name="email" placeholder="이메일을 입력해주세요 ">
-					
-					
-						<button type="button" id=findBtn class="btn btn-primary">찾기</button>
-						<button type="button" id=findBtn onclick="history.go(-1);"
-							class="btn btn-primary">취소</button>
-					
-				</div>
+				<form name="find_pw_form" class="findPw">
+					<div class="w3-content w3-container w3-margin-top">
+						<div class="w3-container w3-card-4">
+							<div>
+								<label id="find_pw_lab">ID</label> <input class="form-control"
+									type="text" id="find_pw_id" name="id"
+									placeholder="아이디를 입력해주세요."> <label id="find_pw_lab">Email</label>
+								<input class="form-control" type="text" id="find_pw_email"
+									name="email" placeholder="이메일을 입력해주세요. ">
+								<button type="button" id=find_pw_findBtn class="btn btn-primary">찾기</button>
+								<button type="button" id=find_pw_findBtn
+									onclick="history.go(-1);" class="btn btn-primary">취소</button>
+							</div>
+						</div>
+					</div>
+				</form>
 			</div>
 		</div>
-	</form>
+	</div>
 </body>
 
 </html>

@@ -1,271 +1,212 @@
+/* 탑:헤더 로고, 메인로고, SNS */
+#header_top {
+	width: 1300px;
+	display: flex;
+	height: 50px;
+	margin: 0 auto;
+}
+
+#header_container {
+	margin-top: 10px;
+	position: relative;
+	float: left;
+	width: 100%;
+	border-bottom: #7e7e7e;
+}
+
+#header_container>div {
+	width: 200px;
+	height: 50px;
+}
+
+.logo1 {
+	float: left;
+}
+
+.notice_bn {
+	margin-left: 200px;
+	float: left;
+}
+
+.sns {
+	float: right;
+}
+
+.sns_link>li {
+	margin-top: 10px;
+	margin-right: 10px;
+	float: right;
+}
+
 .sns_link li {
-    float: left;
-    list-style: none;
-    text-decoration: none;
+	float: left;
+	list-style: none;
+	text-decoration: none;
 }
 
-.center li {
-    float: left;
-    list-style: none;
-    text-decoration: none;
-}
-
-.submenu li {
-    float: left;
-    list-style: none;
-    text-decoration: none;
-}
-
-
-
+/* GNB바- 메뉴 CSS */
 .menu a {
 	text-decoration: none;
 	color: #000;
 }
 
+.submenu {
+	margin-left: -1px;
+}
+
+.submenu li {
+	float: left;
+	list-style: none;
+	text-decoration: none;
+}
+
+#header_navWrap>ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+/* GNB바 옆 인포(로그인,회원) 버튼 CSS */
 .info a {
 	text-decoration: none;
 	color: #000;
 }
 
-
-#header_navWrap>ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-#header_top {
-	width: 1300px;
-    display: flex;
-    height: 50px;
-    margin: 0 auto;
-}
-
-#header_container {
-    margin-top: 10px;
-    position: relative;
-    float: left;
-    width: 100%;
-    border-bottom: #7e7e7e;
-}
-
-#header_container > div {
-    width: 200px;
-    height: 50px;
-}
-
-.logo1 {
-    float: left;
-}
-
-
-.notice_bn {
-    margin-left: 200px;
-    float: left;
-}
-
-.sns {
-    float: right;
-}
-
-.sns_link>li {
-    margin-top: 10px;
-    margin-right: 10px;
-    float: right;
-}
-
 #header_mid1 {
-    height: 150px;
-    margin: 0 auto;
+	height: 150px;
+	margin: 0 auto;
 }
 
 #header_inner {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
 }
 
 .logo2 {
-    margin-top: 35px;
-    text-align: center;
-    width: 100%;
-    height: 30px;
-    position: relative;
+	margin-top: 35px;
+	text-align: center;
+	width: 100%;
+	height: 30px;
+	position: relative;
 }
 
 #header_mid2 {
-    width: 1150px;
-    height: 60px;
-    margin: 0 auto;
-
+	width: 1150px;
+	height: 60px;
+	margin: 0 auto;
 }
-
-#header_mid2 > .searchBox {
-    float: right;
-    position: relative;
-    margin-top: 10px;
-}
-
-#header_mid2 > .searchBox form {
-    width: 220px;
-    height: 30px;
-}
-
-#header_mid2 > .form-control {
-    width: 220px;
-    height: 30px;
-}
-
-.d-flex {
-	width: 300px;
-	height: 40px;
-}
-
-.d-flex .btn {
-    border-color: #0597eb;
-    width: 60px;
-    padding: 0;
-}
-
-.d-flex .btn:hover {
-    background-color: #0597eb;
-    height: 30px;
-}
-
-
-.d-flex button p {
-    font-size: 9pt;
-    color: rgb(133, 133, 133);
-}
-
-.d-flex button p:hover {
-    color: #fff;
-}
-
-.form-control {
-	
-}
-
 
 #header_bottom {
-    width: 1300px;
-    height: 60px;
-    margin: 0 auto;
-    border-left: 0.5px solid #ccc;
+	width: 1300px;
+	height: 60px;
+	margin: 0 auto;
+	border-left: 0.5px solid #ccc;
 }
 
 .info {
-    float: right;
-    z-index: 101;
-    margin-top: 5px;
-    margin-right: 20px;
+	float: right;
+	z-index: 101;
+	margin-top: 5px;
+	margin-right: 20px;
 }
 
 .info a {
-    float: left;
-    margin-top: 10px;
-    width: 110px;
-    margin-left:40px;
-
+	float: left;
+	margin-top: 10px;
+	width: 110px;
+	margin-left: 40px;
 }
 
-
 #header_menu {
-    width: 824px;
-    height: 52px;
-    float: left;
+	width: 824px;
+	height: 52px;
+	float: left;
 }
 
 #header_gnb {
-    position: absolute;
-    right: 50%;
-    top: 6px;
+	position: absolute;
+	right: 50%;
+	top: 6px;
 }
 
 #header_nav {
-    position: relative;
-    overflow: hidden;
-    background: #fff;
-    width: 960px;
-    height: 50px;
-    z-index: 100;
-    transition: all .3s ease;
+	position: relative;
+	overflow: hidden;
+	background: #fff;
+	width: 960px;
+	height: 50px;
+	z-index: 100;
+	transition: all .3s ease;
 }
 
 #header_navWrap {
-    width: 960px;
-    margin: 0 auto;
-
+	width: 960px;
+	margin: 0 auto;
 }
 
 #header_inner>h1 {
-    text-align: center;
-
+	text-align: center;
 }
 
 #header_navWrap>ul>li {
-    position: relative;
-    float: left;
-    
+	position: relative;
+	float: left;
 }
 
 #header_navWrap>ul>li>a {
-    display: block;
-    font-size: 18px;
-    font-weight: 600;
-    text-align: center;
-    line-height: 52px;
-    border-right: 0.5px solid #ccc;
+	display: block;
+	font-size: 18px;
+	font-weight: 600;
+	text-align: center;
+	line-height: 52px;
+	border-right: 0.5px solid #ccc;
 }
 
 #header_navWrap>ul>li:first-child>ul {
-    border-left: 1px solid #ccc;
+	border-left: 0.5px solid #ccc;
 }
 
 #header_navWrap>ul>li>ul {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 52px;
-    height: 300px;
-    padding: 20px 0;
-    border-left: 0.5px solid #ccc;
-    opacity: 1;
-    
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 52px;
+	height: 300px;
+	padding: 20px 0;
+	border-left: 0.5px solid #ccc;
+	opacity: 1;
 }
 
 #header_navWrap>ul>li ul a {
-    font-size: 12px;
-    display: block;
-    height: 30px;
-    line-height: 30px;
-    padding: 0 30px;
-    
+	font-size: 12px;
+	display: block;
+	height: 30px;
+	line-height: 30px;
+	padding: 0 30px;
 }
 
 .show {
-    opacity: 1;
+	opacity: 1;
 }
 
 .menu a:hover {
-    color: #fff;
-    background: #0597eb;
+	color: #fff;
+	background: #0597eb;
 }
 
 .submenu1 li {
-    width: 210px;
+	width: 210px;
 }
 
 .submenu4 li {
-    width: 200px;
+	width: 200px;
 }
 
 .submenu2 li {
-    width: 250px;
+	width: 250px;
 }
 
 .submenu3 li {
-    width: 250px;
+	width: 250px;
 }

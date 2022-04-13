@@ -1,4 +1,5 @@
-  <%@ page language="java" contentType="text/html; charset=UTF-8"
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -10,7 +11,7 @@
 <c:set var="totApply" value="${applyMap.totApply}" />
 <c:set var="applyList" value="${applyMap.applyList}" />
 <c:set var="section" value="${applyMap.section}" />
-<c:set var="pageNum" value="${applyMap.pageNum}" /> 
+<c:set var="pageNum" value="${applyMap.pageNum}" />
 <c:set var="searchApply" value="${applyMap.searchApply}" />
 <c:set var="searchType" value="${applyMap.searchType}" />
 <c:set var="searchTotApply" value="${applyMap.searchTotApply}" />
@@ -26,6 +27,8 @@
 	crossorigin="anonymous"></script>
 <link href="${contextPath}/resources/css/admin/searchMemberList.css"
 	rel="stylesheet" type="text/css">
+<link href="${contextPath}/resources/css/admin/policyKindBox.css"
+	rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="${contextPath}/resources/css/sidemenu.css"
 	type="text/css">
 <link href="${contextPath}/resources/css/common.css" rel="stylesheet"
@@ -39,14 +42,13 @@
 				<div id="khs_leftTitle">
 					<p>관리페이지</p>
 				</div>
-			<div id="khs_subMenu">
+				<div id="khs_subMenu">
 					<ul>
-						<li><a href="${contextPath}/admin/member/listMembers.do" id="khs_left khs_left1" class="khs_lnb"><p>사용자
-									관리</p></a>
-						</li>
-						<li><a href="${contextPath}/admin/adminApply/adminMonthApply.do" id="khs_left khs_left2" class="khs_lnb"><p>신청
-									관리</p></a>
-							</li>
+						<li><a href="${contextPath}/admin/member/listMembers.do"
+							id="khs_left khs_left1" class="khs_lnb"><p>사용자 관리</p></a></li>
+						<li><a
+							href="${contextPath}/admin/adminApply/adminMonthApply.do"
+							id="khs_left khs_left2" class="khs_lnb"><p>신청 관리</p></a></li>
 						<li><a id="khs_left khs_left3" class="khs_lnb"><p>게시판
 									관리</p></a>
 							<ul class="khs_depth2">
@@ -64,29 +66,32 @@
 					</ul>
 				</div>
 			</div>
-			
+
 			<div id="adm_memberManage_tot">
 				<div id="adm_memberManage_tit1">
 					<h3 class="adm_memberManage_tit">신청자 관리</h3>
 				</div>
-					<li><a href="${contextPath}/admin/adminApply/adminMonthApply.do">월세지원</a></li>
-					<li><a href="${contextPath}/admin/adminApply/adminRentApply.do">전세지원</a></li>
-					<li><a href="${contextPath}/admin/adminApply/adminShareApply.do">공공임대</a></li>
-				
+				<div id='kindApplycontainer'>
+					<a id="kindApply"
+						href="${contextPath}/admin/adminApply/adminMonthApply.do"><br>월세지원</a>
+					<a id="kindApply"
+						href="${contextPath}/admin/adminApply/adminRentApply.do"><br>전세지원</a>
+					<a id="kindApply"
+						href="${contextPath}/admin/adminApply/adminShareApply.do"><br>공공임대</a><br>
+				</div>
 				<!-- 검색 창 -->
 				<div id="adm_memberManage_search">
 					<span>[검색 회원: ${searchTotApply }명]</span>
 					<form name="frmSearch"
 						action="${contextPath}/admin/adminApply/adminSearchRentApply.do">
-						
+
 						<input type="submit" name="search" value="검 색"><input
-							name="searchApply" type="text">
-							
-							<select id="searchType" name="searchType">
-						<option value="member_id" 
-						<c:if test="${searchType eq 'member_id' }">selected</c:if>>ID</option>
-						<option value="rent_result"
-						<c:if test="${searchType eq 'rent_result' }">selected</c:if>>진행사항</option>
+							name="searchApply" type="text"> <select id="searchType"
+							name="searchType">
+							<option value="member_id"
+								<c:if test="${searchType eq 'member_id' }">selected</c:if>>ID</option>
+							<option value="rent_result"
+								<c:if test="${searchType eq 'rent_result' }">selected</c:if>>진행사항</option>
 						</select>
 					</form>
 				</div>
@@ -102,20 +107,20 @@
 					<c:choose>
 						<c:when test="${empty applyList }">
 							<tr height="35">
-								<td colspan="5">
+								<td colspan="6">
 									<p align="center">
-										<b><span style="font-size: 12pt;">등록된 회원이 없습니다.</span></b>
+										<b><span style="font-size: 11pt;">등록된 회원이 없습니다.</span></b>
 									</p>
 								</td>
 							</tr>
 						</c:when>
 						<c:when test="${not empty applyList }">
-							<c:forEach var="join" items="${applyList}" varStatus="status" >
+							<c:forEach var="join" items="${applyList}" varStatus="status">
 								<tr align="center">
-									<td width="10%">
-									 <a class='memberInfo' href="${contextPath}/admin/adminApply/adminViewRentApply.do?rent_no=${join.rent_no }&member_id=${join.member_id}">
-										${join.rent_no}</a></td> 
-									  <td width="15%">${join.member_id}</td>  
+									<td width="10%"><a class='memberInfo'
+										href="${contextPath}/admin/adminApply/adminViewRentApply.do?rent_no=${join.rent_no }&member_id=${join.member_id}">
+											${join.rent_no}</a></td>
+									<td width="15%">${join.member_id}</td>
 									<td width="10%">${join.membervo.member_name}</td>
 									<td width="15%">${join.rent_policy}</td>
 									<td width="12%">${join.rent_date}</td>
@@ -183,6 +188,6 @@
 </body>
 </html>
 
- 
 
- 
+
+
