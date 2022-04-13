@@ -237,7 +237,7 @@ var applyBarChartData = {
 
 /* 구별 방문자수 막대 그래프 데이터 셋 */
 var barChartData = {
-        labels : [ "중구", "동구", "서구", "남구", "북구", "달성구", "달성군", "수성구" ],
+        labels : [ "남구", "달성구", "달성군", "동구", "북구", "서구", "수성구", "중구" ],
         datasets : [
               {
                  label : '방문자 수',
@@ -365,12 +365,11 @@ var ageData = {
 				</div>
 				<div id="khs_subMenu">
 					<ul>
-						<li><a href="${contextPath}/admin/member/listMembers.do" id="khs_left khs_left1" class="khs_lnb"><p>사용자
-									관리</p></a>
-						</li>
-						<li><a href="${contextPath}/admin/adminApply/adminMonthApply.do" id="khs_left khs_left2" class="khs_lnb"><p>신청
-									관리</p></a>
-							</li>
+						<li><a href="${contextPath}/admin/member/listMembers.do"
+							id="khs_left khs_left1" class="khs_lnb"><p>사용자 관리</p></a></li>
+						<li><a
+							href="${contextPath}/admin/adminApply/adminMonthApply.do"
+							id="khs_left khs_left2" class="khs_lnb"><p>신청 관리</p></a></li>
 						<li><a id="khs_left khs_left3" class="khs_lnb"><p>게시판
 									관리</p></a>
 							<ul class="khs_depth2">
@@ -399,10 +398,7 @@ var ageData = {
 				<div id="adm_visit_search">
 					<form name="v_search"
 						action="${contextPath}/admin/stats/searchVisit.do">
-						<span>[검색 방문 수: ${searchVisitTotCnt}명]</span>
-
-						
-						 <input type="submit"
+						<span>[검색 방문 수: ${searchVisitTotCnt}명]</span> <input type="submit"
 							name="search" value="검 색"> <input type="date" id="toDate"
 							name="toDate" value="${toDate}"> <input type="date"
 							id="fromDate" name="fromDate" value="${fromDate}">
@@ -500,7 +496,7 @@ var ageData = {
 					<canvas id="visitTotChart"></canvas>
 				</div>
 
-	<div>
+				<div>
 					<canvas id="applyChart"></canvas>
 				</div>
 
@@ -509,14 +505,14 @@ var ageData = {
 				<table id="adm_visitList_tab" border="1" align="center" width="100%">
 					<tr height="40" align="center" bgcolor="#abd1f6">
 						<td width="11$"><b>구별</b></td>
-						<td width="11$"><b>수성구</b></td>
-						<td width="11$"><b>북구</b></td>
-						<td width="11$"><b>달성군</b></td>
-						<td width="11$"><b>중구</b></td>
-						<td width="11$"><b>동구</b></td>
-						<td width="11$"><b>서구</b></td>
 						<td width="11$"><b>남구</b></td>
 						<td width="11$"><b>달성구</b></td>
+						<td width="11$"><b>달성군</b></td>
+						<td width="11$"><b>동구</b></td>
+						<td width="11$"><b>북구</b></td>
+						<td width="11$"><b>서구</b></td>
+						<td width="11$"><b>수성구</b></td>
+						<td width="11$"><b>중구</b></td>
 					</tr>
 
 

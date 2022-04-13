@@ -302,15 +302,16 @@
 									<td class="fixed_join">:: 비밀번호확인<span
 										style="font-weight: bold; color: red;">*</span>
 									</td>
-									<td colspan="2"><input name="member_pwck" id="member_pwck"
+									<td><input name="member_pwck" id="member_pwck"
 										type="password" size="20" minlength="8" maxlength="25" />
-								</tr>
-								<span id="pwck1"
-									style="color: dodgerblue; display: none; font-size: 14px;">비밀번호가
+									<td><span id="pwck1"
+									style="color: green; display: none; font-size: 10px;">&nbsp;&nbsp;비밀번호가
 									일치합니다.</span>
 								<span id="pwck2"
-									style="color: red; display: none; font-size: 14px;">비밀번호가
-									일치하지않습니다.</span>
+									style="color: red; display: none; font-size: 10px;">&nbsp;&nbsp;비밀번호가
+									일치하지 않습니다.</span></td>
+								</tr>
+								
 
 								<tr class="dot_line">
 									<td></td>

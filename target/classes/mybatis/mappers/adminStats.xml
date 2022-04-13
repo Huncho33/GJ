@@ -41,8 +41,8 @@
 	<select id="getAddrTotVisit" parameterType="java.util.Map"
 		resultType="int">
    <![CDATA[
-      select count(v_date) , a  from 
-      (select substr(v_roadAddress, 6, instr(v_roadAddress, ' ',1)-2) as a, v_date from visit)
+       select count(v_date) , a  from 
+      (select substr(v_roadAddress, 3, instr(v_roadAddress , ' ',1)+1) as a, v_date from visit)
       group by a order by a
       ]]>
 	</select>
@@ -92,8 +92,8 @@
 		resultType="int">
    <![CDATA[
    
-   select count(v_date) , a  from 
-      (select substr(v_roadAddress, 6, instr(v_roadAddress, ' ',1)-2) as a, v_date from visit)
+ select count(v_date) , a  from 
+      (select substr(v_roadAddress, 3, instr(v_roadAddress , ' ',1)+1) as a, v_date from visit)
       where  v_date BETWEEN TO_DATE(#{fromDate}, 'yyyy-MM-dd') AND TO_DATE(#{toDate}, 'yyyy-MM-dd')+0.99999
       group by a order by a
       ]]>

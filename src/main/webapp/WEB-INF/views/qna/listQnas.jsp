@@ -22,7 +22,7 @@
 <script src="${contextPath}/resources/js/qna/listQnas.js"></script>
 <script src="https://kit.fontawesome.com/fc92373f81.js"
 	crossorigin="anonymous"></script>
-	
+
 </head>
 
 <body>
@@ -67,8 +67,7 @@
 												</c:forEach>
 												<span style="font-size: 12px;">└[답변완료]</span>
 											&nbsp;<i class="fa-solid fa-lock"></i>&nbsp;<a class='cls1'
-													href="${contextPath}/qna/viewQna.do?
-=${qna.qna_no}">
+													href="${contextPath}/qna/viewQna.do?qna_no=${qna.qna_no}">
 													${qna.qna_title}.</a>
 											</c:when>
 											<c:when test="${qna.qna_pw != '' }">

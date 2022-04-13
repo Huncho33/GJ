@@ -11,7 +11,8 @@
 	width: 1300px;
 }
 
-p.cls2 {
+a.cls2 {
+	text-decoration: none;
 	float: right;
 	font-size: 15px;
 	border: 1px solid #585858;
@@ -72,6 +73,10 @@ h3.noti_titName {
 .sel-page {
 	text-decoration: none;
 	color: #2E9AFE;
+}
+
+#noti_write{
+	display:none;
 }
 
 #noti_search {
