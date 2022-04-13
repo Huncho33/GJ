@@ -23,6 +23,14 @@
 <title>글목록창</title>
 </head>
 <script>
+	function adm_reg(member_right) {
+		console.log(member_right);
+		if (member_right == "ADMIN") {
+			var a = document.getElementById("noti_write");
+			a.style.display = "block";
+		}
+	}
+
 	function fn_articleForm(isLogOn, articleForm, loginForm) {
 		if (isLogOn != '' && isLogOn != 'false') {
 			location.href = articleForm;
@@ -32,7 +40,7 @@
 		}
 	}
 </script>
-<body>
+<body onload="adm_reg('${member.member_right}')">
 	<div id="noti_bground">
 		<div id="noti_container">
 			<div id="noti_title">
@@ -91,7 +99,7 @@
 				<a class="cls1"
 					href="javascript:fn_articleForm('${isLogOn}','${contextPath}/boardNotice/articleForm.do', 
                                                     '${contextPath}/member/loginForm.do')"><p
-						class="cls2">글쓰기</p></a>
+						class="cls2">글쓰기</a></p>
 			</div>
 		</div>
 	</div>
