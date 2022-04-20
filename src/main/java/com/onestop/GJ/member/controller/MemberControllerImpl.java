@@ -34,71 +34,68 @@ public class MemberControllerImpl implements MemberController {
 	private MemberService memberService;
 	@Autowired
 	private MemberVO memberVO;
-	
 
 	@RequestMapping(value = { "/*/*.do", "/main.do" }, method = RequestMethod.GET)
 	private ModelAndView main(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = (String) request.getAttribute("viewName");
-		
+
 		List<BoardNoticeVO> notiList = memberService.selectNotiList();
 		List<BoardDataVO> dataList = memberService.selectDataList();
-		
+
 		ModelAndView mav = new ModelAndView(viewName);
-		
+
 		mav.addObject("notiList", notiList);
 		mav.addObject("dataList", dataList);
-		
+
 		return mav;
 	}
 
 	// 로그인
 	@Override
-	   @RequestMapping(value = "/member/login.do", method = RequestMethod.POST)
-	   public ModelAndView login(@ModelAttribute("member") MemberVO member, RedirectAttributes rAttr,
-	         HttpServletRequest request, HttpServletResponse response) throws Exception {
-	      ModelAndView mav = new ModelAndView();
-	      memberVO = memberService.login(member);
-	      
-	      if (memberVO != null) {
-	         HttpSession session = request.getSession();
-	         session.setAttribute("member", memberVO);
-	         session.setAttribute("isLogOn", true);
-	         
-	         String member_id = memberVO.getMember_id();
-	         String member_gender = memberVO.getMember_gender();
-	         String member_roadAddress = memberVO.getMember_roadAddress();
-	         String member_birth = memberVO.getMember_birth();
-	         String member_right = memberVO.getMember_right();
-	         memberService.last_log(member_id);
-	         Date member_last_log = memberVO.getMember_last_log();
-	        
-	         Map visitMap = new HashMap();
-	         if(member_right.equals("MEMBER")) {
-	            visitMap.put("member_id", member_id);
-	            visitMap.put("member_gender", member_gender);
-	            visitMap.put("member_roadAddress", member_roadAddress);
-	            visitMap.put("member_birth", member_birth);
-	            visitMap.put("member_last_log", member_last_log);
-	            
-	         
-	         memberService.insertVisit(visitMap);
-	         Map countMap = memberService.getTotCnt(visitMap); 
-	         }
-	         
-	         String action = (String) session.getAttribute("action");
-	         session.removeAttribute("action");
-	         if (action != null) {
-	            mav.setViewName("redirect:" + action);
-	         } else {
-	            mav.setViewName("redirect:/main.do");
-	         }
+	@RequestMapping(value = "/member/login.do", method = RequestMethod.POST)
+	public ModelAndView login(@ModelAttribute("member") MemberVO member, RedirectAttributes rAttr,
+			HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		memberVO = memberService.login(member);
 
-	      } else {
-	         rAttr.addAttribute("result", "loginFailed");
-	         mav.setViewName("redirect:/member/loginForm.do");
-	      }
-	      return mav;
-	   }
+		if (memberVO != null) {
+			HttpSession session = request.getSession();
+			session.setAttribute("member", memberVO);
+			session.setAttribute("isLogOn", true);
+
+			String member_id = memberVO.getMember_id();
+			String member_gender = memberVO.getMember_gender();
+			String member_roadAddress = memberVO.getMember_roadAddress();
+			String member_birth = memberVO.getMember_birth();
+			String member_right = memberVO.getMember_right();
+			memberService.last_log(member_id);
+			Date member_last_log = memberVO.getMember_last_log();
+
+			Map visitMap = new HashMap();
+			if (member_right.equals("MEMBER")) {
+				visitMap.put("member_id", member_id);
+				visitMap.put("member_gender", member_gender);
+				visitMap.put("member_roadAddress", member_roadAddress);
+				visitMap.put("member_birth", member_birth);
+				visitMap.put("member_last_log", member_last_log);
+
+				memberService.insertVisit(visitMap);
+				Map countMap = memberService.getTotCnt(visitMap);
+			}
+
+			String action = (String) session.getAttribute("action");
+			session.removeAttribute("action");
+			if (action != null) {
+				mav.setViewName("redirect:" + action);
+			} else {
+				mav.setViewName("redirect:/main.do");
+			}
+		} else {
+			rAttr.addAttribute("result", "loginFailed");
+			mav.setViewName("redirect:/member/loginForm.do");
+		}
+		return mav;
+	}
 
 	@Override // 로그아웃
 	@RequestMapping(value = "/member/logout.do", method = RequestMethod.GET)
@@ -109,13 +106,12 @@ public class MemberControllerImpl implements MemberController {
 		session.removeAttribute("isLogOut");
 		ModelAndView mav = new ModelAndView();
 
-		//rAttr.addAttribute("result", "logOut");
+		// rAttr.addAttribute("result", "logOut");
 		session.invalidate();
 		mav.setViewName("redirect:/main.do");
 		return mav;
-
 	}
-	
+
 	@RequestMapping(value = "/member/*Form.do", method = RequestMethod.GET)
 	private ModelAndView form(@RequestParam(value = "result", required = false) String result,
 			@RequestParam(value = "action", required = false) String action, HttpServletRequest request,
@@ -128,7 +124,6 @@ public class MemberControllerImpl implements MemberController {
 		mav.setViewName(viewName);
 		return mav;
 	}
-		
 
 	// 회원가입
 	@Override
@@ -159,7 +154,6 @@ public class MemberControllerImpl implements MemberController {
 		return resEntity;
 	}
 
-
 	// 회원가입 ID 중복체크
 	@Override
 	@RequestMapping(value = "/member/overlapped.do", method = RequestMethod.POST)
@@ -170,8 +164,6 @@ public class MemberControllerImpl implements MemberController {
 		resEntity = new ResponseEntity(result, HttpStatus.OK);
 		return resEntity;
 	}
-
-
 
 	// 비밀번호 찾기(이메일)
 	@RequestMapping(value = "/member/find_pw.do", method = RequestMethod.POST)
@@ -186,12 +178,10 @@ public class MemberControllerImpl implements MemberController {
 			memberVO.setMember_email1(find_email.substring(0, index));
 			memberVO.setMember_email2(find_email.substring(index + 1));
 			memberService.find_pw(response, memberVO);
-		
 		} else {
 			out.print("올바르지 않은 이메일 형식입니다.");
 			out.close();
 		}
-		
 	}
 
 	// 아이디찾기
@@ -205,18 +195,17 @@ public class MemberControllerImpl implements MemberController {
 		ResponseEntity resEntity1 = null;
 		HttpHeaders responseHeaders1 = new HttpHeaders();
 		responseHeaders1.add("Content-Type", "text/html; charset=utf-8");
-		
+
 		if (memberVO != null) {
 			message = "<script>";
-			message += " alert('" +"아이디 : "+  memberVO.getMember_id()  + "');";
+			message += " alert('" + "아이디 : " + memberVO.getMember_id() + "');";
 			message += " location.href='" + request.getContextPath() + "/member/loginForm.do';";
 			message += " </script>";
-			System.out.println("ok~"+ memberVO.getMember_id());
-			
-		}else {
+			System.out.println("ok~" + memberVO.getMember_id());
+		} else {
 			System.out.println("not okay");
 			message = "<script>";
-			message += " alert('" +" 입력한 정보가 올바르지 않습니다. "  + "');";
+			message += " alert('" + " 입력한 정보가 올바르지 않습니다. " + "');";
 			message += " location.href='" + request.getContextPath() + "/member/findId_cellph.do';";
 			message += " </script>";
 		}

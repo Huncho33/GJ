@@ -22,6 +22,7 @@
 	type="text/css">
 <script src="${contextPath}/resources/js/sidemenu.js"></script>
 <link rel="stylesheet" href="${contextPath}/resources/css/sidemenu.css">
+
 <script>
 // vo에서 불러온 아이디 값 읽기 위해 히든으로 값 옮겨주는 기능
 function fn_idToHidden() {

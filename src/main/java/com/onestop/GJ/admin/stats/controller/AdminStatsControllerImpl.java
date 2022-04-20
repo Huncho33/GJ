@@ -98,16 +98,12 @@ public class AdminStatsControllerImpl implements AdminStatsController {
 		dateMap.put("toDate", result2);
 		dateMap.put("section", section);
 		dateMap.put("pageNum", pageNum);
-
 		Map searchMap = statsService.searchVisit(dateMap);
 		searchMap.put("fromDate", result1);
 		searchMap.put("toDate", result2);
 		searchMap.put("section", section);
 		searchMap.put("pageNum", pageNum);
 		System.out.println("√÷¡æ searchMap : " + searchMap);
-
-//         searchMap.put("fromDate", fromDate);
-//         searchMap.put("toDate", toDate);
 
 		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);

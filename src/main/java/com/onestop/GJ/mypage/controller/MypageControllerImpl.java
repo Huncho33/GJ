@@ -114,7 +114,6 @@ public class MypageControllerImpl implements MypageController {
 		}
 
 		memberMap.put("member_id", member_id);
-
 		memberVO = (MemberVO) mypageService.modifyMember(memberMap);
 		session.removeAttribute("member");
 		session.setAttribute("member", memberVO);
@@ -124,9 +123,7 @@ public class MypageControllerImpl implements MypageController {
 		HttpHeaders responseHeaders = new HttpHeaders();
 		message = "mod_success";
 		resEntity = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
-
 		return resEntity;
-
 	}
 
 	// 회원탈퇴 후 메인페이지 이동(로그아웃) 기능

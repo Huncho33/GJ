@@ -77,13 +77,10 @@
        /* x축 y축 설정 */
            scales : { 
                xAxes : [{
-            	   
-            	   
                gridLines : {
                   display : false
                },
                offset:true
-               
             }],
             yAxes: [{
                ticks: {
@@ -152,7 +149,6 @@
 	                ticks: {
 	                   min:0
 	                }
-	                
 	             }]
 	          }
          }
@@ -176,7 +172,7 @@
       } 
       });
       
-      /* 연령 비율 파이 차트 function*/
+      /* 연령 비율 도넛 차트 function*/
       var ctx3 = $('#ageChart').get(0).getContext("2d"); 
       window.theChart3 = new Chart(ctx3, { 
          type: 'doughnut', 
@@ -210,7 +206,6 @@
                  fill: false,
               datalabels: { 
                 display: false
-                
                 },
               }
             ]
@@ -309,12 +304,12 @@
     			}] 
     };
     
-    /* 연령별 비율 파이 차트 데이터 셋 */
+    /* 연령별 비율 도넛 차트 데이터 셋 */
     var ageData = { 
             labels: ["20대"," 30대", "40대"], 
             datasets: [ 
                {   
-                  label: 'Pie Chart Age Count',
+                  label: 'doughnut Chart Age Count',
                   data:  
                       ${getAgeTotVisit},
                       

@@ -203,7 +203,7 @@
 	<select id="checkPwd" resultType="int">
 		select COUNT(*) from member
 		where member_id=#{member_id} AND member_pw=#{member_pw}
-	</select>
+	</select>	
 
 
 	<!-- 신청내역 삭제 기능 -->
